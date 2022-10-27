@@ -10,8 +10,7 @@
       ],
       "parserOptions": {
         "project": [
-          "tsconfig.*?.json",
-          "e2e/tsconfig.json"
+          "tsconfig.json"
         ],
         "createDefaultProgram": true
       },
@@ -19,7 +18,7 @@
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
         "airbnb-typescript/base",
-        "prettier/@typescript-eslint",
+        "prettier",
         "plugin:prettier/recommended"
       ],
       "rules": {
@@ -39,7 +38,8 @@
             "style": "kebab-case"
           }
         ]
-      }
+      },
+      "plugins": ["import"]
     },
     {
       "files": [
