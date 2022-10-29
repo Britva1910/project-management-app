@@ -1,6 +1,13 @@
+@import "utils-color";
 .wrapper__board-page {
   width: 100%;
   height: 100%;
+  font-family: "Poppins";
+  color: $light-font-color;
+  background-image: url("../../../assets/img/dark-fon.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
 }
 .board-page__container {
   padding: 20px;
