@@ -8,7 +8,7 @@ import { BoardService } from './../../services/board.service';
 export class BoardEffect {
   constructor(private actions$: Actions, private boardService: BoardService) {}
 
-  idBoard = ''; //берём в общем store?
+  idBoard = '958f9259-6360-40e7-9655-fe87531d026a'; //берём в общем store?
 
   loadBoard$ = createEffect(() => {
     return this.actions$.pipe(
