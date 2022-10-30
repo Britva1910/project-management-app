@@ -1,4 +1,4 @@
-export interface GetBoardId {
+export interface State {
   id: string;
   title: string;
   description: string;
