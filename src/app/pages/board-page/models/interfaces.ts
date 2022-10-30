@@ -1,4 +1,4 @@
-export interface State {
+export interface BoardResponse {
   id: string;
   title: string;
   description: string;
@@ -16,7 +16,7 @@ interface Tasks {
   userId: string;
   files: Files[];
 }
-interface Column {
+export interface Column {
   id: string;
   title: string;
   order: number;

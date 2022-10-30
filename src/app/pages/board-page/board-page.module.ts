@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { boardReducer } from './store/reducers/board.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { BoardEffect } from './store/effects/board.effect';
+import { BoardService } from './services/board.service';
 
 const routes: Routes = [{ path: '', component: BoardPageComponent }];
 @NgModule({
@@ -16,6 +17,6 @@ const routes: Routes = [{ path: '', component: BoardPageComponent }];
     StoreModule.forFeature('myboard', boardReducer),
     EffectsModule.forFeature([BoardEffect]),
   ],
-  providers: [],
+  providers: [BoardService],
 })
 export class BoardPageModule {}

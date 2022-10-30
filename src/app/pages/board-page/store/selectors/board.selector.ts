@@ -1,4 +1,4 @@
 import { createFeatureSelector } from '@ngrx/store';
-import { State } from './../../models/interfaces';
+import { State } from './../state/state';
 
-export const selectBooks = createFeatureSelector<State[]>('myboard');
+export const selectBoards = createFeatureSelector<State>('myboard');
