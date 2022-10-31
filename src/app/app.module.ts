@@ -10,6 +10,7 @@ import { environment } from '../environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderAddTokkenInterceptor } from './shared/interceptors/header-add-tokken.interceptor';
 import { UrlInterceptor } from './shared/interceptors/url.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [AppComponent, NotFoundPagesComponent],
   imports: [
@@ -22,6 +23,7 @@ import { UrlInterceptor } from './shared/interceptors/url.interceptor';
       maxAge: 25,
       logOnly: environment.production,
     }),
+    BrowserAnimationsModule,
   ],
   providers: [
     {
