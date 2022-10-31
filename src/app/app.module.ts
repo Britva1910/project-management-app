@@ -13,8 +13,14 @@ import { UrlInterceptor } from './shared/interceptors/url.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { MatButtonModule } from '@angular/material/button';
+import { FooterComponent } from './shared/components/footer/footer.component';
 @NgModule({
-  declarations: [AppComponent, NotFoundPagesComponent, HeaderComponent],
+  declarations: [
+    AppComponent,
+    NotFoundPagesComponent,
+    HeaderComponent,
+    FooterComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
