@@ -1,8 +1,25 @@
+@import "utils-color";
+
 @mixin not-found-text {
   font: {
     family: 'Volkhov';
     size: 25px;
     weight: bold;
   }
- color: #4b4c53;
+ color: $grey-color;
+}
+
+@mixin title-page {
+  @include not-found-text;
+  color: $dark-font-color;
+}
+
+
+@mixin title-column {
+  font: {
+    family: 'Volkhov';
+    size: 16px;
+    weight: bold;
+  }
+  color: $dark-font-color;
 }

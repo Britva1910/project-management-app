@@ -8,7 +8,7 @@ interface Files {
   filename: string;
   fileSize: number;
 }
-interface Tasks {
+export interface Tasks {
   id: string;
   title: string;
   order: number;

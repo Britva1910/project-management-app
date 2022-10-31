@@ -1,0 +1,35 @@
+@import "utils-color";
+@import "mixins";
+.icon {
+  font-size: 18px;
+}
+.mat-icon-button {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $btn-delete-color;
+  transition: color ease .2s;
+   &:hover {
+    color: $light-blue-fon-color;
+   }
+}
+.mat-icon-button .mat-button-wrapper>* {
+  vertical-align: none !important;
+}
+mat-form-field.mat-form-field {
+  background-color: rgb(214, 55, 55);
+  padding: 10px 10px 0 10px;
+}
+::ng-deep .mat-form-field.mat-form-focused {
+.mat-form-field-required-marker {
+  color: $dark-font-color;
+}
+}
+.mat-input-element {
+  color: $dark-font-color;
+}
+.icon-confirm {
+  font-size: 20px !important;
+}
