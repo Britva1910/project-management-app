@@ -5,12 +5,18 @@ import { AuthPageComponent } from './auth-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { SingUpComponent } from './components/sing-up/sing-up.component';
-import {MatInputModule} from "@angular/material/input";
-import {MatButtonModule} from "@angular/material/button";
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [{ path: '', component: AuthPageComponent }];
 @NgModule({
   declarations: [AuthPageComponent, LoginComponent, SingUpComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), MatTabsModule, MatInputModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    MatTabsModule,
+    MatInputModule,
+    MatButtonModule,
+  ],
 })
 export class AuthPageModule {}

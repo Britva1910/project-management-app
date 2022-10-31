@@ -8,9 +8,8 @@ describe('SingAppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SingUpComponent ]
-    })
-    .compileComponents();
+      declarations: [SingUpComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SingUpComponent);
     component = fixture.componentInstance;
