@@ -12,7 +12,7 @@ export class UserBoardService {
   private initBoard = [
     {
       id: '755e6470-a633-4fae-9e47-cf6680b75097',
-      title: 'Вторник',
+      title: 'ToDo',
       order: 3,
       tasks: [
         {
@@ -43,13 +43,38 @@ export class UserBoardService {
     },
     {
       id: '05235356-6f27-4242-8e8f-93b440c2acfe',
-      title: 'Понедельник',
+      title: 'Create',
       order: 2,
-      tasks: [],
+      tasks: [
+        {
+          id: '43bc666f-6655-41bf-8b2a-36ea592bcbaa',
+          title: 'Task2',
+          order: 1,
+          description: 'I needs to be stroked gently',
+          userId: '0d4b6832-2292-495b-866c-60a8970e2b78',
+          files: [],
+        },
+        {
+          id: '64b29ad9-c0d9-445a-9d83-5c9f7e6a6616',
+          title: 'Task: vIVA',
+          order: 2,
+          description: 'YTKKJ',
+          userId: '0d4b6832-2292-495b-866c-60a8970e2b78',
+          files: [],
+        },
+        {
+          id: 'f86f30c2-6969-4cfb-9be1-b65847598919',
+          title: 'OK',
+          order: 3,
+          description: 'OOOOOoooooottttttvvvet',
+          userId: '0d4b6832-2292-495b-866c-60a8970e2b78',
+          files: [],
+        },
+      ],
     },
     {
       id: 'e1e7fdca-3dd6-4cf0-81fd-797b63537848',
-      title: 'My Work',
+      title: 'Delete',
       order: 1,
       tasks: [],
     },
