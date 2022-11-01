@@ -23,6 +23,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot({}, {}),
