@@ -6,7 +6,7 @@ import { State } from './../store/state/state';
 
 @Injectable()
 export class BoardService {
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   public getBoard(id: string): Observable<State> {
     return this.http.get<State>(`boards/${id}`);
