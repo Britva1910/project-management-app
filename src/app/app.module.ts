@@ -11,8 +11,16 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderAddTokkenInterceptor } from './shared/interceptors/header-add-tokken.interceptor';
 import { UrlInterceptor } from './shared/interceptors/url.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { MatButtonModule } from '@angular/material/button';
+import { FooterComponent } from './shared/components/footer/footer.component';
 @NgModule({
-  declarations: [AppComponent, NotFoundPagesComponent],
+  declarations: [
+    AppComponent,
+    NotFoundPagesComponent,
+    HeaderComponent,
+    FooterComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -25,6 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       logOnly: environment.production,
     }),
     BrowserAnimationsModule,
+    MatButtonModule,
   ],
   providers: [
     {
