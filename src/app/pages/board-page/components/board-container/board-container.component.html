@@ -1,0 +1,14 @@
+
+  <div cdkDropListGroup class="container-column">
+    <div class="column" *ngFor="let column of userBoardService.getBoard$() | async">
+      <h3 class="title-column">{{column.title}}</h3>
+      <hr class="board-page__line">
+      <button class="board-page__btn_add-task" type="button">Add task</button>
+      <div class="example-list" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
+        <div cdkDrag class="example-box" *ngFor="let item of column.tasks">
+          <app-item-board [item]="item" (emitDeleteTask)="onDeleteTask($event, column.id)"></app-item-board>
+        </div>
+      </div>
+    </div>
+  </div>
+

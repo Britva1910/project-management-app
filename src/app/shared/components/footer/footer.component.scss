@@ -1,0 +1,45 @@
+@import 'utils-color';
+
+.footer {
+  position: relative;
+  width: 100%;
+  background: $dark-fon-color;
+
+
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 70px;
+    margin: 0 auto;
+  }
+
+  &__githubs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 300px;
+  }
+
+  &__githubs a {
+    opacity: 0.8;
+    text-decoration: none;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__rs {
+    position: absolute;
+    right: 40px;
+  }
+
+  &__rs a {
+    opacity: 0.8;
+    text-decoration: none;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

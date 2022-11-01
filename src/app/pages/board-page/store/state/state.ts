@@ -11,3 +11,5 @@ export const initialState: State = {
   description: '',
   columns: [],
 };
+
+export const idBoard = '958f9259-6360-40e7-9655-fe87531d026a'; //берём в общем store?
