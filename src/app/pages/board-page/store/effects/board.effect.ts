@@ -3,18 +3,26 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
 import { boardFetchAPISuccess, invokeBoardAPI } from '../actions/board.actions';
 import { BoardService } from './../../services/board.service';
+import { BoardsDataService } from '../../../../shared/services/boards-data-service/boards-data.service';
 
 @Injectable()
 export class BoardEffect {
-  constructor(private actions$: Actions, private boardService: BoardService) {}
+  constructor(
+    private actions$: Actions,
+    private boardService: BoardService,
+    private boardData: BoardsDataService
+  ) {}
 
   idBoard = '958f9259-6360-40e7-9655-fe87531d026a'; //берём в общем store?
 
   loadBoard$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(invokeBoardAPI),
-      switchMap(() => this.boardService.getBoard(this.idBoard)),
-      map((data) => boardFetchAPISuccess({ boardResponse: data }))
+      switchMap(() =>
+        this.boardData
+          .getBoardById(this.idBoard)
+          .pipe(map((data) => boardFetchAPISuccess({ boardResponse: data })))
+      )
     );
   });
 }
