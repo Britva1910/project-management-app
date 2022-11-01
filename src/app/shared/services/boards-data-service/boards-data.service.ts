@@ -3,6 +3,7 @@ import { RequestClientBuilderService } from '../request-client-builder/request-c
 import { BASE_URL } from '../../constant/url';
 import { Observable } from 'rxjs';
 import { State } from '../../../pages/board-page/store/state/state';
+import { UrlsEnum } from '../../models/enums/urls-enum';
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +17,26 @@ export class BoardsDataService {
     this.baseURL = BASE_URL;
   }
 
+  public getAllBoards(): Observable<State> {
+    return this.RequestClientBuilder.get<State>(UrlsEnum.boards);
+  }
+
   public getBoardById(id: string): Observable<State> {
-    const url = 'boards' + `/${id}`;
+    const url = `${UrlsEnum.boards}/${id}`;
     return this.RequestClientBuilder.get<State>(url);
+  }
+
+  public createBoard(data: unknown): Observable<unknown> {
+    return this.RequestClientBuilder.post(UrlsEnum.boards, data);
+  }
+
+  public deleteBoard(id: string): Observable<unknown> {
+    const url = `${UrlsEnum.boards}/${id}`;
+    return this.RequestClientBuilder.delete(url);
+  }
+
+  public updateBoard(id: string, data: unknown): Observable<unknown> {
+    const url = `${UrlsEnum.boards}/${id}`;
+    return this.RequestClientBuilder.put(url, data);
   }
 }
