@@ -9,6 +9,8 @@
   display: inline-block;
   vertical-align: top;
 }
+
+
 .column {
   border: solid 1px red;
   min-width: 265px;
@@ -19,6 +21,7 @@
   align-items: center;
 
 }
+
 .example-list {
   border: solid 1px $light-blue-fon-color;
   min-height: 60px;
@@ -78,7 +81,7 @@
   height: 5px;
   background-color: $dark-font-color;
   border-radius: 10px;
-  margin: 5px 0;
+  margin: 2px 0;
 }
 
 .board-page__btn_add-task {
@@ -101,8 +104,9 @@
 
 .container-column {
   width: 100%;
-display: flex;
-flex-wrap: nowrap;
-overflow-x: auto;
-gap: 15px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 15px;
+  max-height: 450px;
 }

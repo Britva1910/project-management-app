@@ -10,8 +10,13 @@
 }
 
 @mixin title-page {
-  @include not-found-text;
+  font: {
+    family: 'Volkhov';
+    size: 22px;
+    weight: bold;
+  }
   color: $dark-font-color;
+  margin: 0;
 }
 
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Tasks } from '../../models/interfaces';
 @Component({
   selector: 'app-item-board',
@@ -7,4 +7,10 @@ import { Tasks } from '../../models/interfaces';
 })
 export class ItemBoardComponent {
   @Input() item!: Tasks;
+
+  @Output() emitDeleteTask: EventEmitter<string> = new EventEmitter();
+
+  deleteOneTask(idTask: string) {
+    this.emitDeleteTask.emit(idTask);
+  }
 }
