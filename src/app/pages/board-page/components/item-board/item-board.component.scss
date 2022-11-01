@@ -1,0 +1,39 @@
+@import "utils-color";
+@import "mixins";
+@import "bootstrap";
+
+.icon {
+  font-size: 18px;
+}
+
+.mat-icon-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $btn-delete-color;
+  transition: color ease .2s;
+
+  &:hover {
+    color: $light-blue-fon-color;
+  }
+}
+
+.title-task {
+  @include title-column;
+  margin: 0;
+}
+
+.description-task {
+  @include description-task;
+  margin: 0;
+}
+
+.img-task {
+  height: 25px;
+  margin: 7px 0;
+}

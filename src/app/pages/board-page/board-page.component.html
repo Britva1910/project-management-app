@@ -1,4 +1,13 @@
 <section class="wrapper__board-page">
-  <h2 class="board-page__title">{{title$ | async}}</h2>
-  <div class="board-page__container"></div>
+  <div class="board-page__container-title">
+    <h2 class="board-page__title">{{title$ | async}}</h2>
+    <p class="title-today">{{today | date }}</p>
+  </div>
+  <h3 class="board-page__description">{{description$ | async}}</h3>
+  <img class="board-page__img" src="../../../assets/img/members.png" alt="icon">
+  <hr class="board-page__line">
+  <div class="board-page__container">
+      <app-board-container></app-board-container>
+  </div>
+      <button class="board-page__btn_add-column" type="button">More Column +</button>
 </section>

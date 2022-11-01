@@ -25,6 +25,7 @@ import { ModalConfirmComponent } from './shared/components/modal-confirm/modal-c
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot({}, {}),

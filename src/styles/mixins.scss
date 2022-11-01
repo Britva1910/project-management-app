@@ -1,8 +1,39 @@
+@import "utils-color";
+
 @mixin not-found-text {
   font: {
     family: 'Volkhov';
     size: 25px;
     weight: bold;
   }
- color: #4b4c53;
+ color: $grey-color;
+}
+
+@mixin title-page {
+  font: {
+    family: 'Volkhov';
+    size: 22px;
+    weight: bold;
+  }
+  color: $dark-font-color;
+  margin: 0;
+}
+
+
+@mixin title-column {
+  font: {
+    family: 'Volkhov';
+    size: 16px;
+    weight: bold;
+  }
+  color: $dark-font-color;
+}
+
+@mixin description-task {
+  font: {
+    family: 'Volkhov';
+    size: 12px;
+    weight: normal;
+  }
+  color: $description-color;
 }
