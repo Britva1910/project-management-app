@@ -1,5 +1,6 @@
 @import "utils-color";
 @import "mixins";
+@import "bootstrap";
 
 .example-container {
   width: 250px;
@@ -8,10 +9,20 @@
   display: inline-block;
   vertical-align: top;
 }
+.column {
+  border: solid 1px red;
+  min-width: 265px;
+  background: transparent;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
+}
 .example-list {
   border: solid 1px $light-blue-fon-color;
   min-height: 60px;
+  width: 250px;
   background: transparent;
   border-radius: 4px;
   overflow-y: auto;
@@ -86,4 +97,12 @@
     background: $btn-add-hover-color;
     border: 1px solid $btn-add-hover-color;
   }
+}
+
+.container-column {
+  width: 100%;
+display: flex;
+flex-wrap: nowrap;
+overflow-x: auto;
+gap: 15px;
 }

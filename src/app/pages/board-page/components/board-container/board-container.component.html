@@ -1,6 +1,6 @@
-<div class="container-fluid">
-  <div cdkDropListGroup class="row">
-    <div class="col-sm-3" *ngFor="let column of userBoardService.getBoard$() | async">
+
+  <div cdkDropListGroup class="container-column">
+    <div class="column" *ngFor="let column of columns$ | async">
       <h3 class="title-column">{{column.title}}</h3>
       <hr class="board-page__line">
       <button class="board-page__btn_add-task" type="button">Add task</button>
@@ -11,4 +11,4 @@
       </div>
     </div>
   </div>
-</div>
+
