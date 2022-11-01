@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Tasks } from '../../models/interfaces';
+//import { Column } from './../../models/interfaces';
 import { UserBoardService } from './../../services/user-board.service';
 import { Store } from '@ngrx/store';
 import { selectColumnsBoard } from './../../store/selectors/board.selector';
@@ -21,7 +23,7 @@ export class BoardContainerComponent {
 
   public columns$ = this.store.select(selectColumnsBoard);
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<Tasks[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,

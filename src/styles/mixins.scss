@@ -23,3 +23,12 @@
   }
   color: $dark-font-color;
 }
+
+@mixin description-task {
+  font: {
+    family: 'Volkhov';
+    size: 12px;
+    weight: normal;
+  }
+  color: $description-color;
+}
