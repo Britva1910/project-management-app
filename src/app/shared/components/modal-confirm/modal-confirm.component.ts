@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ModalConfirmService } from './../../services/modal-confirm-service/modal-confirm.service';
 
 @Component({
   selector: 'app-modal-confirm',
@@ -6,13 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./modal-confirm.component.scss'],
 })
 export class ModalConfirmComponent {
-  public showModal = true;
+  constructor(private modalConfirmService: ModalConfirmService) {}
+
+  public showModal$ = this.modalConfirmService.getShowModalConfirm();
 
   public cancel() {
-    this.showModal = false;
+    this.modalConfirmService.setShowModalConfirm();
   }
 
   public confirm() {
-    this.showModal = false;
+    this.modalConfirmService.setShowModalConfirm();
   }
 }
