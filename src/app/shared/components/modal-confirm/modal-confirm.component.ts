@@ -5,4 +5,14 @@ import { Component } from '@angular/core';
   templateUrl: './modal-confirm.component.html',
   styleUrls: ['./modal-confirm.component.scss'],
 })
-export class ModalConfirmComponent {}
+export class ModalConfirmComponent {
+  public showModal = true;
+
+  public cancel() {
+    this.showModal = false;
+  }
+
+  public confirm() {
+    this.showModal = false;
+  }
+}
