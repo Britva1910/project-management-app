@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Tasks } from '../../models/interfaces';
+import { Tasks } from '../../../../shared/models/interfaces/interfaces-board';
 import { ModalConfirmService } from './../../../../shared/services/modal-confirm-service/modal-confirm.service';
 @Component({
   selector: 'app-item-board',

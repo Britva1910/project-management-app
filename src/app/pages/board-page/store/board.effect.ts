@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
-import { boardFetchAPISuccess, invokeBoardAPI } from '../actions/board.actions';
-import { BoardsDataService } from '../../../../shared/services/boards-data-service/boards-data.service';
+import { boardFetchAPISuccess, invokeBoardAPI } from './board.actions';
+import { BoardsDataService } from '../../../shared/services/boards-data-service/boards-data.service';
 
 @Injectable()
 export class BoardEffect {

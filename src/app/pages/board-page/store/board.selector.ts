@@ -1,24 +1,24 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { State } from './../state/state';
+import { StateBoard } from './state-board';
 
-export const selectBoards = createFeatureSelector<State>('myboard');
+export const selectBoards = createFeatureSelector<StateBoard>('myboard');
 
 export const selectIdBoard = createSelector(
   selectBoards,
-  (state: State) => state.id
+  (state: StateBoard) => state.id
 );
 
 export const selectTitleBoard = createSelector(
   selectBoards,
-  (state: State) => state.title
+  (state: StateBoard) => state.title
 );
 
 export const selectDescriptionBoard = createSelector(
   selectBoards,
-  (state: State) => state.description
+  (state: StateBoard) => state.description
 );
 
 export const selectColumnsBoard = createSelector(
   selectBoards,
-  (state: State) => state.columns
+  (state: StateBoard) => state.columns
 );
