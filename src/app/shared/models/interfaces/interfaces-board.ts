@@ -22,15 +22,48 @@ export interface Column {
   order: number;
   tasks: Tasks[];
 }
-///////////////////
 export interface CreateUpdateColumn {
   id: string;
   title: string;
   order: number;
 }
+export type AllTasksOneColumn = GetTaskByIdResponse[];
+export interface CreateOneTask {
+  id: string;
+  title: string;
+  description: string;
+  userId: string;
+}
+export interface UpdateOneTaskResponse {
+  id: string;
+  title: string;
+  order: number;
+  description: string;
+  userId: string;
+  boardId: string;
+  columnId: string;
+}
+export interface UpdateOneTaskBody {
+  title: string;
+  order: number;
+  description: string;
+  userId: string;
+  boardId: string;
+  columnId: string;
+}
+export interface CreateTaskBody {
+  title: string;
+  description: string;
+  userId: string;
+}
+export interface CreateTaskResponse {
+  id: string;
+  title: string;
+  description: string;
+  userId: string;
+}
 //////////////////
-export type GetAllTaskOneColumn = AllTasksOneColumn[];
-export interface AllTasksOneColumn {
+export interface GetTaskByIdResponse {
   id: string;
   title: string;
   order: number;
@@ -40,19 +73,29 @@ export interface AllTasksOneColumn {
   columnId: string;
   files: Files[];
 }
-export interface CreateOneTask {
+export interface OneBoard {
   id: string;
   title: string;
   description: string;
-  userId: string;
 }
-export interface PutOneTask {
-  id: string;
+
+export type AllBoardsResponse = Array<OneBoard>;
+export interface CreateBoardRequest {
   title: string;
-  order: number;
   description: string;
-  userId: string;
-  boardId: string;
-  columnId: string;
 }
-//////////////////
+
+export interface ErrorResponseServer {
+  statusCode: number;
+  message: string;
+}
+export interface UserData {
+  id: string;
+  name: string;
+  login: string;
+}
+export interface UpdateUserRequestBody {
+  name: string;
+  login: string;
+  password: string;
+}

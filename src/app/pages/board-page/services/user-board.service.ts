@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
 import { Column } from '../../../shared/models/interfaces/interfaces-board';
 
+//this is template service!!! it add mock-response-columns from server
 @Injectable()
 export class UserBoardService {
   constructor(private http: HttpClient) {}

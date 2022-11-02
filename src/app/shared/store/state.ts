@@ -1,4 +1,4 @@
-export interface Appstate {
+export interface AppState {
   apiStatus: string;
   apiResponseMessage: string;
   appData: {
@@ -11,7 +11,7 @@ export interface Appstate {
   };
 }
 
-export const initialState: Readonly<Appstate> = {
+export const initialState: Readonly<AppState> = {
   apiResponseMessage: '',
   apiStatus: '',
   appData: {
