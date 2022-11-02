@@ -1,7 +1,8 @@
 @import 'utils-color';
 
 .footer {
-  position: relative;
+  position: absolute;
+  bottom: 0;
   width: 100%;
   background: $dark-fon-color;
 
