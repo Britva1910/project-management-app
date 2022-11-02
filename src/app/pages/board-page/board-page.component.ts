@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { invokeBoardAPI } from './store/actions/board.actions';
+import { invokeBoardAPI } from './store/board.actions';
 import {
   selectDescriptionBoard,
   selectTitleBoard,
-} from './store/selectors/board.selector';
+} from './store/board.selector';
 @Component({
   selector: 'app-board-page',
   templateUrl: './board-page.component.html',

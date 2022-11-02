@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { RequestClientBuilderService } from '../request-client-builder/request-client-builder.service';
 import { Observable } from 'rxjs';
 import { UrlsEnum } from '../../models/enums/urls-enum';
-
+import {
+  UserData,
+  UpdateUserRequestBody,
+  //ErrorResponseServer,
+} from '../../models/interfaces/interfaces-board';
 @Injectable({
   providedIn: 'root',
 })
@@ -11,13 +15,13 @@ export class UserDataService {
     private readonly RequestClientBuilder: RequestClientBuilderService
   ) {}
 
-  public getAllUsers(): Observable<unknown> {
-    return this.RequestClientBuilder.get<unknown>(UrlsEnum.users);
+  public getAllUsers(): Observable<UserData[]> {
+    return this.RequestClientBuilder.get<UserData[]>(UrlsEnum.users);
   }
 
-  public getBoardById(id: string): Observable<unknown> {
+  public getUserById(id: string): Observable<UserData> {
     const url = `${UrlsEnum.users}/${id}`;
-    return this.RequestClientBuilder.get<unknown>(url);
+    return this.RequestClientBuilder.get<UserData>(url);
   }
 
   public deleteUser(id: string): Observable<unknown> {
@@ -25,8 +29,11 @@ export class UserDataService {
     return this.RequestClientBuilder.delete(url);
   }
 
-  public updateUser(id: string, data: unknown): Observable<unknown> {
+  public updateUser(
+    id: string,
+    data: UpdateUserRequestBody
+  ): Observable<UserData> {
     const url = `${UrlsEnum.boards}/${id}`;
-    return this.RequestClientBuilder.put(url, data);
+    return this.RequestClientBuilder.put<UserData>(url, data);
   }
 }

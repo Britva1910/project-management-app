@@ -5,10 +5,9 @@ import { CommonModule } from '@angular/common';
 import { BoardPageComponent } from './board-page.component';
 import { Routes, RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
-import { boardReducer } from './store/reducers/board.reducer';
+import { boardReducer } from './store/board.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { BoardEffect } from './store/effects/board.effect';
-import { ApiBoardService } from './services/api-board.service';
+import { BoardEffect } from './store/board.effect';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -39,6 +38,6 @@ const routes: Routes = [{ path: '', component: BoardPageComponent }];
     FormsModule,
     MatExpansionModule,
   ],
-  providers: [ApiBoardService, UserBoardService],
+  providers: [UserBoardService],
 })
 export class BoardPageModule {}
