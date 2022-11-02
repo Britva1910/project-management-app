@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { appReducer } from './shared/store/app.reducer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ appState: appReducer }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
