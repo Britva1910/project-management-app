@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Tasks } from '../../models/interfaces';
+import { Tasks } from '../../../../shared/models/interfaces/interfaces-board';
 @Component({
   selector: 'app-item-board',
   templateUrl: './item-board.component.html',

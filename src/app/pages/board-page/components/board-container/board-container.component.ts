@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Tasks } from '../../models/interfaces';
-//import { Column } from './../../models/interfaces';
+import { Tasks } from './../../../../shared/models/interfaces/interfaces-board';
 import { UserBoardService } from './../../services/user-board.service';
 import { Store } from '@ngrx/store';
 import { selectColumnsBoard } from './../../store/selectors/board.selector';

@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
-//import { State } from '../store/state/state';
-import { Column } from './../models/interfaces';
+import { Column } from '../../../shared/models/interfaces/interfaces-board';
 
 @Injectable()
 export class UserBoardService {

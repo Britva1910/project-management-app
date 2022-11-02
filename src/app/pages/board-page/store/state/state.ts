@@ -1,4 +1,4 @@
-import { Column } from '../../models/interfaces';
+import { Column } from './../../../../shared/models/interfaces/interfaces-board';
 export interface State {
   id: string;
   title: string;
