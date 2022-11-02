@@ -18,7 +18,6 @@ export class LoginComponent {
   onSubmit() {
     this.authDataService
       .logIn(this.form.value)
-      .subscribe((data) => console.log(data)); //save in store name =>
-    // получить всех и по имени оперделить id => id save in store
+      .subscribe((data) => console.log(data));
   }
 }
