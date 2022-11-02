@@ -17,14 +17,13 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { UserBoardService } from './services/user-board.service';
 import { ItemBoardComponent } from './components/item-board/item-board.component';
-import { ModalConfirmComponent } from './../../shared/components/modal-confirm/modal-confirm.component';
+
 const routes: Routes = [{ path: '', component: BoardPageComponent }];
 @NgModule({
   declarations: [
     BoardPageComponent,
     BoardContainerComponent,
     ItemBoardComponent,
-    ModalConfirmComponent,
   ],
   imports: [
     CommonModule,

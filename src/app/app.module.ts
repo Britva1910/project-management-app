@@ -14,13 +14,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FooterComponent } from './shared/components/footer/footer.component';
-
+import { ModalConfirmComponent } from './shared/components/modal-confirm/modal-confirm.component';
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundPagesComponent,
     HeaderComponent,
     FooterComponent,
+    ModalConfirmComponent,
   ],
   imports: [
     BrowserModule,
