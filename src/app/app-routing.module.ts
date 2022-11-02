@@ -5,7 +5,7 @@ import { NotFoundPagesComponent } from './shared/components/not-found-pages/not-
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
-    path: 'auth',
+    path: 'auth/:tab',
     loadChildren: () =>
       import('./pages/auth-page/auth-page.module').then(
         (m) => m.AuthPageModule
