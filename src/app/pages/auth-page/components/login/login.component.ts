@@ -16,9 +16,9 @@ export class LoginComponent {
   constructor(private authDataService: AuthDataService) {}
 
   onSubmit() {
-    console.log(this.form.value);
     this.authDataService
       .logIn(this.form.value)
-      .subscribe((data) => console.log(data));
+      .subscribe((data) => console.log(data)); //save in store name =>
+    // получить всех и по имени оперделить id => id save in store
   }
 }
