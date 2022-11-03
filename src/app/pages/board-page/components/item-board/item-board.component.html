@@ -1,6 +1,8 @@
 <div class="mb-2">
   <h4 class="title-task">{{item.title}}</h4>
-  <p class="description-task">{{item.description}}</p>
+
+  <button class="edit-task-btn"><img class="edit-task-img" src="../../../../../assets/icons/correct_pencil.svg" alt="icon"/></button>
+   <p class="description-task">{{item.description}}</p>
   <img class="img-task" src="../../../../../assets/img/members2.png" alt="icon">
   <button mat-icon-button class="icon-delete" type="button" (click)="deleteOneTask(item.id)">
     <mat-icon class="btn-delete">delete</mat-icon>

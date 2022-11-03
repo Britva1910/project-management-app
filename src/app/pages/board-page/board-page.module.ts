@@ -16,6 +16,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { UserBoardService } from './services/user-board.service';
 import { ItemBoardComponent } from './components/item-board/item-board.component';
+import { EditTaskComponent } from './components/edit-task/edit-task.component';
 
 const routes: Routes = [{ path: '', component: BoardPageComponent }];
 @NgModule({
@@ -23,6 +24,7 @@ const routes: Routes = [{ path: '', component: BoardPageComponent }];
     BoardPageComponent,
     BoardContainerComponent,
     ItemBoardComponent,
+    EditTaskComponent,
   ],
   imports: [
     CommonModule,
