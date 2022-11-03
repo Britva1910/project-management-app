@@ -3,6 +3,7 @@ import { Tasks } from './../../../../shared/models/interfaces/interfaces-board';
 import { UserBoardService } from './../../services/user-board.service';
 import { Store } from '@ngrx/store';
 import { selectColumnsBoard } from '../../store/board.selector';
+import { CountFiledFormService } from '../../services/modal-prompt.cervice';
 import { TasksDataService } from './../../../../shared/services/tasks-data-service/tasks-data.service';
 import {
   CdkDragDrop,
@@ -16,7 +17,11 @@ import {
   styleUrls: ['./board-container.component.scss'],
 })
 export class BoardContainerComponent {
+  public data = 'Delete column?';
+
   constructor(
+    private countFiledFormService: CountFiledFormService,
+
     public userBoardService: UserBoardService,
 
     public taskDataService: TasksDataService,
@@ -26,9 +31,26 @@ export class BoardContainerComponent {
 
   public columns$ = this.store.select(selectColumnsBoard);
 
-  onDeleteTask(idTask: string, idColumn: string) {
-    const idBoard = ''; // from globalStor
+  public onDeleteTask(idTask: string, idColumn: string) {
+    const idBoard = '1'; // from globalStor
+    console.log(idBoard, idColumn, idTask);
     this.taskDataService.deleteTask(idBoard, idColumn, idTask);
+  }
+
+  public onAddCard(event: any, idColumn: string) {
+    if (event) {
+      console.log(idColumn, event.value);
+    }
+  }
+
+  public deleteColumn(event: any, column: string) {
+    if (event.clicked) {
+      console.log(event, column);
+    }
+  }
+
+  public setTwoFieldForm() {
+    this.countFiledFormService.setTwoFiledForm();
   }
 
   drop(event: CdkDragDrop<Tasks[]>) {

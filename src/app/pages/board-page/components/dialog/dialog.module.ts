@@ -1,0 +1,41 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AppConfirmComponent } from './confirm-modal/app-confirm.component';
+import { ConfirmBodyComponent } from './confirm-modal/confirm-body/confirm-body.component';
+import { DialogBodyComponent } from './prompt-modal/prompt-body/dialog-body.component';
+import { DialogComponent } from './prompt-modal/dialog.component';
+
+const MaterialModules = [
+  MatDialogModule,
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatIconModule,
+  MatSelectModule,
+  MatCheckboxModule,
+];
+@NgModule({
+  declarations: [
+    AppConfirmComponent,
+    ConfirmBodyComponent,
+    DialogBodyComponent,
+    DialogComponent,
+  ],
+  imports: [CommonModule, ReactiveFormsModule, MaterialModules],
+  exports: [
+    MaterialModules,
+    AppConfirmComponent,
+    ConfirmBodyComponent,
+    DialogBodyComponent,
+    DialogComponent,
+  ],
+})
+export class DialogModule {}
