@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SingUpComponent } from './components/sing-up/sing-up.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [{ path: '', component: AuthPageComponent }];
 @NgModule({
@@ -17,6 +18,7 @@ const routes: Routes = [{ path: '', component: AuthPageComponent }];
     MatTabsModule,
     MatInputModule,
     MatButtonModule,
+    ReactiveFormsModule,
   ],
 })
 export class AuthPageModule {}

@@ -20,8 +20,10 @@ export class LoginComponent {
   constructor(
     private store: Store,
     private authDataService: AuthDataService,
+
     private loginService: LoginService,
     private localStorageService: LocalStorageService
+    private loginService: LoginService
   ) {}
 
   onSubmit() {

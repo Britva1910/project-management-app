@@ -1,12 +1,24 @@
-<form class="container">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="container">
   <mat-form-field appearance="fill" class="field">
-    <input matInput type="text" placeholder="Please enter your name" required />
+    <input matInput type="text" placeholder="Please enter your name" formControlName="name" required />
   </mat-form-field>
   <mat-form-field appearance="fill" class="field">
-    <input matInput type="text" placeholder="Please enter a your login" required/>
+    <input
+      matInput
+      type="text"
+      placeholder="Please enter a your login"
+      formControlName="login"
+      required
+    />
   </mat-form-field>
   <mat-form-field appearance="fill" class="field">
-    <input matInput type="text" placeholder="Please enter a password" required/>
+    <input
+      matInput
+      type="text"
+      placeholder="Please enter a password"
+      formControlName="password"
+      required
+    />
   </mat-form-field>
-  <button mat-raised-button color="primary" type="submit">Sing up</button>
+  <button mat-raised-button [disabled]="!form.valid" color="primary" type="submit">Sing up</button>
 </form>
