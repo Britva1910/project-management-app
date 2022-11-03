@@ -20,9 +20,7 @@ export class LoginComponent {
   constructor(
     private store: Store,
     private authDataService: AuthDataService,
-
-    private loginService: LoginService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
     private loginService: LoginService
   ) {}
 
@@ -32,7 +30,7 @@ export class LoginComponent {
       password: this.form.value.password,
     };
     this.authDataService.logIn(userData).subscribe({
-      next: (data) => {
+      next: (data: any) => {
         this.store.dispatch(setUserToken(data));
         this.loginService.getUserId(userData.login).subscribe((id) => {
           this.store.dispatch(setUserId({ userId: id }));
