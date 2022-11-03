@@ -5,7 +5,6 @@ import { UrlsEnum } from '../../models/enums/urls-enum';
 import {
   UserData,
   UpdateUserRequestBody,
-  //ErrorResponseServer,
 } from '../../models/interfaces/interfaces-board';
 @Injectable({
   providedIn: 'root',

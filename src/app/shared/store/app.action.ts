@@ -10,3 +10,8 @@ export const setUserToken = createAction(
   '[AUTH] set user token',
   props<{ token: string }>()
 );
+
+export const setUserId = createAction(
+  '[AUTH] set user ID',
+  props<{ userId: string }>()
+);
