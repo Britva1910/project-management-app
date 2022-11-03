@@ -3,6 +3,7 @@ import { Tasks } from './../../../../shared/models/interfaces/interfaces-board';
 import { UserBoardService } from './../../services/user-board.service';
 import { Store } from '@ngrx/store';
 import { selectColumnsBoard } from '../../store/board.selector';
+import { CountFiledFormService } from '../../services/modal-prompt.cervice';
 import { TasksDataService } from './../../../../shared/services/tasks-data-service/tasks-data.service';
 import {
   CdkDragDrop,
@@ -19,6 +20,8 @@ export class BoardContainerComponent {
   public data = 'Delete column?';
 
   constructor(
+    private countFiledFormService: CountFiledFormService,
+
     public userBoardService: UserBoardService,
 
     public taskDataService: TasksDataService,
@@ -44,6 +47,10 @@ export class BoardContainerComponent {
     if (event.clicked) {
       console.log(event, column);
     }
+  }
+
+  public setTwoFieldForm() {
+    this.countFiledFormService.setTwoFiledForm();
   }
 
   drop(event: CdkDragDrop<Tasks[]>) {

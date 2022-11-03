@@ -9,8 +9,8 @@
       </div>
       <hr class="board-page__line">
      <app-dialog (emitText)="onAddCard($event, column.id)">
-      <button mat-raised-button class="btn-add-task" type="button">Add task +</button>
-    </app-dialog>>
+      <button mat-raised-button class="btn-add-task" type="button" (click)="setTwoFieldForm()" >Add task +</button>
+    </app-dialog>
 
       <div class="example-list" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
         <div cdkDrag class="example-box" *ngFor="let item of column.tasks">

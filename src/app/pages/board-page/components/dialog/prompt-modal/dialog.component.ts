@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogBodyComponent } from '../prompt-modal/prompt-body/dialog-body.component';
 
@@ -9,6 +9,8 @@ import { DialogBodyComponent } from '../prompt-modal/prompt-body/dialog-body.com
 })
 export class DialogComponent {
   @Output() emitText: EventEmitter<any> = new EventEmitter();
+
+  @Input() oneFieldForm: boolean = false;
 
   constructor(public dialog: MatDialog) {}
 

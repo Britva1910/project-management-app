@@ -16,7 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { appReducer } from './shared/store/app.reducer';
 import { ModalConfirmComponent } from './shared/components/modal-confirm/modal-confirm.component';
-
+import { CountFiledFormService } from './pages/board-page/services/modal-prompt.cervice';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +40,7 @@ import { ModalConfirmComponent } from './shared/components/modal-confirm/modal-c
     MatButtonModule,
   ],
   providers: [
+    CountFiledFormService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HeaderAddTokkenInterceptor,

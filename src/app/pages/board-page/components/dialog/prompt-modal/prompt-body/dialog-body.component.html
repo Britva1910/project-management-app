@@ -8,7 +8,7 @@
          />
       </mat-form-field>
 
-      <mat-form-field appearance="standard">
+      <mat-form-field *ngIf="!isOneFieldForm" appearance="standard">
         <mat-label>Description</mat-label>
         <textarea
           matInput
@@ -20,11 +20,8 @@
      </form>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-raised-button (click)="dialogRef.close(false)">
-      Close
-    </button>
-    <button mat-raised-button color="primary" (click)="form.valid && submit(form.value)">
-      Submit
-    </button>
+    <button mat-raised-button (click)="dialogRef.close(false)">Close</button>
+    <button mat-raised-button color="primary"
+        (click)="form.valid && submit(form.value)">Submit</button>
   </mat-dialog-actions>
 </div>
