@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ConfirmBodyComponent } from './../confirm-body/confirm-body.component';
-import { ConfirmPromptComponent } from './../confirm-prompt/confirm-prompt.component';
+import { ConfirmBodyComponent } from '../confirm/confirm-body.component';
+import { ConfirmPromptComponent } from '../prompt/confirm-prompt.component';
 
 @Component({
   selector: 'app-app-confirm',

@@ -11,8 +11,8 @@ import { DialogComponent } from './prompt/dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DialogBodyComponent } from './prompt-body/dialog-body.component';
 import { AppConfirmComponent } from './confirm/app-confirm/app-confirm.component';
-import { ConfirmBodyComponent } from './confirm/confirm-body/confirm-body.component';
-import { ConfirmPromptComponent } from './confirm/confirm-prompt/confirm-prompt.component';
+import { ConfirmBodyComponent } from './confirm/confirm/confirm-body.component';
+import { ConfirmPromptComponent } from './confirm/prompt/confirm-prompt.component';
 
 const MaterialModules = [
   MatDialogModule,
