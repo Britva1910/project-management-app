@@ -4,6 +4,7 @@ import { AuthDataService } from '../../../../shared/services/auth-data-service/a
 import { Store } from '@ngrx/store';
 import { setUserId, setUserToken } from '../../../../shared/store/app.action';
 import { LoginService } from '../../services/login.service';
+import { LocalStorageService } from '../../../../shared/services/local-storage-service/local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,9 @@ export class LoginComponent {
   constructor(
     private store: Store,
     private authDataService: AuthDataService,
+
+    private loginService: LoginService,
+    private localStorageService: LocalStorageService
     private loginService: LoginService
   ) {}
 
@@ -30,9 +34,11 @@ export class LoginComponent {
     this.authDataService.logIn(userData).subscribe({
       next: (data) => {
         this.store.dispatch(setUserToken(data));
-        this.loginService
-          .getUserId(userData.login)
-          .subscribe((id) => this.store.dispatch(setUserId({ userId: id })));
+        this.loginService.getUserId(userData.login).subscribe((id) => {
+          this.store.dispatch(setUserId({ userId: id }));
+          this.localStorageService.saveInLocalStorage('userId', id);
+        });
+        this.localStorageService.saveInLocalStorage('token', data.token);
       },
       error: (error) => console.log(`Error - ${error.error.message}`),
     });
