@@ -9,7 +9,7 @@ import { ModalConfirmService } from './../../../../shared/services/modal-confirm
 export class ItemBoardComponent {
   constructor(private modalConfirmService: ModalConfirmService) {}
 
-  data = 'Delete task?';
+  public data = 'Delete task?';
 
   @Input() item!: Tasks;
 

@@ -16,6 +16,8 @@ import {
   styleUrls: ['./board-container.component.scss'],
 })
 export class BoardContainerComponent {
+  public data = 'Delete column?';
+
   constructor(
     public userBoardService: UserBoardService,
 
@@ -26,15 +28,21 @@ export class BoardContainerComponent {
 
   public columns$ = this.store.select(selectColumnsBoard);
 
-  onDeleteTask(idTask: string, idColumn: string) {
+  public onDeleteTask(idTask: string, idColumn: string) {
     const idBoard = '1'; // from globalStor
     console.log(idBoard, idColumn, idTask);
     this.taskDataService.deleteTask(idBoard, idColumn, idTask);
   }
 
-  onAddCard(event: any, idColumn: string) {
+  public onAddCard(event: any, idColumn: string) {
     if (event) {
       console.log(idColumn, event.value);
+    }
+  }
+
+  public deleteColumn(event: any, column: string) {
+    if (event.clicked) {
+      console.log(event, column);
     }
   }
 
