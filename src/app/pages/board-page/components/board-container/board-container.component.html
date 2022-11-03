@@ -3,7 +3,8 @@
     <div class="column" *ngFor="let column of userBoardService.getBoard$() | async">
       <h3 class="title-column">{{column.title}}</h3>
       <hr class="board-page__line">
-     <app-dialog (emitText)="onAddCard($event, column.id)" [question]="'Add new task in ' + column.title + 'column' ">
+
+     <app-dialog (emitText)="onAddCard($event, column.id)">
       <button mat-raised-button class="btn-add-task" type="button">Add task +</button>
     </app-dialog>>
 

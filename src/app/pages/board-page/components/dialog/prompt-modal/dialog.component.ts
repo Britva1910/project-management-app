@@ -1,6 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogBodyComponent } from '../prompt-body/dialog-body.component';
+import { DialogBodyComponent } from '../prompt-modal/prompt-body/dialog-body.component';
 
 @Component({
   selector: 'app-dialog',
@@ -10,14 +10,11 @@ import { DialogBodyComponent } from '../prompt-body/dialog-body.component';
 export class DialogComponent {
   @Output() emitText: EventEmitter<any> = new EventEmitter();
 
-  @Input() question!: string;
-
   constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogBodyComponent, {
       width: '300px',
-      data: { question: this.question },
     });
     dialogRef.afterClosed().subscribe((result) => {
       this.emitText.emit(result);

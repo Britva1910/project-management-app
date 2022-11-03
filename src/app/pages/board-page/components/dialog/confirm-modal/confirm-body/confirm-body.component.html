@@ -7,7 +7,7 @@
   </div>
 
   <div mat-dialog-actions>
-      <button mat-button [mat-dialog-close]="{clicked:'Ok'}">Ok</button>
-      <button mat-button [mat-dialog-close]="{clicked:'Cancel'}">Cancel</button>
+      <button mat-button [mat-dialog-close]="{clicked: true}">Ok</button>
+      <button mat-raised-button color="primary" [mat-dialog-close]="{clicked: false}">Cancel</button>
   </div>
 </div>

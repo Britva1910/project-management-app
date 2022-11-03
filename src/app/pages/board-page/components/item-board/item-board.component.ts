@@ -9,12 +9,15 @@ import { ModalConfirmService } from './../../../../shared/services/modal-confirm
 export class ItemBoardComponent {
   constructor(private modalConfirmService: ModalConfirmService) {}
 
+  data = 'Delete task?';
+
   @Input() item!: Tasks;
 
   @Output() emitDeleteTask: EventEmitter<string> = new EventEmitter();
 
-  deleteOneTask(idTask: string) {
-    this.modalConfirmService.setShowModalConfirm();
-    this.emitDeleteTask.emit(idTask);
+  deleteOneTask(event: any, idTask: string) {
+    if (event.clicked) {
+      this.emitDeleteTask.emit(idTask);
+    }
   }
 }

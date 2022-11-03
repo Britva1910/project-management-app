@@ -27,12 +27,15 @@ export class BoardContainerComponent {
   public columns$ = this.store.select(selectColumnsBoard);
 
   onDeleteTask(idTask: string, idColumn: string) {
-    const idBoard = ''; // from globalStor
+    const idBoard = '1'; // from globalStor
+    console.log(idBoard, idColumn, idTask);
     this.taskDataService.deleteTask(idBoard, idColumn, idTask);
   }
 
-  onAddCard(event: Event, idColumn: string) {
-    console.log(idColumn, event);
+  onAddCard(event: any, idColumn: string) {
+    if (event) {
+      console.log(idColumn, event.value);
+    }
   }
 
   drop(event: CdkDragDrop<Tasks[]>) {

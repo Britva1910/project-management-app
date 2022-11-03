@@ -7,12 +7,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { DialogComponent } from './prompt/dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DialogBodyComponent } from './prompt-body/dialog-body.component';
-import { AppConfirmComponent } from './confirm/app-confirm/app-confirm.component';
-import { ConfirmBodyComponent } from './confirm/confirm/confirm-body.component';
-import { ConfirmPromptComponent } from './confirm/prompt/confirm-prompt.component';
+import { AppConfirmComponent } from './confirm-modal/app-confirm.component';
+import { ConfirmBodyComponent } from './confirm-modal/confirm-body/confirm-body.component';
+import { DialogBodyComponent } from './prompt-modal/prompt-body/dialog-body.component';
+import { DialogComponent } from './prompt-modal/dialog.component';
 
 const MaterialModules = [
   MatDialogModule,
@@ -27,7 +26,6 @@ const MaterialModules = [
   declarations: [
     AppConfirmComponent,
     ConfirmBodyComponent,
-    ConfirmPromptComponent,
     DialogBodyComponent,
     DialogComponent,
   ],
@@ -36,7 +34,6 @@ const MaterialModules = [
     MaterialModules,
     AppConfirmComponent,
     ConfirmBodyComponent,
-    ConfirmPromptComponent,
     DialogBodyComponent,
     DialogComponent,
   ],
