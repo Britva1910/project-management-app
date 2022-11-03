@@ -1,0 +1,42 @@
+<!--<div mat-dialog-content>
+  <h3>{{data.question}}</h3>
+  <mat-form-field class="w-100">
+    <mat-label>Add Title</mat-label>
+    <input matInput [(ngModel)]="data.text" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button [mat-dialog-close]="data.text" cdkFocusInitial color="primary">Confirm</button>
+  <button mat-button (click)="onNoClick()">Cansel</button>
+</div>
+-->
+<div class="form-container">
+  <h2 mat-dialog-title>Enter data</h2>
+  <mat-dialog-content>
+    <form [formGroup]="form">
+      <mat-form-field appearance="standard">
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Enter title" formControlName="title"
+         />
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          placeholder="Description"
+          formControlName="description"
+
+        ></textarea>
+      </mat-form-field>
+     </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button (click)="dialogRef.close(false)">
+      Close
+    </button>
+    <button mat-raised-button color="primary" (click)="form.valid && submit(form.value)">
+      Submit
+    </button>
+  </mat-dialog-actions>
+</div>

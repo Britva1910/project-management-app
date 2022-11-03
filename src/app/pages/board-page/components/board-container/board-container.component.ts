@@ -31,6 +31,10 @@ export class BoardContainerComponent {
     this.taskDataService.deleteTask(idBoard, idColumn, idTask);
   }
 
+  onAddCard(event: Event, idColumn: string) {
+    console.log(idColumn, event);
+  }
+
   drop(event: CdkDragDrop<Tasks[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(

@@ -82,8 +82,18 @@
   background-color: $dark-font-color;
 }
 
-.board-page__btn_add-task {
+
+
+.container-column {
+  display: flex;
+  flex-wrap: nowrap;
   width: 100%;
+  max-height: 450px;
+  gap: 15px;
+  overflow-x: auto;
+}
+.btn-add-task {
+  width: 240px;
   height: 30px;
   border: 1px solid $btn-add-color;
   border-radius: 10px;
@@ -96,13 +106,4 @@
     background: $btn-add-hover-color;
     border: 1px solid $btn-add-hover-color;
   }
-}
-
-.container-column {
-  display: flex;
-  flex-wrap: nowrap;
-  width: 100%;
-  max-height: 450px;
-  gap: 15px;
-  overflow-x: auto;
 }

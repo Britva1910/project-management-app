@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogBodyComponent } from '../dialog-body/dialog-body.component';
+import { DialogBodyComponent } from '../prompt-body/dialog-body.component';
 
 @Component({
   selector: 'app-dialog',
