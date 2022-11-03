@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { setAPIStatus } from './app.action';
+import { setAPIStatus, setUserToken } from './app.action';
 import { AppState } from './state';
 import { initialState } from './state';
 
@@ -9,6 +9,12 @@ export const appReducer = createReducer(
     return {
       ...state,
       ...apiStatus,
+    };
+  }),
+  on(setUserToken, (state, action): AppState => {
+    return {
+      ...state,
+      token: action.token,
     };
   })
 );

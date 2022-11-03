@@ -20,5 +20,5 @@
       required
     />
   </mat-form-field>
-  <button mat-raised-button color="primary" type="submit">Sing up</button>
+  <button mat-raised-button [disabled]="!form.valid" color="primary" type="submit">Sing up</button>
 </form>

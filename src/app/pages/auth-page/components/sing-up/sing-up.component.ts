@@ -21,8 +21,12 @@ export class SingUpComponent {
   ) {}
 
   onSubmit() {
-    console.log(this.form.value);
-    this.authDataService.signUp(this.form.value).subscribe((data) => {
+    const userData = {
+      name: this.form.value.name,
+      login: this.form.value.login,
+      password: this.form.value.password,
+    };
+    this.authDataService.signUp(userData).subscribe((data) => {
       console.log(data);
       this.router.navigate(['/auth/login']);
     });
