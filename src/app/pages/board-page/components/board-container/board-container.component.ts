@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Tasks } from './../../../../shared/models/interfaces/interfaces-board';
-import { UserBoardService } from './../../services/user-board.service';
-import { Store } from '@ngrx/store';
-import { selectColumnsBoard } from '../../store/board.selector';
+import { EditTaskService } from './../../services/edit-task.service';
 import { TasksDataService } from './../../../../shared/services/tasks-data-service/tasks-data.service';
+import { UserBoardService } from './../../services/user-board.service';
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -17,18 +16,20 @@ import {
 })
 export class BoardContainerComponent {
   constructor(
-    public userBoardService: UserBoardService,
+    public editTaskService: EditTaskService,
 
     public taskDataService: TasksDataService,
 
-    private store: Store
+    public userBoardService: UserBoardService
   ) {}
-
-  public columns$ = this.store.select(selectColumnsBoard);
 
   onDeleteTask(idTask: string, idColumn: string) {
     const idBoard = ''; // from globalStor
     this.taskDataService.deleteTask(idBoard, idColumn, idTask);
+  }
+
+  updateTask(idTask: string, idColumn: string) {
+    this.editTaskService.editTask(idTask, idColumn);
   }
 
   drop(event: CdkDragDrop<Tasks[]>) {
