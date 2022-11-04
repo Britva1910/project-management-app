@@ -18,7 +18,7 @@ import { UserBoardService } from './services/user-board.service';
 import { ItemBoardComponent } from './components/item-board/item-board.component';
 import { DialogModule } from './components/dialog/dialog.module';
 import { EditTaskComponent } from './components/edit-task/edit-task.component';
-
+import { EditTaskService } from './services/edit-task.service';
 const routes: Routes = [{ path: '', component: BoardPageComponent }];
 @NgModule({
   declarations: [
@@ -42,6 +42,6 @@ const routes: Routes = [{ path: '', component: BoardPageComponent }];
     MatExpansionModule,
     DialogModule,
   ],
-  providers: [UserBoardService],
+  providers: [UserBoardService, EditTaskService],
 })
 export class BoardPageModule {}

@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, switchMap } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
-import { EditTask } from '../../../shared/models/interfaces/interfaces-board';
+//import { UpdateOneTaskBody } from '../../../shared/models/interfaces/interfaces-board';
 import { Store } from '@ngrx/store';
-import { selectTaskById } from '../store/board.selector';
+import { selectColumnById, selectBoards } from '../store/board.selector';
+import {
+  Column,
+  Tasks,
+} from './../../../shared/models/interfaces/interfaces-board';
 
 @Injectable()
 export class EditTaskService {
@@ -23,30 +27,49 @@ export class EditTaskService {
     this.isShowEditTaskModal$.next(false);
   }
 
-  private checkTask$ = new BehaviorSubject<EditTask>({
-    title: '',
-    description: '',
-  });
+  public checkIdTask = '';
 
-  public getCheckTask$(): EditTask {
-    return this.checkTask$.getValue();
+  public checkIdColumn = '';
+
+  public checkIdBoard = '';
+
+  private checkColumn!: Column;
+
+  public checkTask!: Tasks;
+
+  //private checkTask$ = new Subject<UpdateOneTaskBody>();
+
+  //public getCheckTask$(): Observable<UpdateOneTaskBody> {
+  //  return this.checkTask$.asObservable();
+  //}
+
+  //public setCheckTask$(task: UpdateOneTaskBody) {
+  //  this.checkTask$.next(task);
+  //}
+
+  private getBoardId() {
+    let board = this.store.select(selectBoards);
+    board.subscribe((col) => (this.checkIdBoard = col.id));
   }
 
-  public setCheckTask$(task: EditTask) {
-    this.checkTask$.next(task);
+  private getColumnById(idColumn: string) {
+    let column = this.store.select(selectColumnById(idColumn));
+    column.subscribe((col) => (this.checkColumn = col));
   }
 
   public editTask(idTask: string, idColumn: string) {
+    this.getBoardId();
+    this.getColumnById(idColumn);
+    const arrTaskOneColumn = this.checkColumn.tasks;
+    this.checkTask = arrTaskOneColumn.filter((task) => task.id === idTask)[0];
+    //this.setCheckTask$({
+    // title: this.checkTask.title,
+    //  order: this.checkTask.order,
+    //  description: this.checkTask.description,
+    //  userId: this.checkTask.userId,
+    //  columnId: idColumn,
+    //  boardId: this.checkIdBoard,
+    //  });
     this.openEditModal$();
-    this.store.select(selectTaskById(idColumn, idTask)).pipe(
-      switchMap(async (data) => {
-        if (data) {
-          this.setCheckTask$({
-            title: data.title,
-            description: data.description,
-          });
-        }
-      })
-    );
   }
 }

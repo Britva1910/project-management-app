@@ -1,22 +1,15 @@
-<div class="container">
-  <legend>Update Task</legend>
-  <div class="mb-3">
-    <label for="titleTask" class="form-label">Title</label>
-    <input
-      type="text"
-      [(ngModel)]="taskForm.title"
-      class="form-control"
-      id="titleTask"
-    />
+<div class="wrapper">
+  <div class="container-edit-task">
+    <legend>Edit Task</legend>
+    <div class="mb-3">
+      <label for="titleTask" class="form-label">Title</label>
+      <input type="text" [(ngModel)]="taskForm.title" class="form-control" id="titleTask" />
+    </div>
+    <div class="mb-3">
+      <label for="descriptionTask" class="form-label">Description</label>
+      <input type="text" [(ngModel)]="taskForm.description" class="form-control" id="descriptionTask" />
+    </div>
+    <button type="button" class="btn btn-dark" (click)="updateTask()">Save</button>
+    <button type="button" class="btn primary" (click)="close()">Cancel</button>
   </div>
-  <div class="mb-3">
-    <label for="descriptionTask" class="form-label">Description</label>
-    <input
-      type="text"
-      [(ngModel)]="taskForm.description"
-      class="form-control"
-      id="descriptionTask"
-    />
-  </div>
-  <button type="button" class="btn btn-dark">Create</button>
 </div>

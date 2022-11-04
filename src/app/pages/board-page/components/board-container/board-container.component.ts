@@ -32,6 +32,8 @@ export class BoardContainerComponent {
     public userBoardService: UserBoardService
   ) {}
 
+  public isShow$ = this.editTaskService.showEditModal$();
+
   public columns$ = this.store.select(selectColumnsBoard);
 
   public onDeleteTask(idTask: string, idColumn: string) {
@@ -57,6 +59,7 @@ export class BoardContainerComponent {
   }
 
   public updateTask(idTask: string, idColumn: string) {
+    console.log(idTask, idColumn);
     this.editTaskService.editTask(idTask, idColumn);
   }
 

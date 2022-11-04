@@ -24,7 +24,7 @@ export class ItemBoardComponent {
     }
   }
 
-  public updateTask(idTask: string) {
+  public editTask(idTask: string) {
     this.emitUpdateTask.emit(idTask);
   }
 }

@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { StateBoard } from './state-board';
+import { Column } from './../../../shared/models/interfaces/interfaces-board';
 
 export const selectBoards = createFeatureSelector<StateBoard>('myboard');
 
@@ -23,6 +24,12 @@ export const selectColumnsBoard = createSelector(
   (state: StateBoard) => state.columns
 );
 
+export const selectColumnById = (columnId: string) =>
+  createSelector(selectColumnsBoard, (state: Column[]) => {
+    const columnChecked = state.filter((column) => column.id === columnId);
+    return columnChecked[0];
+  });
+
 export const selectTaskById = (idColumn: string, idTask: string) =>
   createSelector(selectBoards, (state: StateBoard) => {
     const columnChecked = state.columns.filter(
@@ -33,5 +40,6 @@ export const selectTaskById = (idColumn: string, idTask: string) =>
       (task) => task.id == idTask
     );
     if (!taskChecked[0]) return null;
+    console.log(taskChecked[0]);
     return taskChecked[0];
   });

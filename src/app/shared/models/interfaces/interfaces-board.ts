@@ -103,4 +103,6 @@ export interface UpdateUserRequestBody {
 export interface EditTask {
   title: string;
   description: string;
+  idColumn: string;
+  idTask: string;
 }
