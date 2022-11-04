@@ -28,6 +28,7 @@ export class EditTaskComponent {
     const bodyRequest = this.taskForm;
     console.log('put', bodyRequest);
     this.tasksDataService.updateTask(boardId, columnId, taskId, bodyRequest);
+    this.editTaskService.closeEditModal$();
   }
 
   public close() {
