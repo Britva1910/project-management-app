@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Tasks } from '../../../../shared/models/interfaces/interfaces-board';
+import { ModalConfirmService } from './../../../../shared/services/modal-confirm-service/modal-confirm.service';
 
 @Component({
   selector: 'app-item-board',
@@ -7,17 +8,23 @@ import { Tasks } from '../../../../shared/models/interfaces/interfaces-board';
   styleUrls: ['./item-board.component.scss'],
 })
 export class ItemBoardComponent {
+  constructor(private modalConfirmService: ModalConfirmService) {}
+
+  public data = 'Delete task?';
+
   @Input() item!: Tasks;
 
   @Output() emitDeleteTask: EventEmitter<string> = new EventEmitter();
 
   @Output() emitUpdateTask: EventEmitter<string> = new EventEmitter();
 
-  deleteOneTask(idTask: string) {
-    this.emitDeleteTask.emit(idTask);
+  public deleteOneTask(event: any, idTask: string) {
+    if (event.clicked) {
+      this.emitDeleteTask.emit(idTask);
+    }
   }
 
-  updateTask(idTask: string) {
+  public updateTask(idTask: string) {
     this.emitUpdateTask.emit(idTask);
   }
 }

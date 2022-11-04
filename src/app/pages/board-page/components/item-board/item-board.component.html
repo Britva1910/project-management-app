@@ -4,7 +4,9 @@
   <button class="edit-task-btn" type="button" (click)="updateTask(item.id)"><img class="edit-task-img" src="../../../../../assets/icons/correct_pencil.svg" alt="icon"/></button>
    <p class="description-task">{{item.description}}</p>
   <img class="img-task" src="../../../../../assets/img/members2.png" alt="icon">
-  <button mat-icon-button class="icon-delete" type="button" (click)="deleteOneTask(item.id)">
+
+  <app-app-confirm [data]="data" (emitConfirm)="deleteOneTask($event, item.id)"><button mat-icon-button class="icon-delete" type="button">
     <mat-icon class="btn-delete">delete</mat-icon>
-  </button>
+  </button></app-app-confirm>
+
 </div>
