@@ -9,12 +9,14 @@
   margin: 0 25px 25px 0;
   vertical-align: top;
 }
+
 .column__title-container {
   width: 100%;
   display: flex;
   justify-content: space-around;
   box-shadow: $shadow-title-column;
 }
+
 .mat-icon-button {
   width: 25px;
   height: 25px;
@@ -101,6 +103,7 @@
   gap: 15px;
   overflow-x: auto;
 }
+
 .btn-add-task {
   width: 240px;
   height: 30px;
@@ -111,6 +114,7 @@
   color: $dark-font-color;
   background: $btn-add-color;
   cursor: pointer;
+
   &:hover {
     background: $btn-add-hover-color;
     border: 1px solid $btn-add-hover-color;

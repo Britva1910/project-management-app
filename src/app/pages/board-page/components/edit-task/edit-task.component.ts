@@ -1,16 +1,12 @@
 import { Component } from '@angular/core';
 import { EditTaskService } from './../../services/edit-task.service';
 import { TasksDataService } from './../../../../shared/services/tasks-data-service/tasks-data.service';
-//import { Subscription } from 'rxjs';
-//import { UpdateOneTaskBody } from './../../../../shared/models/interfaces/interfaces-board';
 @Component({
   selector: 'app-edit-task',
   templateUrl: './edit-task.component.html',
   styleUrls: ['./edit-task.component.scss'],
 })
 export class EditTaskComponent {
-  //subscription: Subscription[] = [];
-
   constructor(
     private editTaskService: EditTaskService,
     private tasksDataService: TasksDataService
@@ -24,12 +20,6 @@ export class EditTaskComponent {
     boardId: this.editTaskService.checkIdBoard,
     columnId: this.editTaskService.checkIdColumn,
   };
-
-  //ngOnDestroy() {
-  // if (this.subscription.length) {
-  //    this.subscription.forEach((data) => data.unsubscribe());
-  //  }
-  //}
 
   updateTask() {
     const boardId = this.editTaskService.checkIdBoard;

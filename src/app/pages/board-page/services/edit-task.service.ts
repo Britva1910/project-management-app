@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
-//import { UpdateOneTaskBody } from '../../../shared/models/interfaces/interfaces-board';
 import { Store } from '@ngrx/store';
 import { selectColumnById, selectBoards } from '../store/board.selector';
 import {
@@ -37,16 +36,6 @@ export class EditTaskService {
 
   public checkTask!: Tasks;
 
-  //private checkTask$ = new Subject<UpdateOneTaskBody>();
-
-  //public getCheckTask$(): Observable<UpdateOneTaskBody> {
-  //  return this.checkTask$.asObservable();
-  //}
-
-  //public setCheckTask$(task: UpdateOneTaskBody) {
-  //  this.checkTask$.next(task);
-  //}
-
   private getBoardId() {
     let board = this.store.select(selectBoards);
     board.subscribe((col) => (this.checkIdBoard = col.id));
@@ -62,14 +51,6 @@ export class EditTaskService {
     this.getColumnById(idColumn);
     const arrTaskOneColumn = this.checkColumn.tasks;
     this.checkTask = arrTaskOneColumn.filter((task) => task.id === idTask)[0];
-    //this.setCheckTask$({
-    // title: this.checkTask.title,
-    //  order: this.checkTask.order,
-    //  description: this.checkTask.description,
-    //  userId: this.checkTask.userId,
-    //  columnId: idColumn,
-    //  boardId: this.checkIdBoard,
-    //  });
     this.openEditModal$();
   }
 }

@@ -10,16 +10,18 @@
   border: none;
   background: transparent;
 
-.edit-task-img {
-  width: 25px;
-  height: 25px;
-  transition: all ease .3s;
-  cursor: pointer;
-   &:hover {
-    transform: rotate(-20deg);
-   }
+  .edit-task-img {
+    width: 25px;
+    height: 25px;
+    transition: all ease .3s;
+    cursor: pointer;
+
+    &:hover {
+      transform: rotate(-20deg);
+    }
+  }
 }
-}
+
 .mat-icon-button {
   position: absolute;
   bottom: 10px;
