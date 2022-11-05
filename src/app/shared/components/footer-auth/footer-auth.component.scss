@@ -1,8 +1,6 @@
 @import 'utils-color';
 
 .footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   background: $dark-fon-color;
 
@@ -20,7 +18,9 @@
     grid-template-columns: repeat(3, 1fr);
     column-gap: 300px;
   }
-
+  &__footer__githubs-img {
+    width: 50px;
+  }
   &__githubs a {
     opacity: 0.8;
     text-decoration: none;
