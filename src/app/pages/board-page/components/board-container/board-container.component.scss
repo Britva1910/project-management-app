@@ -12,13 +12,17 @@
 .column__title-container {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 10px;
   box-shadow: $shadow-title-column;
 }
 .mat-icon-button {
   width: 25px;
   height: 25px;
   color: $btn-delete-color;
+  &:hover {
+    color: $light-blue-fon-color;
+  }
 }
 
 .column {
@@ -30,6 +34,43 @@
   overflow-y: auto;
 }
 
+.setting-column {
+  width: 15px;
+  height: 15px;
+  margin: 0 auto;
+}
+.mat-expansion-panel-header.mat-expanded {
+  height: 25px;
+  width: 30px;
+
+}
+.mat-expansion-panel-header {
+  height: 28px;
+  padding: 0 3px;
+}
+.mat-expansion-panel {
+  width: 50px;
+  background-color:transparent;
+}
+
+.mat-action-row {
+  padding: 0;
+  background-color: $card-color;
+}
+.btn-setting-correct {
+  border: none;
+  background-color: transparent;
+  width: 25px;
+  height: 25px;
+  transition: all ease-in .3s;
+  &:hover {
+    transform: rotate(-20deg);
+  }
+}
+.setting-correct {
+  width: 25px;
+  height: 25px;
+}
 .example-list {
   display: block;
   min-height: 60px;
