@@ -23,7 +23,6 @@ export class LoginComponent {
 
     private loginService: LoginService,
     private localStorageService: LocalStorageService
-    private loginService: LoginService
   ) {}
 
   onSubmit() {

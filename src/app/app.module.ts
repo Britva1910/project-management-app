@@ -16,8 +16,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { appReducer } from './shared/store/app.reducer';
 import { ModalConfirmComponent } from './shared/components/modal-confirm/modal-confirm.component';
-import { HeaderAuthComponent } from './shared/components/header-auth/header-auth.component';
-import { FooterAuthComponent } from './shared/components/footer-auth/footer-auth.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +24,6 @@ import { FooterAuthComponent } from './shared/components/footer-auth/footer-auth
     HeaderComponent,
     FooterComponent,
     ModalConfirmComponent,
-    HeaderAuthComponent,
-    FooterAuthComponent,
   ],
   imports: [
     BrowserModule,
