@@ -99,3 +99,10 @@ export interface UpdateUserRequestBody {
   login: string;
   password: string;
 }
+
+export interface EditTask {
+  title: string;
+  description: string;
+  idColumn: string;
+  idTask: string;
+}

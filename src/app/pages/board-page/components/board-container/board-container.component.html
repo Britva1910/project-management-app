@@ -1,36 +1,29 @@
 <div cdkDropListGroup class="container-column">
-  <div class="column" *ngFor="let column of userBoardService.getBoard$() | async; let i = index">
+  <div class="column" *ngFor="let column of columns$ | async; let i = index">
     <div class="column__title-container">
-      <div class="title-column" (click)="hideTitle(i)">
-        <h3>{{column.title}}</h3>
+      <div class="title-column" (click)="hideTitleColumn(i, column.id)">
+        <h3 class="title">{{column.title}}</h3>
       </div>
       <div class="edit-container">
-          <button class="button-edit-input close-edit" (click)="onEdit()">X</button>
-          <button class="button-edit-input save-edit" (click)="onEdit()">V</button>
-          <input class="title-input"  [(ngModel)]="titleColumn">
-     </div>
-        <mat-expansion-panel>
-        <mat-expansion-panel-header>
-            <img class="setting-column" src="./../../../../../assets/img/icon-setting.png" alt="icon setting"/>
-        </mat-expansion-panel-header>
-     <mat-action-row>
-       <app-app-confirm [data]="data" (emitConfirm)="deleteColumn($event, column.id)">
-          <button mat-icon-button class="icon-delete" type="button">
-            <mat-icon class="btn-delete">delete</mat-icon>
-          </button>
-        </app-app-confirm>
-        <button type="button" (click)="editColumn(column.id)" class="btn-setting-correct" ><img class="setting-correct" src="./../../../../../assets/icons/correct_pencil.svg" alt="icon corret"></button>
-      </mat-action-row>
-      </mat-expansion-panel>
+        <button class="button-edit-input close-edit" (click)="showTitleColumn(i)">X</button>
+        <button class="button-edit-input save-edit" (click)="updateTitleColumn(column.id)">V</button>
+        <input class="title-input" [(ngModel)]="titleColumn">
       </div>
+      <app-app-confirm [data]="data" (emitConfirm)="deleteColumn($event, column.id)">
+        <button mat-icon-button class="icon-delete" type="button">
+          <mat-icon class="btn-delete">delete</mat-icon>
+        </button>
+      </app-app-confirm>
+    </div>
     <hr class="board-page__line">
-    <app-dialog (emitText)="onAddCard($event, column.id)">
+    <app-dialog (emitText)="addNewTask($event, column.id)">
       <button mat-raised-button class="btn-add-task" type="button" (click)="setTwoFieldForm()">Add task +</button>
     </app-dialog>
-
+    <app-edit-task *ngIf="isShow$ | async"></app-edit-task>>
     <div class="example-list" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
       <div cdkDrag class="example-box" *ngFor="let item of column.tasks">
-        <app-item-board [item]="item" (emitDeleteTask)="onDeleteTask($event, column.id)"></app-item-board>
+        <app-item-board [item]="item" (emitUpdateTask)="updateTask($event, column.id)"
+          (emitDeleteTask)="onDeleteTask($event, column.id)"></app-item-board>
       </div>
     </div>
   </div>

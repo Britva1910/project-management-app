@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { Tasks } from './../../../../shared/models/interfaces/interfaces-board';
-import { UserBoardService } from './../../services/user-board.service';
-import { Store } from '@ngrx/store';
-import { selectColumnsBoard } from '../../store/board.selector';
+
 import { CountFiledFormService } from '../../services/modal-prompt.cervice';
 import { TasksDataService } from './../../../../shared/services/tasks-data-service/tasks-data.service';
+import { UserBoardService } from './../../services/user-board.service';
 import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { Store } from '@ngrx/store';
+import { selectColumnsBoard } from './../../store/board.selector';
+import { EditTaskService } from './../../services/edit-task.service';
+import { ColumnDataService } from './../../../../shared/services/colums-data-service/column-data.service';
 
 @Component({
   selector: 'app-board-container',
@@ -22,12 +25,18 @@ export class BoardContainerComponent {
   constructor(
     private countFiledFormService: CountFiledFormService,
 
-    public userBoardService: UserBoardService,
+    public editTaskService: EditTaskService,
 
     public taskDataService: TasksDataService,
 
-    private store: Store
+    public columnDataService: ColumnDataService,
+
+    private store: Store,
+
+    public userBoardService: UserBoardService
   ) {}
+
+  public isShow$ = this.editTaskService.showEditModal$();
 
   public columns$ = this.store.select(selectColumnsBoard);
 
@@ -37,7 +46,7 @@ export class BoardContainerComponent {
     this.taskDataService.deleteTask(idBoard, idColumn, idTask);
   }
 
-  public onAddCard(event: any, idColumn: string) {
+  public addNewTask(event: any, idColumn: string) {
     if (event) {
       console.log(idColumn, event.value);
     }
@@ -53,30 +62,32 @@ export class BoardContainerComponent {
     this.countFiledFormService.setTwoFiledForm();
   }
 
-  public hideTitle(index: number) {
-    const titleColumn = document.getElementsByClassName('title-column')[index];
-    titleColumn.classList.add('hide-class');
-    const editContainer =
-      document.getElementsByClassName('edit-container')[index];
-    editContainer.classList.add('visible-class');
+  public updateTask(idTask: string, idColumn: string) {
+    console.log(idTask, idColumn);
+    this.editTaskService.editTask(idTask, idColumn);
   }
 
-  public showTitle(index: number) {
-    const titleColumn = document.getElementsByClassName('title-column')[index];
-    titleColumn.classList.add('visible-class');
-    const editContainer =
-      document.getElementsByClassName('edit-container')[index];
-    editContainer.classList.add('hide-class');
+  public hideTitleColumn(index: number, columnId: string) {
+    console.log('component', index, columnId);
+    this.editTaskService.hideTitleColumn(index, columnId);
+    console.log('component', index, columnId);
   }
 
-  public titleColumn: any = 'ffff';
-
-  public editColumn(columnId: string) {
-    console.log(columnId);
+  public showTitleColumn(index: number) {
+    this.editTaskService.showTitleColumn(index);
   }
 
-  public onEdit() {
-    console.log('columnId');
+  public titleColumn: string = '';
+
+  public updateTitleColumn(idColumn: string) {
+    const boardId = this.editTaskService.checkIdBoard;
+    const orderColumn = this.editTaskService.checkColumn.order;
+    const bodyRequest = {
+      title: this.titleColumn,
+      order: orderColumn,
+    };
+    console.log(boardId, idColumn, bodyRequest);
+    this.columnDataService.updateColumn(boardId, idColumn, bodyRequest);
   }
 
   public drop(event: CdkDragDrop<Tasks[]>) {

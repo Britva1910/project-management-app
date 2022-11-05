@@ -2,8 +2,24 @@
 @import "mixins";
 @import "bootstrap";
 
-.icon {
-  font-size: 18px;
+
+.edit-task-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+
+  .edit-task-img {
+    width: 25px;
+    height: 25px;
+    transition: all ease .3s;
+    cursor: pointer;
+
+    &:hover {
+      transform: rotate(-20deg);
+    }
+  }
 }
 
 .mat-icon-button {
@@ -25,7 +41,7 @@
 
 .title-task {
   @include title-column;
-  margin: 0;
+  margin: 0 auto 10px;
 }
 
 .description-task {
