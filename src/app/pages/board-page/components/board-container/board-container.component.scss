@@ -9,7 +9,9 @@
   margin: 0 25px 25px 0;
   vertical-align: top;
 }
-
+.icon-delete:hover {
+  box-shadow: $shadow-title-column;
+}
 .column__title-container {
   width: 100%;
   display: flex;
@@ -173,8 +175,12 @@
 
 .title-input {
   width: 150px;
+  margin-left: 10px;
   border: none;
+  font-weight: 700;
   color: $btn-delete-color;
   background-color: transparent;
-  margin-left: 10px;
+}
+.title {
+  text-align: center;
 }

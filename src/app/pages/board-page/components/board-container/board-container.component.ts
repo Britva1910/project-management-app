@@ -68,18 +68,18 @@ export class BoardContainerComponent {
   }
 
   public hideTitleColumn(index: number, columnId: string) {
-    console.log('component', index, columnId);
     this.editTaskService.hideTitleColumn(index, columnId);
-    console.log('component', index, columnId);
+    this.titleColumn = this.editTaskService.checkColumn.title;
   }
 
   public showTitleColumn(index: number) {
     this.editTaskService.showTitleColumn(index);
   }
 
-  public titleColumn: string = '';
+  public titleColumn = '';
 
-  public updateTitleColumn(idColumn: string) {
+  public updateTitleColumn(idColumn: string, index: number) {
+    this.showTitleColumn(index);
     const boardId = this.editTaskService.checkIdBoard;
     const orderColumn = this.editTaskService.checkColumn.order;
     const bodyRequest = {

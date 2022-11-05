@@ -65,7 +65,6 @@ export class EditTaskService {
     const editContainer =
       document.getElementsByClassName('edit-container')[index];
     editContainer.classList.add('visible-class');
-    console.log(columnId);
   }
 
   public showTitleColumn(index: number) {
