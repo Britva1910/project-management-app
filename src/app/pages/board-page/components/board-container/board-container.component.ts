@@ -53,7 +53,33 @@ export class BoardContainerComponent {
     this.countFiledFormService.setTwoFiledForm();
   }
 
-  drop(event: CdkDragDrop<Tasks[]>) {
+  public hideTitle(index: number) {
+    const titleColumn = document.getElementsByClassName('title-column')[index];
+    titleColumn.classList.add('hide-class');
+    const editContainer =
+      document.getElementsByClassName('edit-container')[index];
+    editContainer.classList.add('visible-class');
+  }
+
+  public showTitle(index: number) {
+    const titleColumn = document.getElementsByClassName('title-column')[index];
+    titleColumn.classList.add('visible-class');
+    const editContainer =
+      document.getElementsByClassName('edit-container')[index];
+    editContainer.classList.add('hide-class');
+  }
+
+  public titleColumn: any = 'ffff';
+
+  public editColumn(columnId: string) {
+    console.log(columnId);
+  }
+
+  public onEdit() {
+    console.log('columnId');
+  }
+
+  public drop(event: CdkDragDrop<Tasks[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,

@@ -122,6 +122,7 @@
 .title-column {
   @include title-column;
   margin: 0;
+  cursor: pointer;
 }
 
 .board-page__line {
@@ -156,4 +157,30 @@
     background: $btn-add-hover-color;
     border: 1px solid $btn-add-hover-color;
   }
+}
+.edit-container {
+  display: flex;
+  gap: 5px;
+  width: 90%;
+}
+.button-edit-input {
+  width: 20px;
+  height: 20px;
+  color: $dark-font-color;
+  border-radius: 50%;
+  font-size: 10px;
+}
+.close-edit {
+background-color: $btn-delete-color;
+color: $light-fon-color;
+}
+.save-edit {
+  background-color: $dark-fon-color;
+  color: $light-fon-color;
+  }
+.hide-class {
+  display: none;
+}
+.visible-class {
+  display: flex;
 }

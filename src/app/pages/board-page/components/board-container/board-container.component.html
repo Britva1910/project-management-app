@@ -1,8 +1,15 @@
 <div cdkDropListGroup class="container-column">
-  <div class="column" *ngFor="let column of userBoardService.getBoard$() | async">
+  <div class="column" *ngFor="let column of userBoardService.getBoard$() | async; let i = index">
     <div class="column__title-container">
-      <h3 class="title-column">{{column.title}}</h3>
-      <mat-expansion-panel hideToggle>
+      <div class="title-column" (click)="hideTitle(i)">
+        <h3>{{column.title}}</h3>
+      </div>
+      <div class="edit-container">
+          <button class="button-edit-input close-edit" (click)="onEdit()">X</button>
+          <button class="button-edit-input save-edit" (click)="onEdit()">V</button>
+          <input class="title-input"  [(ngModel)]="titleColumn">
+     </div>
+        <mat-expansion-panel>
         <mat-expansion-panel-header>
             <img class="setting-column" src="./../../../../../assets/img/icon-setting.png" alt="icon setting"/>
         </mat-expansion-panel-header>
@@ -12,7 +19,7 @@
             <mat-icon class="btn-delete">delete</mat-icon>
           </button>
         </app-app-confirm>
-        <button type="button" class="btn-setting-correct" ><img class="setting-correct" src="./../../../../../assets/icons/correct_pencil.svg" alt="icon corret"></button>
+        <button type="button" (click)="editColumn(column.id)" class="btn-setting-correct" ><img class="setting-correct" src="./../../../../../assets/icons/correct_pencil.svg" alt="icon corret"></button>
       </mat-action-row>
       </mat-expansion-panel>
       </div>
