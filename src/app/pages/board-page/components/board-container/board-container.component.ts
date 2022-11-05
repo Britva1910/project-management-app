@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { Tasks } from './../../../../shared/models/interfaces/interfaces-board';
-import { UserBoardService } from './../../services/user-board.service';
-import { Store } from '@ngrx/store';
-import { selectColumnsBoard } from '../../store/board.selector';
+import { EditTaskService } from './../../services/edit-task.service';
 import { CountFiledFormService } from '../../services/modal-prompt.cervice';
 import { TasksDataService } from './../../../../shared/services/tasks-data-service/tasks-data.service';
+import { UserBoardService } from './../../services/user-board.service';
 import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { Store } from '@ngrx/store';
+import { selectColumnsBoard } from './../../store/board.selector';
 
 @Component({
   selector: 'app-board-container',
@@ -22,12 +23,16 @@ export class BoardContainerComponent {
   constructor(
     private countFiledFormService: CountFiledFormService,
 
-    public userBoardService: UserBoardService,
+    public editTaskService: EditTaskService,
 
     public taskDataService: TasksDataService,
 
-    private store: Store
+    private store: Store,
+
+    public userBoardService: UserBoardService
   ) {}
+
+  public isShow$ = this.editTaskService.showEditModal$();
 
   public columns$ = this.store.select(selectColumnsBoard);
 
@@ -53,7 +58,12 @@ export class BoardContainerComponent {
     this.countFiledFormService.setTwoFiledForm();
   }
 
-  drop(event: CdkDragDrop<Tasks[]>) {
+  public updateTask(idTask: string, idColumn: string) {
+    console.log(idTask, idColumn);
+    this.editTaskService.editTask(idTask, idColumn);
+  }
+
+  public drop(event: CdkDragDrop<Tasks[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,

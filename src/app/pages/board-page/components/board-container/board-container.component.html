@@ -1,6 +1,6 @@
 
   <div cdkDropListGroup class="container-column">
-    <div class="column" *ngFor="let column of userBoardService.getBoard$() | async">
+    <div class="column" *ngFor="let column of columns$ | async">
       <div class="column__title-container">
         <h3 class="title-column">{{column.title}}</h3>
       <app-app-confirm [data]="data" (emitConfirm)="deleteColumn($event, column.id)"><button mat-icon-button class="icon-delete" type="button">
@@ -11,10 +11,12 @@
      <app-dialog (emitText)="onAddCard($event, column.id)">
       <button mat-raised-button class="btn-add-task" type="button" (click)="setTwoFieldForm()" >Add task +</button>
     </app-dialog>
-
+    <app-edit-task *ngIf="isShow$ | async"></app-edit-task>>
       <div class="example-list" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
         <div cdkDrag class="example-box" *ngFor="let item of column.tasks">
-          <app-item-board [item]="item" (emitDeleteTask)="onDeleteTask($event, column.id)"></app-item-board>
+          <app-item-board [item]="item"
+              (emitUpdateTask)="updateTask($event, column.id)"
+              (emitDeleteTask)="onDeleteTask($event, column.id)"></app-item-board>
         </div>
       </div>
     </div>
