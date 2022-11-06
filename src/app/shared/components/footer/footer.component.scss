@@ -1,8 +1,9 @@
 @import 'utils-color';
 
 .footer {
+  position: fixed;
+  bottom: 0;
   width: 100%;
-  background: $light-blue-fon-color;
 
   &__wrapper {
     display: flex;
