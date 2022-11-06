@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {
   Tasks,
   AddTaskEvent,
+  UpdateColumnBody,
 } from './../../../../shared/models/interfaces/interfaces-board';
 
 import { CountFiledFormService } from '../../services/modal-prompt.cervice';
@@ -82,14 +83,12 @@ export class BoardContainerComponent {
 
   public updateTitleColumn(idColumn: string, index: number) {
     this.showTitleColumn(index);
-    const boardId = this.editTaskService.checkIdBoard;
     const orderColumn = this.editTaskService.checkColumn.order;
-    const bodyRequest = {
+    const bodyRequest: UpdateColumnBody = {
       title: this.titleColumn,
       order: orderColumn,
     };
-    console.log(boardId, idColumn, bodyRequest);
-    this.columnDataService.updateColumn(boardId, idColumn, bodyRequest);
+    this.editTaskService.updateTitleColumn(idColumn, bodyRequest);
   }
 
   public drop(event: CdkDragDrop<Tasks[]>) {

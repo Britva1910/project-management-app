@@ -121,6 +121,7 @@ export interface AddColumn {
     title: string;
   };
 }
-export interface DeleteColumn {
-  clicked: true;
+export interface UpdateColumnBody {
+  title: string;
+  order: number;
 }

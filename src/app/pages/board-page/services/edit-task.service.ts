@@ -9,6 +9,7 @@ import {
   Tasks,
   AddTaskEvent,
   CreateTaskBody,
+  UpdateColumnBody,
 } from './../../../shared/models/interfaces/interfaces-board';
 import { TasksDataService } from 'src/app/shared/services/tasks-data-service/tasks-data.service';
 import { invokeBoardAPI } from './../store/board.actions';
@@ -140,5 +141,17 @@ export class EditTaskService {
       error: (error: HttpErrorResponse) =>
         console.log(`Error - ${error.error.message}`),
     });
+  }
+
+  public updateTitleColumn(idColumn: string, bodyRequest: UpdateColumnBody) {
+    this.columnDataService
+      .updateColumn(this.checkIdBoard, idColumn, bodyRequest)
+      .subscribe({
+        next: () => {
+          this.store.dispatch(invokeBoardAPI());
+        },
+        error: (error: HttpErrorResponse) =>
+          console.log(`Error - ${error.error.message}`),
+      });
   }
 }
