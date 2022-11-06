@@ -130,4 +130,15 @@ export class EditTaskService {
           console.log(`Error - ${error.error.message}`),
       });
   }
+
+  public deleteColumn(columnId: string) {
+    this.getBoardId();
+    this.columnDataService.deleteColumn(this.checkIdBoard, columnId).subscribe({
+      next: () => {
+        this.store.dispatch(invokeBoardAPI());
+      },
+      error: (error: HttpErrorResponse) =>
+        console.log(`Error - ${error.error.message}`),
+    });
+  }
 }

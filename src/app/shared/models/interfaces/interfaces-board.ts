@@ -121,3 +121,6 @@ export interface AddColumn {
     title: string;
   };
 }
+export interface DeleteColumn {
+  clicked: true;
+}

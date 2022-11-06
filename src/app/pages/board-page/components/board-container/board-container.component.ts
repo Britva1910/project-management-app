@@ -55,10 +55,11 @@ export class BoardContainerComponent {
     this.editTaskService.editTask(idTask, idColumn);
   }
 
-  public deleteColumn(event: any, column: string) {
-    if (event.clicked) {
+  public deleteColumn(confirmItem: any, columnId: string) {
+    if (confirmItem.clicked) {
+      console.log(confirmItem);
       this.isOpenEditColumn = false;
-      console.log(event, column);
+      this.editTaskService.deleteColumn(columnId);
     }
   }
 
