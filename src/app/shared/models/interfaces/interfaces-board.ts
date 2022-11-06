@@ -106,3 +106,11 @@ export interface EditTask {
   idColumn: string;
   idTask: string;
 }
+
+export interface AddTaskEvent {
+  clicked: string;
+  value: {
+    title: string;
+    description: string;
+  };
+}

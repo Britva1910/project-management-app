@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { Tasks } from './../../../../shared/models/interfaces/interfaces-board';
+import {
+  Tasks,
+  AddTaskEvent,
+} from './../../../../shared/models/interfaces/interfaces-board';
 
 import { CountFiledFormService } from '../../services/modal-prompt.cervice';
 import { TasksDataService } from './../../../../shared/services/tasks-data-service/tasks-data.service';
@@ -42,13 +45,15 @@ export class BoardContainerComponent {
 
   private isOpenEditColumn = false;
 
+  public titleColumn = '';
+
   public onDeleteTask(idTask: string, idColumn: string) {
     const idBoard = '1'; // from globalStor
     console.log(idBoard, idColumn, idTask);
     this.taskDataService.deleteTask(idBoard, idColumn, idTask);
   }
 
-  public addNewTask(event: any, idColumn: string) {
+  public addNewTask(event: AddTaskEvent, idColumn: string) {
     if (event) {
       console.log(idColumn, event.value);
     }
@@ -75,8 +80,6 @@ export class BoardContainerComponent {
       this.isOpenEditColumn = true;
       this.editTaskService.hideTitleColumn(index, columnId);
       this.titleColumn = this.editTaskService.checkColumn.title;
-    } else {
-      return;
     }
   }
 
@@ -84,8 +87,6 @@ export class BoardContainerComponent {
     this.isOpenEditColumn = false;
     this.editTaskService.showTitleColumn(index);
   }
-
-  public titleColumn = '';
 
   public updateTitleColumn(idColumn: string, index: number) {
     this.showTitleColumn(index);
