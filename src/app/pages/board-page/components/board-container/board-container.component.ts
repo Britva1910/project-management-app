@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {
   Tasks,
   AddTaskEvent,
+  CreateTaskBody,
 } from './../../../../shared/models/interfaces/interfaces-board';
 
 import { CountFiledFormService } from '../../services/modal-prompt.cervice';
@@ -16,6 +17,10 @@ import { Store } from '@ngrx/store';
 import { selectColumnsBoard } from './../../store/board.selector';
 import { EditTaskService } from './../../services/edit-task.service';
 import { ColumnDataService } from './../../../../shared/services/colums-data-service/column-data.service';
+import { StorDataService } from './../../../../shared/services/stor-service/stor-data.service';
+import { LocalStorageService } from './../../../../shared/services/local-storage-service/local-storage.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { invokeBoardAPI } from './../../store/board.actions';
 
 @Component({
   selector: 'app-board-container',
@@ -28,12 +33,15 @@ export class BoardContainerComponent {
   constructor(
     private countFiledFormService: CountFiledFormService,
 
-    public editTaskService: EditTaskService,
+    private editTaskService: EditTaskService,
 
-    public taskDataService: TasksDataService,
+    private taskDataService: TasksDataService,
+
+    private storDataService: StorDataService,
+
+    private localStorageService: LocalStorageService,
 
     public columnDataService: ColumnDataService,
-
     private store: Store,
 
     public userBoardService: UserBoardService
@@ -48,14 +56,34 @@ export class BoardContainerComponent {
   public titleColumn = '';
 
   public onDeleteTask(idTask: string, idColumn: string) {
-    const idBoard = '1'; // from globalStor
-    console.log(idBoard, idColumn, idTask);
-    this.taskDataService.deleteTask(idBoard, idColumn, idTask);
+    this.editTaskService.getBoardId();
+    const idBoard = this.editTaskService.checkIdBoard;
+    this.taskDataService.deleteTask(idBoard, idColumn, idTask).subscribe({
+      next: () => {
+        this.store.dispatch(invokeBoardAPI());
+      },
+      error: (error: HttpErrorResponse) =>
+        console.log(`Error - ${error.error.message}`),
+    });
   }
 
-  public addNewTask(event: AddTaskEvent, idColumn: string) {
-    if (event) {
-      console.log(idColumn, event.value);
+  public addNewTask(userTaskData: AddTaskEvent, idColumn: string) {
+    if (userTaskData) {
+      this.editTaskService.getBoardId();
+      const idBoard = this.editTaskService.checkIdBoard;
+      const userId: string =
+        this.localStorageService.getFromLocalStorage('userId') + '';
+      userTaskData.value.userId = userId;
+      const bodyRequest: CreateTaskBody = userTaskData.value;
+      this.taskDataService
+        .createTask(idBoard, idColumn, bodyRequest)
+        .subscribe({
+          next: () => {
+            this.store.dispatch(invokeBoardAPI());
+          },
+          error: (error: HttpErrorResponse) =>
+            console.log(`Error - ${error.error.message}`),
+        });
     }
   }
 
