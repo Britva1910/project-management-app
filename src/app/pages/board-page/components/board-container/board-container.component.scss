@@ -9,11 +9,14 @@
   margin: 0 25px 25px 0;
   vertical-align: top;
 }
-
+.icon-delete:hover {
+  box-shadow: $shadow-title-column;
+}
 .column__title-container {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 10px;
   box-shadow: $shadow-title-column;
 }
 
@@ -21,6 +24,10 @@
   width: 25px;
   height: 25px;
   color: $btn-delete-color;
+
+  &:hover {
+    color: $light-blue-fon-color;
+  }
 }
 
 .column {
@@ -81,6 +88,11 @@
 }
 
 .title-column {
+  width: 80%;
+  cursor: pointer;
+}
+
+.title {
   @include title-column;
   margin: 0;
 }
@@ -92,8 +104,6 @@
   border-radius: 10px;
   background-color: $dark-font-color;
 }
-
-
 
 .container-column {
   display: flex;
@@ -119,4 +129,58 @@
     background: $btn-add-hover-color;
     border: 1px solid $btn-add-hover-color;
   }
+}
+
+.edit-container {
+  display: none;
+  gap: 5px;
+  width: 90%;
+}
+
+.button-edit-input {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  color: $dark-font-color;
+}
+
+.close-edit {
+  background-color: $btn-delete-color;
+  color: $light-fon-color;
+  &:hover {
+    background-color: $btn-add-hover-color;
+  }
+}
+
+.save-edit {
+  background-color:  #a7d8f5;
+  &:hover {
+    background-color: $btn-add-hover-color;
+  }
+}
+
+.hide-class {
+  display: none;
+}
+
+.visible-class {
+  display: flex;
+}
+
+.title-input {
+  width: 150px;
+  margin-left: 10px;
+  border: none;
+  font-weight: 700;
+  color: $btn-delete-color;
+  background-color: transparent;
+}
+.title {
+  text-align: center;
 }
