@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { Tasks } from './../../../../shared/models/interfaces/interfaces-board';
+import {
+  Tasks,
+  CreateTaskBody,
+} from './../../../../shared/models/interfaces/interfaces-board';
 import { EditTaskService } from './../../services/edit-task.service';
 import { CountFiledFormService } from '../../services/modal-prompt.cervice';
 import { TasksDataService } from './../../../../shared/services/tasks-data-service/tasks-data.service';
@@ -11,6 +14,8 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Store } from '@ngrx/store';
 import { selectColumnsBoard } from './../../store/board.selector';
+import { StorDataService } from './../../../../shared/services/stor-service/stor-data.service';
+import { LocalStorageService } from './../../../../shared/services/local-storage-service/local-storage.service';
 
 @Component({
   selector: 'app-board-container',
@@ -23,9 +28,13 @@ export class BoardContainerComponent {
   constructor(
     private countFiledFormService: CountFiledFormService,
 
-    public editTaskService: EditTaskService,
+    private editTaskService: EditTaskService,
 
-    public taskDataService: TasksDataService,
+    private taskDataService: TasksDataService,
+
+    private storDataService: StorDataService,
+
+    private localStorageService: LocalStorageService,
 
     private store: Store,
 
@@ -42,9 +51,16 @@ export class BoardContainerComponent {
     this.taskDataService.deleteTask(idBoard, idColumn, idTask);
   }
 
-  public onAddCard(event: any, idColumn: string) {
+  public addNewTask(event: any, idColumn: string) {
     if (event) {
-      console.log(idColumn, event.value);
+      this.editTaskService.getBoardId();
+      const idBoard = this.editTaskService.checkIdBoard;
+      const userId = this.localStorageService.getFromLocalStorage('userId');
+      event.value.userId = userId;
+      const bodyRequest: CreateTaskBody = event.value;
+      //const userId = this.storDataService.getIdUser();
+      console.log(idBoard, idColumn, bodyRequest);
+      this.taskDataService.createTask(idBoard, idColumn, bodyRequest);
     }
   }
 

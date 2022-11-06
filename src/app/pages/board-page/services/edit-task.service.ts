@@ -36,7 +36,7 @@ export class EditTaskService {
 
   public checkTask!: Tasks;
 
-  private getBoardId() {
+  public getBoardId() {
     let board = this.store.select(selectBoards);
     board.subscribe((col) => (this.checkIdBoard = col.id));
   }

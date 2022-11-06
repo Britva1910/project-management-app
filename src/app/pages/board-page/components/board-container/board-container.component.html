@@ -8,7 +8,7 @@
       </button></app-app-confirm>
       </div>
       <hr class="board-page__line">
-     <app-dialog (emitText)="onAddCard($event, column.id)">
+     <app-dialog (emitText)="addNewTask($event, column.id)">
       <button mat-raised-button class="btn-add-task" type="button" (click)="setTwoFieldForm()" >Add task +</button>
     </app-dialog>
     <app-edit-task *ngIf="isShow$ | async"></app-edit-task>>

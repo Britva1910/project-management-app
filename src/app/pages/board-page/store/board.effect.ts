@@ -4,13 +4,16 @@ import { map, switchMap } from 'rxjs';
 import { boardFetchAPISuccess, invokeBoardAPI } from './board.actions';
 import { BoardsDataService } from '../../../shared/services/boards-data-service/boards-data.service';
 import { StorDataService } from './../../../shared/services/stor-service/stor-data.service';
+//import { setAPIStatus } from './../../../shared/store/app.action';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class BoardEffect {
   constructor(
     private actions$: Actions,
     private boardData: BoardsDataService,
-    private storDataService: StorDataService
+    private storDataService: StorDataService,
+    private store: Store
   ) {}
 
   private idBoard = '958f9259-6360-40e7-9655-fe87531d026a'; //берём в общем store?
@@ -27,4 +30,25 @@ export class BoardEffect {
       )
     );
   });
+
+  /* addNewTask$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(invokeSaveNewTaskAPI),
+      switchMap((action) => {
+        this.store.dispatch(
+          setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
+        );
+        return this.booksService.create(action.newBook).pipe(
+          map((data) => {
+            this.appStore.dispatch(
+              setAPIStatus({
+                apiStatus: { apiResponseMessage: '', apiStatus: 'success' },
+              })
+            );
+            return saveNewBookAPISucess({ newBook: data });
+          })
+        );
+      })
+    );
+  });*/
 }
