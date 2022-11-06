@@ -56,9 +56,15 @@ export class BoardContainerComponent {
   public titleColumn = '';
 
   public onDeleteTask(idTask: string, idColumn: string) {
-    const idBoard = '1'; // from globalStor
-    console.log(idBoard, idColumn, idTask);
-    this.taskDataService.deleteTask(idBoard, idColumn, idTask);
+    this.editTaskService.getBoardId();
+    const idBoard = this.editTaskService.checkIdBoard;
+    this.taskDataService.deleteTask(idBoard, idColumn, idTask).subscribe({
+      next: () => {
+        this.store.dispatch(invokeBoardAPI());
+      },
+      error: (error: HttpErrorResponse) =>
+        console.log(`Error - ${error.error.message}`),
+    });
   }
 
   public addNewTask(event: AddTaskEvent, idColumn: string) {
@@ -69,7 +75,6 @@ export class BoardContainerComponent {
         this.localStorageService.getFromLocalStorage('userId') + '';
       event.value.userId = userId;
       const bodyRequest: CreateTaskBody = event.value;
-      console.log(idBoard, idColumn, bodyRequest);
       this.taskDataService
         .createTask(idBoard, idColumn, bodyRequest)
         .subscribe({
