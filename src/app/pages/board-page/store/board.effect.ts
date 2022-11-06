@@ -4,7 +4,6 @@ import { map, switchMap } from 'rxjs';
 import { boardFetchAPISuccess, invokeBoardAPI } from './board.actions';
 import { BoardsDataService } from '../../../shared/services/boards-data-service/boards-data.service';
 import { StorDataService } from './../../../shared/services/stor-service/stor-data.service';
-//import { setAPIStatus } from './../../../shared/store/app.action';
 import { Store } from '@ngrx/store';
 
 @Injectable()
@@ -30,25 +29,4 @@ export class BoardEffect {
       )
     );
   });
-
-  /* addNewTask$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(invokeSaveNewTaskAPI),
-      switchMap((action) => {
-        this.store.dispatch(
-          setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
-        );
-        return this.booksService.create(action.newBook).pipe(
-          map((data) => {
-            this.appStore.dispatch(
-              setAPIStatus({
-                apiStatus: { apiResponseMessage: '', apiStatus: 'success' },
-              })
-            );
-            return saveNewBookAPISucess({ newBook: data });
-          })
-        );
-      })
-    );
-  });*/
 }

@@ -19,6 +19,8 @@ import { EditTaskService } from './../../services/edit-task.service';
 import { ColumnDataService } from './../../../../shared/services/colums-data-service/column-data.service';
 import { StorDataService } from './../../../../shared/services/stor-service/stor-data.service';
 import { LocalStorageService } from './../../../../shared/services/local-storage-service/local-storage.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { invokeBoardAPI } from './../../store/board.actions';
 
 @Component({
   selector: 'app-board-container',
@@ -67,9 +69,16 @@ export class BoardContainerComponent {
         this.localStorageService.getFromLocalStorage('userId') + '';
       event.value.userId = userId;
       const bodyRequest: CreateTaskBody = event.value;
-      //const userId = this.storDataService.getIdUser();
       console.log(idBoard, idColumn, bodyRequest);
-      this.taskDataService.createTask(idBoard, idColumn, bodyRequest);
+      this.taskDataService
+        .createTask(idBoard, idColumn, bodyRequest)
+        .subscribe({
+          next: () => {
+            this.store.dispatch(invokeBoardAPI());
+          },
+          error: (error: HttpErrorResponse) =>
+            console.log(`Error - ${error.error.message}`),
+        });
     }
   }
 
