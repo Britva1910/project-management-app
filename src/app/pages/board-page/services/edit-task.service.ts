@@ -3,14 +3,24 @@ import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectColumnById, selectBoards } from '../store/board.selector';
+import { LocalStorageService } from './../../../shared/services/local-storage-service/local-storage.service';
 import {
   Column,
   Tasks,
+  AddTaskEvent,
+  CreateTaskBody,
 } from './../../../shared/models/interfaces/interfaces-board';
+import { TasksDataService } from 'src/app/shared/services/tasks-data-service/tasks-data.service';
+import { invokeBoardAPI } from './../store/board.actions';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class EditTaskService {
-  constructor(private store: Store) {}
+  constructor(
+    private store: Store,
+    private localStorageService: LocalStorageService,
+    private tasksDataService: TasksDataService
+  ) {}
 
   private isShowEditTaskModal$ = new BehaviorSubject<boolean>(false);
 
@@ -73,5 +83,36 @@ export class EditTaskService {
     const editContainer =
       document.getElementsByClassName('edit-container')[index];
     editContainer.classList.remove('visible-class');
+  }
+
+  public addNewTask(userTaskData: AddTaskEvent, idColumn: string) {
+    this.getBoardId();
+    const userId: string = this.localStorageService
+      .getFromLocalStorage('userId')
+      .toString();
+    userTaskData.value.userId = userId;
+    const bodyRequest: CreateTaskBody = userTaskData.value;
+    this.tasksDataService
+      .createTask(this.checkIdBoard, idColumn, bodyRequest)
+      .subscribe({
+        next: () => {
+          this.store.dispatch(invokeBoardAPI());
+        },
+        error: (error: HttpErrorResponse) =>
+          console.log(`Error - ${error.error.message}`),
+      });
+  }
+
+  public deleteTask(idTask: string, idColumn: string) {
+    this.getBoardId();
+    this.tasksDataService
+      .deleteTask(this.checkIdBoard, idColumn, idTask)
+      .subscribe({
+        next: () => {
+          this.store.dispatch(invokeBoardAPI());
+        },
+        error: (error: HttpErrorResponse) =>
+          console.log(`Error - ${error.error.message}`),
+      });
   }
 }
