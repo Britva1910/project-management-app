@@ -40,6 +40,8 @@ export class BoardContainerComponent {
 
   public columns$ = this.store.select(selectColumnsBoard);
 
+  private isOpenEditColumn = false;
+
   public onDeleteTask(idTask: string, idColumn: string) {
     const idBoard = '1'; // from globalStor
     console.log(idBoard, idColumn, idTask);
@@ -54,6 +56,7 @@ export class BoardContainerComponent {
 
   public deleteColumn(event: any, column: string) {
     if (event.clicked) {
+      this.isOpenEditColumn = false;
       console.log(event, column);
     }
   }
@@ -68,11 +71,17 @@ export class BoardContainerComponent {
   }
 
   public hideTitleColumn(index: number, columnId: string) {
-    this.editTaskService.hideTitleColumn(index, columnId);
-    this.titleColumn = this.editTaskService.checkColumn.title;
+    if (!this.isOpenEditColumn) {
+      this.isOpenEditColumn = true;
+      this.editTaskService.hideTitleColumn(index, columnId);
+      this.titleColumn = this.editTaskService.checkColumn.title;
+    } else {
+      return;
+    }
   }
 
   public showTitleColumn(index: number) {
+    this.isOpenEditColumn = false;
     this.editTaskService.showTitleColumn(index);
   }
 
