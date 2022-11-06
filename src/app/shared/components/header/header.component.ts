@@ -24,10 +24,7 @@ export class HeaderComponent {
     router.events.subscribe(() => {
       if (location.path() != '') {
         this.currentRoute = location.path();
-        if (
-          this.currentRoute === '/welcome' ||
-          this.currentRoute === '/auth/login'
-        ) {
+        if (this.currentRoute === '/welcome') {
           this.logoSource = '../../../../assets/img/logo.png';
           this.bgColor = '#c2cdee';
           this.languageButtonColor = '#000';

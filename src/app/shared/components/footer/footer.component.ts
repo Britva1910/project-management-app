@@ -24,10 +24,7 @@ export class FooterComponent {
     router.events.subscribe(() => {
       if (location.path() != '') {
         this.currentRoute = location.path();
-        if (
-          this.currentRoute === '/welcome' ||
-          this.currentRoute === '/auth/login'
-        ) {
+        if (this.currentRoute === '/welcome') {
           this.imgSourceSv = '../../../../assets/img/githubSv2 1.png';
           this.imgSourceIv = '../../../../assets/img/githubIv2 1.png';
           this.imgSourceUl = '../../../../assets/img/githubUl2 1.png';
@@ -38,7 +35,7 @@ export class FooterComponent {
           this.imgSourceIv = '../../../../assets/img/githubIv.png';
           this.imgSourceUl = '../../../../assets/img/githubUl.png';
           this.imgSourceRS = '../../../../assets/img/rs-school.png';
-          this.bgColor = '#00093C';
+          this.bgColor = '#00093c';
         }
       } else {
         this.currentRoute = 'home';
