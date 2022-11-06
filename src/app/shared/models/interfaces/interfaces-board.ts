@@ -115,3 +115,9 @@ export interface AddTaskEvent {
     userId?: string;
   };
 }
+export interface AddColumn {
+  clicked: string;
+  value: {
+    title: string;
+  };
+}

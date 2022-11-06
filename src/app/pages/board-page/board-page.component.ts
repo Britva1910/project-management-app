@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { invokeBoardAPI } from './store/board.actions';
+import { AddColumn } from './../../shared/models/interfaces/interfaces-board';
 import { CountFiledFormService } from './services/modal-prompt.cervice';
+import { EditTaskService } from './services/edit-task.service';
 import {
   selectDescriptionBoard,
   selectTitleBoard,
@@ -14,6 +16,7 @@ import {
 export class BoardPageComponent implements OnInit {
   constructor(
     private store: Store,
+    private editTaskService: EditTaskService,
     private countFiledFormService: CountFiledFormService
   ) {}
 
@@ -31,9 +34,9 @@ export class BoardPageComponent implements OnInit {
     this.countFiledFormService.setOneFiledForm();
   }
 
-  public onAddColumn(event: any) {
-    if (event) {
-      console.log(event.value);
+  public onAddColumn(newTitle: AddColumn) {
+    if (newTitle.clicked === 'submit') {
+      this.editTaskService.addNewColumn(newTitle.value);
     }
   }
 }

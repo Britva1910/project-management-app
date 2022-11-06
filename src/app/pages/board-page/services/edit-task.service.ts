@@ -13,13 +13,15 @@ import {
 import { TasksDataService } from 'src/app/shared/services/tasks-data-service/tasks-data.service';
 import { invokeBoardAPI } from './../store/board.actions';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ColumnDataService } from './../../../shared/services/colums-data-service/column-data.service';
 
 @Injectable()
 export class EditTaskService {
   constructor(
     private store: Store,
     private localStorageService: LocalStorageService,
-    private tasksDataService: TasksDataService
+    private tasksDataService: TasksDataService,
+    private columnDataService: ColumnDataService
   ) {}
 
   private isShowEditTaskModal$ = new BehaviorSubject<boolean>(false);
@@ -107,6 +109,19 @@ export class EditTaskService {
     this.getBoardId();
     this.tasksDataService
       .deleteTask(this.checkIdBoard, idColumn, idTask)
+      .subscribe({
+        next: () => {
+          this.store.dispatch(invokeBoardAPI());
+        },
+        error: (error: HttpErrorResponse) =>
+          console.log(`Error - ${error.error.message}`),
+      });
+  }
+
+  public addNewColumn(newColumnTitle: { title: string }) {
+    this.getBoardId();
+    this.columnDataService
+      .createColumn(this.checkIdBoard, newColumnTitle)
       .subscribe({
         next: () => {
           this.store.dispatch(invokeBoardAPI());
