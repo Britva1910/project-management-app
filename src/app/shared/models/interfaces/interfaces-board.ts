@@ -54,7 +54,7 @@ export interface UpdateOneTaskBody {
 export interface CreateTaskBody {
   title: string;
   description: string;
-  userId: string;
+  userId?: string;
 }
 export interface CreateTaskResponse {
   id: string;
@@ -105,4 +105,13 @@ export interface EditTask {
   description: string;
   idColumn: string;
   idTask: string;
+}
+
+export interface AddTaskEvent {
+  clicked: string;
+  value: {
+    title: string;
+    description: string;
+    userId?: string;
+  };
 }
