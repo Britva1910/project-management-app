@@ -67,14 +67,14 @@ export class BoardContainerComponent {
     });
   }
 
-  public addNewTask(event: AddTaskEvent, idColumn: string) {
-    if (event) {
+  public addNewTask(userTaskData: AddTaskEvent, idColumn: string) {
+    if (userTaskData) {
       this.editTaskService.getBoardId();
       const idBoard = this.editTaskService.checkIdBoard;
       const userId: string =
         this.localStorageService.getFromLocalStorage('userId') + '';
-      event.value.userId = userId;
-      const bodyRequest: CreateTaskBody = event.value;
+      userTaskData.value.userId = userId;
+      const bodyRequest: CreateTaskBody = userTaskData.value;
       this.taskDataService
         .createTask(idBoard, idColumn, bodyRequest)
         .subscribe({
