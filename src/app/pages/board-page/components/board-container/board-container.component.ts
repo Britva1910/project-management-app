@@ -51,14 +51,12 @@ export class BoardContainerComponent {
     }
   }
 
-  public updateTask(idTask: string, idColumn: string) {
-    console.log(idTask, idColumn);
+  public editTask(idTask: string, idColumn: string) {
     this.editTaskService.editTask(idTask, idColumn);
   }
 
   public deleteColumn(confirmItem: any, columnId: string) {
     if (confirmItem.clicked) {
-      console.log(confirmItem);
       this.isOpenEditColumn = false;
       this.editTaskService.deleteColumn(columnId);
     }

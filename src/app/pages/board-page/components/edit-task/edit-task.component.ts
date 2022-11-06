@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { EditTaskService } from './../../services/edit-task.service';
 import { TasksDataService } from './../../../../shared/services/tasks-data-service/tasks-data.service';
+import { UpdateOneTaskBody } from './../../../../shared/models/interfaces/interfaces-board';
 @Component({
   selector: 'app-edit-task',
   templateUrl: './edit-task.component.html',
@@ -22,13 +23,8 @@ export class EditTaskComponent {
   };
 
   updateTask() {
-    const boardId = this.editTaskService.checkIdBoard;
-    const columnId = this.editTaskService.checkIdColumn;
-    const taskId = this.editTaskService.checkIdTask;
-    const bodyRequest = this.taskForm;
-    console.log('put', bodyRequest);
-    this.tasksDataService.updateTask(boardId, columnId, taskId, bodyRequest);
-    this.editTaskService.closeEditModal$();
+    const bodyRequest: UpdateOneTaskBody = this.taskForm;
+    this.editTaskService.updateTask(bodyRequest);
   }
 
   public close() {

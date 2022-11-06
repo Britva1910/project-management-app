@@ -10,6 +10,7 @@ import {
   AddTaskEvent,
   CreateTaskBody,
   UpdateColumnBody,
+  UpdateOneTaskBody,
 } from './../../../shared/models/interfaces/interfaces-board';
 import { TasksDataService } from 'src/app/shared/services/tasks-data-service/tasks-data.service';
 import { invokeBoardAPI } from './../store/board.actions';
@@ -64,9 +65,29 @@ export class EditTaskService {
   public editTask(idTask: string, idColumn: string) {
     this.getBoardId();
     this.getColumnById(idColumn);
+    this.checkIdColumn = idColumn;
+    this.checkIdTask = idTask;
     const arrTaskOneColumn = this.checkColumn.tasks;
     this.checkTask = arrTaskOneColumn.filter((task) => task.id === idTask)[0];
     this.openEditModal$();
+  }
+
+  updateTask(bodyRequest: UpdateOneTaskBody) {
+    this.tasksDataService
+      .updateTask(
+        this.checkIdBoard,
+        this.checkIdColumn,
+        this.checkIdTask,
+        bodyRequest
+      )
+      .subscribe({
+        next: () => {
+          this.store.dispatch(invokeBoardAPI());
+        },
+        error: (error: HttpErrorResponse) =>
+          console.log(`Error - ${error.error.message}`),
+      });
+    this.closeEditModal$();
   }
 
   public hideTitleColumn(index: number, columnId: string) {
