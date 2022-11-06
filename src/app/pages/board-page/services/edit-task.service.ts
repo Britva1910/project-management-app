@@ -32,7 +32,7 @@ export class EditTaskService {
 
   public checkIdBoard = '';
 
-  private checkColumn!: Column;
+  public checkColumn!: Column;
 
   public checkTask!: Tasks;
 
@@ -42,7 +42,9 @@ export class EditTaskService {
   }
 
   private getColumnById(idColumn: string) {
-    let column = this.store.select(selectColumnById(idColumn));
+    let column: Observable<Column> = this.store.select(
+      selectColumnById(idColumn)
+    );
     column.subscribe((col) => (this.checkColumn = col));
   }
 
@@ -52,5 +54,24 @@ export class EditTaskService {
     const arrTaskOneColumn = this.checkColumn.tasks;
     this.checkTask = arrTaskOneColumn.filter((task) => task.id === idTask)[0];
     this.openEditModal$();
+  }
+
+  public hideTitleColumn(index: number, columnId: string) {
+    this.getBoardId();
+    this.checkIdColumn = columnId;
+    this.getColumnById(columnId);
+    const titleColumn = document.getElementsByClassName('title-column')[index];
+    titleColumn.classList.add('hide-class');
+    const editContainer =
+      document.getElementsByClassName('edit-container')[index];
+    editContainer.classList.add('visible-class');
+  }
+
+  public showTitleColumn(index: number) {
+    const titleColumn = document.getElementsByClassName('title-column')[index];
+    titleColumn.classList.remove('hide-class');
+    const editContainer =
+      document.getElementsByClassName('edit-container')[index];
+    editContainer.classList.remove('visible-class');
   }
 }
