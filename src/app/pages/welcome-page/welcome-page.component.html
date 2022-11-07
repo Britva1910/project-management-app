@@ -10,13 +10,19 @@
 </section>
 <section class="section-wrapper light-bg">
   <h3 class="block-title">Advantages</h3>
-  <div class="three-columns" >
-    <app-advantage-card *ngFor="let item of advantagesData" [advantageData] = item></app-advantage-card>
+  <div class="three-columns">
+    <app-advantage-card
+      *ngFor="let item of advantagesData"
+      [advantageData]="item"
+    ></app-advantage-card>
   </div>
 </section>
 <section class="section-wrapper dark-bg">
-  <h3>Development Team</h3>
+  <h3 class="block-title-light">Development Team</h3>
   <div class="three-columns">
-    <!--компонент с карточкой-->
+    <app-teammate
+      *ngFor="let teammate of teemData"
+      [teammateData]="teammate"
+    ></app-teammate>
   </div>
 </section>

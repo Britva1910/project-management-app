@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
-import { AdvantagesData } from '../../shared/models/interfaces/welcome-page';
+import {
+  AdvantagesData,
+  TeamData,
+} from '../../shared/models/interfaces/welcome-page';
 import { advantages } from '../../shared/constant/advantages';
+import { teamData } from '../../shared/constant/team-data';
 
 @Component({
   selector: 'app-welcome-page',
@@ -9,4 +13,6 @@ import { advantages } from '../../shared/constant/advantages';
 })
 export class WelcomePageComponent {
   advantagesData: AdvantagesData[] = advantages;
+
+  teemData: TeamData[] = teamData;
 }
