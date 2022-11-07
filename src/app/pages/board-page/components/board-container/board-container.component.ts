@@ -26,10 +26,6 @@ import { DragnDropService } from './../../services/dragn-drop.service';
   styleUrls: ['./board-container.component.scss'],
 })
 export class BoardContainerComponent implements OnInit {
-  public data = 'Delete column?';
-
-  public columnss = this.editTaskService.getAllColumn();
-
   constructor(
     private countFiledFormService: CountFiledFormService,
     private editTaskService: EditTaskService,
@@ -39,11 +35,9 @@ export class BoardContainerComponent implements OnInit {
     public userBoardService: UserBoardService
   ) {}
 
-  ngOnInit() {
-    this.store
-      .select(selectColumnsBoard)
-      .subscribe((columns) => this.editTaskService.setAllColumn(columns));
-  }
+  public data = 'Delete column?';
+
+  public columnss = this.editTaskService.getAllColumn();
 
   public isShow$ = this.editTaskService.showEditModal$();
 
@@ -52,6 +46,13 @@ export class BoardContainerComponent implements OnInit {
   private isOpenEditColumn = false;
 
   public titleColumn = '';
+
+  ngOnInit() {
+    this.store
+      .select(selectColumnsBoard)
+      // eslint-disable-next-line @ngrx/no-store-subscription
+      .subscribe((columns) => this.editTaskService.setAllColumn(columns));
+  }
 
   public onDeleteTask(idTask: string, idColumn: string) {
     this.editTaskService.deleteTask(idTask, idColumn);
