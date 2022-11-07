@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { invokeBoardAPI } from './store/board.actions';
 import { CountFiledFormService } from './services/modal-prompt.cervice';
+
 import {
   selectDescriptionBoard,
   selectTitleBoard,

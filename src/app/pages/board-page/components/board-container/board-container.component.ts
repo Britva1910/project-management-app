@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {
   Tasks,
+  Column,
   AddTaskEvent,
   CreateTaskBody,
 } from './../../../../shared/models/interfaces/interfaces-board';
@@ -142,6 +143,18 @@ export class BoardContainerComponent {
         event.previousIndex,
         event.currentIndex
       );
+    }
+  }
+
+  public ondrop(event: CdkDragDrop<Column[]>) {
+    if (event.previousContainer === event.container) {
+      if (event) {
+        moveItemInArray(
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex
+        );
+      }
     }
   }
 }
