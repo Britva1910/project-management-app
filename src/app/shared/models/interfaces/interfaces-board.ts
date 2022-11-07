@@ -115,3 +115,13 @@ export interface AddTaskEvent {
     userId?: string;
   };
 }
+export interface AddColumn {
+  clicked: string;
+  value: {
+    title: string;
+  };
+}
+export interface UpdateColumnBody {
+  title: string;
+  order: number;
+}
