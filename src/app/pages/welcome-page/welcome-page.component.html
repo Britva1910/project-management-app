@@ -1,4 +1,4 @@
-<section class="section-wrapper dark-bg">
+<section class="section-wrapper main-section dark-bg">
   <div class="two-columns">
     <div class="page-title-container">
       <h2 class="main-title">KANBAN</h2>
@@ -9,9 +9,9 @@
   </div>
 </section>
 <section class="section-wrapper light-bg">
-  <h3>Advantages</h3>
-  <div class="three-columns">
-    <!--компонент с карточкой-->
+  <h3 class="block-title">Advantages</h3>
+  <div class="three-columns" >
+    <app-advantage-card *ngFor="let item of advantagesData" [advantageData] = item></app-advantage-card>
   </div>
 </section>
 <section class="section-wrapper dark-bg">
