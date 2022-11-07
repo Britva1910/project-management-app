@@ -46,5 +46,6 @@ const routes: Routes = [{ path: '', component: BoardPageComponent }];
     DialogModule,
   ],
   providers: [UserBoardService, EditTaskService, DragnDropService],
+  exports: [EditTaskComponent],
 })
 export class BoardPageModule {}
