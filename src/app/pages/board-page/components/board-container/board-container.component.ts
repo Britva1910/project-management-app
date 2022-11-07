@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   Tasks,
   Column,
@@ -10,6 +10,7 @@ import { CountFiledFormService } from '../../services/modal-prompt.cervice';
 import { UserBoardService } from './../../services/user-board.service';
 import {
   CdkDragDrop,
+  //CdkDragEnter,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
@@ -17,22 +18,32 @@ import { Store } from '@ngrx/store';
 import { selectColumnsBoard } from './../../store/board.selector';
 import { EditTaskService } from './../../services/edit-task.service';
 import { ColumnDataService } from './../../../../shared/services/colums-data-service/column-data.service';
+import { DragnDropService } from './../../services/dragn-drop.service';
 
 @Component({
   selector: 'app-board-container',
   templateUrl: './board-container.component.html',
   styleUrls: ['./board-container.component.scss'],
 })
-export class BoardContainerComponent {
+export class BoardContainerComponent implements OnInit {
   public data = 'Delete column?';
+
+  public columnss = this.editTaskService.getAllColumn();
 
   constructor(
     private countFiledFormService: CountFiledFormService,
     private editTaskService: EditTaskService,
-    public columnDataService: ColumnDataService,
+    private columnDataService: ColumnDataService,
     private store: Store,
+    private dragnDropService: DragnDropService,
     public userBoardService: UserBoardService
   ) {}
+
+  ngOnInit() {
+    this.store
+      .select(selectColumnsBoard)
+      .subscribe((columns) => this.editTaskService.setAllColumn(columns));
+  }
 
   public isShow$ = this.editTaskService.showEditModal$();
 
@@ -97,9 +108,19 @@ export class BoardContainerComponent {
         event.previousIndex,
         event.currentIndex
       );
+      console.log(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     } else {
       transferArrayItem(
         event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+      console.log(
         event.container.data,
         event.previousIndex,
         event.currentIndex
@@ -116,6 +137,9 @@ export class BoardContainerComponent {
           event.currentIndex
         );
       }
+      const checkColumn = event.item.dropContainer.data[event.currentIndex];
+      const nextOrder = event.currentIndex;
+      this.dragnDropService.dropColumn(nextOrder + 1, checkColumn);
     }
   }
 }

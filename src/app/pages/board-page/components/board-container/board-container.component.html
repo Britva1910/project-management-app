@@ -1,6 +1,6 @@
-<div cdkDropListGroup *ngIf="(userBoardService.getBoard$() | async) as columns">
+<div cdkDropListGroup *ngIf="(columnss | async) as columns">
   <div cdkDropListGroup  cdkDropList [cdkDropListData]="columns" cdkDropListOrientation="horizontal"  (cdkDropListDropped)="ondrop($event)" class="container-column">
-  <div class="column" cdkDrag *ngFor="let column of columns; let i = index">
+  <div class="column" cdkDrag  *ngFor="let column of columns; let i = index">
 
     <div class="column__title-container">
       <div class="title-column" (click)="hideTitleColumn(i, column.id)">

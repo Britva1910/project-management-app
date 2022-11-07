@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectColumnById, selectBoards } from '../store/board.selector';
@@ -16,6 +16,7 @@ import { TasksDataService } from 'src/app/shared/services/tasks-data-service/tas
 import { invokeBoardAPI } from './../store/board.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ColumnDataService } from './../../../shared/services/colums-data-service/column-data.service';
+//import { selectColumnsBoard } from './../store/board.selector';
 
 @Injectable()
 export class EditTaskService {
@@ -25,6 +26,26 @@ export class EditTaskService {
     private tasksDataService: TasksDataService,
     private columnDataService: ColumnDataService
   ) {}
+
+  public checkIdTask = '';
+
+  public checkIdColumn = '';
+
+  public checkIdBoard = '';
+
+  public checkColumn!: Column;
+
+  public checkTask!: Tasks;
+
+  public allColumn = new Subject<Column[]>();
+
+  public setAllColumn(allcol: Column[]) {
+    this.allColumn.next([...allcol]);
+  }
+
+  public getAllColumn() {
+    return this.allColumn.asObservable();
+  }
 
   private isShowEditTaskModal$ = new BehaviorSubject<boolean>(false);
 
@@ -39,16 +60,6 @@ export class EditTaskService {
   public closeEditModal$() {
     this.isShowEditTaskModal$.next(false);
   }
-
-  public checkIdTask = '';
-
-  public checkIdColumn = '';
-
-  public checkIdBoard = '';
-
-  public checkColumn!: Column;
-
-  public checkTask!: Tasks;
 
   public getBoardId() {
     let board = this.store.select(selectBoards);
