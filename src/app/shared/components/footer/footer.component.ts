@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { union } from '../../constant/union';
 
 @Component({
   selector: 'app-footer',
@@ -24,21 +25,21 @@ export class FooterComponent {
     router.events.subscribe(() => {
       if (location.path() != '') {
         this.currentRoute = location.path();
-        if (this.currentRoute === '/welcome') {
-          this.imgSourceSv = '../../../../assets/img/githubSv2 1.png';
-          this.imgSourceIv = '../../../../assets/img/githubIv2 1.png';
-          this.imgSourceUl = '../../../../assets/img/githubUl2 1.png';
-          this.imgSourceRS = '../../../../assets/img/logoRSdark 1.png';
-          this.bgColor = '#c2cdee';
+        if (this.currentRoute === union.welcome) {
+          this.imgSourceSv = union.darkSv;
+          this.imgSourceIv = union.darkIv;
+          this.imgSourceUl = union.darkUl;
+          this.imgSourceRS = union.darkRS;
+          this.bgColor = union.lightBgColor;
         } else {
-          this.imgSourceSv = '../../../../assets/img/githubSv.png';
-          this.imgSourceIv = '../../../../assets/img/githubIv.png';
-          this.imgSourceUl = '../../../../assets/img/githubUl.png';
-          this.imgSourceRS = '../../../../assets/img/rs-school.png';
-          this.bgColor = '#00093c';
+          this.imgSourceSv = union.lightSv;
+          this.imgSourceIv = union.lightIv;
+          this.imgSourceUl = union.lightUl;
+          this.imgSourceRS = union.lightRs;
+          this.bgColor = union.darkBgColor;
         }
       } else {
-        this.currentRoute = 'home';
+        this.currentRoute = union.home;
       }
     });
   }

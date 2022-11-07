@@ -2,6 +2,7 @@
 
 .header {
   width: 100%;
+  position: sticky;
 
   &__wrapper {
     display: flex;
@@ -12,16 +13,17 @@
   }
 
   &__logo {
-    width: 70px;
+    width: 150px;
   }
 
   &__nav {
     display: flex;
-    gap: 300px;
+    width: 400px;
+    justify-content: space-between;
 
     & a {
       text-decoration: none;
-      color: #fff;
+      color: $light-font-color;
       font-weight: 700;
     }
   }
@@ -47,14 +49,14 @@
 
   &__language span {
     font-weight: 700;
-    color: #fff;
+    color: $light-font-color;
     padding: 0 4px;
   }
 }
 
 
 .mat-raised-button {
-  color: #fff;
+  color: $light-font-color;
   background-color: $dark-fon-color;
   opacity: 1;
 }
