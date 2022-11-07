@@ -16,7 +16,7 @@ export class ItemBoardComponent {
 
   @Output() emitDeleteTask: EventEmitter<string> = new EventEmitter();
 
-  @Output() emitUpdateTask: EventEmitter<string> = new EventEmitter();
+  @Output() emitEditTask: EventEmitter<string> = new EventEmitter();
 
   public deleteOneTask(event: any, idTask: string) {
     if (event.clicked) {
@@ -25,6 +25,6 @@ export class ItemBoardComponent {
   }
 
   public editTask(idTask: string) {
-    this.emitUpdateTask.emit(idTask);
+    this.emitEditTask.emit(idTask);
   }
 }

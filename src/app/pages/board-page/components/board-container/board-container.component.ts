@@ -3,11 +3,10 @@ import {
   Tasks,
   Column,
   AddTaskEvent,
-  CreateTaskBody,
+  UpdateColumnBody,
 } from './../../../../shared/models/interfaces/interfaces-board';
 
 import { CountFiledFormService } from '../../services/modal-prompt.cervice';
-import { TasksDataService } from './../../../../shared/services/tasks-data-service/tasks-data.service';
 import { UserBoardService } from './../../services/user-board.service';
 import {
   CdkDragDrop,
@@ -18,10 +17,6 @@ import { Store } from '@ngrx/store';
 import { selectColumnsBoard } from './../../store/board.selector';
 import { EditTaskService } from './../../services/edit-task.service';
 import { ColumnDataService } from './../../../../shared/services/colums-data-service/column-data.service';
-import { StorDataService } from './../../../../shared/services/stor-service/stor-data.service';
-import { LocalStorageService } from './../../../../shared/services/local-storage-service/local-storage.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { invokeBoardAPI } from './../../store/board.actions';
 
 @Component({
   selector: 'app-board-container',
@@ -33,18 +28,9 @@ export class BoardContainerComponent {
 
   constructor(
     private countFiledFormService: CountFiledFormService,
-
     private editTaskService: EditTaskService,
-
-    private taskDataService: TasksDataService,
-
-    private storDataService: StorDataService,
-
-    private localStorageService: LocalStorageService,
-
     public columnDataService: ColumnDataService,
     private store: Store,
-
     public userBoardService: UserBoardService
   ) {}
 
@@ -57,51 +43,28 @@ export class BoardContainerComponent {
   public titleColumn = '';
 
   public onDeleteTask(idTask: string, idColumn: string) {
-    this.editTaskService.getBoardId();
-    const idBoard = this.editTaskService.checkIdBoard;
-    this.taskDataService.deleteTask(idBoard, idColumn, idTask).subscribe({
-      next: () => {
-        this.store.dispatch(invokeBoardAPI());
-      },
-      error: (error: HttpErrorResponse) =>
-        console.log(`Error - ${error.error.message}`),
-    });
+    this.editTaskService.deleteTask(idTask, idColumn);
   }
 
   public addNewTask(userTaskData: AddTaskEvent, idColumn: string) {
     if (userTaskData) {
-      this.editTaskService.getBoardId();
-      const idBoard = this.editTaskService.checkIdBoard;
-      const userId: string =
-        this.localStorageService.getFromLocalStorage('userId') + '';
-      userTaskData.value.userId = userId;
-      const bodyRequest: CreateTaskBody = userTaskData.value;
-      this.taskDataService
-        .createTask(idBoard, idColumn, bodyRequest)
-        .subscribe({
-          next: () => {
-            this.store.dispatch(invokeBoardAPI());
-          },
-          error: (error: HttpErrorResponse) =>
-            console.log(`Error - ${error.error.message}`),
-        });
+      this.editTaskService.addNewTask(userTaskData, idColumn);
     }
   }
 
-  public deleteColumn(event: any, column: string) {
-    if (event.clicked) {
+  public editTask(idTask: string, idColumn: string) {
+    this.editTaskService.editTask(idTask, idColumn);
+  }
+
+  public deleteColumn(confirmItem: any, columnId: string) {
+    if (confirmItem.clicked) {
       this.isOpenEditColumn = false;
-      console.log(event, column);
+      this.editTaskService.deleteColumn(columnId);
     }
   }
 
   public setTwoFieldForm() {
     this.countFiledFormService.setTwoFiledForm();
-  }
-
-  public updateTask(idTask: string, idColumn: string) {
-    console.log(idTask, idColumn);
-    this.editTaskService.editTask(idTask, idColumn);
   }
 
   public hideTitleColumn(index: number, columnId: string) {
@@ -119,14 +82,12 @@ export class BoardContainerComponent {
 
   public updateTitleColumn(idColumn: string, index: number) {
     this.showTitleColumn(index);
-    const boardId = this.editTaskService.checkIdBoard;
     const orderColumn = this.editTaskService.checkColumn.order;
-    const bodyRequest = {
+    const bodyRequest: UpdateColumnBody = {
       title: this.titleColumn,
       order: orderColumn,
     };
-    console.log(boardId, idColumn, bodyRequest);
-    this.columnDataService.updateColumn(boardId, idColumn, bodyRequest);
+    this.editTaskService.updateTitleColumn(idColumn, bodyRequest);
   }
 
   public drop(event: CdkDragDrop<Tasks[]>) {

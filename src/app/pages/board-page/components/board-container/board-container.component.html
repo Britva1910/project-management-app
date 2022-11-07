@@ -25,7 +25,7 @@
     <app-edit-task *ngIf="isShow$ | async"></app-edit-task>
     <div class="example-list" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
       <div cdkDrag class="example-box" *ngFor="let item of column.tasks">
-        <app-item-board [item]="item" (emitUpdateTask)="updateTask($event, column.id)"
+        <app-item-board [item]="item" (emitEditTask)="editTask($event, column.id)"
           (emitDeleteTask)="onDeleteTask($event, column.id)"></app-item-board>
       </div>
     </div>
