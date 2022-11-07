@@ -2,7 +2,6 @@
 
 .header {
   width: 100%;
-  background: $light-blue-fon-color;
 
   &__wrapper {
     display: flex;
@@ -14,6 +13,17 @@
 
   &__logo {
     width: 70px;
+  }
+
+  &__nav {
+    display: flex;
+    gap: 300px;
+
+    & a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 700;
+    }
   }
 
   &__right {
@@ -34,12 +44,18 @@
     display: flex;
     gap: 20px;
   }
+
+  &__language span {
+    font-weight: 700;
+    color: #fff;
+    padding: 0 4px;
+  }
 }
 
 
 .mat-raised-button {
   color: #fff;
-  background-color: #00093C;
+  background-color: $dark-fon-color;
   opacity: 1;
 }
 
