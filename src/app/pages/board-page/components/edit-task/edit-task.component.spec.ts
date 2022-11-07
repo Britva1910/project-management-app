@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FooterAuthComponent } from './footer-auth.component';
+import { EditTaskComponent } from './edit-task.component';
 
-describe('FooterAuthComponent', () => {
-  let component: FooterAuthComponent;
-  let fixture: ComponentFixture<FooterAuthComponent>;
+describe('EditTaskComponent', () => {
+  let component: EditTaskComponent;
+  let fixture: ComponentFixture<EditTaskComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FooterAuthComponent],
+      declarations: [EditTaskComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FooterAuthComponent);
+    fixture = TestBed.createComponent(EditTaskComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

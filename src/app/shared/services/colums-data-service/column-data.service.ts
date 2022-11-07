@@ -16,7 +16,7 @@ export class ColumnDataService {
   ) {}
 
   public getAllColumns(boardId: string): Observable<CreateUpdateColumn[]> {
-    const url = UrlsEnum.boards + `/${boardId}` + UrlsEnum.columns;
+    const url = UrlsEnum.boards + `/${boardId}/` + UrlsEnum.columns;
     return this.RequestClientBuilder.get<CreateUpdateColumn[]>(url);
   }
 
@@ -24,19 +24,19 @@ export class ColumnDataService {
     boardId: string,
     data: { title: string }
   ): Observable<CreateUpdateColumn> {
-    const url = UrlsEnum.boards + `/${boardId}` + UrlsEnum.columns;
+    const url = UrlsEnum.boards + `/${boardId}/` + UrlsEnum.columns;
     return this.RequestClientBuilder.post<CreateUpdateColumn>(url, data);
   }
 
   public getColumnById(boardId: string, columnId: string): Observable<Column> {
     const url =
-      UrlsEnum.boards + `/${boardId}` + UrlsEnum.columns + `/${columnId}`;
+      UrlsEnum.boards + `/${boardId}/` + UrlsEnum.columns + `/${columnId}`;
     return this.RequestClientBuilder.get<Column>(url);
   }
 
   public deleteColumn(boardId: string, columnId: string): Observable<unknown> {
     const url =
-      UrlsEnum.boards + `/${boardId}` + UrlsEnum.columns + `/${columnId}`;
+      UrlsEnum.boards + `/${boardId}/` + UrlsEnum.columns + `/${columnId}`;
     return this.RequestClientBuilder.delete<unknown>(url);
   }
 
@@ -49,7 +49,7 @@ export class ColumnDataService {
     }
   ): Observable<CreateUpdateColumn> {
     const url =
-      UrlsEnum.boards + `/${boardId}` + UrlsEnum.columns + `/${columnId}`;
+      UrlsEnum.boards + `/${boardId}/` + UrlsEnum.columns + `/${columnId}`;
     return this.RequestClientBuilder.put<CreateUpdateColumn>(url, data);
   }
 }

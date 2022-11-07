@@ -25,9 +25,9 @@ export class TasksDataService {
   ): Observable<AllTasksOneColumn> {
     const url =
       UrlsEnum.boards +
-      `/${boardId}` +
+      `/${boardId}/` +
       UrlsEnum.columns +
-      `/${columnId}` +
+      `/${columnId}/` +
       UrlsEnum.tasks;
     return this.RequestClientBuilder.get<AllTasksOneColumn>(url);
   }
@@ -39,9 +39,9 @@ export class TasksDataService {
   ): Observable<CreateTaskResponse> {
     const url =
       UrlsEnum.boards +
-      `/${boardId}` +
+      `/${boardId}/` +
       UrlsEnum.columns +
-      `/${columnId}` +
+      `/${columnId}/` +
       UrlsEnum.tasks;
     return this.RequestClientBuilder.post<CreateTaskResponse>(url, data);
   }
@@ -53,9 +53,9 @@ export class TasksDataService {
   ): Observable<GetTaskByIdResponse> {
     const url =
       UrlsEnum.boards +
-      `/${boardId}` +
+      `/${boardId}/` +
       UrlsEnum.columns +
-      `/${columnId}` +
+      `/${columnId}/` +
       UrlsEnum.tasks +
       `/${taskId}`;
     return this.RequestClientBuilder.get<GetTaskByIdResponse>(url);
@@ -68,9 +68,9 @@ export class TasksDataService {
   ): Observable<unknown> {
     const url =
       UrlsEnum.boards +
-      `/${boardId}` +
+      `/${boardId}/` +
       UrlsEnum.columns +
-      `/${columnId}` +
+      `/${columnId}/` +
       UrlsEnum.tasks +
       `/${taskId}`;
     return this.RequestClientBuilder.delete<unknown>(url);
@@ -84,9 +84,9 @@ export class TasksDataService {
   ): Observable<UpdateOneTaskResponse> {
     const url =
       UrlsEnum.boards +
-      `/${boardId}` +
+      `/${boardId}/` +
       UrlsEnum.columns +
-      `/${columnId}` +
+      `/${columnId}/` +
       UrlsEnum.tasks +
       `/${taskId}`;
     return this.RequestClientBuilder.put<UpdateOneTaskResponse>(url, data);

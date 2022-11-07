@@ -1,11 +1,9 @@
 @import 'utils-color';
 
 .footer {
-  //position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
-  background: $light-blue-fon-color;
-
 
   &__wrapper {
     display: flex;
@@ -43,4 +41,8 @@
       opacity: 1;
     }
   }
+}
+
+.footer__githubs-img {
+  width: 50px;
 }

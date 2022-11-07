@@ -6,19 +6,21 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { LocalStorageService } from './../services/local-storage-service/local-storage.service';
 
 @Injectable()
 export class HeaderAddTokkenInterceptor implements HttpInterceptor {
-  tokken: string | null =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjMzk3MzFlMy0zZDhmLTQ1OGMtYjVmMi1lZmNjYTI3MmRlNzciLCJsb2dpbiI6InVzZXIwMDE3IiwiaWF0IjoxNjY2OTkxODYwfQ.HXxnT-2EdjuriLr82_uUK8M7m-5V8RTwNBDgpDtsCJM';
+  constructor(private localStorageService: LocalStorageService) {}
 
-  isTokken: boolean = true;
+  tokken: string | null = this.localStorageService
+    .getFromLocalStorage('token')
+    .toString();
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    if (this.isTokken) {
+    if (this.tokken) {
       return next.handle(
         request.clone({
           headers: request.headers.set(
