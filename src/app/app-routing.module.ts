@@ -3,7 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundPagesComponent } from './shared/components/not-found-pages/not-found-pages.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+  {
+    path: 'welcome',
+    loadChildren: () =>
+      import('./pages/welcome-page/welcome-page.module').then(
+        (m) => m.WelcomePageModule
+      ),
+  },
   {
     path: 'auth/:tab',
     loadChildren: () =>
