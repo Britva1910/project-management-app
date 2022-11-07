@@ -1,6 +1,5 @@
 export const union = {
-  welcome: '/welcome',
-  home: '/home',
+  path: '/welcome',
   lightLogo: '../../../../assets/img/light-logo.png',
   darkLogo: '../../../../assets/img/logo.png',
   lightBgColor: '#c2cdee',

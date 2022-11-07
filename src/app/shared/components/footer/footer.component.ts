@@ -25,7 +25,7 @@ export class FooterComponent {
     router.events.subscribe(() => {
       if (location.path() != '') {
         this.currentRoute = location.path();
-        if (this.currentRoute === union.welcome) {
+        if (this.currentRoute === union.path) {
           this.imgSourceSv = union.darkSv;
           this.imgSourceIv = union.darkIv;
           this.imgSourceUl = union.darkUl;
@@ -38,8 +38,6 @@ export class FooterComponent {
           this.imgSourceRS = union.lightRs;
           this.bgColor = union.darkBgColor;
         }
-      } else {
-        this.currentRoute = union.home;
       }
     });
   }

@@ -25,7 +25,7 @@ export class HeaderComponent {
     router.events.subscribe(() => {
       if (location.path() != '') {
         this.currentRoute = location.path();
-        if (this.currentRoute === union.welcome) {
+        if (this.currentRoute === union.path) {
           this.logoSource = union.darkLogo;
           this.bgColor = union.lightBgColor;
           this.languageButtonColor = union.darkColor;
@@ -38,8 +38,6 @@ export class HeaderComponent {
           this.headerNavigation = true;
           this.headerButtons = false;
         }
-      } else {
-        this.currentRoute = union.home;
       }
     });
   }
