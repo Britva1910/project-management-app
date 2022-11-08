@@ -6,12 +6,7 @@ export const setAPIStatus = createAction(
   props<{ apiStatus: AppState }>()
 );
 
-export const setUserToken = createAction(
-  '[AUTH] set user token',
-  props<{ token: string }>()
-);
-
-export const setUserId = createAction(
-  '[AUTH] set user ID',
-  props<{ userId: string }>()
+export const setUserData = createAction(
+  '[AUTH] set user data',
+  props<{ token: string; userId: string }>()
 );
