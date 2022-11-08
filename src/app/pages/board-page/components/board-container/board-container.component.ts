@@ -10,6 +10,7 @@ import { CountFiledFormService } from '../../services/modal-prompt.cervice';
 import { UserBoardService } from './../../services/user-board.service';
 import {
   CdkDragDrop,
+  //CdkDragExit,
   //CdkDragEnter,
   moveItemInArray,
   transferArrayItem,
@@ -37,11 +38,11 @@ export class BoardContainerComponent implements OnInit {
 
   public data = 'Delete column?';
 
-  public columnss = this.editTaskService.getAllColumn();
+  public columns$ = this.editTaskService.getAllColumn$();
 
   public isShow$ = this.editTaskService.showEditModal$();
 
-  public columns$ = this.store.select(selectColumnsBoard);
+  //public columnsS = this.store.select(selectColumnsBoard);
 
   private isOpenEditColumn = false;
 
@@ -51,7 +52,7 @@ export class BoardContainerComponent implements OnInit {
     this.store
       .select(selectColumnsBoard)
       // eslint-disable-next-line @ngrx/no-store-subscription
-      .subscribe((columns) => this.editTaskService.setAllColumn(columns));
+      .subscribe((columns) => this.editTaskService.setAllColumn$(columns));
   }
 
   public onDeleteTask(idTask: string, idColumn: string) {
@@ -102,29 +103,35 @@ export class BoardContainerComponent implements OnInit {
     this.editTaskService.updateTitleColumn(idColumn, bodyRequest);
   }
 
-  public drop(event: CdkDragDrop<Tasks[]>) {
+  public drop(event: CdkDragDrop<Tasks[]>, idColumn: string) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
-        event.container.data,
+        Array.from(event.container.data),
         event.previousIndex,
         event.currentIndex
       );
-      console.log(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
+      console.log('откуда берём колонка', idColumn);
+      const checkTask = event.item.dropContainer.data[event.previousIndex];
+      const nextOrder = event.currentIndex;
+      this.dragnDropService.dropTasks(nextOrder + 1, idColumn, checkTask);
     } else {
       transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
+        Array.from(event.previousContainer.data),
+        Array.from(event.container.data),
         event.previousIndex,
         event.currentIndex
       );
-      console.log(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
+      console.log(event);
+      const checkTask = event.previousContainer.data[event.previousIndex];
+      //this.editTaskService.findIdCol(checkTask.id);
+      const nextOrder = event.currentIndex + 1;
+      //const prevColId = this.editTaskService.findIdCol(checkTask.id);
+      //const nowColId = idColumn,
+      //console.log(checkTask, nextOrder, idColumn);
+      this.dragnDropService.dropTasksBetweenColumn(
+        nextOrder,
+        idColumn,
+        checkTask
       );
     }
   }

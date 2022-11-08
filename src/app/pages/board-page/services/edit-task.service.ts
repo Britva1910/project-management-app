@@ -37,14 +37,39 @@ export class EditTaskService {
 
   public checkTask!: Tasks;
 
-  public allColumn = new Subject<Column[]>();
+  public allColumn$ = new Subject<Column[]>();
 
-  public setAllColumn(arrColumn: Column[]) {
-    this.allColumn.next([...arrColumn]);
+  // public arrColumns: Column[] = [];
+
+  public setAllColumn$(arrColumn: Column[]) {
+    this.allColumn$.next([...arrColumn]);
+    //this.allColumn$.subscribe((arrCol) => (this.arrColumns = arrCol));
   }
 
-  public getAllColumn() {
-    return this.allColumn.asObservable();
+  public getAllColumn$() {
+    return this.allColumn$.asObservable();
+  }
+
+  //public findIdCol(idTask: string) {
+  //  const cheskCol = this.arrColumns.filter((col) =>
+  //   col.tasks.filter((task) => task.id === idTask)
+  // );
+  // console.log(cheskCol[0].id);
+  //}
+
+  public isTaskInColumn(arrTasks: Tasks[], idTask: string) {
+    for (let i = 0; i <= arrTasks.length - 1; i++) {
+      if (arrTasks[i].id === idTask) return true;
+    }
+    return false;
+  }
+
+  public getIdColByidTasks(arrColumn: Column[], idTask: string) {
+    for (let i = 0; i <= arrColumn.length - 1; i++) {
+      if (this.isTaskInColumn(arrColumn[i].tasks, idTask))
+        return arrColumn[i].id;
+    }
+    return false;
   }
 
   private isShowEditTaskModal$ = new BehaviorSubject<boolean>(false);
