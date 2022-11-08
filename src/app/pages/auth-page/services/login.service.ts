@@ -16,7 +16,6 @@ export class LoginService {
     //const token = //this is expires token for testing
     //('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjMzk3MzFlMy0zZDhmLTQ1OGMtYjVmMi1lZmNjYTI3MmRlNzciLCJsb2dpbiI6InVzZXIwMDE3IiwiaWF0IjoxNjY2OTkxODYwfQ.HXxnT-2EdjuriLr82_uUK8M7m-5V8RTwNBDgpDtsCJM');
     if (token) {
-      console.log('start login fn');
       const userId = this.getUserIdFromToken(token);
       const response = this.userDataService.getUserById(userId);
 
@@ -48,8 +47,8 @@ export class LoginService {
       window
         .atob(base64)
         .split('')
-        .map(function (c) {
-          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        .map((item) => {
+          return '%' + ('00' + item.charCodeAt(0).toString(16)).slice(-2);
         })
         .join('')
     );
