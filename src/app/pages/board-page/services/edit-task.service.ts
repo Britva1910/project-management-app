@@ -39,23 +39,9 @@ export class EditTaskService {
 
   public allColumn = new Subject<Column[]>();
 
-  public setAllColumn(allcol: Column[]) {
-    console.log(allcol);
-    if (!allcol.length) return;
-    const arrColumn: Column[] = [...allcol];
-    //for (let i = 0; i <= arrColumn.length; i++) {
-    //  if (!arrColumn[i].tasks.length) return;
-    //  this.sortArrByOrder(arrColumn[i].tasks);
-    // }
-    arrColumn.sort((a, b) => a.order - b.order);
-    console.log(arrColumn);
+  public setAllColumn(arrColumn: Column[]) {
     this.allColumn.next([...arrColumn]);
   }
-
-  // public sortArrByOrder(arr: Tasks[]) {
-  //  if (!arr.length) return;
-  //  arr.sort((a: Tasks, b: Tasks) => a.order - b.order);
-  // }
 
   public getAllColumn() {
     return this.allColumn.asObservable();

@@ -34,13 +34,11 @@ export class DragnDropService {
       title: checkCol.title,
       order: newOrderColumn,
     };
-    console.log(this.editTaskService.checkIdBoard, checkCol.id, bodyRequest);
     this.columnDataService
       .updateColumn(this.editTaskService.checkIdBoard, checkCol.id, bodyRequest)
       .subscribe({
         next: () => {
           this.store.dispatch(invokeBoardAPI());
-          console.log('запрос прошел');
         },
         error: (error: HttpErrorResponse) =>
           console.log(`Error - ${error.error.message}`),
