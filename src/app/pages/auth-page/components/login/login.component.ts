@@ -6,6 +6,7 @@ import { setUserData } from '../../../../shared/store/app.action';
 import { LoginService } from '../../services/login.service';
 import { LocalStorageService } from '../../../../shared/services/local-storage-service/local-storage.service';
 import { Token } from '../../../../shared/models/auth-models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent {
     private store: Store,
     private authDataService: AuthDataService,
     private loginService: LoginService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private router: Router
   ) {}
 
   onSubmit() {
@@ -42,5 +44,6 @@ export class LoginComponent {
       },
       error: (error) => console.log(`Error - ${error.error}`),
     });
+    this.router.navigate(['/board']);
   }
 }

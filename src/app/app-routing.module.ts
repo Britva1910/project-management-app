@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundPagesComponent } from './shared/components/not-found-pages/not-found-pages.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
@@ -10,6 +11,7 @@ const routes: Routes = [
       import('./pages/welcome-page/welcome-page.module').then(
         (m) => m.WelcomePageModule
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'auth/:tab',
@@ -24,6 +26,7 @@ const routes: Routes = [
       import('./pages/board-page/board-page.module').then(
         (m) => m.BoardPageModule
       ),
+    canActivate: [AuthGuard],
   },
   { path: '**', component: NotFoundPagesComponent },
 ];
