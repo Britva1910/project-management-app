@@ -1,0 +1,33 @@
+@import 'utils-color';
+
+.sort {
+
+  &__wrapper {
+    position: relative;
+    width: 360px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid $light-blue-fon-color;
+    border-radius: 20px;
+    padding: 10px 20px;
+  }
+
+  &__input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+  }
+
+  &__button {
+    position: absolute;
+    right: 20px;
+    font-size: 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: $light-blue-fon-color;
+    padding: 3px 14px;
+    cursor: pointer;
+  }
+}

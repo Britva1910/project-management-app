@@ -1,0 +1,58 @@
+@import 'utils-color';
+@import 'mixins';
+
+.main {
+  margin-top: 20px;
+
+  &__wrapper {
+    width: 100%;
+    padding: 10px 50px;
+  }
+
+  &__outer {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    @include title-page;
+    font-size: 30px;
+  }
+
+  &__search {
+    position: absolute;
+    left: 44%;
+  }
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    width: 96%;
+    margin: 30px auto;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+
+    & img {
+      width: 20px;
+      margin-right: 10px;
+    }
+  }
+
+  &__subtitle {
+    font-size: 24px;
+    color: $grey-color;
+    margin: 0;
+  }
+
+  &__list {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+}

@@ -25,7 +25,12 @@ export class HeaderComponent {
     router.events.subscribe(() => {
       if (location.path() != '') {
         this.currentRoute = location.path();
-        if (this.currentRoute === union.path) {
+        if (
+          this.currentRoute === union.welcome ||
+          this.currentRoute === union.auth ||
+          this.currentRoute === union.login ||
+          this.currentRoute === union.signup
+        ) {
           this.logoSource = union.darkLogo;
           this.bgColor = union.lightBgColor;
           this.languageButtonColor = union.darkColor;

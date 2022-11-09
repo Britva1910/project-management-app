@@ -25,7 +25,12 @@ export class FooterComponent {
     router.events.subscribe(() => {
       if (location.path() != '') {
         this.currentRoute = location.path();
-        if (this.currentRoute === union.path) {
+        if (
+          this.currentRoute === union.welcome ||
+          this.currentRoute === union.auth ||
+          this.currentRoute === union.login ||
+          this.currentRoute === union.signup
+        ) {
           this.imgSourceSv = union.darkSv;
           this.imgSourceIv = union.darkIv;
           this.imgSourceUl = union.darkUl;
