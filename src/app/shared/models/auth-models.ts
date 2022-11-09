@@ -12,3 +12,7 @@ export interface SingUpData {
   login: string | null | undefined;
   password: string | null | undefined;
 }
+
+export interface Token {
+  token: string;
+}
