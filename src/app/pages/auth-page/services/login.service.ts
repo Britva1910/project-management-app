@@ -11,24 +11,25 @@ export class LoginService {
     private localStorageService: LocalStorageService
   ) {}
 
-  isLogin(): boolean {
+  isLogin(): Promise<boolean> {
     const token = this.getTokenFromLocalStorage();
     //const token = //this is expires token for testing
     //('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjMzk3MzFlMy0zZDhmLTQ1OGMtYjVmMi1lZmNjYTI3MmRlNzciLCJsb2dpbiI6InVzZXIwMDE3IiwiaWF0IjoxNjY2OTkxODYwfQ.HXxnT-2EdjuriLr82_uUK8M7m-5V8RTwNBDgpDtsCJM');
-    if (token) {
-      const userId = this.getUserIdFromToken(token);
-      const response = this.userDataService.getUserById(userId);
-
+    if (!token) {
+      return new Promise((resolve) => resolve(false));
+    }
+    const userId = this.getUserIdFromToken(token);
+    const response = this.userDataService.getUserById(userId);
+    return new Promise((resolve) => {
       response.subscribe({
         next: () => {
-          return true;
+          resolve(true);
         },
         error: () => {
-          return false;
+          resolve(false);
         },
       });
-    }
-    return true;
+    });
   }
 
   getTokenFromLocalStorage(): string | null {
