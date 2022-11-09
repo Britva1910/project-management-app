@@ -1,0 +1,7 @@
+@import "utils-color";
+:host {
+  cursor: pointer;
+}
+:host:hover {
+  box-shadow: $shadow-title-column;
+}

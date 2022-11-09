@@ -1,5 +1,7 @@
-<div cdkDropListGroup class="container-column">
-  <div class="column" *ngFor="let column of columns$ | async; let i = index">
+<div cdkDropListGroup *ngIf="(columns$ | async) as columns">
+  <div cdkDropListGroup  cdkDropList [cdkDropListData]="columns" cdkDropListOrientation="horizontal"  (cdkDropListDropped)="ondrop($event)" class="container-column">
+  <div class="column" cdkDrag  *ngFor="let column of columns; let i = index">
+
     <div class="column__title-container">
       <div class="title-column" (click)="hideTitleColumn(i, column.id)">
         <h3 class="title">{{column.title}}</h3>
@@ -14,17 +16,20 @@
           <img src="./../../../../../assets/icons/delete.svg" alt="icon">
         </button>
       </app-app-confirm>
+      <app-drag-handle-column></app-drag-handle-column>
     </div>
     <hr class="board-page__line">
     <app-dialog (emitText)="addNewTask($event, column.id)">
       <button mat-raised-button class="btn-add-task" type="button" (click)="setTwoFieldForm()">Add task +</button>
     </app-dialog>
-    <app-edit-task *ngIf="isShow$ | async"></app-edit-task>>
-    <div class="example-list" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
+    <app-edit-task *ngIf="isShow$ | async"></app-edit-task>
+
+    <div class="example-list" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event, column.id)">
       <div cdkDrag class="example-box" *ngFor="let item of column.tasks">
         <app-item-board [item]="item" (emitEditTask)="editTask($event, column.id)"
           (emitDeleteTask)="onDeleteTask($event, column.id)"></app-item-board>
       </div>
     </div>
   </div>
+</div>
 </div>

@@ -5,6 +5,12 @@ import { StateBoard, initialStateBoard } from './state-board';
 export const boardReducer = createReducer(
   initialStateBoard,
   on(boardFetchAPISuccess, (state, { boardResponse }): StateBoard => {
-    return boardResponse;
+    let clonedObject: StateBoard = JSON.parse(JSON.stringify(boardResponse));
+    clonedObject.columns.forEach((col) =>
+      col.tasks.sort((a, b) => a.order - b.order)
+    );
+    clonedObject.columns.sort((a, b) => a.order - b.order);
+
+    return clonedObject;
   })
 );
