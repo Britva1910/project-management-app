@@ -10,8 +10,6 @@ import { CountFiledFormService } from '../../services/modal-prompt.cervice';
 import { UserBoardService } from './../../services/user-board.service';
 import {
   CdkDragDrop,
-  //CdkDragExit,
-  //CdkDragEnter,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
@@ -110,7 +108,6 @@ export class BoardContainerComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-      console.log('откуда берём колонка', idColumn);
       const checkTask = event.item.dropContainer.data[event.previousIndex];
       const nextOrder = event.currentIndex;
       this.dragnDropService.dropTasks(nextOrder + 1, idColumn, checkTask);
@@ -121,13 +118,9 @@ export class BoardContainerComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-      console.log(event);
-      const checkTask = event.previousContainer.data[event.previousIndex];
-      //this.editTaskService.findIdCol(checkTask.id);
-      const nextOrder = event.currentIndex + 1;
-      //const prevColId = this.editTaskService.findIdCol(checkTask.id);
-      //const nowColId = idColumn,
-      //console.log(checkTask, nextOrder, idColumn);
+      const checkTask: Tasks =
+        event.previousContainer.data[event.previousIndex];
+      const nextOrder: number = event.currentIndex + 1;
       this.dragnDropService.dropTasksBetweenColumn(
         nextOrder,
         idColumn,

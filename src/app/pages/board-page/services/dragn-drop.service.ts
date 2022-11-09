@@ -5,10 +5,15 @@ import { EditTaskService } from './edit-task.service';
 import {
   Column,
   Tasks,
+  UpdateOneTaskBody,
+  CreateTaskBody,
+  CreateTaskResponse,
+  UpdateColumnBody,
 } from './../../../shared/models/interfaces/interfaces-board';
 import { Store } from '@ngrx/store';
 import { invokeBoardAPI } from './../store/board.actions';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LocalStorageService } from './../../../shared/services/local-storage-service/local-storage.service';
 
 @Injectable()
 export class DragnDropService {
@@ -16,12 +21,13 @@ export class DragnDropService {
     private store: Store,
     private tasksDataService: TasksDataService,
     private columnDataService: ColumnDataService,
-    private editTaskService: EditTaskService
+    private editTaskService: EditTaskService,
+    private localStorageService: LocalStorageService
   ) {}
 
   public dropColumn(newOrderColumn: number, checkCol: Column) {
     this.editTaskService.getBoardId();
-    const bodyRequest = {
+    const bodyRequest: UpdateColumnBody = {
       title: checkCol.title,
       order: newOrderColumn,
     };
@@ -38,7 +44,7 @@ export class DragnDropService {
 
   public dropTasks(newOrderTask: number, idColumn: string, checkTask: Tasks) {
     this.editTaskService.getBoardId();
-    const bodyRequest = {
+    const bodyRequest: UpdateOneTaskBody = {
       title: checkTask.title,
       order: newOrderTask,
       description: checkTask.description,
@@ -56,7 +62,6 @@ export class DragnDropService {
       .subscribe({
         next: () => {
           this.store.dispatch(invokeBoardAPI());
-          console.log('запрос пошел');
         },
         error: (error: HttpErrorResponse) =>
           console.log(`Error - ${error.error.message}`),
@@ -65,55 +70,55 @@ export class DragnDropService {
 
   public dropTasksBetweenColumn(
     newOrderTask: number,
-    idColumn: string,
+    idColumnNew: string,
     checkTask: Tasks
   ) {
     this.editTaskService.getBoardId();
-    const bodyReqCreate = {
+    const idBoard: string = this.editTaskService.checkIdBoard;
+    const idColumnPrev: string = this.editTaskService.getIdColByidTasks(
+      this.editTaskService.arrColumns,
+      checkTask.id
+    );
+    const userId: string = this.localStorageService
+      .getFromLocalStorage('userId')
+      .toString();
+    const bodyReqCreate: CreateTaskBody = {
       title: checkTask.title,
       description: checkTask.description,
-      userId: checkTask.userId,
+      userId: userId,
     };
-    //const bodyReqUpdate = {
-    //title: checkTask.title,
-    //order: newOrderTask,
-    //description: checkTask.description,
-    //userId: checkTask.userId,
-    //boardId: this.editTaskService.checkIdBoard,
-    //columnId: idColumn,
-    //};
     this.tasksDataService
-      .createTask(this.editTaskService.checkIdBoard, idColumn, bodyReqCreate)
+      .deleteTask(idBoard, idColumnPrev, checkTask.id)
       .subscribe({
         next: () => {
-          this.store.dispatch(invokeBoardAPI());
-          console.log('запрос пошел');
+          this.tasksDataService
+            .createTask(idBoard, idColumnNew, bodyReqCreate)
+            .subscribe({
+              next: (res: CreateTaskResponse) => {
+                const bodyReqUpdate: UpdateOneTaskBody = {
+                  title: res.title,
+                  order: newOrderTask,
+                  description: res.description,
+                  userId: res.userId,
+                  boardId: idBoard,
+                  columnId: idColumnNew,
+                };
+                this.tasksDataService
+                  .updateTask(idBoard, idColumnNew, res.id, bodyReqUpdate)
+                  .subscribe({
+                    next: () => {
+                      this.store.dispatch(invokeBoardAPI());
+                    },
+                    error: (error: HttpErrorResponse) =>
+                      console.log(`Error - ${error.error.message}`),
+                  });
+              },
+              error: (error: HttpErrorResponse) =>
+                console.log(`Error - ${error.error.message}`),
+            });
         },
         error: (error: HttpErrorResponse) =>
           console.log(`Error - ${error.error.message}`),
       });
-    //.subscribe({
-    //next: () => {
-    //console.log('запрос создания прошел успешно');
-    //this.tasksDataService
-    //.updateTask(
-    //this.editTaskService.checkIdBoard,
-    //idColumn,
-    //checkTask.id,
-    //bodyReqUpdate
-    //)
-    //.subscribe({
-    //next: () => {
-    //console.log('запрос обновления прошел успешно');
-    //this.store.dispatch(invokeBoardAPI());
-    //console.log('запрос на новый масив прошел успешно');
-    //},
-    //error: (error: HttpErrorResponse) =>
-    //console.log(`Error - ${error.error.message}`),
-    //});
-    //},
-    //error: (error: HttpErrorResponse) =>
-    //console.log(`Error - ${error.error.message}`),
-    //});
   }
 }

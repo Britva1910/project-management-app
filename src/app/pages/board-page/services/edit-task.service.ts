@@ -16,7 +16,6 @@ import { TasksDataService } from 'src/app/shared/services/tasks-data-service/tas
 import { invokeBoardAPI } from './../store/board.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ColumnDataService } from './../../../shared/services/colums-data-service/column-data.service';
-//import { selectColumnsBoard } from './../store/board.selector';
 
 @Injectable()
 export class EditTaskService {
@@ -39,37 +38,31 @@ export class EditTaskService {
 
   public allColumn$ = new Subject<Column[]>();
 
-  // public arrColumns: Column[] = [];
+  public arrColumns: Column[] = [];
 
   public setAllColumn$(arrColumn: Column[]) {
     this.allColumn$.next([...arrColumn]);
-    //this.allColumn$.subscribe((arrCol) => (this.arrColumns = arrCol));
+    this.allColumn$.subscribe((arrCol) => (this.arrColumns = arrCol));
   }
 
   public getAllColumn$() {
     return this.allColumn$.asObservable();
   }
 
-  //public findIdCol(idTask: string) {
-  //  const cheskCol = this.arrColumns.filter((col) =>
-  //   col.tasks.filter((task) => task.id === idTask)
-  // );
-  // console.log(cheskCol[0].id);
-  //}
-
-  public isTaskInColumn(arrTasks: Tasks[], idTask: string) {
+  public isTaskInColumn(arrTasks: Tasks[], idTask: string): boolean {
     for (let i = 0; i <= arrTasks.length - 1; i++) {
       if (arrTasks[i].id === idTask) return true;
     }
     return false;
   }
 
-  public getIdColByidTasks(arrColumn: Column[], idTask: string) {
+  public getIdColByidTasks(arrColumn: Column[], idTask: string): string {
+    let idColumn = '';
     for (let i = 0; i <= arrColumn.length - 1; i++) {
       if (this.isTaskInColumn(arrColumn[i].tasks, idTask))
-        return arrColumn[i].id;
+        idColumn = arrColumn[i].id;
     }
-    return false;
+    return idColumn;
   }
 
   private isShowEditTaskModal$ = new BehaviorSubject<boolean>(false);
