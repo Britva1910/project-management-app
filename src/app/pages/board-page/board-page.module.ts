@@ -19,6 +19,8 @@ import { ItemBoardComponent } from './components/item-board/item-board.component
 import { DialogModule } from './components/dialog/dialog.module';
 import { EditTaskComponent } from './components/edit-task/edit-task.component';
 import { EditTaskService } from './services/edit-task.service';
+import { DragnDropService } from './services/dragn-drop.service';
+import { DragHandleColumnComponent } from './components/drag-handle-column/drag-handle-column.component';
 const routes: Routes = [{ path: '', component: BoardPageComponent }];
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ const routes: Routes = [{ path: '', component: BoardPageComponent }];
     BoardContainerComponent,
     ItemBoardComponent,
     EditTaskComponent,
+    DragHandleColumnComponent,
   ],
   imports: [
     CommonModule,
@@ -42,7 +45,7 @@ const routes: Routes = [{ path: '', component: BoardPageComponent }];
     MatExpansionModule,
     DialogModule,
   ],
-  providers: [UserBoardService, EditTaskService],
+  providers: [UserBoardService, EditTaskService, DragnDropService],
   exports: [EditTaskComponent],
 })
 export class BoardPageModule {}

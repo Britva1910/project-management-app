@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   Tasks,
+  Column,
   AddTaskEvent,
   UpdateColumnBody,
 } from './../../../../shared/models/interfaces/interfaces-board';
@@ -16,30 +17,41 @@ import { Store } from '@ngrx/store';
 import { selectColumnsBoard } from './../../store/board.selector';
 import { EditTaskService } from './../../services/edit-task.service';
 import { ColumnDataService } from './../../../../shared/services/colums-data-service/column-data.service';
+import { DragnDropService } from './../../services/dragn-drop.service';
 
 @Component({
   selector: 'app-board-container',
   templateUrl: './board-container.component.html',
   styleUrls: ['./board-container.component.scss'],
 })
-export class BoardContainerComponent {
-  public data = 'Delete column?';
-
+export class BoardContainerComponent implements OnInit {
   constructor(
     private countFiledFormService: CountFiledFormService,
     private editTaskService: EditTaskService,
-    public columnDataService: ColumnDataService,
+    private columnDataService: ColumnDataService,
     private store: Store,
+    private dragnDropService: DragnDropService,
     public userBoardService: UserBoardService
   ) {}
 
+  public data = 'Delete column?';
+
+  public columns$ = this.editTaskService.getAllColumn$();
+
   public isShow$ = this.editTaskService.showEditModal$();
 
-  public columns$ = this.store.select(selectColumnsBoard);
+  //public columnsS = this.store.select(selectColumnsBoard);
 
   private isOpenEditColumn = false;
 
   public titleColumn = '';
+
+  ngOnInit() {
+    this.store
+      .select(selectColumnsBoard)
+      // eslint-disable-next-line @ngrx/no-store-subscription
+      .subscribe((columns) => this.editTaskService.setAllColumn$(columns));
+  }
 
   public onDeleteTask(idTask: string, idColumn: string) {
     this.editTaskService.deleteTask(idTask, idColumn);
@@ -89,20 +101,46 @@ export class BoardContainerComponent {
     this.editTaskService.updateTitleColumn(idColumn, bodyRequest);
   }
 
-  public drop(event: CdkDragDrop<Tasks[]>) {
+  public drop(event: CdkDragDrop<Tasks[]>, idColumn: string) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
-        event.container.data,
+        Array.from(event.container.data),
         event.previousIndex,
         event.currentIndex
       );
+      const checkTask = event.item.dropContainer.data[event.previousIndex];
+      const nextOrder = event.currentIndex;
+      this.dragnDropService.dropTasks(nextOrder + 1, idColumn, checkTask);
     } else {
       transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
+        Array.from(event.previousContainer.data),
+        Array.from(event.container.data),
         event.previousIndex,
         event.currentIndex
       );
+      const checkTask: Tasks =
+        event.previousContainer.data[event.previousIndex];
+      const nextOrder: number = event.currentIndex + 1;
+      this.dragnDropService.dropTasksBetweenColumn(
+        nextOrder,
+        idColumn,
+        checkTask
+      );
+    }
+  }
+
+  public ondrop(event: CdkDragDrop<Column[]>) {
+    if (event.previousContainer === event.container) {
+      if (event) {
+        moveItemInArray(
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex
+        );
+      }
+      const checkColumn = event.item.dropContainer.data[event.currentIndex];
+      const nextOrder = event.currentIndex;
+      this.dragnDropService.dropColumn(nextOrder + 1, checkColumn);
     }
   }
 }

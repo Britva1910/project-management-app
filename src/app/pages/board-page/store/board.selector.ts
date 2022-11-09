@@ -29,3 +29,9 @@ export const selectColumnById = (columnId: string) =>
     const columnChecked = state.filter((column) => column.id === columnId);
     return columnChecked[0];
   });
+
+export const selectColumnByOrder = (colOrder: number) =>
+  createSelector(selectColumnsBoard, (state: Column[]) => {
+    const columnChecked = state.filter((column) => column.order === colOrder);
+    return columnChecked[0];
+  });
