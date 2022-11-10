@@ -1,0 +1,17 @@
+{
+  "auth": {
+    "login-label": "Login",
+    "singUp-label": "Sing Up",
+    "login": {
+      "login-plh": "Please enter a login",
+      "password-plh": "Please enter a password",
+      "btn": "Login"
+    },
+    "singUp": {
+      "name-plh": "Please enter your name",
+      "login-plh": "Please enter a login",
+      "password-plh": "Please enter a password",
+      "btn": "Sing up"
+    }
+  }
+}

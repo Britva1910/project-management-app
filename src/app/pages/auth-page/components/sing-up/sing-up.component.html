@@ -1,12 +1,12 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="container">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" *transloco="let t"  class="container">
   <mat-form-field appearance="fill" class="field">
-    <input matInput type="text" placeholder="Please enter your name" formControlName="name" required />
+    <input matInput type="text" [placeholder]="t('auth.singUp.name-plh')" formControlName="name" required />
   </mat-form-field>
   <mat-form-field appearance="fill" class="field">
     <input
       matInput
       type="text"
-      placeholder="Please enter a your login"
+      [placeholder]="t('auth.singUp.login-plh')"
       formControlName="login"
       required
     />
@@ -15,10 +15,10 @@
     <input
       matInput
       type="text"
-      placeholder="Please enter a password"
+      [placeholder]="t('auth.singUp.password-plh')"
       formControlName="password"
       required
     />
   </mat-form-field>
-  <button mat-raised-button [disabled]="!form.valid" color="primary" type="submit">Sing up</button>
+  <button mat-raised-button [disabled]="!form.valid" color="primary" type="submit">{{t('auth.singUp.btn')}}</button>
 </form>

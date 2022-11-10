@@ -9,9 +9,9 @@
     </div>
     <div class="header__right">
       <div class="header__language">
-        <button class="header__en" [ngStyle] ="{'color': languageButtonColor}">EN</button>
+        <button class="header__en" [ngStyle] ="{'color': languageButtonColor}" (click)="setLang('en')">EN</button>
         <span [ngStyle] ="{'color': languageButtonColor}">/</span>
-        <button class="header__ru" [ngStyle] ="{'color': languageButtonColor}">RU</button>
+        <button class="header__ru" [ngStyle] ="{'color': languageButtonColor}" (click)="setLang('ru')">RU</button>
       </div>
       <div class="header__buttons" *ngIf="headerButtons">
         <button mat-raised-button routerLink="/auth/signup">Sign Up</button>
