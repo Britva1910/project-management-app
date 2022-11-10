@@ -129,3 +129,9 @@ export interface UpdateColumnBody {
 export interface ColumnColor {
   [key: string]: string;
 }
+
+export interface User {
+  id: string;
+  name: string;
+  login: string;
+}

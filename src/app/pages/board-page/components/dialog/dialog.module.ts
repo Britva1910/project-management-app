@@ -13,6 +13,7 @@ import { ConfirmBodyComponent } from './confirm-modal/confirm-body/confirm-body.
 import { DialogBodyComponent } from './prompt-modal/prompt-body/dialog-body.component';
 import { DialogComponent } from './prompt-modal/dialog.component';
 import { MessageUserComponent } from './message-user/message-user.component';
+import { MatChipsModule } from '@angular/material/chips';
 
 const MaterialModules = [
   MatDialogModule,
@@ -22,6 +23,7 @@ const MaterialModules = [
   MatIconModule,
   MatSelectModule,
   MatCheckboxModule,
+  MatChipsModule,
 ];
 @NgModule({
   declarations: [

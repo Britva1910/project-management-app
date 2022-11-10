@@ -4,6 +4,7 @@ import { invokeBoardAPI } from './store/board.actions';
 import { AddColumn } from './../../shared/models/interfaces/interfaces-board';
 import { CountFiledFormService } from './services/modal-prompt.cervice';
 import { EditTaskService } from './services/edit-task.service';
+import { UserBoardService } from './services/user-board.service';
 import {
   selectDescriptionBoard,
   selectTitleBoard,
@@ -17,6 +18,7 @@ export class BoardPageComponent implements OnInit {
   constructor(
     private store: Store,
     private editTaskService: EditTaskService,
+    private userBoardService: UserBoardService,
     private countFiledFormService: CountFiledFormService
   ) {}
 
@@ -28,6 +30,7 @@ export class BoardPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(invokeBoardAPI());
+    this.userBoardService.getAllUsers();
   }
 
   public setOneFieldForm() {
