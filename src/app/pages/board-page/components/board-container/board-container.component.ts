@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  ColumnColor,
   Tasks,
   Column,
   AddTaskEvent,
@@ -18,6 +19,7 @@ import { selectColumnsBoard } from './../../store/board.selector';
 import { EditTaskService } from './../../services/edit-task.service';
 import { ColumnDataService } from './../../../../shared/services/colums-data-service/column-data.service';
 import { DragnDropService } from './../../services/dragn-drop.service';
+import { LocalStorageService } from './../../../../shared/services/local-storage-service/local-storage.service';
 
 @Component({
   selector: 'app-board-container',
@@ -31,7 +33,8 @@ export class BoardContainerComponent implements OnInit {
     private columnDataService: ColumnDataService,
     private store: Store,
     private dragnDropService: DragnDropService,
-    public userBoardService: UserBoardService
+    public userBoardService: UserBoardService,
+    private localStorageService: LocalStorageService
   ) {}
 
   public data = 'Delete column?';
@@ -42,6 +45,8 @@ export class BoardContainerComponent implements OnInit {
 
   //public columnsS = this.store.select(selectColumnsBoard);
 
+  public colorIdColumn: ColumnColor = {};
+
   private isOpenEditColumn = false;
 
   public titleColumn = '';
@@ -51,6 +56,8 @@ export class BoardContainerComponent implements OnInit {
       .select(selectColumnsBoard)
       // eslint-disable-next-line @ngrx/no-store-subscription
       .subscribe((columns) => this.editTaskService.setAllColumn$(columns));
+    this.colorIdColumn =
+      this.localStorageService.getColorCulumnLocalStorage('colorColumn') || {};
   }
 
   public onDeleteTask(idTask: string, idColumn: string) {
@@ -142,5 +149,10 @@ export class BoardContainerComponent implements OnInit {
       const nextOrder = event.currentIndex;
       this.dragnDropService.dropColumn(nextOrder + 1, checkColumn);
     }
+  }
+
+  public colorChange(color: string, columnId: string) {
+    this.colorIdColumn[columnId] = color;
+    this.localStorageService.saveColorCulumnLocalStorage(this.colorIdColumn);
   }
 }

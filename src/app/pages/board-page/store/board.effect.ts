@@ -15,7 +15,7 @@ export class BoardEffect {
     private store: Store
   ) {}
 
-  private idBoard = '958f9259-6360-40e7-9655-fe87531d026a'; //берём в общем store?
+  private idBoard = '4d5b3c0e-38ad-4ecb-9740-900f181f895e'; //берём в общем store?
 
   private idBoardStor: string = this.storDataService.getIdCurrentBoard(); //это с общего стора
 

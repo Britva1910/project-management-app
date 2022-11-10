@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Tasks } from '../../../../shared/models/interfaces/interfaces-board';
 import { ModalConfirmService } from './../../../../shared/services/modal-confirm-service/modal-confirm.service';
+import { BoardsDataService } from './../../../../shared/services/boards-data-service/boards-data.service';
+//import { HttpErrorResponse } from '@angular/common/http';
+import { LocalStorageService } from './../../../../shared/services/local-storage-service/local-storage.service';
+import { UserBoardService } from './../../services/user-board.service';
 
 @Component({
   selector: 'app-item-board',
@@ -8,7 +12,12 @@ import { ModalConfirmService } from './../../../../shared/services/modal-confirm
   styleUrls: ['./item-board.component.scss'],
 })
 export class ItemBoardComponent {
-  constructor(private modalConfirmService: ModalConfirmService) {}
+  constructor(
+    private modalConfirmService: ModalConfirmService,
+    private boardsDataService: BoardsDataService,
+    private localStorageService: LocalStorageService,
+    private userBoardService: UserBoardService
+  ) {}
 
   public data = 'Delete task?';
 
@@ -18,13 +27,41 @@ export class ItemBoardComponent {
 
   @Output() emitEditTask: EventEmitter<string> = new EventEmitter();
 
-  public deleteOneTask(event: any, idTask: string) {
+  public deleteOneTask(event: any, idTask: string, userIdTask: string) {
     if (event.clicked) {
-      this.emitDeleteTask.emit(idTask);
+      const userId: string = this.localStorageService
+        .getFromLocalStorage('userId')
+        .toString();
+      if (userId === userIdTask) {
+        this.emitDeleteTask.emit(idTask);
+      } else {
+        this.userBoardService.openEditModal$();
+      }
     }
   }
 
   public editTask(idTask: string) {
     this.emitEditTask.emit(idTask);
   }
+  /* TEMPLATE FUNCTION FOR Blob File
+  public binaryToString = (binary = '') => {
+    let strArr = binary.split(' ');
+    const str = strArr
+      .map((part) => {
+        return String.fromCharCode(parseInt(part, 2));
+      })
+      .join('');
+    return str;
+  };
+
+  public down(idTask: string, fileName: string) {
+    this.boardsDataService.douwn(idTask, fileName).subscribe({
+      next: (response) => {
+        return URL.createObjectURL(response.blob());
+      },
+      error: (error: HttpErrorResponse) =>
+        console.log(`Error - ${error.error.message}`),
+    });
+  }
+  */
 }

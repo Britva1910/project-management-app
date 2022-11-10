@@ -12,6 +12,7 @@ import { AppConfirmComponent } from './confirm-modal/app-confirm.component';
 import { ConfirmBodyComponent } from './confirm-modal/confirm-body/confirm-body.component';
 import { DialogBodyComponent } from './prompt-modal/prompt-body/dialog-body.component';
 import { DialogComponent } from './prompt-modal/dialog.component';
+import { MessageUserComponent } from './message-user/message-user.component';
 
 const MaterialModules = [
   MatDialogModule,
@@ -28,6 +29,7 @@ const MaterialModules = [
     ConfirmBodyComponent,
     DialogBodyComponent,
     DialogComponent,
+    MessageUserComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, MaterialModules],
   exports: [
@@ -36,6 +38,7 @@ const MaterialModules = [
     ConfirmBodyComponent,
     DialogBodyComponent,
     DialogComponent,
+    MessageUserComponent,
   ],
 })
 export class DialogModule {}
