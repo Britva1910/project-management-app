@@ -17,6 +17,7 @@ import { appReducer } from './shared/store/app.reducer';
 import { ModalConfirmComponent } from './shared/components/modal-confirm/modal-confirm.component';
 import { CountFiledFormService } from './pages/board-page/services/modal-prompt.cervice';
 import { TranslocoRootModule } from './transloco-root.module';
+import { UrlInterceptor } from './shared/interceptors/url.interceptor';
 
 @NgModule({
   declarations: [
@@ -48,11 +49,11 @@ import { TranslocoRootModule } from './transloco-root.module';
       useClass: HeaderAddTokkenInterceptor,
       multi: true,
     },
-    /*{
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: UrlInterceptor,
       multi: true,
-    },*/
+    },
   ],
   bootstrap: [AppComponent],
 })

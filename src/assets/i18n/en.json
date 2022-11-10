@@ -13,5 +13,13 @@
       "password-plh": "Please enter a password",
       "btn": "Sing up"
     }
-  }
+  },
+  "header": {
+    "boardsBtn": "All boards",
+    "profileBtn": "Edit profile",
+    "singUpBtn": "Sign Up",
+    "logInBtn": "Log In",
+    "logInOut": "Log Out"
+  },
+  "404-message": "Sorry, smth went wrong(("
 }
