@@ -20,6 +20,11 @@
     color: $grey-color;
   }
 
+  &__button {
+    border: none;
+    background-color: transparent;
+  }
+
   &__img {
     width: 24px;
   }
