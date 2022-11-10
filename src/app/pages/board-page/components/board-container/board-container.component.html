@@ -19,13 +19,14 @@
       <app-drag-handle-column></app-drag-handle-column>
     </div>
     <hr class="board-page__line">
+    <app-color-panel (emitColor)="colorChange($event, column.id)"></app-color-panel>
     <app-dialog (emitText)="addNewTask($event, column.id)">
       <button mat-raised-button class="btn-add-task" type="button" (click)="setTwoFieldForm()">Add task +</button>
     </app-dialog>
     <app-edit-task *ngIf="isShow$ | async"></app-edit-task>
 
     <div class="example-list" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event, column.id)">
-      <div cdkDrag class="example-box" *ngFor="let item of column.tasks">
+      <div cdkDrag class="example-box"  [ngStyle]="{background: colorIdColumn[column.id]}" *ngFor="let item of column.tasks">
         <app-item-board [item]="item" (emitEditTask)="editTask($event, column.id)"
           (emitDeleteTask)="onDeleteTask($event, column.id)"></app-item-board>
       </div>
