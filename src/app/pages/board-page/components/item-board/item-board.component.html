@@ -5,7 +5,7 @@
   </button>
   <p class="description-task">{{item.description}}</p>
   <img class="img-task" src="../../../../../assets/img/members3.png" alt="icon">
-  <app-app-confirm [data]="data" (emitConfirm)="deleteOneTask($event, item.id)"><button mat-icon-button
+  <app-app-confirm [data]="data" (emitConfirm)="deleteOneTask($event, item.id, item.userId)"><button mat-icon-button
       class="icon-delete" type="button">
       <mat-icon class="btn-delete">delete</mat-icon>
     </button></app-app-confirm>
