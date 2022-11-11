@@ -50,6 +50,13 @@
     }
   },
   "forms": {
-
+    "enterData": "Enter data",
+    "title": "Title",
+    "title-plh": "Enter title",
+    "description": "Description",
+    "btnClose": "Close",
+    "btnSubmit": "Submit",
+    "addTask": "Edit task",
+    "save": "Save"
   }
 }
