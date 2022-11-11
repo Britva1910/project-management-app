@@ -16,6 +16,7 @@ import { TasksDataService } from 'src/app/shared/services/tasks-data-service/tas
 import { invokeBoardAPI } from './../store/board.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ColumnDataService } from './../../../shared/services/colums-data-service/column-data.service';
+import { UserBoardService } from './user-board.service';
 
 @Injectable()
 export class EditTaskService {
@@ -23,7 +24,8 @@ export class EditTaskService {
     private store: Store,
     private localStorageService: LocalStorageService,
     private tasksDataService: TasksDataService,
-    private columnDataService: ColumnDataService
+    private columnDataService: ColumnDataService,
+    private userBoardService: UserBoardService
   ) {}
 
   public checkIdTask = '';
@@ -42,7 +44,10 @@ export class EditTaskService {
 
   public setAllColumn$(arrColumn: Column[]) {
     this.allColumn$.next([...arrColumn]);
-    this.allColumn$.subscribe((arrCol) => (this.arrColumns = arrCol));
+    this.allColumn$.subscribe((arrCol) => {
+      this.arrColumns = arrCol;
+      this.createMapUser();
+    });
   }
 
   public getAllColumn$() {
@@ -203,5 +208,31 @@ export class EditTaskService {
         error: (error: HttpErrorResponse) =>
           console.log(`Error - ${error.error.message}`),
       });
+  }
+
+  public map_Users_Tasks = new Map();
+
+  private map_UserId_Name = new Map();
+
+  public createMapUser() {
+    for (let user of this.userBoardService.allUsers) {
+      this.map_UserId_Name.set(user.id, user.name);
+      this.map_Users_Tasks.set(user.name, []);
+    }
+    for (let column of this.arrColumns) {
+      for (let tasks of column.tasks) {
+        let key = this.map_UserId_Name.get(tasks.userId);
+        let value = this.map_Users_Tasks.get(key);
+        value.push({
+          column: column.title,
+          task: tasks.title,
+        });
+        this.map_Users_Tasks.set(key, value);
+      }
+    }
+    for (let [key, value] of this.map_Users_Tasks) {
+      if (!value.length) this.map_Users_Tasks.delete(key);
+    }
+    console.log(Array.from(this.map_Users_Tasks));
   }
 }

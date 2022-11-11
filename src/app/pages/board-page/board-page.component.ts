@@ -29,8 +29,8 @@ export class BoardPageComponent implements OnInit {
   public today: number = Date.now();
 
   ngOnInit(): void {
-    this.store.dispatch(invokeBoardAPI());
     this.userBoardService.getAllUsers();
+    this.store.dispatch(invokeBoardAPI());
   }
 
   public setOneFieldForm() {

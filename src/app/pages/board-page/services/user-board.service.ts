@@ -9,13 +9,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class UserBoardService {
   constructor(private userDataService: UserDataService) {}
 
-  private allUsers: Array<User> = [];
+  private isShowModal$ = new BehaviorSubject<boolean>(false);
+
+  public allUsers: Array<User> = [];
 
   public getUserNameById(idUser: string): string {
     return this.allUsers.filter((user) => user.id === idUser)[0].name;
   }
-
-  private isShowModal$ = new BehaviorSubject<boolean>(false);
 
   public getIsShowModal$(): Observable<boolean> {
     return this.isShowModal$.asObservable();
@@ -31,9 +31,7 @@ export class UserBoardService {
 
   public getAllUsers() {
     this.userDataService.getAllUsers().subscribe({
-      next: (res) => {
-        this.allUsers = res;
-      },
+      next: (res) => (this.allUsers = res),
       error: (error: HttpErrorResponse) =>
         console.log(`Error - ${error.error.message}`),
     });
