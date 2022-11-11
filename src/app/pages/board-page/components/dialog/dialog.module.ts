@@ -12,6 +12,7 @@ import { AppConfirmComponent } from './confirm-modal/app-confirm.component';
 import { ConfirmBodyComponent } from './confirm-modal/confirm-body/confirm-body.component';
 import { DialogBodyComponent } from './prompt-modal/prompt-body/dialog-body.component';
 import { DialogComponent } from './prompt-modal/dialog.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 const MaterialModules = [
   MatDialogModule,
@@ -29,7 +30,12 @@ const MaterialModules = [
     DialogBodyComponent,
     DialogComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule, MaterialModules],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MaterialModules,
+    TranslocoModule,
+  ],
   exports: [
     MaterialModules,
     AppConfirmComponent,

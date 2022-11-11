@@ -39,5 +39,17 @@
       "description-2": "description",
       "description-3": "description"
     }
+  },
+  "board": {
+    "btn": {
+      "addTask": "Add task +",
+      "addColumn": "More Column +",
+      "cancel": "Cancel",
+      "ok": "Ok",
+      "sure": "Are you sure?"
+    }
+  },
+  "forms": {
+
   }
 }

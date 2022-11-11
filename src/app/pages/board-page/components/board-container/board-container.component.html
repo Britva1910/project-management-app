@@ -19,8 +19,8 @@
       <app-drag-handle-column></app-drag-handle-column>
     </div>
     <hr class="board-page__line">
-    <app-dialog (emitText)="addNewTask($event, column.id)">
-      <button mat-raised-button class="btn-add-task" type="button" (click)="setTwoFieldForm()">Add task +</button>
+    <app-dialog (emitText)="addNewTask($event, column.id)" *transloco="let t">
+      <button mat-raised-button class="btn-add-task" type="button" (click)="setTwoFieldForm()">{{t('board.btn.addTask')}}</button>
     </app-dialog>
     <app-edit-task *ngIf="isShow$ | async"></app-edit-task>
 
