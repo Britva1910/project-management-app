@@ -1,4 +1,5 @@
 <div cdkDropListGroup *ngIf="(columns$ | async) as columns">
+  <app-message-user [title]="'You can remove only your own tasks'"></app-message-user>
   <div cdkDropListGroup  cdkDropList [cdkDropListData]="columns" cdkDropListOrientation="horizontal"  (cdkDropListDropped)="ondrop($event)" class="container-column">
   <div class="column" cdkDrag  *ngFor="let column of columns; let i = index">
 
@@ -19,13 +20,14 @@
       <app-drag-handle-column></app-drag-handle-column>
     </div>
     <hr class="board-page__line">
-    <app-dialog (emitText)="addNewTask($event, column.id)" *transloco="let t">
-      <button mat-raised-button class="btn-add-task" type="button" (click)="setTwoFieldForm()">{{t('board.btn.addTask')}}</button>
+    <app-color-panel (emitColor)="colorChange($event, column.id)"></app-color-panel>
+    <app-dialog (emitText)="addNewTask($event, column.id)">
+      <button mat-raised-button class="btn-add-task" type="button" (click)="setTwoFieldForm()">Add task +</button>
     </app-dialog>
     <app-edit-task *ngIf="isShow$ | async"></app-edit-task>
 
     <div class="example-list" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event, column.id)">
-      <div cdkDrag class="example-box" *ngFor="let item of column.tasks">
+      <div cdkDrag class="example-box"  [ngStyle]="{background: colorIdColumn[column.id]}" *ngFor="let item of column.tasks">
         <app-item-board [item]="item" (emitEditTask)="editTask($event, column.id)"
           (emitDeleteTask)="onDeleteTask($event, column.id)"></app-item-board>
       </div>

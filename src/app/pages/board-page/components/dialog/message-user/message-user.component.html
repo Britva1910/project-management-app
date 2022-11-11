@@ -1,0 +1,9 @@
+<div *ngIf="showModal$ | async">
+  <div class="wrapper-fon"></div>
+  <div class="modal-confirm">
+    <h3 class="modal-title">{{title}}</h3>
+    <div class="container-btn">
+      <button type="button" class="btn-close" (click)="close()">Ok</button>
+    </div>
+  </div>
+</div>

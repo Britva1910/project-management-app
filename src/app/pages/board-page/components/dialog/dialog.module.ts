@@ -13,6 +13,7 @@ import { ConfirmBodyComponent } from './confirm-modal/confirm-body/confirm-body.
 import { DialogBodyComponent } from './prompt-modal/prompt-body/dialog-body.component';
 import { DialogComponent } from './prompt-modal/dialog.component';
 import { TranslocoModule } from '@ngneat/transloco';
+import { MessageUserComponent } from './message-user/message-user.component';
 
 const MaterialModules = [
   MatDialogModule,
@@ -29,6 +30,7 @@ const MaterialModules = [
     ConfirmBodyComponent,
     DialogBodyComponent,
     DialogComponent,
+    MessageUserComponent,
   ],
   imports: [
     CommonModule,
@@ -42,6 +44,7 @@ const MaterialModules = [
     ConfirmBodyComponent,
     DialogBodyComponent,
     DialogComponent,
+    MessageUserComponent,
   ],
 })
 export class DialogModule {}

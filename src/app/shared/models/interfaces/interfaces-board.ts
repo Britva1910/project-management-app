@@ -125,3 +125,7 @@ export interface UpdateColumnBody {
   title: string;
   order: number;
 }
+
+export interface ColumnColor {
+  [key: string]: string;
+}
