@@ -1,5 +1,4 @@
 @import 'utils-color';
-
 .sort {
 
   &__wrapper {
@@ -23,11 +22,11 @@
   &__button {
     position: absolute;
     right: 20px;
-    font-size: 20px;
+    padding: 3px 14px;
     border: none;
     border-radius: 20px;
+    font-size: 20px;
     background-color: $light-blue-fon-color;
-    padding: 3px 14px;
     cursor: pointer;
   }
 }
