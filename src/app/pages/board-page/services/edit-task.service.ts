@@ -7,6 +7,7 @@ import { LocalStorageService } from './../../../shared/services/local-storage-se
 import {
   Column,
   Tasks,
+  UsersTasksProject,
   AddTaskEvent,
   CreateTaskBody,
   UpdateColumnBody,
@@ -214,6 +215,16 @@ export class EditTaskService {
 
   private map_UserId_Name = new Map();
 
+  public arrayUserTasks: UsersTasksProject = [];
+
+  private arrayUserTasks$ = new BehaviorSubject<UsersTasksProject>(
+    this.arrayUserTasks
+  );
+
+  public getArrayUserTasks$(): Observable<UsersTasksProject> {
+    return this.arrayUserTasks$.asObservable();
+  }
+
   public createMapUser() {
     for (let user of this.userBoardService.allUsers) {
       this.map_UserId_Name.set(user.id, user.name);
@@ -233,6 +244,8 @@ export class EditTaskService {
     for (let [key, value] of this.map_Users_Tasks) {
       if (!value.length) this.map_Users_Tasks.delete(key);
     }
-    console.log(Array.from(this.map_Users_Tasks));
+    this.arrayUserTasks = [...Array.from(this.map_Users_Tasks)];
+    this.arrayUserTasks$.next([...Array.from(this.map_Users_Tasks)]);
+    console.log(this.arrayUserTasks);
   }
 }

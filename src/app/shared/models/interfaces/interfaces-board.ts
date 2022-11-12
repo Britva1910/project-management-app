@@ -134,4 +134,9 @@ export interface User {
   id: string;
   name: string;
   login: string;
+  color?: string;
 }
+
+export type UsersTasksProject = Array<
+  [string, [{ column: string; task: string }]]
+>;

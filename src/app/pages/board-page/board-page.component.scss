@@ -64,8 +64,28 @@
   background: $btn-add-color;
   transform: rotate(-90deg);
   cursor: pointer;
+
   &:hover {
     background: $btn-add-hover-color;
     border: 1px solid $btn-add-hover-color;
+  }
+}
+
+.container-label-user {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  .name-user {
+    padding: 0 7px;
+    border: 1px solid $light-grey-color;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 700;
+    color: $dark-font-color;
+    cursor: pointer;
+    transition: all ease .3s;
+    &:hover {
+      box-shadow: $shadow-title-column;
+    }
   }
 }

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Tasks } from '../../../../shared/models/interfaces/interfaces-board';
 import { LocalStorageService } from './../../../../shared/services/local-storage-service/local-storage.service';
 import { UserBoardService } from './../../services/user-board.service';
+import { colorGrey } from 'src/app/shared/constant/color';
 
 @Component({
   selector: 'app-item-board',
@@ -40,8 +41,18 @@ export class ItemBoardComponent {
   }
 
   public getNameUserById(idUser: string): string {
-    return this.userBoardService.getUserNameById(idUser);
+    return this.userBoardService.getUserNameById(idUser).name;
   }
+
+  public getColorUserById(idUser: string): string {
+    let colorUser = this.userBoardService.getUserNameById(idUser).color;
+    if (colorUser) {
+      return colorUser;
+    } else {
+      return colorGrey;
+    }
+  }
+
   /* TEMPLATE FUNCTION FOR Blob File
   public binaryToString = (binary = '') => {
     let strArr = binary.split(' ');

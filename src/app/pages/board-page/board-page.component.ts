@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { invokeBoardAPI } from './store/board.actions';
-import { AddColumn } from './../../shared/models/interfaces/interfaces-board';
+import { Observable } from 'rxjs';
+import {
+  AddColumn,
+  UsersTasksProject,
+} from './../../shared/models/interfaces/interfaces-board';
 import { CountFiledFormService } from './services/modal-prompt.cervice';
 import { EditTaskService } from './services/edit-task.service';
 import { UserBoardService } from './services/user-board.service';
@@ -28,6 +32,9 @@ export class BoardPageComponent implements OnInit {
 
   public today: number = Date.now();
 
+  public usersTask$: Observable<UsersTasksProject> =
+    this.editTaskService.getArrayUserTasks$();
+
   ngOnInit(): void {
     this.userBoardService.getAllUsers();
     this.store.dispatch(invokeBoardAPI());
@@ -41,5 +48,9 @@ export class BoardPageComponent implements OnInit {
     if (newTitle.clicked === 'submit') {
       this.editTaskService.addNewColumn(newTitle.value);
     }
+  }
+
+  public colorUser(nameUser: string): string {
+    return this.userBoardService.getUserColorByName(nameUser);
   }
 }

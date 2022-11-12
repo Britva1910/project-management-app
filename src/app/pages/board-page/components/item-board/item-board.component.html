@@ -6,7 +6,7 @@
   <p class="description-task">{{item.description}}</p>
   <img class="img-task" src="../../../../../assets/img/members3.png" alt="icon">
   <br>
-  <span class="name-user">{{getNameUserById(item.userId)}}</span>
+  <span class="name-user"  [ngStyle]="{background: getColorUserById(item.userId)}">{{getNameUserById(item.userId)}}</span>
   <app-app-confirm [data]="data" (emitConfirm)="deleteOneTask($event, item.id, item.userId)"><button mat-icon-button
       class="icon-delete" type="button">
       <mat-icon class="btn-delete">delete</mat-icon>
