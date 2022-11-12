@@ -6,7 +6,6 @@ import { setUserData } from '../../../../shared/store/app.action';
 import { LoginService } from '../../services/login.service';
 import { LocalStorageService } from '../../../../shared/services/local-storage-service/local-storage.service';
 import { Token } from '../../../../shared/models/auth-models';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,22 +13,35 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  hide = true;
+
   form = new FormGroup({
-    login: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
+    login: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+    ]),
   });
 
   constructor(
     private store: Store,
     private authDataService: AuthDataService,
     private loginService: LoginService,
-    private localStorageService: LocalStorageService,
-    private router: Router
+    private localStorageService: LocalStorageService
   ) {}
 
+  get login() {
+    return this.form.get('login');
+  }
+
+  get password() {
+    return this.form.get('password');
+  }
+
   onSubmit() {
+    console.log('onSubmit');
     const userData = {
-      login: this.form.value.login,
+      login: this.form.value.login?.trim(),
       password: this.form.value.password,
     };
     //take out the logic below in service
@@ -44,6 +56,5 @@ export class LoginComponent {
       },
       error: (error) => console.log(`Error - ${error.error}`),
     });
-    this.router.navigate(['/board']);
   }
 }
