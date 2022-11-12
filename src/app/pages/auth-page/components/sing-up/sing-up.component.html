@@ -5,7 +5,6 @@
       type="text"
       [placeholder]="t('auth.singUp.name-plh')"
       formControlName="name"
-      required
     />
     <mat-error *ngIf="name.invalid">
       <span *ngIf="name.errors?.['required']">{{
@@ -22,7 +21,6 @@
       type="text"
       [placeholder]="t('auth.singUp.login-plh')"
       formControlName="login"
-      required
     />
     <mat-error *ngIf="login.invalid">
       <span *ngIf="login.errors?.['required']">{{
@@ -39,7 +37,6 @@
       [type]="hide ? 'password' : 'text'"
       [placeholder]="t('auth.singUp.password-plh')"
       formControlName="password"
-      required
     />
     <button
       mat-icon-button

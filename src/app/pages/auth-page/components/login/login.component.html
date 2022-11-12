@@ -9,7 +9,6 @@
       type="text"
       [placeholder]="t('auth.login.login-plh')"
       formControlName="login"
-      required
     />
     <mat-error *ngIf="login.invalid">
       <span *ngIf="login.errors?.['required']">{{t('auth.login.login-plh')}}</span>
@@ -25,7 +24,6 @@
       [type]="hide ? 'password' : 'text'"
       type="password"
       formControlName="password"
-      required
     />
     <mat-error *ngIf="password.invalid">
       <span *ngIf="password.errors?.['required']">{{t('auth.login.password-plh')}}</span>
