@@ -140,3 +140,7 @@ export interface User {
 export type UsersTasksProject = Array<
   [string, [{ column: string; task: string }]]
 >;
+
+export type OneUsersTasks = [string, [{ column: string; task: string }]];
+
+export type UsersTasks = Array<{ column: string; task: string }>;

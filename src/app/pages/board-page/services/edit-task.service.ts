@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectColumnById, selectBoards } from '../store/board.selector';
 import { LocalStorageService } from './../../../shared/services/local-storage-service/local-storage.service';
 import {
   Column,
   Tasks,
+  OneUsersTasks,
   UsersTasksProject,
   AddTaskEvent,
   CreateTaskBody,
@@ -39,9 +39,33 @@ export class EditTaskService {
 
   public checkTask!: Tasks;
 
+  private isOpenTasksOneUser$ = new BehaviorSubject<boolean>(false);
+
   public allColumn$ = new Subject<Column[]>();
 
   public arrColumns: Column[] = [];
+
+  public map_Users_Tasks = new Map();
+
+  private map_UserId_Name = new Map();
+
+  public arrayUserTasks: UsersTasksProject = [];
+
+  private arrayUserTasks$ = new BehaviorSubject<UsersTasksProject>(
+    this.arrayUserTasks
+  );
+
+  public getIsOpenTasksOneUser$(): Observable<boolean> {
+    return this.isOpenTasksOneUser$.asObservable();
+  }
+
+  public getIsOpenTasksOneUserData(): boolean {
+    return this.isOpenTasksOneUser$.getValue();
+  }
+
+  public setIsOpenTasksOneUser$() {
+    this.isOpenTasksOneUser$.next(!this.getIsOpenTasksOneUserData());
+  }
 
   public setAllColumn$(arrColumn: Column[]) {
     this.allColumn$.next([...arrColumn]);
@@ -211,18 +235,12 @@ export class EditTaskService {
       });
   }
 
-  public map_Users_Tasks = new Map();
-
-  private map_UserId_Name = new Map();
-
-  public arrayUserTasks: UsersTasksProject = [];
-
-  private arrayUserTasks$ = new BehaviorSubject<UsersTasksProject>(
-    this.arrayUserTasks
-  );
-
   public getArrayUserTasks$(): Observable<UsersTasksProject> {
     return this.arrayUserTasks$.asObservable();
+  }
+
+  public getOneUserTasks(name: string): OneUsersTasks {
+    return this.arrayUserTasks.filter((user) => user[0] === name)[0];
   }
 
   public createMapUser() {

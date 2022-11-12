@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import {
   AddColumn,
   UsersTasksProject,
+  OneUsersTasks,
 } from './../../shared/models/interfaces/interfaces-board';
 import { CountFiledFormService } from './services/modal-prompt.cervice';
 import { EditTaskService } from './services/edit-task.service';
@@ -32,8 +33,17 @@ export class BoardPageComponent implements OnInit {
 
   public today: number = Date.now();
 
+  public openTasksOneUser = this.editTaskService.getIsOpenTasksOneUser$();
+
   public usersTask$: Observable<UsersTasksProject> =
     this.editTaskService.getArrayUserTasks$();
+
+  public checkUser: OneUsersTasks;
+
+  public setCheckUser(name: string) {
+    this.checkUser = this.editTaskService.getOneUserTasks(name);
+    this.editTaskService.setIsOpenTasksOneUser$();
+  }
 
   ngOnInit(): void {
     this.userBoardService.getAllUsers();
