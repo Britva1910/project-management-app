@@ -50,6 +50,11 @@
     }
   },
   "forms": {
+    "errors": {
+      "enterPass": "Enter a password",
+      "lengthPass": "Your password isn't strong enough at least 8 characters",
+      "lengthName": "Login must be at least 3 characters"
+    },
     "enterData": "Enter data",
     "title": "Title",
     "title-plh": "Enter title",
