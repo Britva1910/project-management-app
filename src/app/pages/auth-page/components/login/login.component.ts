@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthDataService } from '../../../../shared/services/auth-data-service/auth-data.service';
 import { Store } from '@ngrx/store';
-import { setUserId, setUserToken } from '../../../../shared/store/app.action';
+import { setUserData } from '../../../../shared/store/app.action';
 import { LoginService } from '../../services/login.service';
 import { LocalStorageService } from '../../../../shared/services/local-storage-service/local-storage.service';
+import { Token } from '../../../../shared/models/auth-models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +23,8 @@ export class LoginComponent {
     private store: Store,
     private authDataService: AuthDataService,
     private loginService: LoginService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private router: Router
   ) {}
 
   onSubmit() {
@@ -29,16 +32,18 @@ export class LoginComponent {
       login: this.form.value.login,
       password: this.form.value.password,
     };
+    //take out the logic below in service
+
     this.authDataService.logIn(userData).subscribe({
-      next: (data: any) => {
-        this.store.dispatch(setUserToken(data));
-        this.loginService.getUserId(userData.login).subscribe((id) => {
-          this.store.dispatch(setUserId({ userId: id }));
-          this.localStorageService.saveInLocalStorage('userId', id);
-        });
+      next: (data: Token) => {
+        //this.store.dispatch(setUserToken(data));
+        const userId = this.loginService.getUserIdFromToken(data.token);
         this.localStorageService.saveInLocalStorage('token', data.token);
+        this.localStorageService.saveInLocalStorage('userId', userId);
+        this.store.dispatch(setUserData({ token: data.token, userId: userId }));
       },
-      error: (error) => console.log(`Error - ${error.error.message}`),
+      error: (error) => console.log(`Error - ${error.error}`),
     });
+    this.router.navigate(['/board']);
   }
 }

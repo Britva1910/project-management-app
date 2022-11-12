@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectColumnById, selectBoards } from '../store/board.selector';
@@ -26,6 +26,45 @@ export class EditTaskService {
     private columnDataService: ColumnDataService
   ) {}
 
+  public checkIdTask = '';
+
+  public checkIdColumn = '';
+
+  public checkIdBoard = '';
+
+  public checkColumn!: Column;
+
+  public checkTask!: Tasks;
+
+  public allColumn$ = new Subject<Column[]>();
+
+  public arrColumns: Column[] = [];
+
+  public setAllColumn$(arrColumn: Column[]) {
+    this.allColumn$.next([...arrColumn]);
+    this.allColumn$.subscribe((arrCol) => (this.arrColumns = arrCol));
+  }
+
+  public getAllColumn$() {
+    return this.allColumn$.asObservable();
+  }
+
+  public isTaskInColumn(arrTasks: Tasks[], idTask: string): boolean {
+    for (let i = 0; i <= arrTasks.length - 1; i++) {
+      if (arrTasks[i].id === idTask) return true;
+    }
+    return false;
+  }
+
+  public getIdColByidTasks(arrColumn: Column[], idTask: string): string {
+    let idColumn = '';
+    for (let i = 0; i <= arrColumn.length - 1; i++) {
+      if (this.isTaskInColumn(arrColumn[i].tasks, idTask))
+        idColumn = arrColumn[i].id;
+    }
+    return idColumn;
+  }
+
   private isShowEditTaskModal$ = new BehaviorSubject<boolean>(false);
 
   public showEditModal$(): Observable<boolean> {
@@ -39,16 +78,6 @@ export class EditTaskService {
   public closeEditModal$() {
     this.isShowEditTaskModal$.next(false);
   }
-
-  public checkIdTask = '';
-
-  public checkIdColumn = '';
-
-  public checkIdBoard = '';
-
-  public checkColumn!: Column;
-
-  public checkTask!: Tasks;
 
   public getBoardId() {
     let board = this.store.select(selectBoards);
