@@ -14,7 +14,7 @@
     <mat-error *ngIf="login.invalid">
       <span *ngIf="login.errors?.['required']">{{t('auth.login.login-plh')}}</span>
       <div *ngIf="login.errors?.['minlength']">
-      {{t('forms.errors.lengthName')}}
+      {{t('forms.errors.lengthLogin')}}
       </div>
     </mat-error>
   </mat-form-field>

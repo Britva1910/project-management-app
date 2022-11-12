@@ -53,7 +53,10 @@
     "errors": {
       "enterPass": "Enter a password",
       "lengthPass": "Your password isn't strong enough at least 8 characters",
-      "lengthName": "Login must be at least 3 characters"
+      "lengthLogin": "Login should be at least 3 characters",
+      "lengthName": "Name should be at least 3 characters",
+      "enterName": "Enter a name",
+      "enterLogin": "Enter a login"
     },
     "enterData": "Enter data",
     "title": "Title",
