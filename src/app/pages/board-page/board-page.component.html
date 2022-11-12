@@ -10,7 +10,7 @@
   <div class="board-page__container">
       <app-board-container></app-board-container>
   </div>
-  <app-dialog (emitText)="onAddColumn($event)">
-    <button class="board-page__btn_add-column" (click)="setOneFieldForm()" type="button">More Column +</button>
+  <app-dialog (emitText)="onAddColumn($event)" *transloco="let t">
+    <button class="board-page__btn_add-column" (click)="setOneFieldForm()" type="button">{{t('board.btn.addColumn')}}</button>
   </app-dialog>
 </section>

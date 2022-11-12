@@ -1,27 +1,30 @@
-<div class="form-container">
-  <h2 mat-dialog-title>Enter data</h2>
+<div class="form-container" *transloco="let t">
+  <h2 mat-dialog-title>{{t('forms.enterData')}}</h2>
   <mat-dialog-content>
     <form [formGroup]="form">
       <mat-form-field appearance="standard">
-        <mat-label>Title</mat-label>
-        <input matInput placeholder="Enter title" formControlName="title"
-         />
+        <mat-label>{{t('forms.title')}}</mat-label>
+        <input matInput [placeholder]="t('forms.title-plh')" formControlName="title" />
       </mat-form-field>
 
       <mat-form-field *ngIf="!isOneFieldForm" appearance="standard">
-        <mat-label>Description</mat-label>
+        <mat-label>{{t('forms.description')}}</mat-label>
         <textarea
           matInput
-          placeholder="Description"
+          [placeholder]="t('forms.description')"
           formControlName="description"
-
         ></textarea>
       </mat-form-field>
-     </form>
+    </form>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-raised-button (click)="dialogRef.close(false)">Close</button>
-    <button mat-raised-button color="primary"
-        (click)="form.valid && submit(form.value)">Submit</button>
+    <button mat-raised-button (click)="dialogRef.close(false)">{{t('forms.btnClose')}}</button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="form.valid && submit(form.value)"
+    >
+      {{t('forms.btnSubmit')}}
+    </button>
   </mat-dialog-actions>
 </div>

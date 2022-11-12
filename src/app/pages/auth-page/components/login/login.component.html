@@ -1,9 +1,9 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="container">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" *transloco="let t" class="container">
   <mat-form-field appearance="fill" class="field">
     <input
       matInput
       type="text"
-      placeholder="Please enter a login"
+      [placeholder]="t('auth.login.login-plh')"
       formControlName="login"
       required
     />
@@ -12,10 +12,10 @@
     <input
       matInput
       type="text"
-      placeholder="Please enter a password"
+      [placeholder]="t('auth.login.password-plh')"
       formControlName="password"
       required
     />
   </mat-form-field>
-  <button mat-raised-button [disabled]="!form.valid" color="primary" type="submit">Login</button>
+  <button mat-raised-button [disabled]="!form.valid" color="primary" type="submit">{{t('auth.login.btn')}}</button>
 </form>

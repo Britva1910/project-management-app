@@ -21,7 +21,9 @@ import { EditTaskComponent } from './components/edit-task/edit-task.component';
 import { EditTaskService } from './services/edit-task.service';
 import { DragnDropService } from './services/dragn-drop.service';
 import { DragHandleColumnComponent } from './components/drag-handle-column/drag-handle-column.component';
+import { TranslocoModule } from '@ngneat/transloco';
 import { ColorPanelComponent } from './components/color-panel/color-panel.component';
+
 const routes: Routes = [{ path: '', component: BoardPageComponent }];
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ const routes: Routes = [{ path: '', component: BoardPageComponent }];
     FormsModule,
     MatExpansionModule,
     DialogModule,
+    TranslocoModule,
   ],
   providers: [UserBoardService, EditTaskService, DragnDropService],
   exports: [EditTaskComponent],

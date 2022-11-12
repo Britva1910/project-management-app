@@ -14,10 +14,18 @@ export class UrlInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    return next.handle(
-      request.clone({
-        url: `${BASE_URL}${request.url}`,
-      })
-    );
+    //this is temporary fix for translation library
+    if (
+      request.url.slice(-7) === 'en.json' ||
+      request.url.slice(-7) === 'ru.json'
+    ) {
+      return next.handle(request.clone());
+    } else {
+      return next.handle(
+        request.clone({
+          url: `${BASE_URL}${request.url}`,
+        })
+      );
+    }
   }
 }
