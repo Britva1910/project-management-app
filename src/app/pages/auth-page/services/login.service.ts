@@ -1,14 +1,22 @@
 import { Injectable } from '@angular/core';
 import { UserDataService } from '../../../shared/services/user-data-service/user-data.service';
 import { LocalStorageService } from '../../../shared/services/local-storage-service/local-storage.service';
+import { LoginData, Token } from '../../../shared/models/auth-models';
+import { setUserData } from '../../../shared/store/app.action';
+import { AuthDataService } from '../../../shared/services/auth-data-service/auth-data.service';
+import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
   constructor(
+    private store: Store,
+    private router: Router,
     private userDataService: UserDataService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private authDataService: AuthDataService
   ) {}
 
   isLogin(): Promise<boolean> {
@@ -30,6 +38,29 @@ export class LoginService {
         },
       });
     });
+  }
+
+  logIn(userData: LoginData) {
+    this.authDataService.logIn(userData).subscribe({
+      next: (data: Token) => {
+        const userId = this.getUserIdFromToken(data.token);
+        this.localStorageService.saveInLocalStorage('token', data.token);
+        this.localStorageService.saveInLocalStorage('userId', userId);
+        this.store.dispatch(setUserData({ token: data.token, userId: userId }));
+        this.router.navigate(['/main']);
+      },
+      error: (error) => console.log(`Error - ${error.error}`),
+    });
+  }
+
+  singUp(userData: LoginData) {
+    this.logIn(userData);
+  }
+
+  logOut() {
+    this.localStorageService.remoteFromLocalStorage('token');
+    this.localStorageService.remoteFromLocalStorage('userId');
+    this.router.navigate(['/welcome']);
   }
 
   getTokenFromLocalStorage(): string | null {

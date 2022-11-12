@@ -4,14 +4,13 @@ import { NotFoundPagesComponent } from './shared/components/not-found-pages/not-
 import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
   {
     path: 'welcome',
     loadChildren: () =>
       import('./pages/welcome-page/welcome-page.module').then(
         (m) => m.WelcomePageModule
       ),
-    canActivate: [AuthGuard],
   },
   {
     path: 'auth/:tab',

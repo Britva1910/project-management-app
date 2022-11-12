@@ -19,7 +19,7 @@
       </div>
       <div class="header__buttons" *ngIf="!headerButtons">
         <img src="../../../../assets/icons/login-man.svg" alt="login-man">
-        <button mat-raised-button>{{t('header.logInOut')}}</button>
+        <button mat-raised-button (click)="logOut()">{{t('header.logInOut')}}</button>
       </div>
     </div>
   </div>
