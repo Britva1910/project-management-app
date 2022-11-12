@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdvantageCardComponent } from './components/advantage-card/advantage-card.component';
 import { MatButtonModule } from '@angular/material/button';
 import { TeammateComponent } from './components/teammate-card/teammate.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 const routes: Routes = [{ path: '', component: WelcomePageComponent }];
 
@@ -14,6 +15,11 @@ const routes: Routes = [{ path: '', component: WelcomePageComponent }];
     AdvantageCardComponent,
     TeammateComponent,
   ],
-  imports: [CommonModule, RouterModule.forChild(routes), MatButtonModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    MatButtonModule,
+    TranslocoModule,
+  ],
 })
 export class WelcomePageModule {}

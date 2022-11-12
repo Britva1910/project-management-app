@@ -1,6 +1,6 @@
 export interface AdvantagesData {
+  text: string | unknown;
   iconURL: string;
-  text: string;
 }
 
 export interface TeamData {

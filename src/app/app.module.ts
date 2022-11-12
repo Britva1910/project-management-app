@@ -9,7 +9,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderAddTokkenInterceptor } from './shared/interceptors/header-add-tokken.interceptor';
-import { UrlInterceptor } from './shared/interceptors/url.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,6 +16,8 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { appReducer } from './shared/store/app.reducer';
 import { ModalConfirmComponent } from './shared/components/modal-confirm/modal-confirm.component';
 import { CountFiledFormService } from './pages/board-page/services/modal-prompt.cervice';
+import { TranslocoRootModule } from './transloco-root.module';
+import { UrlInterceptor } from './shared/interceptors/url.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CountFiledFormService } from './pages/board-page/services/modal-prompt.
     }),
     BrowserAnimationsModule,
     MatButtonModule,
+    TranslocoRootModule,
   ],
   providers: [
     CountFiledFormService,
