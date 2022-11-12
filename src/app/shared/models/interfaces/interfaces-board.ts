@@ -129,3 +129,18 @@ export interface UpdateColumnBody {
 export interface ColumnColor {
   [key: string]: string;
 }
+
+export interface User {
+  id: string;
+  name: string;
+  login: string;
+  color?: string;
+}
+
+export type UsersTasksProject = Array<
+  [string, [{ column: string; task: string }]]
+>;
+
+export type OneUsersTasks = [string, [{ column: string; task: string }]];
+
+export type UsersTasks = Array<{ column: string; task: string }>;

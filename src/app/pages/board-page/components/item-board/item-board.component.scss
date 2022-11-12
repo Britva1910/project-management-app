@@ -53,3 +53,17 @@
   height: 25px;
   margin: 7px 0;
 }
+
+.name-user {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 0 7px;
+  color: $dark-font-color;
+  border: 1px solid  $light-grey-color;
+ border-radius: 15px;
+}
+.card-container {
+  overflow: hidden;
+  word-break: break-all;
+}
+

@@ -23,6 +23,7 @@ import { DragnDropService } from './services/dragn-drop.service';
 import { DragHandleColumnComponent } from './components/drag-handle-column/drag-handle-column.component';
 import { TranslocoModule } from '@ngneat/transloco';
 import { ColorPanelComponent } from './components/color-panel/color-panel.component';
+import { TasksUserComponent } from './components/tasks-user/tasks-user.component';
 
 const routes: Routes = [{ path: '', component: BoardPageComponent }];
 @NgModule({
@@ -33,6 +34,7 @@ const routes: Routes = [{ path: '', component: BoardPageComponent }];
     EditTaskComponent,
     DragHandleColumnComponent,
     ColorPanelComponent,
+    TasksUserComponent,
   ],
   imports: [
     CommonModule,
