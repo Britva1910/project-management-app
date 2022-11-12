@@ -1,7 +1,7 @@
 <header class="header" [ngStyle] ="{'background-color': bgColor}" *transloco="let t">
   <div class="header__wrapper">
-    <a href="#" class="header__logo">
-      <img [src]="logoSource" alt="logo">
+    <a href="#">
+      <img [src]="logoSource" class="header__logo" alt="logo">
     </a>
     <div class="header__nav" *ngIf="headerNavigation">
       <a href="#">{{t('header.boardsBtn')}}</a>

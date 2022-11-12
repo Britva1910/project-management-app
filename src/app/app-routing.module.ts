@@ -21,6 +21,14 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'main',
+    loadChildren: () =>
+      import('./pages/main-page/main-page.module').then(
+        (m) => m.MainPageModule
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'board',
     loadChildren: () =>
       import('./pages/board-page/board-page.module').then(
