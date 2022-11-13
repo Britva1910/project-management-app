@@ -14,6 +14,7 @@ import { Store } from '@ngrx/store';
 import { invokeBoardAPI } from './../store/board.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LocalStorageService } from './../../../shared/services/local-storage-service/local-storage.service';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
 export class DragnDropService {
@@ -24,6 +25,20 @@ export class DragnDropService {
     private editTaskService: EditTaskService,
     private localStorageService: LocalStorageService
   ) {}
+
+  private isRequestServer$ = new BehaviorSubject<boolean>(false);
+
+  public getIsRequestServer(): boolean {
+    return this.isRequestServer$.getValue();
+  }
+
+  public getIsRequestServer$(): Observable<boolean> {
+    return this.isRequestServer$.asObservable();
+  }
+
+  public setIsRequestServer() {
+    this.isRequestServer$.next(!this.getIsRequestServer());
+  }
 
   public dropColumn(newOrderColumn: number, checkCol: Column) {
     this.editTaskService.getBoardId();
@@ -73,6 +88,7 @@ export class DragnDropService {
     idColumnNew: string,
     checkTask: Tasks
   ) {
+    this.setIsRequestServer();
     this.editTaskService.getBoardId();
     const idBoard: string = this.editTaskService.checkIdBoard;
     const idColumnPrev: string = this.editTaskService.getIdColByidTasks(
@@ -88,26 +104,27 @@ export class DragnDropService {
       userId: userId,
     };
     this.tasksDataService
-      .deleteTask(idBoard, idColumnPrev, checkTask.id)
+      .createTask(idBoard, idColumnNew, bodyReqCreate)
       .subscribe({
-        next: () => {
+        next: (res: CreateTaskResponse) => {
+          const bodyReqUpdate: UpdateOneTaskBody = {
+            title: res.title,
+            order: newOrderTask,
+            description: res.description,
+            userId: res.userId,
+            boardId: idBoard,
+            columnId: idColumnNew,
+          };
           this.tasksDataService
-            .createTask(idBoard, idColumnNew, bodyReqCreate)
+            .updateTask(idBoard, idColumnNew, res.id, bodyReqUpdate)
             .subscribe({
-              next: (res: CreateTaskResponse) => {
-                const bodyReqUpdate: UpdateOneTaskBody = {
-                  title: res.title,
-                  order: newOrderTask,
-                  description: res.description,
-                  userId: res.userId,
-                  boardId: idBoard,
-                  columnId: idColumnNew,
-                };
+              next: () => {
                 this.tasksDataService
-                  .updateTask(idBoard, idColumnNew, res.id, bodyReqUpdate)
+                  .deleteTask(idBoard, idColumnPrev, checkTask.id)
                   .subscribe({
                     next: () => {
                       this.store.dispatch(invokeBoardAPI());
+                      this.setIsRequestServer();
                     },
                     error: (error: HttpErrorResponse) =>
                       console.log(`Error - ${error.error.message}`),

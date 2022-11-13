@@ -6,10 +6,12 @@ import { UserDataService } from './../../../shared/services/user-data-service/us
 import { HttpErrorResponse } from '@angular/common/http';
 import { saturation } from './../../../shared/constant/color';
 import { colorGrey } from 'src/app/shared/constant/color';
+import { invokeBoardAPI } from './../store/board.actions';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class UserBoardService {
-  constructor(private userDataService: UserDataService) {}
+  constructor(private userDataService: UserDataService, private store: Store) {}
 
   private isShowModal$ = new BehaviorSubject<boolean>(false);
 
@@ -48,6 +50,7 @@ export class UserBoardService {
         for (let user of this.allUsers) {
           user.color = this.randomColor(saturation);
         }
+        this.store.dispatch(invokeBoardAPI());
       },
       error: (error: HttpErrorResponse) =>
         console.log(`Error - ${error.error.message}`),

@@ -37,13 +37,13 @@ export class BoardContainerComponent implements OnInit {
     private localStorageService: LocalStorageService
   ) {}
 
+  public isShowMoskData = this.dragnDropService.getIsRequestServer$();
+
   public data = 'Delete column?';
 
   public columns$ = this.editTaskService.getAllColumn$();
 
   public isShow$ = this.editTaskService.showEditModal$();
-
-  //public columnsS = this.store.select(selectColumnsBoard);
 
   public colorIdColumn: ColumnColor = {};
 
@@ -55,7 +55,10 @@ export class BoardContainerComponent implements OnInit {
     this.store
       .select(selectColumnsBoard)
       // eslint-disable-next-line @ngrx/no-store-subscription
-      .subscribe((columns) => this.editTaskService.setAllColumn$(columns));
+      .subscribe((columns) => {
+        this.editTaskService.setAllColumn$(columns);
+      });
+
     this.colorIdColumn =
       this.localStorageService.getColorCulumnLocalStorage('colorColumn') || {};
   }

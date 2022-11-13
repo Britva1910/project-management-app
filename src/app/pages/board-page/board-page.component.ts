@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { invokeBoardAPI } from './store/board.actions';
 import { Observable } from 'rxjs';
 import {
   AddColumn,
@@ -47,7 +46,6 @@ export class BoardPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.userBoardService.getAllUsers();
-    this.store.dispatch(invokeBoardAPI());
   }
 
   public setOneFieldForm() {
