@@ -1,6 +1,6 @@
 <article class="sort">
   <div class="sort__wrapper">
-    <input type="text" class="sort__input" placeholder="search" maxlength="30">
-    <button class="sort__button">&rarr;</button>
+    <input type="text" class="sort__input" placeholder="search" maxlength="30" [(ngModel)]="searchText" (keyup)="searchByEnter($event)">
+    <button class="sort__button" (click)="search()">&rarr;</button>
   </div>
 </article>

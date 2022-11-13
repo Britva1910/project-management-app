@@ -6,6 +6,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { SortBarComponent } from './components/sort-bar/sort-bar.component';
 import { BoardListComponent } from './components/board-list/board-list.component';
 import { MatIconModule } from '@angular/material/icon';
+import { SearchPipe } from 'src/app/shared/pipes/search/search.pipe';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [{ path: '', component: MainPageComponent }];
 @NgModule({
@@ -14,7 +16,13 @@ const routes: Routes = [{ path: '', component: MainPageComponent }];
     SearchBarComponent,
     SortBarComponent,
     BoardListComponent,
+    SearchPipe,
   ],
-  imports: [CommonModule, RouterModule.forChild(routes), MatIconModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    MatIconModule,
+    FormsModule,
+  ],
 })
 export class MainPageModule {}

@@ -1,15 +1,15 @@
 <article class="list">
   <ul class="list__wrapper">
     <li class="list__item">
-      <div class="list__outer">
-        <img src="../../../../../assets/img/Frame 41.png" alt="create" class="list__img">
+      <div class="list__outer first" (click)="createNewBoard()">
         <h2 class="list__subtitle">Create new board</h2>
+        <img src="../../../../../assets/img/Frame 41.png" alt="create" class="list__img">
       </div>
     </li>
-    <li class="list__item">
-      <div class="list__outer">
+    <li class="list__item" *ngFor="let board of boards | search: searchText">
+      <div class="list__outer" (click)="sendBoardId($event, board.id)">
         <div class="list__inner">
-          <h3 class="list__title">Project 1</h3>
+          <h3 class="list__title">{{ board.title }}</h3>
           <div class="list__buttons">
             <button mat-icon-button class="list__button" type="button">
               <mat-icon class="list__icon">edit</mat-icon>
@@ -19,76 +19,7 @@
             </button>
           </div>
         </div>
-        <div class="list__date">May 20, 2020</div>
-        <textarea class="list__text" cols="30" rows="10" placeholder="describe this project"></textarea>
-      </div>
-    </li>
-    <li class="list__item">
-      <div class="list__outer">
-        <div class="list__inner">
-          <h3 class="list__title">Project 1</h3>
-          <div class="list__buttons">
-            <button mat-icon-button class="list__button" type="button">
-              <mat-icon class="list__icon">edit</mat-icon>
-            </button>
-            <button mat-icon-button class="list__button" type="button">
-              <mat-icon class="list__icon">delete</mat-icon>
-            </button>
-          </div>
-        </div>
-        <div class="list__date">May 20, 2020</div>
-        <textarea class="list__text" cols="30" rows="10" placeholder="describe this project"></textarea>
-      </div>
-    </li>
-    <li class="list__item">
-      <div class="list__outer">
-        <div class="list__inner">
-          <h3 class="list__title">Project 1</h3>
-          <div class="list__buttons">
-            <button mat-icon-button class="list__button" type="button">
-              <mat-icon class="list__icon">edit</mat-icon>
-            </button>
-            <button mat-icon-button class="list__button" type="button">
-              <mat-icon class="list__icon">delete</mat-icon>
-            </button>
-          </div>
-        </div>
-        <div class="list__date">May 20, 2020</div>
-        <textarea class="list__text" cols="30" rows="10" placeholder="describe this project"></textarea>
-      </div>
-    </li>
-    <li class="list__item">
-      <div class="list__outer">
-        <div class="list__inner">
-          <h3 class="list__title">Project 1</h3>
-          <div class="list__buttons">
-            <button mat-icon-button class="list__button" type="button">
-              <mat-icon class="list__icon">edit</mat-icon>
-            </button>
-            <button mat-icon-button class="list__button" type="button">
-              <mat-icon class="list__icon">delete</mat-icon>
-            </button>
-          </div>
-        </div>
-        <div class="list__date">May 20, 2020</div>
-        <textarea class="list__text" cols="30" rows="10" placeholder="describe this project"></textarea>
-      </div>
-    </li>
-    <li class="list__item">
-      <div class="list__outer">
-        <div class="list__inner">
-          <h3 class="list__title">Project 1</h3>
-          <div class="list__buttons">
-            <button mat-icon-button class="list__button" type="button">
-              <mat-icon class="list__icon">edit</mat-icon>
-            </button>
-            <button mat-icon-button class="list__button" type="button">
-              <mat-icon class="list__icon">delete</mat-icon>
-            </button>
-          </div>
-        </div>
-        <div class="list__date">May 20, 2020</div>
-        <textarea class="list__text" cols="30" rows="10" placeholder="describe this project"></textarea>
+        <p class="list__description">{{ board.description }}</p>
       </div>
     </li>
   </ul>
