@@ -1,9 +1,9 @@
 <article class="sort">
   <div class="sort__wrapper">
     <div class="sort__item">
-      <div class="sort__title">Sort by (Default)</div>
-      <button class="sort__button">
-        <img class="sort__img" src="../../../../../assets/icons/heroicons-outline_sort-descending.svg" alt="sort-type">
+      <div class="sort__title">Sort by ({{ sortOrder }})</div>
+      <button class="sort__button" (click)="sort()" mat-icon-button type="button">
+        <mat-icon class="sort__icon" [ngClass]="{'sort__icon': rotateIcon}">sort</mat-icon>
       </button>
     </div>
   </div>

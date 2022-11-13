@@ -6,4 +6,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class MainPageService {
   searchWord = new BehaviorSubject<string>('');
+
+  sortOrder = new BehaviorSubject<string>('Default');
 }

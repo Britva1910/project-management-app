@@ -13,6 +13,8 @@ export class BoardListComponent implements OnInit {
 
   searchText: string;
 
+  sortOrder: string;
+
   constructor(
     private boardDataService: BoardsDataService,
     private mainPageService: MainPageService
@@ -28,6 +30,8 @@ export class BoardListComponent implements OnInit {
     this.mainPageService.searchWord.subscribe(
       (data) => (this.searchText = data)
     );
+
+    this.mainPageService.sortOrder.subscribe((data) => (this.sortOrder = data));
   }
 
   createNewBoard() {

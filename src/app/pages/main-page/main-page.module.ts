@@ -8,6 +8,7 @@ import { BoardListComponent } from './components/board-list/board-list.component
 import { MatIconModule } from '@angular/material/icon';
 import { SearchPipe } from 'src/app/shared/pipes/search/search.pipe';
 import { FormsModule } from '@angular/forms';
+import { SortPipe } from 'src/app/shared/pipes/sort/sort.pipe';
 
 const routes: Routes = [{ path: '', component: MainPageComponent }];
 @NgModule({
@@ -17,6 +18,7 @@ const routes: Routes = [{ path: '', component: MainPageComponent }];
     SortBarComponent,
     BoardListComponent,
     SearchPipe,
+    SortPipe,
   ],
   imports: [
     CommonModule,
