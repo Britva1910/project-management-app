@@ -1,24 +1,25 @@
-<section class="section-wrapper main-section dark-bg">
+<section class="section-wrapper main-section dark-bg" *transloco="let t">
   <div class="two-columns">
     <div class="page-title-container">
       <h2 class="main-title">KANBAN</h2>
       <p class="subtitle">organizer</p>
-      <button mat-raised-button>Create new project</button>
+      <button mat-raised-button>{{t('welcome.btn')}}</button>
     </div>
     <img class="main-img" src="./assets/img/img-welcome-page.png" />
   </div>
 </section>
-<section class="section-wrapper light-bg">
-  <h3 class="block-title">Advantages</h3>
+<section class="section-wrapper light-bg" *transloco="let t">
+  <h3 class="block-title">{{t('welcome.subtitle-1')}}</h3>
   <div class="three-columns">
     <app-advantage-card
       *ngFor="let item of advantagesData"
       [advantageData]="item"
-    ></app-advantage-card>
+    >
+    </app-advantage-card>
   </div>
 </section>
-<section class="section-wrapper dark-bg">
-  <h3 class="block-title-light">Development Team</h3>
+<section class="section-wrapper dark-bg" *transloco="let t">
+  <h3 class="block-title-light">{{t('welcome.subtitle-2')}}</h3>
   <div class="three-columns">
     <app-teammate
       *ngFor="let teammate of teemData"

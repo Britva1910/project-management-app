@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { TranslocoService } from '@ngneat/transloco';
 import { union } from '../../constant/union';
+import { LoginService } from '../../../pages/auth-page/services/login.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +23,12 @@ export class HeaderComponent {
 
   headerButtons: boolean;
 
-  constructor(private router: Router, private location: Location) {
+  constructor(
+    private router: Router,
+    private location: Location,
+    private translate: TranslocoService,
+    private loginService: LoginService
+  ) {
     router.events.subscribe(() => {
       if (location.path() != '') {
         this.currentRoute = location.path();
@@ -45,5 +52,13 @@ export class HeaderComponent {
         }
       }
     });
+  }
+
+  setLang(language: string) {
+    this.translate.setActiveLang(language);
+  }
+
+  logOut() {
+    this.loginService.logOut();
   }
 }

@@ -12,7 +12,10 @@ import { AppConfirmComponent } from './confirm-modal/app-confirm.component';
 import { ConfirmBodyComponent } from './confirm-modal/confirm-body/confirm-body.component';
 import { DialogBodyComponent } from './prompt-modal/prompt-body/dialog-body.component';
 import { DialogComponent } from './prompt-modal/dialog.component';
+import { TranslocoModule } from '@ngneat/transloco';
 import { MessageUserComponent } from './message-user/message-user.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTableModule } from '@angular/material/table';
 
 const MaterialModules = [
   MatDialogModule,
@@ -22,6 +25,8 @@ const MaterialModules = [
   MatIconModule,
   MatSelectModule,
   MatCheckboxModule,
+  MatChipsModule,
+  MatTableModule,
 ];
 @NgModule({
   declarations: [
@@ -31,7 +36,12 @@ const MaterialModules = [
     DialogComponent,
     MessageUserComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule, MaterialModules],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MaterialModules,
+    TranslocoModule,
+  ],
   exports: [
     MaterialModules,
     AppConfirmComponent,

@@ -1,17 +1,17 @@
 export const teamData = [
   {
     avatarURL: '/assets/img/1832105.png',
-    name: 'Sviatlana Matskevich',
+    name: '',
     description: '',
   },
   {
     avatarURL: '/assets/img/1832105.png',
-    name: 'Ivan Lashuk',
+    name: '',
     description: '',
   },
   {
     avatarURL: '/assets/img/1832105.png',
-    name: 'Ulugbek Dushanov',
+    name: '',
     description: '',
   },
 ];

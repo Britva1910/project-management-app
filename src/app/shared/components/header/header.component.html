@@ -1,25 +1,25 @@
-<header class="header" [ngStyle] ="{'background-color': bgColor}">
+<header class="header" [ngStyle] ="{'background-color': bgColor}" *transloco="let t">
   <div class="header__wrapper">
     <a href="#">
       <img [src]="logoSource" class="header__logo" alt="logo">
     </a>
     <div class="header__nav" *ngIf="headerNavigation">
-      <a href="#">All boards</a>
-      <a href="#">Edit profile</a>
+      <a href="#">{{t('header.boardsBtn')}}</a>
+      <a href="#">{{t('header.profileBtn')}}</a>
     </div>
     <div class="header__right">
       <div class="header__language">
-        <button class="header__en" [ngStyle] ="{'color': languageButtonColor}">EN</button>
+        <button class="header__en" [ngStyle] ="{'color': languageButtonColor}" (click)="setLang('en')">EN</button>
         <span [ngStyle] ="{'color': languageButtonColor}">/</span>
-        <button class="header__ru" [ngStyle] ="{'color': languageButtonColor}">RU</button>
+        <button class="header__ru" [ngStyle] ="{'color': languageButtonColor}" (click)="setLang('ru')">RU</button>
       </div>
       <div class="header__buttons" *ngIf="headerButtons">
-        <button mat-raised-button routerLink="/auth/signup">Sign Up</button>
-        <button mat-raised-button routerLink="/auth/login">Log In</button>
+        <button mat-raised-button routerLink="/auth/signup">{{t('header.singUpBtn')}}</button>
+        <button mat-raised-button routerLink="/auth/login">{{t('header.logInBtn')}}</button>
       </div>
       <div class="header__buttons" *ngIf="!headerButtons">
         <img src="../../../../assets/icons/login-man.svg" alt="login-man">
-        <button mat-raised-button>Log Out</button>
+        <button mat-raised-button (click)="logOut()">{{t('header.logInOut')}}</button>
       </div>
     </div>
   </div>
