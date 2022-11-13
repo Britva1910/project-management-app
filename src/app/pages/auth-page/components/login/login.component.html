@@ -1,21 +1,54 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" *transloco="let t" class="container">
+<form
+  [formGroup]="form"
+  *transloco="let t"
+  class="container"
+>
   <mat-form-field appearance="fill" class="field">
     <input
       matInput
       type="text"
       [placeholder]="t('auth.login.login-plh')"
       formControlName="login"
-      required
     />
+    <mat-error *ngIf="login.invalid">
+      <span *ngIf="login.errors?.['required']">{{t('auth.login.login-plh')}}</span>
+      <div *ngIf="login.errors?.['minlength']">
+      {{t('forms.errors.lengthLogin')}}
+      </div>
+    </mat-error>
   </mat-form-field>
-  <mat-form-field appearance="fill" class="field">
+  <mat-form-field appearance="standard" class="field">
+    <mat-label>{{t('auth.login.password-plh')}}</mat-label>
     <input
       matInput
-      type="text"
-      [placeholder]="t('auth.login.password-plh')"
+      [type]="hide ? 'password' : 'text'"
+      type="password"
       formControlName="password"
-      required
     />
+    <mat-error *ngIf="password.invalid">
+      <span *ngIf="password.errors?.['required']">{{t('auth.login.password-plh')}}</span>
+      <div *ngIf="password.errors?.['minlength']">
+        {{t('forms.errors.lengthPass')}}
+      </div>
+    </mat-error>
+    <button
+      type="button"
+      mat-icon-button
+      matSuffix
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+    >
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
   </mat-form-field>
-  <button mat-raised-button [disabled]="!form.valid" color="primary" type="submit">{{t('auth.login.btn')}}</button>
+  <button
+    mat-raised-button
+    [disabled]="!form.valid"
+    color="primary"
+    type="submit"
+    (click)="onSubmit()"
+  >
+    {{ t("auth.login.btn") }}
+  </button>
 </form>

@@ -14,6 +14,8 @@ import { DialogBodyComponent } from './prompt-modal/prompt-body/dialog-body.comp
 import { DialogComponent } from './prompt-modal/dialog.component';
 import { TranslocoModule } from '@ngneat/transloco';
 import { MessageUserComponent } from './message-user/message-user.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTableModule } from '@angular/material/table';
 
 const MaterialModules = [
   MatDialogModule,
@@ -23,6 +25,8 @@ const MaterialModules = [
   MatIconModule,
   MatSelectModule,
   MatCheckboxModule,
+  MatChipsModule,
+  MatTableModule,
 ];
 @NgModule({
   declarations: [

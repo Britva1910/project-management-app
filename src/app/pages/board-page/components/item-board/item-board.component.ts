@@ -1,10 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Tasks } from '../../../../shared/models/interfaces/interfaces-board';
-import { ModalConfirmService } from './../../../../shared/services/modal-confirm-service/modal-confirm.service';
-import { BoardsDataService } from './../../../../shared/services/boards-data-service/boards-data.service';
-//import { HttpErrorResponse } from '@angular/common/http';
 import { LocalStorageService } from './../../../../shared/services/local-storage-service/local-storage.service';
 import { UserBoardService } from './../../services/user-board.service';
+import { colorGrey } from 'src/app/shared/constant/color';
 
 @Component({
   selector: 'app-item-board',
@@ -13,8 +11,6 @@ import { UserBoardService } from './../../services/user-board.service';
 })
 export class ItemBoardComponent {
   constructor(
-    private modalConfirmService: ModalConfirmService,
-    private boardsDataService: BoardsDataService,
     private localStorageService: LocalStorageService,
     private userBoardService: UserBoardService
   ) {}
@@ -43,6 +39,20 @@ export class ItemBoardComponent {
   public editTask(idTask: string) {
     this.emitEditTask.emit(idTask);
   }
+
+  public getNameUserById(idUser: string): string {
+    return this.userBoardService.getUserNameById(idUser).name;
+  }
+
+  public getColorUserById(idUser: string): string {
+    let colorUser = this.userBoardService.getUserNameById(idUser).color;
+    if (colorUser) {
+      return colorUser;
+    } else {
+      return colorGrey;
+    }
+  }
+
   /* TEMPLATE FUNCTION FOR Blob File
   public binaryToString = (binary = '') => {
     let strArr = binary.split(' ');

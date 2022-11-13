@@ -9,16 +9,33 @@ import { LoginService } from '../../services/login.service';
   styleUrls: ['./sing-up.component.scss'],
 })
 export class SingUpComponent {
+  hide = true;
+
   form = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    login: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    login: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+    ]),
   });
 
   constructor(
     private authDataService: AuthDataService,
     private loginService: LoginService
   ) {}
+
+  get name() {
+    return this.form.get('name');
+  }
+
+  get login() {
+    return this.form.get('login');
+  }
+
+  get password() {
+    return this.form.get('password');
+  }
 
   onSubmit() {
     const userDataForm = {
