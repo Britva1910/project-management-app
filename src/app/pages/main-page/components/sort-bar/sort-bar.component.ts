@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MainPageService } from '../../services/main-page.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { MainPageService } from '../../services/main-page.service';
   templateUrl: './sort-bar.component.html',
   styleUrls: ['./sort-bar.component.scss'],
 })
-export class SortBarComponent implements OnInit {
+export class SortBarComponent implements OnInit, OnDestroy {
   sortOrder: string;
 
   rotateIcon: boolean;
@@ -28,5 +28,9 @@ export class SortBarComponent implements OnInit {
       this.mainPageService.sortOrder.next('A-Z');
       this.rotateIcon = false;
     }
+  }
+
+  ngOnDestroy() {
+    this.mainPageService.sortOrder.unsubscribe();
   }
 }

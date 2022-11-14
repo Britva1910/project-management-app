@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SearchPipe } from 'src/app/shared/pipes/search/search.pipe';
 import { FormsModule } from '@angular/forms';
 import { SortPipe } from 'src/app/shared/pipes/sort/sort.pipe';
+import { MainPageService } from './services/main-page.service';
 
 const routes: Routes = [{ path: '', component: MainPageComponent }];
 @NgModule({
@@ -26,5 +27,6 @@ const routes: Routes = [{ path: '', component: MainPageComponent }];
     MatIconModule,
     FormsModule,
   ],
+  providers: [MainPageService],
 })
 export class MainPageModule {}
