@@ -15,6 +15,8 @@ export class BoardListComponent implements OnInit {
 
   sortOrder: string;
 
+  isCreateModalOpened: boolean;
+
   constructor(
     private boardDataService: BoardsDataService,
     private mainPageService: MainPageService
@@ -32,10 +34,14 @@ export class BoardListComponent implements OnInit {
     );
 
     this.mainPageService.sortOrder.subscribe((data) => (this.sortOrder = data));
+
+    this.mainPageService.createModalStatus.subscribe(
+      (data) => (this.isCreateModalOpened = data)
+    );
   }
 
   createNewBoard() {
-    console.log('create');
+    this.mainPageService.createModalStatus.next(true);
   }
 
   sendBoardId(event: MouseEvent, id: string) {
