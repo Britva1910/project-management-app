@@ -14,7 +14,6 @@ import { Store } from '@ngrx/store';
 import { invokeBoardAPI } from './../store/board.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LocalStorageService } from './../../../shared/services/local-storage-service/local-storage.service';
-import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
 export class DragnDropService {
@@ -25,20 +24,6 @@ export class DragnDropService {
     private editTaskService: EditTaskService,
     private localStorageService: LocalStorageService
   ) {}
-
-  private isRequestServer$ = new BehaviorSubject<boolean>(false);
-
-  public getIsRequestServer(): boolean {
-    return this.isRequestServer$.getValue();
-  }
-
-  public getIsRequestServer$(): Observable<boolean> {
-    return this.isRequestServer$.asObservable();
-  }
-
-  public setIsRequestServer() {
-    this.isRequestServer$.next(!this.getIsRequestServer());
-  }
 
   public dropColumn(newOrderColumn: number, checkCol: Column) {
     this.editTaskService.getBoardId();
@@ -86,9 +71,11 @@ export class DragnDropService {
   public dropTasksBetweenColumn(
     newOrderTask: number,
     idColumnNew: string,
-    checkTask: Tasks
+    checkTask: Tasks,
+    oneClass: string
   ) {
-    this.setIsRequestServer();
+    const el = document.getElementsByClassName(oneClass)[0];
+    el.remove();
     this.editTaskService.getBoardId();
     const idBoard: string = this.editTaskService.checkIdBoard;
     const idColumnPrev: string = this.editTaskService.getIdColByidTasks(
@@ -124,7 +111,6 @@ export class DragnDropService {
                   .subscribe({
                     next: () => {
                       this.store.dispatch(invokeBoardAPI());
-                      this.setIsRequestServer();
                     },
                     error: (error: HttpErrorResponse) =>
                       console.log(`Error - ${error.error.message}`),

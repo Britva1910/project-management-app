@@ -52,26 +52,4 @@ export class ItemBoardComponent {
       return colorGrey;
     }
   }
-
-  /* TEMPLATE FUNCTION FOR Blob File
-  public binaryToString = (binary = '') => {
-    let strArr = binary.split(' ');
-    const str = strArr
-      .map((part) => {
-        return String.fromCharCode(parseInt(part, 2));
-      })
-      .join('');
-    return str;
-  };
-
-  public down(idTask: string, fileName: string) {
-    this.boardsDataService.douwn(idTask, fileName).subscribe({
-      next: (response) => {
-        return URL.createObjectURL(response.blob());
-      },
-      error: (error: HttpErrorResponse) =>
-        console.log(`Error - ${error.error.message}`),
-    });
-  }
-  */
 }

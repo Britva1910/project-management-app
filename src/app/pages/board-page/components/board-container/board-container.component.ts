@@ -37,8 +37,6 @@ export class BoardContainerComponent implements OnInit {
     private localStorageService: LocalStorageService
   ) {}
 
-  public isShowMoskData = this.dragnDropService.getIsRequestServer$();
-
   public data = 'Delete column?';
 
   public columns$ = this.editTaskService.getAllColumn$();
@@ -112,6 +110,8 @@ export class BoardContainerComponent implements OnInit {
   }
 
   public drop(event: CdkDragDrop<Tasks[]>, idColumn: string) {
+    const classesCheckElement = event.item.element.nativeElement.className;
+    const oneClass = classesCheckElement.split(' ')[1];
     if (event.previousContainer === event.container) {
       moveItemInArray(
         Array.from(event.container.data),
@@ -134,7 +134,8 @@ export class BoardContainerComponent implements OnInit {
       this.dragnDropService.dropTasksBetweenColumn(
         nextOrder,
         idColumn,
-        checkTask
+        checkTask,
+        oneClass
       );
     }
   }
