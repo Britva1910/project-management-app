@@ -1,1 +1,23 @@
-<p>edit-modal works!</p>
+<article class="edit">
+  <div class="edit__wrapper">
+    <div class="edit__outer"></div>
+      <div class="edit__inner">
+        <form class="form" [formGroup]="editForm">
+          <h2 class="form__title">Edit board</h2>
+          <div class="form__input">
+            <label for="title" class="form__label">Title</label>
+            <input formControlName="title" type="text" class="form__control" id="title"/>
+          </div>
+          <div class="form__input">
+            <label for="description" class="form__label">Description</label>
+            <textarea formControlName="description" rows="5" class="form__control area" id="description"></textarea>
+          </div>
+          <div class="form__buttons">
+            <button type="button" class="form__button" (click)="edit()">Save</button>
+            <button type="button" class="form__button cancel" (click)="cancel()">Cancel</button>
+          </div>
+        </form>
+      </div>
+  </div>
+</article>
+

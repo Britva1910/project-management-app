@@ -8,4 +8,8 @@ export class MainPageService {
   sortOrder = new BehaviorSubject<string>('Default');
 
   createModalStatus = new BehaviorSubject<boolean>(false);
+
+  editModalStatus = new BehaviorSubject<boolean>(false);
+
+  boardId = new BehaviorSubject<string>('');
 }
