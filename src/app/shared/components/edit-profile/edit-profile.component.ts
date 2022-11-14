@@ -5,4 +5,12 @@ import { Component } from '@angular/core';
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.scss'],
 })
-export class EditProfileComponent {}
+export class EditProfileComponent {
+  prevStep() {
+    console.log('1');
+  }
+
+  nextStep() {
+    console.log('2');
+  }
+}

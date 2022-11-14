@@ -1,1 +1,78 @@
-<p>edit-profile works!</p>
+<div class="wrapper">
+  <div class="modal-container">
+    <div class="personal-information">
+      <img src="./assets/icons/user-image-png.png" />
+      <div class="user-data">
+        <h3 class="user-name">
+          Your current name:
+          <span>User name</span>
+        </h3>
+        <h3 class="user-login">
+          Your current login:
+          <span>User login</span>
+        </h3>
+      </div>
+    </div>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Change user name </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field appearance="fill">
+          <mat-label>Enter new name</mat-label>
+          <input matInput />
+        </mat-form-field>
+
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Cancel</button>
+          <button mat-button color="primary" (click)="nextStep()">
+            Submit
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Change user login </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field appearance="fill">
+          <mat-label>Enter new login</mat-label>
+          <input matInput />
+        </mat-form-field>
+
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Cancel</button>
+          <button mat-button color="primary" (click)="nextStep()">
+            Submit
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Change user password </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field appearance="fill">
+          <mat-label>Enter new password</mat-label>
+          <input matInput />
+        </mat-form-field>
+
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Cancel</button>
+          <button mat-button color="primary" (click)="nextStep()">
+            Submit
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Delete user profile </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Cancel</button>
+          <button mat-button color="primary" (click)="nextStep()">
+            Submit
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

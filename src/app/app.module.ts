@@ -19,6 +19,9 @@ import { CountFiledFormService } from './pages/board-page/services/modal-prompt.
 import { TranslocoRootModule } from './transloco-root.module';
 import { UrlInterceptor } from './shared/interceptors/url.interceptor';
 import { EditProfileComponent } from './shared/components/edit-profile/edit-profile.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { EditProfileComponent } from './shared/components/edit-profile/edit-prof
     BrowserAnimationsModule,
     MatButtonModule,
     TranslocoRootModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatInputModule,
   ],
   providers: [
     CountFiledFormService,
