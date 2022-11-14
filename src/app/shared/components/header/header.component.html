@@ -5,7 +5,7 @@
     </a>
     <div class="header__nav" *ngIf="headerNavigation">
       <a href="#">{{t('header.boardsBtn')}}</a>
-      <a href="#">{{t('header.profileBtn')}}</a>
+      <button (click)="openDialog()">{{t('header.profileBtn')}}</button>
     </div>
     <div class="header__right">
       <div class="header__language">

@@ -18,6 +18,8 @@ import { ModalConfirmComponent } from './shared/components/modal-confirm/modal-c
 import { CountFiledFormService } from './pages/board-page/services/modal-prompt.cervice';
 import { TranslocoRootModule } from './transloco-root.module';
 import { UrlInterceptor } from './shared/interceptors/url.interceptor';
+import { EditProfileComponent } from './shared/components/edit-profile/edit-profile.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { UrlInterceptor } from './shared/interceptors/url.interceptor';
     HeaderComponent,
     FooterComponent,
     ModalConfirmComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import { UrlInterceptor } from './shared/interceptors/url.interceptor';
     }),
     BrowserAnimationsModule,
     MatButtonModule,
+    MatDialogModule,
     TranslocoRootModule,
   ],
   providers: [

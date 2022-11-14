@@ -4,6 +4,8 @@ import { Location } from '@angular/common';
 import { TranslocoService } from '@ngneat/transloco';
 import { union } from '../../constant/union';
 import { LoginService } from '../../../pages/auth-page/services/login.service';
+import { EditProfileComponent } from '../edit-profile/edit-profile.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-header',
@@ -25,6 +27,7 @@ export class HeaderComponent {
 
   constructor(
     private router: Router,
+    private dialog: MatDialog,
     private location: Location,
     private translate: TranslocoService,
     private loginService: LoginService
@@ -60,5 +63,13 @@ export class HeaderComponent {
 
   logOut() {
     this.loginService.logOut();
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(EditProfileComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
