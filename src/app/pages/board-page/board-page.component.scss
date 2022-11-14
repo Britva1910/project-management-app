@@ -25,7 +25,8 @@
 
 .board-page__title {
   @include title-page;
-  margin-bottom: 4px;
+  margin: 0;
+  padding: 0;
 }
 
 .board-page__description {

@@ -47,7 +47,8 @@
       "cancel": "Cancel",
       "ok": "Ok",
       "sure": "Are you sure?"
-    }
+    },
+    "message-delete": "You can remove only your own tasks"
   },
   "forms": {
     "errors": {
@@ -66,5 +67,11 @@
     "btnSubmit": "Submit",
     "addTask": "Edit task",
     "save": "Save"
+  },
+  "tasksUserInfo": {
+    "nameProject": "Project",
+    "developer": "Developer",
+    "task": "Task",
+    "status": "Status"
   }
 }

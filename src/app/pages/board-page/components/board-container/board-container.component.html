@@ -1,5 +1,5 @@
 <div cdkDropListGroup *ngIf="(columns$ | async) as columns">
-  <app-message-user [title]="'You can remove only your own tasks'"></app-message-user>
+  <app-message-user *transloco="let t" [title]="t('board.message-delete')"></app-message-user>
   <div cdkDropListGroup  cdkDropList [cdkDropListData]="columns" cdkDropListOrientation="horizontal"  (cdkDropListDropped)="ondrop($event)" class="container-column">
   <div class="column" cdkDrag  *ngFor="let column of columns; let i = index">
 
@@ -21,8 +21,8 @@
     </div>
     <hr class="board-page__line">
     <app-color-panel (emitColor)="colorChange($event, column.id)"></app-color-panel>
-    <app-dialog (emitText)="addNewTask($event, column.id)">
-      <button mat-raised-button class="btn-add-task" type="button" (click)="setTwoFieldForm()">Add task +</button>
+    <app-dialog (emitText)="addNewTask($event, column.id)" *transloco="let t">
+      <button mat-raised-button class="btn-add-task" type="button" (click)="setTwoFieldForm()">{{t('board.btn.addTask')}}</button>
     </app-dialog>
     <app-edit-task *ngIf="isShow$ | async"></app-edit-task>
 
