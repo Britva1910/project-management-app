@@ -1,12 +1,12 @@
 @import 'utils-color';
 .wrapper {
   width: 100vw;
-  min-height: calc(100vh - 124px);
+  min-height: calc(100vh - 121px);
   display: flex;
   align-items: center;
   justify-content: center;
   background-image: url("./../../../assets/img/dark-fon.jpg");
-  background-size: 100% 100%;
+  background-size: cover;
 }
 .container {
   background-color: $light-font-color;
