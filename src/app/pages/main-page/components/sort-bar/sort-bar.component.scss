@@ -11,7 +11,8 @@
   &__item {
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: space-between;
+    width: 150px;
   }
 
   &__title {
@@ -22,13 +23,14 @@
   &__button {
     border: none;
     background-color: transparent;
+    cursor: pointer;
   }
 
   &__img {
     width: 24px;
   }
-}
-img {
-  width: 30px;
-  cursor: pointer;
+
+  &__icon {
+    transform: rotate3d(1, 0, 0, 180deg);
+  }
 }
