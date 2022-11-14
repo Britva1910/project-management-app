@@ -19,6 +19,8 @@ export class BoardListComponent implements OnInit {
 
   isEditModalOpened: boolean;
 
+  isDeleteModalOpened: boolean;
+
   constructor(
     private boardDataService: BoardsDataService,
     private mainPageService: MainPageService
@@ -44,6 +46,10 @@ export class BoardListComponent implements OnInit {
     this.mainPageService.editModalStatus.subscribe(
       (data) => (this.isEditModalOpened = data)
     );
+
+    this.mainPageService.deleteModalStatus.subscribe(
+      (data) => (this.isDeleteModalOpened = data)
+    );
   }
 
   createNewBoard() {
@@ -52,12 +58,11 @@ export class BoardListComponent implements OnInit {
 
   sendBoardId(event: MouseEvent, id: string) {
     const target = event.target as HTMLElement;
+    this.mainPageService.boardId.next(id);
     if (target.textContent === 'delete') {
-      console.log('delete');
+      this.mainPageService.deleteModalStatus.next(true);
     } else if (target.textContent === 'edit') {
       this.mainPageService.editModalStatus.next(true);
-    } else {
-      this.mainPageService.boardId.next(id);
     }
   }
 }

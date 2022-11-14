@@ -11,5 +11,7 @@ export class MainPageService {
 
   editModalStatus = new BehaviorSubject<boolean>(false);
 
+  deleteModalStatus = new BehaviorSubject<boolean>(false);
+
   boardId = new BehaviorSubject<string>('');
 }
