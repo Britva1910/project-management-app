@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OneBoard } from 'src/app/shared/models/interfaces/interfaces-board';
 import { BoardsDataService } from 'src/app/shared/services/boards-data-service/boards-data.service';
 import { MainPageService } from '../../../services/main-page.service';
 
@@ -17,11 +18,15 @@ export class DeleteModalComponent implements OnInit {
 
   ngOnInit() {
     this.mainPageService.boardId.subscribe((data) => (this.id = data));
-    console.log(this.id);
   }
 
   remove() {
-    this.boardsDataService.deleteBoard(this.id);
+    this.boardsDataService.deleteBoard(this.id).subscribe();
+    this.boardsDataService.getAllBoards().subscribe({
+      next: (item: OneBoard[]) => {
+        this.mainPageService.allBoards.next(item);
+      },
+    });
     this.cancel();
   }
 

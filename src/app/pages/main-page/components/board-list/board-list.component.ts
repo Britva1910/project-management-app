@@ -22,16 +22,18 @@ export class BoardListComponent implements OnInit {
   isDeleteModalOpened: boolean;
 
   constructor(
-    private boardDataService: BoardsDataService,
+    private boardsDataService: BoardsDataService,
     private mainPageService: MainPageService
   ) {}
 
   ngOnInit() {
-    this.boardDataService.getAllBoards().subscribe({
+    this.boardsDataService.getAllBoards().subscribe({
       next: (data: OneBoard[]) => {
-        this.boards = data;
+        this.mainPageService.allBoards.next(data);
       },
     });
+
+    this.mainPageService.allBoards.subscribe((data) => (this.boards = data));
 
     this.mainPageService.searchWord.subscribe(
       (data) => (this.searchText = data)

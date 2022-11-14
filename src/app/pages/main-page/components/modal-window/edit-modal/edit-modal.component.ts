@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BoardsDataService } from 'src/app/shared/services/boards-data-service/boards-data.service';
 import { MainPageService } from '../../../services/main-page.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { OneBoard } from 'src/app/shared/models/interfaces/interfaces-board';
 
 @Component({
   selector: 'app-edit-modal',
@@ -26,11 +27,21 @@ export class EditModalComponent implements OnInit {
     });
 
     this.mainPageService.boardId.subscribe((data) => (this.id = data));
-    console.log(this.id);
   }
 
   edit() {
-    this.boardsDataService.updateBoard(this.id, this.editForm.value);
+    this.boardsDataService
+      .updateBoard(this.id, this.editForm.value)
+      .subscribe((item) => {
+        if (item) {
+          this.boardsDataService.getAllBoards().subscribe({
+            next: (data: OneBoard[]) => {
+              this.mainPageService.allBoards.next(data);
+            },
+          });
+        }
+      });
+
     this.cancel();
   }
 

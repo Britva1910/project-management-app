@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BoardsDataService } from 'src/app/shared/services/boards-data-service/boards-data.service';
 import { MainPageService } from '../../../services/main-page.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { OneBoard } from 'src/app/shared/models/interfaces/interfaces-board';
 
 @Component({
   selector: 'app-create-modal',
@@ -10,6 +11,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class CreateModalComponent implements OnInit {
   createForm: FormGroup;
+
+  boards: OneBoard[] = [];
 
   constructor(
     private boardsDataService: BoardsDataService,
@@ -22,10 +25,17 @@ export class CreateModalComponent implements OnInit {
       title: ['', Validators.required],
       description: ['', Validators.required],
     });
+
+    this.mainPageService.allBoards.subscribe((data) => (this.boards = data));
   }
 
   create() {
-    this.boardsDataService.createBoard(this.createForm.value);
+    this.boardsDataService
+      .createBoard(this.createForm.value)
+      .subscribe((data) => {
+        this.boards.push(data);
+        this.mainPageService.allBoards.next(this.boards);
+      });
     this.cancel();
   }
 

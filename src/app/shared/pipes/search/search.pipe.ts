@@ -6,12 +6,16 @@ import { OneBoard } from '../../models/interfaces/interfaces-board';
 })
 export class SearchPipe implements PipeTransform {
   transform(boards: OneBoard[], searchText: string) {
-    if (boards.length === 0 || searchText === '') {
-      return boards;
-    } else {
-      return boards.filter((board) => {
-        return board.title.toLowerCase().includes(searchText.toLowerCase());
-      });
+    if (boards) {
+      if (boards.length === 0 || searchText === '') {
+        return boards;
+      } else {
+        return boards.filter((board) => {
+          return board.title.toLowerCase().includes(searchText.toLowerCase());
+        });
+      }
     }
+
+    return boards;
   }
 }
