@@ -1,19 +1,40 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  OnDestroy,
+} from '@angular/core';
 import { Tasks } from '../../../../shared/models/interfaces/interfaces-board';
 import { LocalStorageService } from './../../../../shared/services/local-storage-service/local-storage.service';
 import { UserBoardService } from './../../services/user-board.service';
 import { colorGrey } from 'src/app/shared/constant/color';
+import { TranslocoService } from '@ngneat/transloco';
+import { Subscription } from 'rxjs';
+import { ModalService } from './../../../../dialog/service/modal-prompt.service';
 
 @Component({
   selector: 'app-item-board',
   templateUrl: './item-board.component.html',
   styleUrls: ['./item-board.component.scss'],
 })
-export class ItemBoardComponent {
+export class ItemBoardComponent implements OnDestroy {
+  subscription: Subscription;
+
   constructor(
     private localStorageService: LocalStorageService,
-    private userBoardService: UserBoardService
-  ) {}
+    private userBoardService: UserBoardService,
+    private translocoService: TranslocoService,
+    private modalService: ModalService
+  ) {
+    this.subscription = translocoService.langChanges$.subscribe((lang) => {
+      if (lang === 'en') {
+        this.data = 'Delete task?';
+      } else {
+        this.data = 'Удалить задачу?';
+      }
+    });
+  }
 
   public data = 'Delete task?';
 
@@ -31,7 +52,7 @@ export class ItemBoardComponent {
       if (userId === userIdTask) {
         this.emitDeleteTask.emit(idTask);
       } else {
-        this.userBoardService.openEditModal$();
+        this.modalService.openEditModal$();
       }
     }
   }
@@ -53,25 +74,7 @@ export class ItemBoardComponent {
     }
   }
 
-  /* TEMPLATE FUNCTION FOR Blob File
-  public binaryToString = (binary = '') => {
-    let strArr = binary.split(' ');
-    const str = strArr
-      .map((part) => {
-        return String.fromCharCode(parseInt(part, 2));
-      })
-      .join('');
-    return str;
-  };
-
-  public down(idTask: string, fileName: string) {
-    this.boardsDataService.douwn(idTask, fileName).subscribe({
-      next: (response) => {
-        return URL.createObjectURL(response.blob());
-      },
-      error: (error: HttpErrorResponse) =>
-        console.log(`Error - ${error.error.message}`),
-    });
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
-  */
 }

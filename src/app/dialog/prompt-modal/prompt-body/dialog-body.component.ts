@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { CountFiledFormService } from '../../../../services/modal-prompt.cervice';
+import { ModalService } from '../../service/modal-prompt.service';
 @Component({
   selector: 'app-dialog-body',
   templateUrl: './dialog-body.component.html',
@@ -13,7 +13,7 @@ export class DialogBodyComponent implements OnInit {
   public isOneFieldForm: boolean;
 
   constructor(
-    private countFiledFormService: CountFiledFormService,
+    private countFiledFormService: ModalService,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<DialogBodyComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { title: string; text: string }

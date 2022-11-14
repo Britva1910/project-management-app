@@ -1,47 +1,27 @@
 @import 'utils-color';
+
 .footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
 
   &__wrapper {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    padding: 10px 70px;
-    margin: 0 auto;
-  }
+    padding: 7px 10px;
 
-  &__githubs {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 300px;
-  }
+    a {
+      opacity: 0.8;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  &__githubs a {
-    opacity: 0.8;
-    text-decoration: none;
-
-    &:hover {
-      opacity: 1;
+      &:hover {
+        opacity: 1;
+      }
     }
   }
-
-  &__rs-logo {
-    position: absolute;
-    right: 40px;
+  .footer__githubs-img {
+    width: 50%;
   }
-
-  &__rs-logo a {
-    opacity: 0.8;
-    text-decoration: none;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-}
-
-.footer__githubs-img {
-  width: 50px;
 }

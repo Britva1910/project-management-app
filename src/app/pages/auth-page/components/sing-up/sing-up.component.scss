@@ -1,7 +1,9 @@
+@import 'utils-color';
 .container {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
+  background-color: $light-font-color;
 }
 
 mat-form-field {

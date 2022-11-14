@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   AdvantagesData,
