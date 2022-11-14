@@ -7,7 +7,7 @@ import {
   UpdateColumnBody,
 } from './../../../../shared/models/interfaces/interfaces-board';
 
-import { CountFiledFormService } from '../../services/modal-prompt.cervice';
+import { ModalService } from '../../../../dialog/service/modal-prompt.service';
 import { UserBoardService } from './../../services/user-board.service';
 import {
   CdkDragDrop,
@@ -31,7 +31,7 @@ export class BoardContainerComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(
-    private countFiledFormService: CountFiledFormService,
+    private countFiledFormService: ModalService,
     private editTaskService: EditTaskService,
     private store: Store,
     private dragnDropService: DragnDropService,

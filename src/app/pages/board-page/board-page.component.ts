@@ -6,7 +6,7 @@ import {
   UsersTasksProject,
   OneUsersTasks,
 } from './../../shared/models/interfaces/interfaces-board';
-import { CountFiledFormService } from './services/modal-prompt.cervice';
+import { ModalService } from '../../dialog/service/modal-prompt.service';
 import { EditTaskService } from './services/edit-task.service';
 import { UserBoardService } from './services/user-board.service';
 import {
@@ -23,7 +23,7 @@ export class BoardPageComponent implements OnInit {
     private store: Store,
     private editTaskService: EditTaskService,
     private userBoardService: UserBoardService,
-    private countFiledFormService: CountFiledFormService
+    private countFiledFormService: ModalService
   ) {}
 
   public title$ = this.store.select(selectTitleBoard);

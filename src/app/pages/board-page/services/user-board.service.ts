@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Observable } from 'rxjs';
 import { User } from './../../../shared/models/interfaces/interfaces-board';
 import { UserDataService } from './../../../shared/services/user-data-service/user-data.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -12,8 +10,6 @@ import { Store } from '@ngrx/store';
 @Injectable()
 export class UserBoardService {
   constructor(private userDataService: UserDataService, private store: Store) {}
-
-  private isShowModal$ = new BehaviorSubject<boolean>(false);
 
   public allUsers: Array<User> = [];
 
@@ -29,18 +25,6 @@ export class UserBoardService {
     } else {
       return colorGrey;
     }
-  }
-
-  public getIsShowModal$(): Observable<boolean> {
-    return this.isShowModal$.asObservable();
-  }
-
-  public openEditModal$() {
-    this.isShowModal$.next(true);
-  }
-
-  public closeEditModal$() {
-    this.isShowModal$.next(false);
   }
 
   public getAllUsers() {

@@ -11,6 +11,7 @@ import { UserBoardService } from './../../services/user-board.service';
 import { colorGrey } from 'src/app/shared/constant/color';
 import { TranslocoService } from '@ngneat/transloco';
 import { Subscription } from 'rxjs';
+import { ModalService } from './../../../../dialog/service/modal-prompt.service';
 
 @Component({
   selector: 'app-item-board',
@@ -23,7 +24,8 @@ export class ItemBoardComponent implements OnDestroy {
   constructor(
     private localStorageService: LocalStorageService,
     private userBoardService: UserBoardService,
-    private translocoService: TranslocoService
+    private translocoService: TranslocoService,
+    private modalService: ModalService
   ) {
     this.subscription = translocoService.langChanges$.subscribe((lang) => {
       if (lang === 'en') {
@@ -50,7 +52,7 @@ export class ItemBoardComponent implements OnDestroy {
       if (userId === userIdTask) {
         this.emitDeleteTask.emit(idTask);
       } else {
-        this.userBoardService.openEditModal$();
+        this.modalService.openEditModal$();
       }
     }
   }

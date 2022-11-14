@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { UserBoardService } from './../../../services/user-board.service';
+import { ModalService } from './../service/modal-prompt.service';
 
 @Component({
   selector: 'app-message-user',
@@ -7,13 +7,13 @@ import { UserBoardService } from './../../../services/user-board.service';
   styleUrls: ['./message-user.component.scss'],
 })
 export class MessageUserComponent {
-  constructor(private userBoardService: UserBoardService) {}
+  constructor(private modalService: ModalService) {}
 
   @Input() title: string;
 
-  public showModal$ = this.userBoardService.getIsShowModal$();
+  public showModal$ = this.modalService.getIsShowModal$();
 
   public close() {
-    this.userBoardService.closeEditModal$();
+    this.modalService.closeEditModal$();
   }
 }
