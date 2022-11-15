@@ -5,11 +5,11 @@
       <div class="user-data">
         <h3 class="user-name">
           Your current name:
-          <span>{{ currentUserData.userName }}</span>
+          <span>{{ currentUserData.name }}</span>
         </h3>
         <h3 class="user-login">
           Your current login:
-          <span>{{ currentUserData.userLogin }}</span>
+          <span>{{ currentUserData.login }}</span>
         </h3>
       </div>
     </div>
@@ -51,7 +51,7 @@
               mat-raised-button
               class="btn"
               [disabled]="!name.valid"
-              (click)="nextStep()"
+              (click)="changeUserName()"
             >
               Submit
             </button>
@@ -93,7 +93,7 @@
               mat-raised-button
               class="btn"
               [disabled]="!login.valid"
-              (click)="nextStep()"
+              (click)="changeUserLogin()"
             >
               Submit
             </button>
@@ -120,7 +120,7 @@
               mat-raised-button
               class="btn"
               [disabled]="!password.valid"
-              (click)="nextStep()"
+              (click)="changeUserPassword()"
             >
               Submit
             </button>

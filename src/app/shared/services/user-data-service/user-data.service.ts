@@ -32,7 +32,7 @@ export class UserDataService {
     id: string,
     data: UpdateUserRequestBody
   ): Observable<UserData> {
-    const url = `${UrlsEnum.boards}/${id}`;
+    const url = `${UrlsEnum.users}/${id}`;
     return this.RequestClientBuilder.put<UserData>(url, data);
   }
 }

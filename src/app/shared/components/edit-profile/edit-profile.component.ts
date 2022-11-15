@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { EditProfileService } from '../../../pages/welcome-page/services/edit-profile.service';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LocalStorageService } from '../../services/local-storage-service/local-storage.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -12,9 +13,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   private sub: Subscription;
 
   public currentUserData = {
-    userName: '',
-    userLogin: '',
-    userPassword: '',
+    name: '',
+    login: '',
+    password: '',
   };
 
   form = new FormGroup({
@@ -26,12 +27,18 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     ]),
   });
 
-  constructor(private editProfile: EditProfileService) {}
+  constructor(
+    private editProfile: EditProfileService,
+    private localStorage: LocalStorageService
+  ) {}
 
   ngOnInit() {
     this.sub = this.editProfile.getCurrentUserData().subscribe((data) => {
-      this.currentUserData.userName = data.userName;
-      this.currentUserData.userLogin = data.userLogin;
+      this.currentUserData.name = data.userName;
+      this.currentUserData.login = data.userLogin;
+      this.currentUserData.password = this.localStorage
+        .getFromLocalStorage('password')
+        .toString();
       this.name?.setValue(data.userName);
       this.login?.setValue(data.userLogin);
     });
@@ -55,6 +62,34 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
   nextStep() {
     console.log('2');
+  }
+
+  changeUserName() {
+    const newUserData = Object.assign(this.currentUserData);
+
+    newUserData.name = this.form.value.name;
+
+    this.editProfile
+      .changeUserData(newUserData)
+      .subscribe((response) => (this.currentUserData.name = response.name));
+  }
+
+  changeUserLogin() {
+    const newUserData = Object.assign(this.currentUserData);
+
+    newUserData.login = this.form.value.login;
+
+    this.editProfile
+      .changeUserData(newUserData)
+      .subscribe((response) => (this.currentUserData.login = response.login));
+  }
+
+  changeUserPassword() {
+    const newUserData = Object.assign(this.currentUserData);
+
+    newUserData.password = this.form.value.password;
+
+    this.editProfile.changeUserData(newUserData).subscribe();
   }
 
   ngOnDestroy() {
