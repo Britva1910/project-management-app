@@ -15,37 +15,56 @@ export class BoardListComponent implements OnInit {
 
   sortOrder: string;
 
+  isCreateModalOpened: boolean;
+
+  isEditModalOpened: boolean;
+
+  isDeleteModalOpened: boolean;
+
   constructor(
-    private boardDataService: BoardsDataService,
+    private boardsDataService: BoardsDataService,
     private mainPageService: MainPageService
   ) {}
 
   ngOnInit() {
-    this.boardDataService.getAllBoards().subscribe({
+    this.boardsDataService.getAllBoards().subscribe({
       next: (data: OneBoard[]) => {
-        this.boards = data;
+        this.mainPageService.allBoards.next(data);
       },
     });
+
+    this.mainPageService.allBoards.subscribe((data) => (this.boards = data));
 
     this.mainPageService.searchWord.subscribe(
       (data) => (this.searchText = data)
     );
 
     this.mainPageService.sortOrder.subscribe((data) => (this.sortOrder = data));
+
+    this.mainPageService.createModalStatus.subscribe(
+      (data) => (this.isCreateModalOpened = data)
+    );
+
+    this.mainPageService.editModalStatus.subscribe(
+      (data) => (this.isEditModalOpened = data)
+    );
+
+    this.mainPageService.deleteModalStatus.subscribe(
+      (data) => (this.isDeleteModalOpened = data)
+    );
   }
 
   createNewBoard() {
-    console.log('create');
+    this.mainPageService.createModalStatus.next(true);
   }
 
   sendBoardId(event: MouseEvent, id: string) {
     const target = event.target as HTMLElement;
+    this.mainPageService.boardId.next(id);
     if (target.textContent === 'delete') {
-      console.log('delete');
+      this.mainPageService.deleteModalStatus.next(true);
     } else if (target.textContent === 'edit') {
-      console.log('edit');
-    } else {
-      console.log(id);
+      this.mainPageService.editModalStatus.next(true);
     }
   }
 }
