@@ -14,7 +14,7 @@ import { Store } from '@ngrx/store';
 import { invokeBoardAPI } from './../store/board.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LocalStorageService } from './../../../shared/services/local-storage-service/local-storage.service';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 @Injectable()
 export class DragnDropService {
   constructor(
@@ -22,7 +22,8 @@ export class DragnDropService {
     private tasksDataService: TasksDataService,
     private columnDataService: ColumnDataService,
     private editTaskService: EditTaskService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private spinnerService: NgxSpinnerService
   ) {}
 
   public dropColumn(newOrderColumn: number, checkCol: Column) {
@@ -43,6 +44,7 @@ export class DragnDropService {
   }
 
   public dropTasks(newOrderTask: number, idColumn: string, checkTask: Tasks) {
+    this.spinnerService.show();
     this.editTaskService.getBoardId();
     const bodyRequest: UpdateOneTaskBody = {
       title: checkTask.title,
@@ -74,6 +76,7 @@ export class DragnDropService {
     checkTask: Tasks,
     oneClass: string
   ) {
+    this.spinnerService.show();
     const el = document.getElementsByClassName(oneClass)[0];
     el.remove();
     this.editTaskService.getBoardId();

@@ -18,7 +18,7 @@ import { invokeBoardAPI } from './../store/board.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ColumnDataService } from './../../../shared/services/colums-data-service/column-data.service';
 import { UserBoardService } from './user-board.service';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 @Injectable()
 export class EditTaskService {
   constructor(
@@ -26,7 +26,8 @@ export class EditTaskService {
     private localStorageService: LocalStorageService,
     private tasksDataService: TasksDataService,
     private columnDataService: ColumnDataService,
-    private userBoardService: UserBoardService
+    private userBoardService: UserBoardService,
+    private spinnerService: NgxSpinnerService
   ) {}
 
   public checkIdTask = '';
@@ -72,6 +73,7 @@ export class EditTaskService {
     this.allColumn$.subscribe((arrCol) => {
       this.arrColumns = [...arrCol];
       this.createMapUser();
+      this.spinnerService.hide();
     });
   }
 
@@ -102,10 +104,12 @@ export class EditTaskService {
   }
 
   public openEditModal$() {
+    this.userBoardService.stopScroll();
     this.isShowEditTaskModal$.next(true);
   }
 
   public closeEditModal$() {
+    this.userBoardService.startScroll();
     this.isShowEditTaskModal$.next(false);
   }
 

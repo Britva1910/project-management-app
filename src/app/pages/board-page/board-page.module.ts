@@ -25,6 +25,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { ColorPanelComponent } from './components/color-panel/color-panel.component';
 import { TasksUserComponent } from './components/tasks-user/tasks-user.component';
 import { DialogModule } from './../../dialog/dialog.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 const routes: Routes = [{ path: '', component: BoardPageComponent }];
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ const routes: Routes = [{ path: '', component: BoardPageComponent }];
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
     RouterModule.forChild(routes),
     StoreModule.forFeature('myboard', boardReducer),
     EffectsModule.forFeature([BoardEffect]),
