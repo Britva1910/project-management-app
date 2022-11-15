@@ -23,8 +23,10 @@ export class EditTaskComponent {
   };
 
   updateTask() {
-    const bodyRequest: UpdateOneTaskBody = this.taskForm;
-    this.editTaskService.updateTask(bodyRequest);
+    if (this.taskForm.title && this.taskForm.description) {
+      const bodyRequest: UpdateOneTaskBody = this.taskForm;
+      this.editTaskService.updateTask(bodyRequest);
+    }
   }
 
   public close() {

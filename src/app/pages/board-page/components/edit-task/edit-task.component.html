@@ -1,16 +1,19 @@
 <div class="wrapper" *transloco="let t">
   <div class="wrapper-fon"></div>
-    <div class="container-edit-task">
-      <h2 class="form-title">{{t('forms.addTask')}}</h2>
-      <div class="container__input">
-        <label for="titleTask" class="form-label">{{t('forms.title')}}</label>
-        <input type="text" [(ngModel)]="taskForm.title" class="form-control" id="titleTask" />
-      </div>
-      <div class="container__input">
-        <label for="descriptionTask" class="form-label">{{t('forms.description')}}</label>
-        <textarea [(ngModel)]="taskForm.description" rows="5" class="form-control area" id="descriptionTask"></textarea>
-      </div>
-      <button type="button" class="btn btn-cancel" (click)="close()">{{t('board.btn.cancel')}}</button>
-      <button type="button" class="btn btn-save" (click)="updateTask()">{{t('forms.save')}}</button>
+  <div class="container-edit-task">
+    <h2 class="form-title">{{t('forms.addTask')}}</h2>
+    <mat-form-field appearance="standard">
+      <mat-label>{{t('forms.title')}}</mat-label>
+      <input matInput [(ngModel)]="taskForm.title" required />
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+      <mat-label>{{t('forms.description')}}</mat-label>
+      <textarea class="area" [(ngModel)]="taskForm.description" matInput required></textarea>
+    </mat-form-field>
+    <div>
+      <button type="button" mat-raised-button class="btn-close btn" (click)="close()">{{t('board.btn.cancel')}}</button>
+      <button type="button" mat-raised-button class="btn" color="primary"
+        (click)="updateTask()">{{t('forms.save')}}</button>
     </div>
+  </div>
 </div>
