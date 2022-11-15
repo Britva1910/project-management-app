@@ -36,7 +36,7 @@ export class EditModalComponent implements OnInit {
         if (item) {
           this.boardsDataService.getAllBoards().subscribe({
             next: (data: OneBoard[]) => {
-              this.mainPageService.allBoards.next(data);
+              this.mainPageService.setAllBoards$(data);
             },
           });
         }

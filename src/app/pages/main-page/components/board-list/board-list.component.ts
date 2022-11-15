@@ -1,70 +1,92 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { OneBoard } from 'src/app/shared/models/interfaces/interfaces-board';
-import { BoardsDataService } from 'src/app/shared/services/boards-data-service/boards-data.service';
 import { MainPageService } from '../../services/main-page.service';
+import { TranslocoService } from '@ngneat/transloco';
+import { Subscription, Observable } from 'rxjs';
+import { ModalService } from './../../../../dialog/service/modal-prompt.service';
+import { AddTaskEvent } from './../../../../shared/models/interfaces/interfaces-board';
 
 @Component({
   selector: 'app-board-list',
   templateUrl: './board-list.component.html',
   styleUrls: ['./board-list.component.scss'],
 })
-export class BoardListComponent implements OnInit {
-  boards: OneBoard[];
+export class BoardListComponent implements OnInit, OnDestroy {
+  private subscription: Subscription[] = [];
 
-  searchText: string;
+  public boards$: Observable<OneBoard[]> = this.mainPageService.getAllBoards$();
 
-  sortOrder: string;
+  public searchText: string;
 
-  isCreateModalOpened: boolean;
+  public sortOrder: string;
 
-  isEditModalOpened: boolean;
+  public isEditModalOpened: boolean;
 
-  isDeleteModalOpened: boolean;
+  public data = 'Delete project?';
 
   constructor(
-    private boardsDataService: BoardsDataService,
-    private mainPageService: MainPageService
-  ) {}
-
-  ngOnInit() {
-    this.boardsDataService.getAllBoards().subscribe({
-      next: (data: OneBoard[]) => {
-        this.mainPageService.allBoards.next(data);
-      },
-    });
-
-    this.mainPageService.allBoards.subscribe((data) => (this.boards = data));
-
-    this.mainPageService.searchWord.subscribe(
-      (data) => (this.searchText = data)
-    );
-
-    this.mainPageService.sortOrder.subscribe((data) => (this.sortOrder = data));
-
-    this.mainPageService.createModalStatus.subscribe(
-      (data) => (this.isCreateModalOpened = data)
-    );
-
-    this.mainPageService.editModalStatus.subscribe(
-      (data) => (this.isEditModalOpened = data)
-    );
-
-    this.mainPageService.deleteModalStatus.subscribe(
-      (data) => (this.isDeleteModalOpened = data)
+    private mainPageService: MainPageService,
+    private translocoService: TranslocoService,
+    private modalService: ModalService
+  ) {
+    this.subscription.push(
+      translocoService.langChanges$.subscribe((lang) => {
+        if (lang === 'en') {
+          this.data = 'Delete project?';
+        } else {
+          this.data = 'Удалить проект?';
+        }
+      })
     );
   }
 
-  createNewBoard() {
-    this.mainPageService.createModalStatus.next(true);
+  ngOnInit() {
+    this.mainPageService.getAllBoard();
+
+    this.subscription.push(
+      this.mainPageService.searchWord.subscribe(
+        (data) => (this.searchText = data)
+      )
+    );
+
+    this.subscription.push(
+      this.mainPageService.sortOrder.subscribe(
+        (data) => (this.sortOrder = data)
+      )
+    );
+
+    this.subscription.push(
+      this.mainPageService.editModalStatus.subscribe(
+        (data) => (this.isEditModalOpened = data)
+      )
+    );
+  }
+
+  public deleteBoard(confirmItem: any, id: string) {
+    if (confirmItem.clicked) {
+      this.mainPageService.deleteBoard(id);
+    }
+  }
+
+  public addNewBoard(userTaskData: AddTaskEvent) {
+    if (userTaskData) {
+      this.mainPageService.createBoard(userTaskData);
+    }
+  }
+
+  public setTwoFieldForm() {
+    this.modalService.setTwoFiledForm();
   }
 
   sendBoardId(event: MouseEvent, id: string) {
     const target = event.target as HTMLElement;
     this.mainPageService.boardId.next(id);
-    if (target.textContent === 'delete') {
-      this.mainPageService.deleteModalStatus.next(true);
-    } else if (target.textContent === 'edit') {
+    if (target.textContent === 'edit') {
       this.mainPageService.editModalStatus.next(true);
     }
+  }
+
+  ngOnDestroy() {
+    this.subscription.forEach((subs) => subs.unsubscribe());
   }
 }

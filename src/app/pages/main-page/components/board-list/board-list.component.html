@@ -1,12 +1,16 @@
 <article class="list">
   <ul class="list__wrapper">
     <li class="list__item">
-      <div class="list__outer first" (click)="createNewBoard()">
+
+      <app-dialog (emitText)="addNewBoard($event)" (click)="setTwoFieldForm()">
+      <div class="list__outer first" >
         <h2 class="list__subtitle">Create new board</h2>
         <img src="../../../../../assets/img/Frame 41.png" alt="create" class="list__img">
       </div>
+      </app-dialog>
+
     </li>
-    <li class="list__item" *ngFor="let board of boards | search: searchText | sort: sortOrder">
+    <li class="list__item" *ngFor="let board of (boards$ | async)! | search: searchText | sort: sortOrder">
       <div class="list__outer" (click)="sendBoardId($event, board.id)">
         <div class="list__inner">
           <h3 class="list__title">{{ board.title }}</h3>
@@ -14,16 +18,16 @@
             <button mat-icon-button class="list__button" type="button">
               <mat-icon class="list__icon">edit</mat-icon>
             </button>
-            <button mat-icon-button class="list__button" type="button">
-              <mat-icon class="list__icon">delete</mat-icon>
-            </button>
+            <app-app-confirm [data]="data" (emitConfirm)="deleteBoard($event, board.id)">
+              <button mat-icon-button class="list__button" type="button">
+                <mat-icon class="list__icon">delete</mat-icon>
+              </button>
+            </app-app-confirm>
           </div>
         </div>
         <p class="list__description">{{ board.description }}</p>
       </div>
     </li>
   </ul>
-  <app-create-modal *ngIf="isCreateModalOpened"></app-create-modal>
   <app-edit-modal *ngIf="isEditModalOpened"></app-edit-modal>
-  <app-delete-modal *ngIf="isDeleteModalOpened"></app-delete-modal>
 </article>
