@@ -78,7 +78,7 @@ export class BoardListComponent implements OnInit, OnDestroy {
     this.modalService.setTwoFiledForm();
   }
 
-  sendBoardId(event: MouseEvent, id: string) {
+  public sendBoardId(event: MouseEvent, id: string) {
     this.mainPageService.saveIdCurrentBoard(id);
     const target = event.target as HTMLElement;
     this.mainPageService.boardId.next(id);

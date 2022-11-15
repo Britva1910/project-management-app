@@ -2,7 +2,7 @@
   <ul class="list__wrapper">
     <li class="list__item">
 
-      <app-dialog (emitText)="addNewBoard($event)" (click)="setTwoFieldForm()">
+      <app-dialog (emitText)="addNewBoard($event)" appStopPropagation (click)="setTwoFieldForm()">
       <div class="list__outer first" >
         <h2 class="list__subtitle">Create new board</h2>
         <img src="../../../../../assets/img/Frame 41.png" alt="create" class="list__img">
@@ -18,7 +18,7 @@
             <button mat-icon-button class="list__button" type="button">
               <mat-icon class="list__icon">edit</mat-icon>
             </button>
-            <app-app-confirm [data]="data" (emitConfirm)="deleteBoard($event, board.id)">
+            <app-app-confirm [data]="data" appStopPropagation (emitConfirm)="deleteBoard($event, board.id)">
               <button mat-icon-button class="list__button" type="button">
                 <mat-icon class="list__icon">delete</mat-icon>
               </button>

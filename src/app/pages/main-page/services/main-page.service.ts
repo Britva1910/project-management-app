@@ -7,6 +7,7 @@ import { AddTaskEvent } from './../../../shared/models/interfaces/interfaces-boa
 import { Store } from '@ngrx/store';
 import { setCurrentBoard } from './../../../shared/store/app.action';
 import { LocalStorageService } from './../../../shared/services/local-storage-service/local-storage.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class MainPageService {
@@ -23,7 +24,8 @@ export class MainPageService {
   constructor(
     private boardsDataService: BoardsDataService,
     private store: Store,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private router: Router
   ) {}
 
   public getAllBoards$() {
@@ -79,5 +81,6 @@ export class MainPageService {
   public saveIdCurrentBoard(id: string) {
     this.store.dispatch(setCurrentBoard({ id }));
     this.localStorageService.saveInLocalStorage('currentBoard', id);
+    this.router.navigate(['board', id]);
   }
 }

@@ -9,6 +9,7 @@ import {
 import { ModalService } from '../../dialog/service/modal-prompt.service';
 import { EditTaskService } from './services/edit-task.service';
 import { UserBoardService } from './services/user-board.service';
+import { ActivatedRoute } from '@angular/router';
 import {
   selectDescriptionBoard,
   selectTitleBoard,
@@ -23,7 +24,8 @@ export class BoardPageComponent implements OnInit {
     private store: Store,
     private editTaskService: EditTaskService,
     private userBoardService: UserBoardService,
-    private countFiledFormService: ModalService
+    private countFiledFormService: ModalService,
+    private router: ActivatedRoute
   ) {}
 
   public title$ = this.store.select(selectTitleBoard);
@@ -44,8 +46,12 @@ export class BoardPageComponent implements OnInit {
     this.editTaskService.setIsOpenTasksOneUser$();
   }
 
+  private id: string | null = '';
+
   ngOnInit(): void {
     this.userBoardService.getAllUsers();
+    this.id = this.router.snapshot.paramMap.get('id');
+    console.log(this.id);
   }
 
   public setOneFieldForm() {
