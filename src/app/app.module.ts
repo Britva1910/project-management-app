@@ -22,6 +22,7 @@ import { EditProfileComponent } from './shared/components/edit-profile/edit-prof
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,8 @@ import { MatInputModule } from '@angular/material/input';
     MatExpansionModule,
     MatIconModule,
     MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     CountFiledFormService,

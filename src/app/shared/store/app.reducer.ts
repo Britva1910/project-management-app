@@ -16,6 +16,8 @@ export const appReducer = createReducer(
       ...state,
       token: action.token,
       userId: action.userId,
+      userName: action.userName,
+      userLogin: action.userLogin,
     };
   })
 );

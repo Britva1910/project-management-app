@@ -21,8 +21,6 @@ export class LoginService {
 
   isLogin(): Promise<boolean> {
     const token = this.getTokenFromLocalStorage();
-    //const token = //this is expires token for testing
-    //('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjMzk3MzFlMy0zZDhmLTQ1OGMtYjVmMi1lZmNjYTI3MmRlNzciLCJsb2dpbiI6InVzZXIwMDE3IiwiaWF0IjoxNjY2OTkxODYwfQ.HXxnT-2EdjuriLr82_uUK8M7m-5V8RTwNBDgpDtsCJM');
     if (!token) {
       return new Promise((resolve) => resolve(false));
     }
@@ -30,7 +28,15 @@ export class LoginService {
     const response = this.userDataService.getUserById(userId);
     return new Promise((resolve) => {
       response.subscribe({
-        next: () => {
+        next: (userData) => {
+          this.store.dispatch(
+            setUserData({
+              token: token,
+              userId: userId,
+              userLogin: userData.login,
+              userName: userData.name,
+            })
+          );
           resolve(true);
         },
         error: () => {
@@ -46,7 +52,14 @@ export class LoginService {
         const userId = this.getUserIdFromToken(data.token);
         this.localStorageService.saveInLocalStorage('token', data.token);
         this.localStorageService.saveInLocalStorage('userId', userId);
-        this.store.dispatch(setUserData({ token: data.token, userId: userId }));
+        this.store.dispatch(
+          setUserData({
+            token: data.token,
+            userId: userId,
+            userLogin: '',
+            userName: '',
+          })
+        );
         this.router.navigate(['/main']);
       },
       error: (error) => console.log(`Error - ${error.error}`),
