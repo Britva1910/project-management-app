@@ -79,6 +79,7 @@ export class BoardListComponent implements OnInit, OnDestroy {
   }
 
   sendBoardId(event: MouseEvent, id: string) {
+    this.mainPageService.saveIdCurrentBoard(id);
     const target = event.target as HTMLElement;
     this.mainPageService.boardId.next(id);
     if (target.textContent === 'edit') {

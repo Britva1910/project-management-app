@@ -4,6 +4,9 @@ import { OneBoard } from 'src/app/shared/models/interfaces/interfaces-board';
 import { BoardsDataService } from 'src/app/shared/services/boards-data-service/boards-data.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AddTaskEvent } from './../../../shared/models/interfaces/interfaces-board';
+import { Store } from '@ngrx/store';
+import { setCurrentBoard } from './../../../shared/store/app.action';
+import { LocalStorageService } from './../../../shared/services/local-storage-service/local-storage.service';
 
 @Injectable()
 export class MainPageService {
@@ -17,7 +20,11 @@ export class MainPageService {
 
   public boardId = new BehaviorSubject<string>('');
 
-  constructor(private boardsDataService: BoardsDataService) {}
+  constructor(
+    private boardsDataService: BoardsDataService,
+    private store: Store,
+    private localStorageService: LocalStorageService
+  ) {}
 
   public getAllBoards$() {
     return this.allBoards$.asObservable();
@@ -67,5 +74,10 @@ export class MainPageService {
       error: (error: HttpErrorResponse) =>
         console.log(`Error - ${error.error.message}`),
     });
+  }
+
+  public saveIdCurrentBoard(id: string) {
+    this.store.dispatch(setCurrentBoard({ id }));
+    this.localStorageService.saveInLocalStorage('currentBoard', id);
   }
 }
