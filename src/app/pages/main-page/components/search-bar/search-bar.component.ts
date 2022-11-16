@@ -11,13 +11,8 @@ export class SearchBarComponent {
 
   constructor(private mainPageService: MainPageService) {}
 
-  search() {
+  public search(event: Event) {
+    this.searchText = (event.target as HTMLInputElement).value;
     this.mainPageService.searchWord.next(this.searchText);
-  }
-
-  searchByEnter(event: KeyboardEvent) {
-    if (event.code === 'Enter') {
-      this.search();
-    }
   }
 }
