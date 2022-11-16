@@ -18,7 +18,7 @@ export class EditTaskComponent {
     order: this.editTaskService.checkTask.order,
     description: this.editTaskService.checkTask.description,
     userId: this.editTaskService.checkTask.userId,
-    boardId: this.editTaskService.checkIdBoard,
+    boardId: this.editTaskService.getValCheckIdBoard$(),
     columnId: this.editTaskService.checkIdColumn,
   };
 

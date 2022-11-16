@@ -25,7 +25,7 @@ export class BoardPageComponent implements OnInit {
     private editTaskService: EditTaskService,
     private userBoardService: UserBoardService,
     private countFiledFormService: ModalService,
-    private router: ActivatedRoute
+    private activRouter: ActivatedRoute
   ) {}
 
   public title$ = this.store.select(selectTitleBoard);
@@ -44,14 +44,13 @@ export class BoardPageComponent implements OnInit {
   public setCheckUser(name: string) {
     this.checkUser = this.editTaskService.getOneUserTasks(name);
     this.editTaskService.setIsOpenTasksOneUser$();
+    this.userBoardService.stopScroll();
   }
 
-  private id: string | null = '';
-
   ngOnInit(): void {
+    const idBoard = this.activRouter.snapshot.paramMap.get('id') as string;
+    this.editTaskService.setcheckIdBoard$(idBoard);
     this.userBoardService.getAllUsers();
-    this.id = this.router.snapshot.paramMap.get('id');
-    console.log(this.id);
   }
 
   public setOneFieldForm() {

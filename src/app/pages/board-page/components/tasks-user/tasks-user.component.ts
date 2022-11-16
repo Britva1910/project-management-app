@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { EditTaskService } from './../../services/edit-task.service';
 import { Store } from '@ngrx/store';
 import { selectTitleBoard } from './../../store/board.selector';
+import { UserBoardService } from './../../services/user-board.service';
 import {
   UsersTasks,
   OneUsersTasks,
@@ -14,7 +15,11 @@ import {
   styleUrls: ['./tasks-user.component.scss'],
 })
 export class TasksUserComponent implements OnInit {
-  constructor(private editTaskService: EditTaskService, private store: Store) {}
+  constructor(
+    private editTaskService: EditTaskService,
+    private userBoardService: UserBoardService,
+    private store: Store
+  ) {}
 
   @Input() public userTasks: OneUsersTasks;
 
@@ -31,5 +36,6 @@ export class TasksUserComponent implements OnInit {
 
   public close() {
     this.editTaskService.setIsOpenTasksOneUser$();
+    this.userBoardService.startScroll();
   }
 }

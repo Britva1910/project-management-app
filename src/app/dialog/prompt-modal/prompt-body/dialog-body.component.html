@@ -18,8 +18,8 @@
     </form>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-raised-button (click)="dialogRef.close(false)">{{t('forms.btnClose')}}</button>
-    <button
+    <button class="btn" mat-raised-button (click)="dialogRef.close(false)">{{t('forms.btnClose')}}</button>
+    <button class="btn"
       mat-raised-button
       color="primary"
       (click)="form.valid && submit(form.value)"

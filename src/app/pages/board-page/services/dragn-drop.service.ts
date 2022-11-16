@@ -33,7 +33,11 @@ export class DragnDropService {
       order: newOrderColumn,
     };
     this.columnDataService
-      .updateColumn(this.editTaskService.checkIdBoard, checkCol.id, bodyRequest)
+      .updateColumn(
+        this.editTaskService.getValCheckIdBoard$(),
+        checkCol.id,
+        bodyRequest
+      )
       .subscribe({
         next: () => {
           this.store.dispatch(invokeBoardAPI());
@@ -51,12 +55,12 @@ export class DragnDropService {
       order: newOrderTask,
       description: checkTask.description,
       userId: checkTask.userId,
-      boardId: this.editTaskService.checkIdBoard,
+      boardId: this.editTaskService.getValCheckIdBoard$(),
       columnId: idColumn,
     };
     this.tasksDataService
       .updateTask(
-        this.editTaskService.checkIdBoard,
+        this.editTaskService.getValCheckIdBoard$(),
         idColumn,
         checkTask.id,
         bodyRequest
@@ -80,7 +84,7 @@ export class DragnDropService {
     const el = document.getElementsByClassName(oneClass)[0];
     el.remove();
     this.editTaskService.getBoardId();
-    const idBoard: string = this.editTaskService.checkIdBoard;
+    const idBoard: string = this.editTaskService.getValCheckIdBoard$();
     const idColumnPrev: string = this.editTaskService.getIdColByidTasks(
       this.editTaskService.arrColumns,
       checkTask.id
