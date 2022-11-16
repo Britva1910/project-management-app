@@ -10,3 +10,8 @@ export const setUserData = createAction(
   '[AUTH] set user data',
   props<{ token: string; userId: string }>()
 );
+
+export const setCurrentBoard = createAction(
+  '[BOARD] set current board',
+  props<{ id: string }>()
+);

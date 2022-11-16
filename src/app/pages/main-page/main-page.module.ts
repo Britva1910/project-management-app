@@ -7,10 +7,11 @@ import { SortBarComponent } from './components/sort-bar/sort-bar.component';
 import { BoardListComponent } from './components/board-list/board-list.component';
 import { MatIconModule } from '@angular/material/icon';
 import { SearchPipe } from 'src/app/shared/pipes/search/search.pipe';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SortPipe } from 'src/app/shared/pipes/sort/sort.pipe';
 import { MainPageService } from './services/main-page.service';
-
+import { EditModalComponent } from './components/modal-window/edit-modal/edit-modal.component';
+import { DialogModule } from './../../dialog/dialog.module';
 const routes: Routes = [{ path: '', component: MainPageComponent }];
 @NgModule({
   declarations: [
@@ -20,12 +21,15 @@ const routes: Routes = [{ path: '', component: MainPageComponent }];
     BoardListComponent,
     SearchPipe,
     SortPipe,
+    EditModalComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     MatIconModule,
     FormsModule,
+    ReactiveFormsModule,
+    DialogModule,
   ],
   providers: [MainPageService],
 })

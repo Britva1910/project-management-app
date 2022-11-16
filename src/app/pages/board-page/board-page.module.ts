@@ -26,7 +26,7 @@ import { ColorPanelComponent } from './components/color-panel/color-panel.compon
 import { TasksUserComponent } from './components/tasks-user/tasks-user.component';
 import { DialogModule } from './../../dialog/dialog.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
-const routes: Routes = [{ path: '', component: BoardPageComponent }];
+const routes: Routes = [{ path: ':id', component: BoardPageComponent }];
 @NgModule({
   declarations: [
     BoardPageComponent,

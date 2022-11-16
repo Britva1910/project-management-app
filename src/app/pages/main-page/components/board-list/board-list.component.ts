@@ -1,51 +1,93 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { OneBoard } from 'src/app/shared/models/interfaces/interfaces-board';
-import { BoardsDataService } from 'src/app/shared/services/boards-data-service/boards-data.service';
 import { MainPageService } from '../../services/main-page.service';
+import { TranslocoService } from '@ngneat/transloco';
+import { Subscription, Observable } from 'rxjs';
+import { ModalService } from './../../../../dialog/service/modal-prompt.service';
+import { AddTaskEvent } from './../../../../shared/models/interfaces/interfaces-board';
 
 @Component({
   selector: 'app-board-list',
   templateUrl: './board-list.component.html',
   styleUrls: ['./board-list.component.scss'],
 })
-export class BoardListComponent implements OnInit {
-  boards: OneBoard[];
+export class BoardListComponent implements OnInit, OnDestroy {
+  private subscription: Subscription[] = [];
 
-  searchText: string;
+  public boards$: Observable<OneBoard[]> = this.mainPageService.getAllBoards$();
 
-  sortOrder: string;
+  public searchText: string;
+
+  public sortOrder: string;
+
+  public isEditModalOpened: boolean;
+
+  public data = 'Delete project?';
 
   constructor(
-    private boardDataService: BoardsDataService,
-    private mainPageService: MainPageService
-  ) {}
+    private mainPageService: MainPageService,
+    private translocoService: TranslocoService,
+    private modalService: ModalService
+  ) {
+    this.subscription.push(
+      translocoService.langChanges$.subscribe((lang) => {
+        if (lang === 'en') {
+          this.data = 'Delete project?';
+        } else {
+          this.data = 'Удалить проект?';
+        }
+      })
+    );
+  }
 
   ngOnInit() {
-    this.boardDataService.getAllBoards().subscribe({
-      next: (data: OneBoard[]) => {
-        this.boards = data;
-      },
-    });
+    this.mainPageService.getAllBoard();
 
-    this.mainPageService.searchWord.subscribe(
-      (data) => (this.searchText = data)
+    this.subscription.push(
+      this.mainPageService.searchWord.subscribe(
+        (data) => (this.searchText = data)
+      )
     );
 
-    this.mainPageService.sortOrder.subscribe((data) => (this.sortOrder = data));
+    this.subscription.push(
+      this.mainPageService.sortOrder.subscribe(
+        (data) => (this.sortOrder = data)
+      )
+    );
+
+    this.subscription.push(
+      this.mainPageService.editModalStatus.subscribe(
+        (data) => (this.isEditModalOpened = data)
+      )
+    );
   }
 
-  createNewBoard() {
-    console.log('create');
-  }
-
-  sendBoardId(event: MouseEvent, id: string) {
-    const target = event.target as HTMLElement;
-    if (target.textContent === 'delete') {
-      console.log('delete');
-    } else if (target.textContent === 'edit') {
-      console.log('edit');
-    } else {
-      console.log(id);
+  public deleteBoard(confirmItem: any, id: string) {
+    if (confirmItem.clicked) {
+      this.mainPageService.deleteBoard(id);
     }
+  }
+
+  public addNewBoard(userTaskData: AddTaskEvent) {
+    if (userTaskData) {
+      this.mainPageService.createBoard(userTaskData);
+    }
+  }
+
+  public setTwoFieldForm() {
+    this.modalService.setTwoFiledForm();
+  }
+
+  public sendBoardId(event: MouseEvent, id: string) {
+    this.mainPageService.saveIdCurrentBoard(id);
+    const target = event.target as HTMLElement;
+    this.mainPageService.boardId.next(id);
+    if (target.textContent === 'edit') {
+      this.mainPageService.editModalStatus.next(true);
+    }
+  }
+
+  ngOnDestroy() {
+    this.subscription.forEach((subs) => subs.unsubscribe());
   }
 }
