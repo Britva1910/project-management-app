@@ -25,7 +25,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { ColorPanelComponent } from './components/color-panel/color-panel.component';
 import { TasksUserComponent } from './components/tasks-user/tasks-user.component';
 import { DialogModule } from './../../dialog/dialog.module';
-const routes: Routes = [{ path: '', component: BoardPageComponent }];
+const routes: Routes = [{ path: ':id', component: BoardPageComponent }];
 @NgModule({
   declarations: [
     BoardPageComponent,

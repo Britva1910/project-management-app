@@ -4,17 +4,19 @@
       <div class="edit__inner">
         <form class="form" [formGroup]="editForm">
           <h2 class="form__title">Edit board</h2>
-          <div class="form__input">
-            <label for="title" class="form__label">Title</label>
-            <input formControlName="title" type="text" class="form__control" id="title"/>
-          </div>
-          <div class="form__input">
-            <label for="description" class="form__label">Description</label>
-            <textarea formControlName="description" rows="5" class="form__control area" id="description"></textarea>
-          </div>
+
+          <mat-form-field appearance="standard">
+            <mat-label>Title</mat-label>
+            <input formControlName="title" type="text" matInput required/>
+          </mat-form-field>
+
+          <mat-form-field appearance="standard">
+            <mat-label>Description   </mat-label>
+            <textarea matInput required formControlName="description" class="area"></textarea>
+          </mat-form-field>
           <div class="form__buttons">
-            <button type="button" class="form__button" (click)="edit()">Save</button>
-            <button type="button" class="form__button cancel" (click)="cancel()">Cancel</button>
+            <button type="button" mat-raised-button class="btn-close btn"(click)="cancel()">Cancel</button>
+            <button type="button"  mat-raised-button class="btn" color="primary"  (click)="edit()">Save</button>
           </div>
         </form>
       </div>

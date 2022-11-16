@@ -16,7 +16,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { MessageUserComponent } from './message-user/message-user.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTableModule } from '@angular/material/table';
-
+import { ClickStopPropagationDirective } from './../shared/directives/stop-propagation';
 const MaterialModules = [
   MatDialogModule,
   MatButtonModule,
@@ -35,6 +35,7 @@ const MaterialModules = [
     DialogBodyComponent,
     DialogComponent,
     MessageUserComponent,
+    ClickStopPropagationDirective,
   ],
   imports: [
     CommonModule,
@@ -49,6 +50,7 @@ const MaterialModules = [
     DialogBodyComponent,
     DialogComponent,
     MessageUserComponent,
+    ClickStopPropagationDirective,
   ],
 })
 export class DialogModule {}

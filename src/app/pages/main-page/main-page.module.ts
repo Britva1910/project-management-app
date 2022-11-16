@@ -10,10 +10,8 @@ import { SearchPipe } from 'src/app/shared/pipes/search/search.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SortPipe } from 'src/app/shared/pipes/sort/sort.pipe';
 import { MainPageService } from './services/main-page.service';
-import { CreateModalComponent } from './components/modal-window/create-modal/create-modal.component';
 import { EditModalComponent } from './components/modal-window/edit-modal/edit-modal.component';
-import { DeleteModalComponent } from './components/modal-window/delete-modal/delete-modal.component';
-
+import { DialogModule } from './../../dialog/dialog.module';
 const routes: Routes = [{ path: '', component: MainPageComponent }];
 @NgModule({
   declarations: [
@@ -23,9 +21,7 @@ const routes: Routes = [{ path: '', component: MainPageComponent }];
     BoardListComponent,
     SearchPipe,
     SortPipe,
-    CreateModalComponent,
     EditModalComponent,
-    DeleteModalComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +29,7 @@ const routes: Routes = [{ path: '', component: MainPageComponent }];
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
+    DialogModule,
   ],
   providers: [MainPageService],
 })

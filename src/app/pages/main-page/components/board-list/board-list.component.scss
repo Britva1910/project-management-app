@@ -19,7 +19,10 @@
     border-radius: 8px;
     box-shadow: 0px 3px 16px 1px rgba(0, 0, 0, 0.04);
     background: rgba(0, 71, 255, 0.08);
-    cursor: pointer;
+    transition: all ease .5s;
+    &:hover {
+      box-shadow:$shadow-card;
+    }
   }
 
   &__img {
@@ -30,10 +33,12 @@
   &__subtitle {
     margin: 0;
     text-align: center;
+    color: $red-color;
   }
 
   &__outer {
     padding: 20px;
+    cursor: pointer;
   }
 
   &__inner {
@@ -76,4 +81,5 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
