@@ -73,5 +73,18 @@
     "developer": "Developer",
     "task": "Task",
     "status": "Status"
+  },
+  "editProfile": {
+    "titleName": "Your current name:",
+    "titleLogin": "Your current login:",
+    "changeName": "Change user name",
+    "enterName": "Enter new name",
+    "changeLogin": "Change user login",
+    "enterLogin": "Enter new login",
+    "changePassword": "Change user password",
+    "enterPassword": "Enter new password",
+    "deleteUser": "Delete user profile",
+    "attention": "Here you can delete your profile",
+    "deleteBtn": "Delete"
   }
 }

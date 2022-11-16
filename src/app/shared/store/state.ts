@@ -3,6 +3,8 @@ export interface AppState {
   apiResponseMessage: string;
   token: string;
   userId: string;
+  userName: string;
+  userLogin: string;
   isLogin: boolean;
   currentBoardId: string;
 }
@@ -12,6 +14,8 @@ export const initialState: Readonly<AppState> = {
   apiResponseMessage: '',
   token: '',
   userId: '',
+  userName: '',
+  userLogin: '',
   isLogin: false,
   currentBoardId: '',
 };

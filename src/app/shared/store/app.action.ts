@@ -8,7 +8,12 @@ export const setAPIStatus = createAction(
 
 export const setUserData = createAction(
   '[AUTH] set user data',
-  props<{ token: string; userId: string }>()
+  props<{
+    token: string;
+    userId: string;
+    userName: string;
+    userLogin: string;
+  }>()
 );
 
 export const setCurrentBoard = createAction(

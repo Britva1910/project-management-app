@@ -18,6 +18,10 @@ import { ModalConfirmComponent } from './shared/components/modal-confirm/modal-c
 import { ModalService } from './dialog/service/modal-prompt.service';
 import { TranslocoRootModule } from './transloco-root.module';
 import { UrlInterceptor } from './shared/interceptors/url.interceptor';
+import { EditProfileComponent } from './shared/components/edit-profile/edit-profile.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DialogModule } from './dialog/dialog.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,7 @@ import { UrlInterceptor } from './shared/interceptors/url.interceptor';
     HeaderComponent,
     FooterComponent,
     ModalConfirmComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +46,10 @@ import { UrlInterceptor } from './shared/interceptors/url.interceptor';
     BrowserAnimationsModule,
     MatButtonModule,
     TranslocoRootModule,
+    MatExpansionModule,
+    FormsModule,
+    ReactiveFormsModule,
+    DialogModule,
   ],
   providers: [
     ModalService,

@@ -2,9 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundPagesComponent } from './shared/components/not-found-pages/not-found-pages.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { EditProfileComponent } from './shared/components/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
+  {
+    path: 'edit-profile',
+    component: EditProfileComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'welcome',
     loadChildren: () =>

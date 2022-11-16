@@ -32,3 +32,13 @@ export const selectIsLogin = createSelector(
   selectAppState,
   (state: AppState) => state.isLogin
 );
+
+export const selectUserData = createSelector(
+  selectAppState,
+  (state: AppState) => {
+    return {
+      userName: state.userName,
+      userLogin: state.userLogin,
+    };
+  }
+);
