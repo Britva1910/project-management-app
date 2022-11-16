@@ -20,8 +20,6 @@ import { TranslocoRootModule } from './transloco-root.module';
 import { UrlInterceptor } from './shared/interceptors/url.interceptor';
 import { EditProfileComponent } from './shared/components/edit-profile/edit-profile.component';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogModule } from './dialog/dialog.module';
 
@@ -49,8 +47,6 @@ import { DialogModule } from './dialog/dialog.module';
     MatButtonModule,
     TranslocoRootModule,
     MatExpansionModule,
-    MatIconModule,
-    MatInputModule,
     FormsModule,
     ReactiveFormsModule,
     DialogModule,
