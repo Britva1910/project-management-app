@@ -4,22 +4,28 @@
       <img [src]="logoSource" class="header__logo" alt="logo">
     </a>
     <div class="header__nav" *ngIf="headerNavigation">
-      <a href="#">{{t('header.boardsBtn')}}</a>
-      <a routerLink="/edit-profile">{{t('header.profileBtn')}}</a>
+      <a class="header__nav-txt" href="#">{{t('header.boardsBtn')}}</a>
+      <a class="header__nav-txt" routerLink="/edit-profile">{{t('header.profileBtn')}}</a>
+
+     <a class="header__nav-icon" href="#"><img class="header__nav-img"  src="./../../../../assets/icons/collection.png" alt="icon"></a>
+     <a class="header__nav-icon" routerLink="/edit-profile"><img class="header__nav-img" src="./../../../../assets/icons/edit.png" alt="icon"></a>
+
     </div>
     <div class="header__right">
       <div class="header__language">
-        <button class="header__en" [ngStyle] ="{'color': languageButtonColor}" (click)="setLang('en')">EN</button>
+        <button class="header__en" [ngStyle] ="{'color': languageButtonColor}" (click)="setLang('en')">En</button>
         <span [ngStyle] ="{'color': languageButtonColor}">/</span>
-        <button class="header__ru" [ngStyle] ="{'color': languageButtonColor}" (click)="setLang('ru')">RU</button>
+        <button class="header__ru" [ngStyle] ="{'color': languageButtonColor}" (click)="setLang('ru')">Ru</button>
       </div>
       <div class="header__buttons" *ngIf="headerButtons">
         <button mat-raised-button routerLink="/auth/signup">{{t('header.singUpBtn')}}</button>
         <button mat-raised-button routerLink="/auth/login">{{t('header.logInBtn')}}</button>
       </div>
-      <div class="header__buttons" *ngIf="!headerButtons">
-        <img src="../../../../assets/icons/login-man.svg" alt="login-man">
-        <button mat-raised-button (click)="logOut()">{{t('header.logInOut')}}</button>
+      <div class="header__button" *ngIf="!headerButtons">
+        <button class="header__button-logo" mat-raised-button (click)="logOut()">
+          <img class="header__button-icon" src="../../../../assets/icons/login-man.svg" alt="login-man">
+          {{t('header.logInOut')}}
+        </button>
       </div>
     </div>
   </div>

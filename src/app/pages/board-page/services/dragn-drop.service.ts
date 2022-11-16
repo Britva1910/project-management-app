@@ -15,6 +15,7 @@ import { invokeBoardAPI } from './../store/board.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LocalStorageService } from './../../../shared/services/local-storage-service/local-storage.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable()
 export class DragnDropService {
   constructor(
@@ -25,6 +26,16 @@ export class DragnDropService {
     private localStorageService: LocalStorageService,
     private spinnerService: NgxSpinnerService
   ) {}
+
+  private isDisabledDrop$ = new BehaviorSubject<boolean>(false);
+
+  public setIsDisabledDrop$(value: boolean) {
+    this.isDisabledDrop$.next(value);
+  }
+
+  public getIsDisabledDrop$(): Observable<boolean> {
+    return this.isDisabledDrop$.asObservable();
+  }
 
   public dropColumn(newOrderColumn: number, checkCol: Column) {
     this.editTaskService.getBoardId();

@@ -54,6 +54,8 @@ export class BoardContainerComponent implements OnInit, OnDestroy {
 
   public isShow$ = this.editTaskService.showEditModal$();
 
+  public isDisabledDrop$ = this.dragnDropService.getIsDisabledDrop$();
+
   public colorIdColumn: ColumnColor = {};
 
   private isOpenEditColumn = false;
