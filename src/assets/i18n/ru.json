@@ -74,5 +74,18 @@
     "task": "Задание",
     "status": "Статус"
   },
+  "editProfile": {
+    "titleName": "Ваше текущее имя:",
+    "titleLogin": "Ваш текущий логин:",
+    "changeName": "Изменить имя",
+    "enterName": "Введите новое имя",
+    "changeLogin": "Изменить логин",
+    "enterLogin": "Введите новый логин",
+    "changePassword": "Изменить пароль",
+    "enterPassword": "Введите новый пароль",
+    "deleteUser": "Удалить данные пользователя",
+    "attention": "Здесь вы можете удалить все ваши данные",
+    "deleteBtn": "Удалить"
+  },
   "spinner": "Загрузка"
 }
