@@ -4,11 +4,11 @@
       <img src="./assets/icons/user-image-png.png" />
       <div class="user-data">
         <h3 class="user-name">
-          Your current name:
+          {{ t("editProfile.titleName") }}
           <span>{{ currentUserData.name }}</span>
         </h3>
         <h3 class="user-login">
-          Your current login:
+          {{ t("editProfile.titleLogin") }}
           <span>{{ currentUserData.login }}</span>
         </h3>
       </div>
@@ -17,10 +17,12 @@
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title> Change user name </mat-panel-title>
+            <mat-panel-title>
+              {{ t("editProfile.changeName") }}
+            </mat-panel-title>
           </mat-expansion-panel-header>
           <mat-form-field appearance="fill">
-            <mat-label>Enter new name</mat-label>
+            <mat-label>{{ t("editProfile.enterName") }}</mat-label>
             <input
               matInput
               type="text"
@@ -53,16 +55,18 @@
               [disabled]="!name.valid"
               (click)="changeUserName()"
             >
-              Submit
+              {{ t("forms.btnSubmit") }}
             </button>
           </mat-action-row>
         </mat-expansion-panel>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title> Change user login </mat-panel-title>
+            <mat-panel-title>
+              {{ t("editProfile.changeLogin") }}
+            </mat-panel-title>
           </mat-expansion-panel-header>
           <mat-form-field appearance="fill">
-            <mat-label>Enter new login</mat-label>
+            <mat-label>{{ t("editProfile.enterLogin") }}</mat-label>
             <input
               matInput
               type="text"
@@ -95,16 +99,18 @@
               [disabled]="!login.valid"
               (click)="changeUserLogin()"
             >
-              Submit
+              {{ t("forms.btnSubmit") }}
             </button>
           </mat-action-row>
         </mat-expansion-panel>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title> Change user password </mat-panel-title>
+            <mat-panel-title>{{
+              t("editProfile.changePassword")
+            }}</mat-panel-title>
           </mat-expansion-panel-header>
           <mat-form-field appearance="fill">
-            <mat-label>Enter new password</mat-label>
+            <mat-label>{{ t("editProfile.enterPassword") }}</mat-label>
             <input matInput formControlName="password" />
           </mat-form-field>
           <mat-error *ngIf="password.invalid">
@@ -122,19 +128,23 @@
               [disabled]="!password.valid"
               (click)="changeUserPassword()"
             >
-              Submit
+              {{ t("forms.btnSubmit") }}
             </button>
           </mat-action-row>
         </mat-expansion-panel>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title> Delete user profile </mat-panel-title>
+            <mat-panel-title>
+              {{ t("editProfile.deleteUser") }}
+            </mat-panel-title>
           </mat-expansion-panel-header>
-          <p class="text-warning">Here you can delete your profile</p>
+          <p class="text-warning">{{ t("editProfile.attention") }}</p>
           <mat-action-row>
-            <button mat-raised-button color="warn" (click)="deleteUser()">
-              Delete
-            </button>
+            <app-app-confirm (emitConfirm)="deleteUser($event)">
+              <button mat-raised-button color="warn">
+                {{ t("editProfile.deleteBtn") }}
+              </button>
+            </app-app-confirm>
           </mat-action-row>
         </mat-expansion-panel>
       </mat-accordion>

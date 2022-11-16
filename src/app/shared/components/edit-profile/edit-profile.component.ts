@@ -56,14 +56,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     return this.form.get('password');
   }
 
-  prevStep() {
-    console.log('1');
-  }
-
-  nextStep() {
-    console.log('2');
-  }
-
   changeUserName() {
     const newUserData = Object.assign(this.currentUserData);
 
@@ -92,8 +84,10 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.editProfile.changeUserData(newUserData).subscribe();
   }
 
-  deleteUser() {
-    this.editProfile.deleteUser();
+  deleteUser(event: any) {
+    if (event.clicked) {
+      this.editProfile.deleteUser();
+    }
   }
 
   ngOnDestroy() {
