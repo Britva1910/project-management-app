@@ -1,23 +1,16 @@
-$large: (min-width: 1280px);
-$medium: (min-width: 992px) and (max-width: 1199px);
-$tablet: (min-width: 768px) and (max-width: 991px);
-$small:  (min-width: 480px) and (max-width: 767px);
-$mobile: (min-width: 320px) and (max-width: 479px);
-
-
 $mq-desktop: 1680px;
 $mq-laptop: 1280px;
 $mq-tablet: 768px;
 $mq-small: 480px;
 $mq-mobile: 320px;
 
-//@import "breakpoint";
+/*
+ ИСПОЛЬЗУЕМ:
+ @import "breakpoint";
 
 @media screen and (min-width: $mq-laptop) {
-
 }
 
 @media screen and (max-width: $mq-tablet) {
-
 }
 
