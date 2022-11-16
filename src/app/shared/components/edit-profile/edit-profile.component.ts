@@ -92,6 +92,10 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.editProfile.changeUserData(newUserData).subscribe();
   }
 
+  deleteUser() {
+    this.editProfile.deleteUser();
+  }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
   }

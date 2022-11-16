@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { selectUserData } from '../../../shared/store/app.selector';
 import { LocalStorageService } from '../../../shared/services/local-storage-service/local-storage.service';
 import { UpdateUserRequestBody } from '../../../shared/models/interfaces/interfaces-board';
+//import {LoginService} from "../../auth-page/services/login.service";
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class EditProfileService {
   constructor(
     private store: Store,
     private userDataService: UserDataService,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService //private loginService: LoginService
   ) {
     this.currentUserId = this.localStorage
       .getFromLocalStorage('userId')
@@ -29,5 +30,12 @@ export class EditProfileService {
 
   changeUserData(newUserData: UpdateUserRequestBody) {
     return this.userDataService.updateUser(this.currentUserId, newUserData);
+  }
+
+  deleteUser() {
+    /*this.userDataService.deleteUser(this.currentUserId).subscribe(() => {
+      this.loginService.logOut();
+    })*/
+    console.log('delete user');
   }
 }
