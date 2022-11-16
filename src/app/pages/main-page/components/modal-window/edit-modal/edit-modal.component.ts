@@ -30,19 +30,20 @@ export class EditModalComponent implements OnInit {
   }
 
   edit() {
-    this.boardsDataService
-      .updateBoard(this.id, this.editForm.value)
-      .subscribe((item) => {
-        if (item) {
-          this.boardsDataService.getAllBoards().subscribe({
-            next: (data: OneBoard[]) => {
-              this.mainPageService.allBoards.next(data);
-            },
-          });
-        }
-      });
-
-    this.cancel();
+    if (this.editForm.valid) {
+      this.boardsDataService
+        .updateBoard(this.id, this.editForm.value)
+        .subscribe((item) => {
+          if (item) {
+            this.boardsDataService.getAllBoards().subscribe({
+              next: (data: OneBoard[]) => {
+                this.mainPageService.setAllBoards$(data);
+              },
+            });
+          }
+        });
+      this.cancel();
+    }
   }
 
   cancel() {

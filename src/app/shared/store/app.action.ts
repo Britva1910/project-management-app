@@ -15,3 +15,8 @@ export const setUserData = createAction(
     userLogin: string;
   }>()
 );
+
+export const setCurrentBoard = createAction(
+  '[BOARD] set current board',
+  props<{ id: string }>()
+);
