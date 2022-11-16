@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthDataService } from '../../../../shared/services/auth-data-service/auth-data.service';
 import { LoginService } from '../../services/login.service';
 import { LocalStorageService } from '../../../../shared/services/local-storage-service/local-storage.service';
-// import { Token } from '../../../../shared/models/auth-models';
 
 @Component({
   selector: 'app-login',

@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Observable } from 'rxjs';
 import { User } from './../../../shared/models/interfaces/interfaces-board';
 import { UserDataService } from './../../../shared/services/user-data-service/user-data.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { saturation } from './../../../shared/constant/color';
 import { colorGrey } from 'src/app/shared/constant/color';
+import { invokeBoardAPI } from './../store/board.actions';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class UserBoardService {
-  constructor(private userDataService: UserDataService) {}
-
-  private isShowModal$ = new BehaviorSubject<boolean>(false);
+  constructor(private userDataService: UserDataService, private store: Store) {}
 
   public allUsers: Array<User> = [];
 
@@ -29,18 +27,6 @@ export class UserBoardService {
     }
   }
 
-  public getIsShowModal$(): Observable<boolean> {
-    return this.isShowModal$.asObservable();
-  }
-
-  public openEditModal$() {
-    this.isShowModal$.next(true);
-  }
-
-  public closeEditModal$() {
-    this.isShowModal$.next(false);
-  }
-
   public getAllUsers() {
     this.userDataService.getAllUsers().subscribe({
       next: (users) => {
@@ -48,6 +34,7 @@ export class UserBoardService {
         for (let user of this.allUsers) {
           user.color = this.randomColor(saturation);
         }
+        this.store.dispatch(invokeBoardAPI());
       },
       error: (error: HttpErrorResponse) =>
         console.log(`Error - ${error.error.message}`),

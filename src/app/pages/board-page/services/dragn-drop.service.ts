@@ -71,8 +71,11 @@ export class DragnDropService {
   public dropTasksBetweenColumn(
     newOrderTask: number,
     idColumnNew: string,
-    checkTask: Tasks
+    checkTask: Tasks,
+    oneClass: string
   ) {
+    const el = document.getElementsByClassName(oneClass)[0];
+    el.remove();
     this.editTaskService.getBoardId();
     const idBoard: string = this.editTaskService.checkIdBoard;
     const idColumnPrev: string = this.editTaskService.getIdColByidTasks(
@@ -88,23 +91,23 @@ export class DragnDropService {
       userId: userId,
     };
     this.tasksDataService
-      .deleteTask(idBoard, idColumnPrev, checkTask.id)
+      .createTask(idBoard, idColumnNew, bodyReqCreate)
       .subscribe({
-        next: () => {
+        next: (res: CreateTaskResponse) => {
+          const bodyReqUpdate: UpdateOneTaskBody = {
+            title: res.title,
+            order: newOrderTask,
+            description: res.description,
+            userId: res.userId,
+            boardId: idBoard,
+            columnId: idColumnNew,
+          };
           this.tasksDataService
-            .createTask(idBoard, idColumnNew, bodyReqCreate)
+            .updateTask(idBoard, idColumnNew, res.id, bodyReqUpdate)
             .subscribe({
-              next: (res: CreateTaskResponse) => {
-                const bodyReqUpdate: UpdateOneTaskBody = {
-                  title: res.title,
-                  order: newOrderTask,
-                  description: res.description,
-                  userId: res.userId,
-                  boardId: idBoard,
-                  columnId: idColumnNew,
-                };
+              next: () => {
                 this.tasksDataService
-                  .updateTask(idBoard, idColumnNew, res.id, bodyReqUpdate)
+                  .deleteTask(idBoard, idColumnPrev, checkTask.id)
                   .subscribe({
                     next: () => {
                       this.store.dispatch(invokeBoardAPI());

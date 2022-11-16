@@ -70,7 +70,7 @@ export class EditTaskService {
   public setAllColumn$(arrColumn: Column[]) {
     this.allColumn$.next([...arrColumn]);
     this.allColumn$.subscribe((arrCol) => {
-      this.arrColumns = arrCol;
+      this.arrColumns = [...arrCol];
       this.createMapUser();
     });
   }
@@ -264,6 +264,5 @@ export class EditTaskService {
     }
     this.arrayUserTasks = [...Array.from(this.map_Users_Tasks)];
     this.arrayUserTasks$.next([...Array.from(this.map_Users_Tasks)]);
-    console.log(this.arrayUserTasks);
   }
 }

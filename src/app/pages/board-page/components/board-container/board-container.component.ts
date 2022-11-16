@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   ColumnColor,
   Tasks,
@@ -7,7 +7,7 @@ import {
   UpdateColumnBody,
 } from './../../../../shared/models/interfaces/interfaces-board';
 
-import { CountFiledFormService } from '../../services/modal-prompt.cervice';
+import { ModalService } from '../../../../dialog/service/modal-prompt.service';
 import { UserBoardService } from './../../services/user-board.service';
 import {
   CdkDragDrop,
@@ -17,33 +17,42 @@ import {
 import { Store } from '@ngrx/store';
 import { selectColumnsBoard } from './../../store/board.selector';
 import { EditTaskService } from './../../services/edit-task.service';
-import { ColumnDataService } from './../../../../shared/services/colums-data-service/column-data.service';
 import { DragnDropService } from './../../services/dragn-drop.service';
 import { LocalStorageService } from './../../../../shared/services/local-storage-service/local-storage.service';
+import { TranslocoService } from '@ngneat/transloco';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-board-container',
   templateUrl: './board-container.component.html',
   styleUrls: ['./board-container.component.scss'],
 })
-export class BoardContainerComponent implements OnInit {
+export class BoardContainerComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
+
   constructor(
-    private countFiledFormService: CountFiledFormService,
+    private countFiledFormService: ModalService,
     private editTaskService: EditTaskService,
-    private columnDataService: ColumnDataService,
     private store: Store,
     private dragnDropService: DragnDropService,
     public userBoardService: UserBoardService,
-    private localStorageService: LocalStorageService
-  ) {}
+    private localStorageService: LocalStorageService,
+    private translocoService: TranslocoService
+  ) {
+    this.subscription = translocoService.langChanges$.subscribe((lang) => {
+      if (lang === 'en') {
+        this.data = 'Delete column?';
+      } else {
+        this.data = 'Удалить клонку?';
+      }
+    });
+  }
 
   public data = 'Delete column?';
 
   public columns$ = this.editTaskService.getAllColumn$();
 
   public isShow$ = this.editTaskService.showEditModal$();
-
-  //public columnsS = this.store.select(selectColumnsBoard);
 
   public colorIdColumn: ColumnColor = {};
 
@@ -55,7 +64,10 @@ export class BoardContainerComponent implements OnInit {
     this.store
       .select(selectColumnsBoard)
       // eslint-disable-next-line @ngrx/no-store-subscription
-      .subscribe((columns) => this.editTaskService.setAllColumn$(columns));
+      .subscribe((columns) => {
+        this.editTaskService.setAllColumn$(columns);
+      });
+
     this.colorIdColumn =
       this.localStorageService.getColorCulumnLocalStorage('colorColumn') || {};
   }
@@ -109,6 +121,8 @@ export class BoardContainerComponent implements OnInit {
   }
 
   public drop(event: CdkDragDrop<Tasks[]>, idColumn: string) {
+    const classesCheckElement = event.item.element.nativeElement.className;
+    const oneClass = classesCheckElement.split(' ')[1];
     if (event.previousContainer === event.container) {
       moveItemInArray(
         Array.from(event.container.data),
@@ -131,7 +145,8 @@ export class BoardContainerComponent implements OnInit {
       this.dragnDropService.dropTasksBetweenColumn(
         nextOrder,
         idColumn,
-        checkTask
+        checkTask,
+        oneClass
       );
     }
   }
@@ -154,5 +169,9 @@ export class BoardContainerComponent implements OnInit {
   public colorChange(color: string, columnId: string) {
     this.colorIdColumn[columnId] = color;
     this.localStorageService.saveColorCulumnLocalStorage(this.colorIdColumn);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
