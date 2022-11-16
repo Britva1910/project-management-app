@@ -10,8 +10,8 @@ import { SearchPipe } from 'src/app/shared/pipes/search/search.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SortPipe } from 'src/app/shared/pipes/sort/sort.pipe';
 import { MainPageService } from './services/main-page.service';
-import { EditModalComponent } from './components/modal-window/edit-modal/edit-modal.component';
 import { DialogModule } from './../../dialog/dialog.module';
+import { EditModalComponent } from './components/edit-modal/edit-modal.component';
 const routes: Routes = [{ path: '', component: MainPageComponent }];
 @NgModule({
   declarations: [

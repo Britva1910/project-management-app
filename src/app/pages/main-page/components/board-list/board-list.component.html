@@ -11,11 +11,11 @@
 
     </li>
     <li class="list__item" *ngFor="let board of (boards$ | async)! | search: searchText | sort: sortOrder">
-      <div class="list__outer" (click)="sendBoardId($event, board.id)">
+      <div class="list__outer" (click)="sendBoardId(board.id)">
         <div class="list__inner">
           <h3 class="list__title">{{ board.title }}</h3>
           <div class="list__buttons">
-            <button mat-icon-button class="list__button" type="button">
+            <button mat-icon-button appStopPropagation (click)="openEditModal(board.id)" class="list__button" type="button">
               <mat-icon class="list__icon">edit</mat-icon>
             </button>
             <app-app-confirm [data]="data" appStopPropagation (emitConfirm)="deleteBoard($event, board.id)">
