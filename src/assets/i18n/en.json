@@ -19,7 +19,8 @@
     "profileBtn": "Edit profile",
     "singUpBtn": "Sign Up",
     "logInBtn": "Log In",
-    "logInOut": "Log Out"
+    "logInOut": "Log Out",
+    "menu": "Menu"
   },
   "404-message": "Sorry, smth went wrong((",
   "welcome": {

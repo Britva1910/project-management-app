@@ -7,7 +7,7 @@
     <p class="title-today">{{today | date }}</p>
   </div>
   <h3 class="board-page__description">{{description$ | async}}</h3>
-  <!--<img class="board-page__img" src="../../../assets/img/members.png" alt="icon">-->
+
   <div class="container-label-user">
     <span *ngFor="let user of usersTask$ | async" class="name-user" [ngStyle]="{background: colorUser(user[0])}"
       (click)="setCheckUser(user[0])">{{user[0]}}</span>

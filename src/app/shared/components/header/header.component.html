@@ -6,13 +6,19 @@
     <div class="header__nav" *ngIf="headerNavigation">
       <a class="header__nav-txt" href="#">{{t('header.boardsBtn')}}</a>
       <a class="header__nav-txt" routerLink="/edit-profile">{{t('header.profileBtn')}}</a>
-
-     <a class="header__nav-icon" href="#"><img class="header__nav-img"  src="./../../../../assets/icons/collection.png" alt="icon"></a>
-     <a class="header__nav-icon" routerLink="/edit-profile"><img class="header__nav-img" src="./../../../../assets/icons/edit.png" alt="icon"></a>
-
     </div>
+    <div class="header__nav-small" *ngIf="headerNavigation">
+    <button class="header__nav-menu" mat-button [matMenuTriggerFor]="menu">{{t('header.menu')}}</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="#">{{t('header.boardsBtn')}}</button>
+      <button mat-menu-item routerLink="/edit-profile">{{t('header.profileBtn')}}</button>
+    </mat-menu>
+  </div>
+
     <div class="header__right">
       <div class="header__language">
+
+
         <button class="header__en" [ngStyle] ="{'color': languageButtonColor}" (click)="setLang('en')">En</button>
         <span [ngStyle] ="{'color': languageButtonColor}">/</span>
         <button class="header__ru" [ngStyle] ="{'color': languageButtonColor}" (click)="setLang('ru')">Ru</button>
