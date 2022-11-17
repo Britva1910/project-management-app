@@ -24,7 +24,7 @@ export class EditTaskComponent {
     columnId: this.editTaskService.checkIdColumn,
   };
 
-  updateTask() {
+  public updateTask() {
     if (this.taskForm.title && this.taskForm.description) {
       const bodyRequest: UpdateOneTaskBody = this.taskForm;
       this.editTaskService.updateTask(bodyRequest);
