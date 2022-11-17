@@ -100,13 +100,10 @@ export class DragnDropService {
       this.editTaskService.arrColumns,
       checkTask.id
     );
-    const userId: string = this.localStorageService
-      .getFromLocalStorage('userId')
-      .toString();
     const bodyReqCreate: CreateTaskBody = {
       title: checkTask.title,
       description: checkTask.description,
-      userId: userId,
+      userId: checkTask.userId,
     };
     this.tasksDataService
       .createTask(idBoard, idColumnNew, bodyReqCreate)
