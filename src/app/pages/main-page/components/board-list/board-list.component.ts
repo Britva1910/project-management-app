@@ -78,13 +78,13 @@ export class BoardListComponent implements OnInit, OnDestroy {
     this.modalService.setTwoFiledForm();
   }
 
-  public sendBoardId(event: MouseEvent, id: string) {
-    this.mainPageService.saveIdCurrentBoard(id);
-    const target = event.target as HTMLElement;
+  public openEditModal(id: string) {
+    this.mainPageService.editModalStatus.next(true);
     this.mainPageService.boardId.next(id);
-    if (target.textContent === 'edit') {
-      this.mainPageService.editModalStatus.next(true);
-    }
+  }
+
+  public sendBoardId(id: string) {
+    this.mainPageService.saveIdCurrentBoard(id);
   }
 
   ngOnDestroy() {

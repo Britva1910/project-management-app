@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 import { MainPageService } from '../../services/main-page.service';
 
 @Component({
@@ -7,27 +8,52 @@ import { MainPageService } from '../../services/main-page.service';
   styleUrls: ['./sort-bar.component.scss'],
 })
 export class SortBarComponent implements OnInit, OnDestroy {
-  sortOrder: string;
+  public sortOrder: string;
 
-  rotateIcon: boolean;
+  public rotateIcon: boolean;
 
-  constructor(private mainPageService: MainPageService) {}
+  constructor(
+    private mainPageService: MainPageService,
+    private translocoService: TranslocoService
+  ) {
+    translocoService.langChanges$.subscribe((lang) => {
+      if (lang === 'en') {
+        this.sortOrder = 'default';
+      } else {
+        this.sortOrder = 'умолчанию';
+      }
+    });
+  }
 
   ngOnInit() {
     this.mainPageService.sortOrder.subscribe((data) => (this.sortOrder = data));
   }
 
-  sort() {
-    if (this.sortOrder === 'Default') {
-      this.mainPageService.sortOrder.next('A-Z');
-      this.rotateIcon = false;
-    } else if (this.sortOrder === 'A-Z') {
-      this.mainPageService.sortOrder.next('Z-A');
-      this.rotateIcon = true;
-    } else if (this.sortOrder === 'Z-A') {
-      this.mainPageService.sortOrder.next('A-Z');
-      this.rotateIcon = false;
-    }
+  public sort() {
+    this.translocoService.langChanges$.subscribe((lang) => {
+      if (this.sortOrder === 'default' || this.sortOrder === 'умолчанию') {
+        if (lang === 'en') {
+          this.mainPageService.sortOrder.next('A-Z');
+        } else {
+          this.mainPageService.sortOrder.next('А-Я');
+        }
+        this.rotateIcon = false;
+      } else if (this.sortOrder === 'A-Z' || this.sortOrder === 'А-Я') {
+        if (lang === 'en') {
+          this.mainPageService.sortOrder.next('Z-A');
+        } else {
+          this.mainPageService.sortOrder.next('Я-А');
+        }
+        this.rotateIcon = true;
+      } else if (this.sortOrder === 'Z-A' || this.sortOrder === 'Я-А') {
+        if (lang === 'en') {
+          this.mainPageService.sortOrder.next('A-Z');
+        } else {
+          this.mainPageService.sortOrder.next('А-Я');
+        }
+        this.rotateIcon = false;
+      }
+    });
   }
 
   ngOnDestroy() {
