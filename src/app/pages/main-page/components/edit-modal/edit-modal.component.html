@@ -13,8 +13,23 @@
             <textarea matInput [(ngModel)]="description" [ngModelOptions]="{standalone: true}" class="area" required></textarea>
           </mat-form-field>
           <div class="form__buttons">
-            <button type="button" mat-raised-button class="btn-close btn"(click)="cancel()">{{ t('board.btn.cancel') }}</button>
-            <button type="button" mat-raised-button [disabled]="title === '' || description === ''"  class="btn" color="primary" (click)="edit()">{{ t('forms.save') }}</button>
+            <button
+              type="button"
+              mat-raised-button
+              class="btn-close btn"
+              (click)="cancel()"
+            >
+              {{ t('board.btn.cancel') }}
+            </button>
+            <button
+              type="button"
+              mat-raised-button
+              [disabled]="title === '' || description === ''"
+              class="btn" color="primary"
+              (click)="edit()"
+            >
+              {{ t('forms.save') }}
+            </button>
           </div>
         </form>
       </div>

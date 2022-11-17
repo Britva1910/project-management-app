@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
+import { Subscription } from 'rxjs';
 import { MainPageService } from '../../services/main-page.service';
 
 @Component({
@@ -8,6 +9,8 @@ import { MainPageService } from '../../services/main-page.service';
   styleUrls: ['./sort-bar.component.scss'],
 })
 export class SortBarComponent implements OnInit, OnDestroy {
+  private subscription: Subscription[] = [];
+
   public sortOrder: string;
 
   public rotateIcon: boolean;
@@ -16,17 +19,23 @@ export class SortBarComponent implements OnInit, OnDestroy {
     private mainPageService: MainPageService,
     private translocoService: TranslocoService
   ) {
-    translocoService.langChanges$.subscribe((lang) => {
-      if (lang === 'en') {
-        this.sortOrder = 'default';
-      } else {
-        this.sortOrder = 'умолчанию';
-      }
-    });
+    this.subscription.push(
+      translocoService.langChanges$.subscribe((lang) => {
+        if (lang === 'en') {
+          this.sortOrder = 'default';
+        } else {
+          this.sortOrder = 'умолчанию';
+        }
+      })
+    );
   }
 
   ngOnInit() {
-    this.mainPageService.sortOrder.subscribe((data) => (this.sortOrder = data));
+    this.subscription.push(
+      this.mainPageService.sortOrder.subscribe(
+        (data) => (this.sortOrder = data)
+      )
+    );
   }
 
   public sort() {
@@ -57,6 +66,6 @@ export class SortBarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.mainPageService.sortOrder.unsubscribe();
+    this.subscription.forEach((subs) => subs.unsubscribe());
   }
 }
