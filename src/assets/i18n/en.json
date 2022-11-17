@@ -86,5 +86,18 @@
     "deleteUser": "Delete user profile",
     "attention": "Here you can delete your profile",
     "deleteBtn": "Delete"
+  },
+  "main": {
+    "title": "All projects",
+    "subtitle": "My boards",
+    "search-bar": {
+      "search": "search"
+    },
+    "sort-bar": {
+      "sort": "Sort by"
+    },
+    "board-list": {
+      "board": "Create new board"
+    }
   }
 }

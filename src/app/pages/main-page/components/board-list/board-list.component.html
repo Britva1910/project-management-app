@@ -1,14 +1,12 @@
-<article class="list">
+<article class="list" *transloco="let t">
   <ul class="list__wrapper">
     <li class="list__item">
-
       <app-dialog (emitText)="addNewBoard($event)" appStopPropagation (click)="setTwoFieldForm()">
       <div class="list__outer first" >
-        <h2 class="list__subtitle">Create new board</h2>
+        <h2 class="list__subtitle">{{ t('main.board-list.board') }}</h2>
         <img src="../../../../../assets/img/Frame 41.png" alt="create" class="list__img">
       </div>
       </app-dialog>
-
     </li>
     <li class="list__item" *ngFor="let board of (boards$ | async)! | search: searchText | sort: sortOrder">
       <div class="list__outer" (click)="sendBoardId(board.id)">

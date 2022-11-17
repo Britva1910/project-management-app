@@ -7,7 +7,7 @@ import { MainPageService } from '../../services/main-page.service';
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent {
-  searchText = '';
+  public searchText = '';
 
   constructor(private mainPageService: MainPageService) {}
 

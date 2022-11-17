@@ -9,11 +9,11 @@ import { OneBoard } from 'src/app/shared/models/interfaces/interfaces-board';
   styleUrls: ['./edit-modal.component.scss'],
 })
 export class EditModalComponent implements OnInit {
-  title: string;
+  public title: string;
 
-  description: string;
+  public description: string;
 
-  id: string;
+  public id: string;
 
   constructor(
     private boardsDataService: BoardsDataService,
@@ -48,7 +48,7 @@ export class EditModalComponent implements OnInit {
     this.cancel();
   }
 
-  cancel() {
+  public cancel() {
     this.mainPageService.editModalStatus.next(false);
   }
 }
