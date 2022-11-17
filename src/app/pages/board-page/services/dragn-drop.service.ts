@@ -14,7 +14,8 @@ import { Store } from '@ngrx/store';
 import { invokeBoardAPI } from './../store/board.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LocalStorageService } from './../../../shared/services/local-storage-service/local-storage.service';
-
+import { NgxSpinnerService } from 'ngx-spinner';
+import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable()
 export class DragnDropService {
   constructor(
@@ -22,8 +23,19 @@ export class DragnDropService {
     private tasksDataService: TasksDataService,
     private columnDataService: ColumnDataService,
     private editTaskService: EditTaskService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private spinnerService: NgxSpinnerService
   ) {}
+
+  private isDisabledDrop$ = new BehaviorSubject<boolean>(false);
+
+  public setIsDisabledDrop$(value: boolean) {
+    this.isDisabledDrop$.next(value);
+  }
+
+  public getIsDisabledDrop$(): Observable<boolean> {
+    return this.isDisabledDrop$.asObservable();
+  }
 
   public dropColumn(newOrderColumn: number, checkCol: Column) {
     this.editTaskService.getBoardId();
@@ -32,7 +44,11 @@ export class DragnDropService {
       order: newOrderColumn,
     };
     this.columnDataService
-      .updateColumn(this.editTaskService.checkIdBoard, checkCol.id, bodyRequest)
+      .updateColumn(
+        this.editTaskService.getValCheckIdBoard$(),
+        checkCol.id,
+        bodyRequest
+      )
       .subscribe({
         next: () => {
           this.store.dispatch(invokeBoardAPI());
@@ -43,18 +59,19 @@ export class DragnDropService {
   }
 
   public dropTasks(newOrderTask: number, idColumn: string, checkTask: Tasks) {
+    this.spinnerService.show();
     this.editTaskService.getBoardId();
     const bodyRequest: UpdateOneTaskBody = {
       title: checkTask.title,
       order: newOrderTask,
       description: checkTask.description,
       userId: checkTask.userId,
-      boardId: this.editTaskService.checkIdBoard,
+      boardId: this.editTaskService.getValCheckIdBoard$(),
       columnId: idColumn,
     };
     this.tasksDataService
       .updateTask(
-        this.editTaskService.checkIdBoard,
+        this.editTaskService.getValCheckIdBoard$(),
         idColumn,
         checkTask.id,
         bodyRequest
@@ -74,10 +91,11 @@ export class DragnDropService {
     checkTask: Tasks,
     oneClass: string
   ) {
+    this.spinnerService.show();
     const el = document.getElementsByClassName(oneClass)[0];
     el.remove();
     this.editTaskService.getBoardId();
-    const idBoard: string = this.editTaskService.checkIdBoard;
+    const idBoard: string = this.editTaskService.getValCheckIdBoard$();
     const idColumnPrev: string = this.editTaskService.getIdColByidTasks(
       this.editTaskService.arrColumns,
       checkTask.id

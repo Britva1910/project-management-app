@@ -60,4 +60,12 @@ export class UserBoardService {
   //    Math.round(Math.random() * 255) +
   //    ')'
   //  );
+
+  public stopScroll() {
+    document.body.style.overflowY = 'hidden';
+  }
+
+  public startScroll() {
+    document.body.style.overflowY = 'auto';
+  }
 }

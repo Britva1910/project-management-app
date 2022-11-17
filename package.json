@@ -27,6 +27,7 @@
     "@ngrx/store": "^14.3.2",
     "@ngrx/store-devtools": "^14.3.2",
     "bootstrap": "^5.2.2",
+    "ngx-spinner": "^14.0.0",
     "rxjs": "~7.5.0",
     "simple-crypto-js": "^3.0.1",
     "source-map-support": "^0.5.21",

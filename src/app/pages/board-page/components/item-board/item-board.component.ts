@@ -12,6 +12,7 @@ import { colorGrey } from 'src/app/shared/constant/color';
 import { TranslocoService } from '@ngneat/transloco';
 import { Subscription } from 'rxjs';
 import { ModalService } from './../../../../dialog/service/modal-prompt.service';
+import { DragnDropService } from './../../services/dragn-drop.service';
 
 @Component({
   selector: 'app-item-board',
@@ -25,7 +26,8 @@ export class ItemBoardComponent implements OnDestroy {
     private localStorageService: LocalStorageService,
     private userBoardService: UserBoardService,
     private translocoService: TranslocoService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private dragnDropService: DragnDropService
   ) {
     this.subscription = translocoService.langChanges$.subscribe((lang) => {
       if (lang === 'en') {
@@ -58,6 +60,7 @@ export class ItemBoardComponent implements OnDestroy {
   }
 
   public editTask(idTask: string) {
+    this.dragnDropService.setIsDisabledDrop$(true);
     this.emitEditTask.emit(idTask);
   }
 

@@ -18,7 +18,7 @@ import { invokeBoardAPI } from './../store/board.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ColumnDataService } from './../../../shared/services/colums-data-service/column-data.service';
 import { UserBoardService } from './user-board.service';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 @Injectable()
 export class EditTaskService {
   constructor(
@@ -26,14 +26,27 @@ export class EditTaskService {
     private localStorageService: LocalStorageService,
     private tasksDataService: TasksDataService,
     private columnDataService: ColumnDataService,
-    private userBoardService: UserBoardService
+    private userBoardService: UserBoardService,
+    private spinnerService: NgxSpinnerService
   ) {}
 
   public checkIdTask = '';
 
   public checkIdColumn = '';
 
-  public checkIdBoard = '';
+  private checkIdBoard$ = new BehaviorSubject<string>('');
+
+  public getcheckIdBoard$() {
+    return this.checkIdBoard$.asObservable();
+  }
+
+  public getValCheckIdBoard$() {
+    return this.checkIdBoard$.getValue();
+  }
+
+  public setcheckIdBoard$(data: string) {
+    this.checkIdBoard$.next(data);
+  }
 
   public checkColumn!: Column;
 
@@ -72,6 +85,7 @@ export class EditTaskService {
     this.allColumn$.subscribe((arrCol) => {
       this.arrColumns = [...arrCol];
       this.createMapUser();
+      this.spinnerService.hide();
     });
   }
 
@@ -102,16 +116,18 @@ export class EditTaskService {
   }
 
   public openEditModal$() {
+    this.userBoardService.stopScroll();
     this.isShowEditTaskModal$.next(true);
   }
 
   public closeEditModal$() {
+    this.userBoardService.startScroll();
     this.isShowEditTaskModal$.next(false);
   }
 
   public getBoardId() {
     let board = this.store.select(selectBoards);
-    board.subscribe((col) => (this.checkIdBoard = col.id));
+    board.subscribe((col) => this.setcheckIdBoard$(col.id));
   }
 
   private getColumnById(idColumn: string) {
@@ -134,7 +150,7 @@ export class EditTaskService {
   updateTask(bodyRequest: UpdateOneTaskBody) {
     this.tasksDataService
       .updateTask(
-        this.checkIdBoard,
+        this.getValCheckIdBoard$(),
         this.checkIdColumn,
         this.checkIdTask,
         bodyRequest
@@ -176,7 +192,7 @@ export class EditTaskService {
     userTaskData.value.userId = userId;
     const bodyRequest: CreateTaskBody = userTaskData.value;
     this.tasksDataService
-      .createTask(this.checkIdBoard, idColumn, bodyRequest)
+      .createTask(this.getValCheckIdBoard$(), idColumn, bodyRequest)
       .subscribe({
         next: () => {
           this.store.dispatch(invokeBoardAPI());
@@ -189,7 +205,7 @@ export class EditTaskService {
   public deleteTask(idTask: string, idColumn: string) {
     this.getBoardId();
     this.tasksDataService
-      .deleteTask(this.checkIdBoard, idColumn, idTask)
+      .deleteTask(this.getValCheckIdBoard$(), idColumn, idTask)
       .subscribe({
         next: () => {
           this.store.dispatch(invokeBoardAPI());
@@ -202,7 +218,7 @@ export class EditTaskService {
   public addNewColumn(newColumnTitle: { title: string }) {
     this.getBoardId();
     this.columnDataService
-      .createColumn(this.checkIdBoard, newColumnTitle)
+      .createColumn(this.getValCheckIdBoard$(), newColumnTitle)
       .subscribe({
         next: () => {
           this.store.dispatch(invokeBoardAPI());
@@ -214,18 +230,20 @@ export class EditTaskService {
 
   public deleteColumn(columnId: string) {
     this.getBoardId();
-    this.columnDataService.deleteColumn(this.checkIdBoard, columnId).subscribe({
-      next: () => {
-        this.store.dispatch(invokeBoardAPI());
-      },
-      error: (error: HttpErrorResponse) =>
-        console.log(`Error - ${error.error.message}`),
-    });
+    this.columnDataService
+      .deleteColumn(this.getValCheckIdBoard$(), columnId)
+      .subscribe({
+        next: () => {
+          this.store.dispatch(invokeBoardAPI());
+        },
+        error: (error: HttpErrorResponse) =>
+          console.log(`Error - ${error.error.message}`),
+      });
   }
 
   public updateTitleColumn(idColumn: string, bodyRequest: UpdateColumnBody) {
     this.columnDataService
-      .updateColumn(this.checkIdBoard, idColumn, bodyRequest)
+      .updateColumn(this.getValCheckIdBoard$(), idColumn, bodyRequest)
       .subscribe({
         next: () => {
           this.store.dispatch(invokeBoardAPI());

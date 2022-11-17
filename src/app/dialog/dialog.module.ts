@@ -17,6 +17,7 @@ import { MessageUserComponent } from './message-user/message-user.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTableModule } from '@angular/material/table';
 import { ClickStopPropagationDirective } from './../shared/directives/stop-propagation';
+import { MatMenuModule } from '@angular/material/menu';
 const MaterialModules = [
   MatDialogModule,
   MatButtonModule,
@@ -27,6 +28,7 @@ const MaterialModules = [
   MatCheckboxModule,
   MatChipsModule,
   MatTableModule,
+  MatMenuModule,
 ];
 @NgModule({
   declarations: [

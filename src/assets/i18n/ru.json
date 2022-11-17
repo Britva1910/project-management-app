@@ -16,10 +16,11 @@
   },
   "header": {
     "boardsBtn": "Все доски",
-    "profileBtn": "Редактировать профиль",
+    "profileBtn": "Профиль",
     "singUpBtn": "Регистрация",
     "logInBtn": "Войти",
-    "logInOut": "Выйти"
+    "logInOut": "Выйти",
+    "menu": "Meню"
   },
   "404-message": "Ой, кажется что-то пошло не так((",
   "welcome": {
@@ -99,5 +100,6 @@
     "board-list": {
       "board": "Создать новую доску"
     }
-  }
+  },
+  "spinner": "Загрузка"
 }

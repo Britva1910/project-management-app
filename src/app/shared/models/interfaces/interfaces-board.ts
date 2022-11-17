@@ -144,3 +144,7 @@ export type UsersTasksProject = Array<
 export type OneUsersTasks = [string, [{ column: string; task: string }]];
 
 export type UsersTasks = Array<{ column: string; task: string }>;
+
+export interface NgxSpinnerConfig {
+  type?: string;
+}

@@ -11,17 +11,19 @@ import { LoginService } from '../../../pages/auth-page/services/login.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  currentRoute: string;
+  public currentRoute: string;
 
-  bgColor: string;
+  public bgColor: string;
 
-  languageButtonColor: string;
+  public checkLang: string = 'en';
 
-  logoSource: string;
+  public languageButtonColor: string;
 
-  headerNavigation: boolean;
+  public logoSource: string;
 
-  headerButtons: boolean;
+  public headerNavigation: boolean;
+
+  public headerButtons: boolean;
 
   constructor(
     private router: Router,
@@ -54,11 +56,12 @@ export class HeaderComponent {
     });
   }
 
-  setLang(language: string) {
+  public setLang(language: string) {
     this.translate.setActiveLang(language);
+    this.checkLang = language;
   }
 
-  logOut() {
+  public logOut() {
     this.loginService.logOut();
   }
 }

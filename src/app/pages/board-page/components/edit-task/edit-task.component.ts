@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { EditTaskService } from './../../services/edit-task.service';
 import { TasksDataService } from './../../../../shared/services/tasks-data-service/tasks-data.service';
 import { UpdateOneTaskBody } from './../../../../shared/models/interfaces/interfaces-board';
+import { DragnDropService } from './../../services/dragn-drop.service';
 @Component({
   selector: 'app-edit-task',
   templateUrl: './edit-task.component.html',
@@ -10,7 +11,8 @@ import { UpdateOneTaskBody } from './../../../../shared/models/interfaces/interf
 export class EditTaskComponent {
   constructor(
     private editTaskService: EditTaskService,
-    private tasksDataService: TasksDataService
+    private tasksDataService: TasksDataService,
+    private dragnDropService: DragnDropService
   ) {}
 
   public taskForm = {
@@ -18,16 +20,20 @@ export class EditTaskComponent {
     order: this.editTaskService.checkTask.order,
     description: this.editTaskService.checkTask.description,
     userId: this.editTaskService.checkTask.userId,
-    boardId: this.editTaskService.checkIdBoard,
+    boardId: this.editTaskService.getValCheckIdBoard$(),
     columnId: this.editTaskService.checkIdColumn,
   };
 
-  updateTask() {
-    const bodyRequest: UpdateOneTaskBody = this.taskForm;
-    this.editTaskService.updateTask(bodyRequest);
+  public updateTask() {
+    if (this.taskForm.title && this.taskForm.description) {
+      const bodyRequest: UpdateOneTaskBody = this.taskForm;
+      this.editTaskService.updateTask(bodyRequest);
+      this.dragnDropService.setIsDisabledDrop$(false);
+    }
   }
 
   public close() {
     this.editTaskService.closeEditModal$();
+    this.dragnDropService.setIsDisabledDrop$(false);
   }
 }

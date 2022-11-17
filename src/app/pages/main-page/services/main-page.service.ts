@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import { setCurrentBoard } from './../../../shared/store/app.action';
 import { LocalStorageService } from './../../../shared/services/local-storage-service/local-storage.service';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable()
 export class MainPageService {
@@ -25,7 +26,8 @@ export class MainPageService {
     private boardsDataService: BoardsDataService,
     private store: Store,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router,
+    private spinnerService: NgxSpinnerService
   ) {}
 
   public getAllBoards$() {
@@ -82,5 +84,6 @@ export class MainPageService {
     this.store.dispatch(setCurrentBoard({ id }));
     this.localStorageService.saveInLocalStorage('currentBoard', id);
     this.router.navigate(['board', id]);
+    this.spinnerService.show();
   }
 }
