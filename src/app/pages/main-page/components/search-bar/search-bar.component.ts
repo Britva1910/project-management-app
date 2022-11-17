@@ -7,17 +7,12 @@ import { MainPageService } from '../../services/main-page.service';
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent {
-  searchText = '';
+  public searchText = '';
 
   constructor(private mainPageService: MainPageService) {}
 
-  search() {
+  public search(event: Event) {
+    this.searchText = (event.target as HTMLInputElement).value;
     this.mainPageService.searchWord.next(this.searchText);
-  }
-
-  searchByEnter(event: KeyboardEvent) {
-    if (event.code === 'Enter') {
-      this.search();
-    }
   }
 }

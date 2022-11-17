@@ -2,21 +2,19 @@
   <div class="edit__wrapper">
     <div class="edit__outer"></div>
       <div class="edit__inner">
-        <form class="form" [formGroup]="editForm">
+        <form class="form">
           <h2 class="form__title">Edit board</h2>
-
           <mat-form-field appearance="standard">
             <mat-label>Title</mat-label>
-            <input formControlName="title" type="text" matInput required/>
+            <input matInput [(ngModel)]="title" [ngModelOptions]="{standalone: true}" type="text" required/>
           </mat-form-field>
-
           <mat-form-field appearance="standard">
-            <mat-label>Description   </mat-label>
-            <textarea matInput required formControlName="description" class="area"></textarea>
+            <mat-label>Description</mat-label>
+            <textarea matInput [(ngModel)]="description" [ngModelOptions]="{standalone: true}" class="area" required></textarea>
           </mat-form-field>
           <div class="form__buttons">
             <button type="button" mat-raised-button class="btn-close btn"(click)="cancel()">Cancel</button>
-            <button type="button"  mat-raised-button class="btn" color="primary"  (click)="edit()">Save</button>
+            <button type="button" mat-raised-button [disabled]="title === '' || description === ''"  class="btn" color="primary" (click)="edit()">Save</button>
           </div>
         </form>
       </div>
