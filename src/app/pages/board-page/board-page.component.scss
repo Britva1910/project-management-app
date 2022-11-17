@@ -5,7 +5,7 @@
 
 .wrapper__board-page {
   width: 100%;
-  min-height: calc(100vh - 113px);
+  min-height: calc(100vh - 112px);
   padding: 10px 70px;
   font-family: "Poppins";
   color: $light-font-color;
@@ -26,8 +26,6 @@
 
 .board-page__title {
   @include title-page;
-  margin: 0;
-  padding: 0;
 }
 
 .board-page__description {
@@ -76,6 +74,8 @@
 .container-label-user {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
   gap: 5px;
 
   .name-user {
@@ -126,4 +126,23 @@
     margin-bottom: 2px;
     font-size: 16px;
   }
+  .container-label-user {
+    width: 60%;
+  }
+  .board-page__btn_add-column {
+    position: relative;
+    width: 100px;
+    height: 30px;
+    right: 0;
+    transform: rotate(0deg);
+    font-size: 10px;
+  }
+  .container-label-addBtn {
+    display: flex;
+    justify-content: space-between;
+  }
+  .board-page__container {
+    width: 100%;
+  }
+
 }

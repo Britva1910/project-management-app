@@ -193,6 +193,77 @@
 
 @media screen and (max-width: $mq-tablet) {
   .container-column {
-    width: 95%;
+    width: 100%;
+  }
+}
+
+@media screen and (max-height: 1400px) {
+  .container-column {
+    max-height: 78vh;
+  }
+}
+@media screen and (max-height: 1300px) {
+  .container-column {
+    max-height: 75vh;
+  }
+}
+
+@media screen and (max-height: 1200px) {
+  .container-column {
+    max-height: 72vh;
+  }
+}
+@media screen and (max-height: 1100px) {
+  .container-column {
+    max-height: 69vh;
+  }
+}
+
+@media screen and (max-height: 1000px) {
+  .container-column {
+    max-height: 67vh;
+  }
+}
+@media screen and (max-height: 900px) {
+  .container-column {
+    max-height: 65vh;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .container-column {
+    max-height: 62vh;
+  }
+}
+@media screen and (max-height: 750px) {
+  .container-column {
+    max-height: 58vh;
+  }
+}
+@media screen and (max-height: 700px) {
+  .container-column {
+    max-height: 56vh;
+  }
+}
+@media screen and (max-height: 600px) {
+  .container-column {
+    max-height: 54vh;
+  }
+}
+@media screen and (max-height: 600px) {
+  .container-column {
+    max-height: 52vh;
+  }
+}
+
+@media screen and (max-height: 550px) {
+  .container-column {
+    max-height: 47vh;
+  }
+}
+
+@media screen and (max-height: 480px) {
+  .container-column {
+    max-height: 42vh;
   }
 }
