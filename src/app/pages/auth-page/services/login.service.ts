@@ -6,6 +6,7 @@ import { setUserData } from '../../../shared/store/app.action';
 import { AuthDataService } from '../../../shared/services/auth-data-service/auth-data.service';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../../shared/services/notification-service/notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,8 @@ export class LoginService {
     private router: Router,
     private userDataService: UserDataService,
     private localStorageService: LocalStorageService,
-    private authDataService: AuthDataService
+    private authDataService: AuthDataService,
+    private notificationService: NotificationService
   ) {}
 
   isLogin(): Promise<boolean> {
@@ -39,8 +41,13 @@ export class LoginService {
           );
           resolve(true);
         },
-        error: () => {
-          resolve(false);
+        error: (error) => {
+          if (error) {
+            console.log(error);
+            if (error.statusText === 'Unauthorized') {
+              this.notificationService.showError('errorHandling.loginError');
+            }
+          }
         },
       });
     });
@@ -62,7 +69,11 @@ export class LoginService {
         );
         this.router.navigate(['/main']);
       },
-      error: (error) => console.log(`Error - ${error.error}`),
+      error: (error) => {
+        if (error.statusText === 'Forbidden') {
+          this.notificationService.showError('errorHandling.loginError');
+        }
+      },
     });
   }
 

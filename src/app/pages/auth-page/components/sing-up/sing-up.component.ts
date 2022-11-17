@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthDataService } from '../../../../shared/services/auth-data-service/auth-data.service';
 import { LoginService } from '../../services/login.service';
+import { NotificationService } from '../../../../shared/services/notification-service/notification.service';
 
 @Component({
   selector: 'app-sing-up',
@@ -22,7 +23,8 @@ export class SingUpComponent {
 
   constructor(
     private authDataService: AuthDataService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private notificationService: NotificationService
   ) {}
 
   get name() {
@@ -51,8 +53,14 @@ export class SingUpComponent {
         };
         this.loginService.logIn(userData);
       },
-      error: (err) => {
-        console.log('SingUp error' + err.message);
+      error: (error) => {
+        if (error.statusText === 'Undocumented') {
+          this.notificationService.showError('errorHandling.loginError');
+        } else if (error.statusText === 'Conflict') {
+          this.notificationService.showError('errorHandling.loginConflict');
+        } else {
+          this.notificationService.showError('errorHandling.something');
+        }
       },
     });
   }

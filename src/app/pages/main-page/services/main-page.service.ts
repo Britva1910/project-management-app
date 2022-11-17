@@ -9,6 +9,7 @@ import { setCurrentBoard } from './../../../shared/store/app.action';
 import { LocalStorageService } from './../../../shared/services/local-storage-service/local-storage.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { NotificationService } from '../../../shared/services/notification-service/notification.service';
 
 @Injectable()
 export class MainPageService {
@@ -27,7 +28,8 @@ export class MainPageService {
     private store: Store,
     private localStorageService: LocalStorageService,
     private router: Router,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
+    private notificationService: NotificationService
   ) {}
 
   public getAllBoards$() {
@@ -43,8 +45,13 @@ export class MainPageService {
       next: (data: OneBoard[]) => {
         this.allBoards$.next(data);
       },
-      error: (error: HttpErrorResponse) =>
-        console.log(`Error - ${error.error.message}`),
+      error: (error) => {
+        if (error.statusCode === 404) {
+          this.notificationService.showError('errorHandling.noBoard');
+        } else {
+          this.notificationService.showError('errorHandling.something');
+        }
+      },
     });
   }
 
@@ -55,8 +62,13 @@ export class MainPageService {
           next: (item: OneBoard[]) => {
             this.allBoards$.next(item);
           },
-          error: (error: HttpErrorResponse) =>
-            console.log(`Error - ${error.error.message}`),
+          error: (error) => {
+            if (error.statusCode === 404) {
+              this.notificationService.showError('errorHandling.noBoard');
+            } else {
+              this.notificationService.showError('errorHandling.something');
+            }
+          },
         });
       },
       error: (error: HttpErrorResponse) =>
@@ -71,8 +83,13 @@ export class MainPageService {
           next: (item: OneBoard[]) => {
             this.allBoards$.next(item);
           },
-          error: (error: HttpErrorResponse) =>
-            console.log(`Error - ${error.error.message}`),
+          error: (error) => {
+            if (error.statusCode === 404) {
+              this.notificationService.showError('errorHandling.noBoard');
+            } else {
+              this.notificationService.showError('errorHandling.something');
+            }
+          },
         });
       },
       error: (error: HttpErrorResponse) =>

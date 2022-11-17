@@ -22,6 +22,7 @@ import { EditProfileComponent } from './shared/components/edit-profile/edit-prof
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogModule } from './dialog/dialog.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { DialogModule } from './dialog/dialog.module';
     FormsModule,
     ReactiveFormsModule,
     DialogModule,
+    MatSnackBarModule,
   ],
   providers: [
     ModalService,
