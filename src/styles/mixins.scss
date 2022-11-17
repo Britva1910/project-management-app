@@ -37,3 +37,13 @@
   }
   color: $description-color;
 }
+
+@mixin title-page-tablet {
+  font: {
+    family: 'Volkhov';
+    size: 18px;
+    weight: bold;
+  }
+  color: $dark-font-color;
+  margin: 0;
+}

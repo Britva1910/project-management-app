@@ -1,6 +1,7 @@
 @import "utils-color";
 @import "mixins";
 @import "bootstrap";
+@import "breakpoint";
 
 .example-container {
   display: inline-block;
@@ -9,9 +10,11 @@
   margin: 0 25px 25px 0;
   vertical-align: top;
 }
+
 .icon-delete:hover {
   box-shadow: $shadow-title-column;
 }
+
 .column__title-container {
   width: 100%;
   display: flex;
@@ -153,13 +156,15 @@
 .close-edit {
   background-color: $btn-delete-color;
   color: $light-fon-color;
+
   &:hover {
     background-color: $btn-add-hover-color;
   }
 }
 
 .save-edit {
-  background-color:  #a7d8f5;
+  background-color: #a7d8f5;
+
   &:hover {
     background-color: $btn-add-hover-color;
   }
@@ -181,6 +186,13 @@
   color: $btn-delete-color;
   background-color: transparent;
 }
+
 .title {
   text-align: center;
+}
+
+@media screen and (max-width: $mq-tablet) {
+  .container-column {
+    width: 95%;
+  }
 }
