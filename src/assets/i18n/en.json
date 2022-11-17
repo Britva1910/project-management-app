@@ -67,7 +67,8 @@
     "btnClose": "Close",
     "btnSubmit": "Submit",
     "addTask": "Edit task",
-    "save": "Save"
+    "save": "Save",
+    "edit": "Edit board"
   },
   "tasksUserInfo": {
     "nameProject": "Project",

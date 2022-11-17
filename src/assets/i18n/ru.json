@@ -67,7 +67,8 @@
     "btnClose": "Отмена",
     "btnSubmit": "Подтвердить",
     "addTask": "Добавить задачу",
-    "save": "Сохранить"
+    "save": "Сохранить",
+    "edit": "Изменить доску"
   },
   "tasksUserInfo": {
     "nameProject": "Проект",
