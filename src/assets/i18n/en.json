@@ -108,6 +108,7 @@
     "bug": "Whoops! Seems is bug...",
     "something": "Whoops! Something went wrong...",
     "undocumented": "There is an error in the data somewhere. Please, try again",
-    "noBoard": "Board was not founded!"
+    "noBoard": "Board was not founded!",
+    "emptyColumnTittle": "Column title should not be empty"
   }
 }

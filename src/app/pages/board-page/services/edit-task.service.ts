@@ -249,8 +249,15 @@ export class EditTaskService {
         next: () => {
           this.store.dispatch(invokeBoardAPI());
         },
-        error: () =>
-          this.notificationService.showError('errorHandling.something'),
+        error: (error) => {
+          if (error.error.statusCode === 400) {
+            this.notificationService.showError(
+              'errorHandling.emptyColumnTittle'
+            );
+          } else {
+            this.notificationService.showError('errorHandling.something');
+          }
+        },
       });
   }
 
