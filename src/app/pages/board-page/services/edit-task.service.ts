@@ -19,6 +19,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ColumnDataService } from './../../../shared/services/colums-data-service/column-data.service';
 import { UserBoardService } from './user-board.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { NotificationService } from '../../../shared/services/notification-service/notification.service';
 @Injectable()
 export class EditTaskService {
   constructor(
@@ -27,7 +28,8 @@ export class EditTaskService {
     private tasksDataService: TasksDataService,
     private columnDataService: ColumnDataService,
     private userBoardService: UserBoardService,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
+    private notificationService: NotificationService
   ) {}
 
   public checkIdTask = '';
@@ -223,8 +225,8 @@ export class EditTaskService {
         next: () => {
           this.store.dispatch(invokeBoardAPI());
         },
-        error: (error: HttpErrorResponse) =>
-          console.log(`Error - ${error.error.message}`),
+        error: () =>
+          this.notificationService.showError('errorHandling.something'),
       });
   }
 
@@ -236,8 +238,8 @@ export class EditTaskService {
         next: () => {
           this.store.dispatch(invokeBoardAPI());
         },
-        error: (error: HttpErrorResponse) =>
-          console.log(`Error - ${error.error.message}`),
+        error: () =>
+          this.notificationService.showError('errorHandling.something'),
       });
   }
 
@@ -248,8 +250,8 @@ export class EditTaskService {
         next: () => {
           this.store.dispatch(invokeBoardAPI());
         },
-        error: (error: HttpErrorResponse) =>
-          console.log(`Error - ${error.error.message}`),
+        error: () =>
+          this.notificationService.showError('errorHandling.something'),
       });
   }
 

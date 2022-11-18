@@ -43,7 +43,6 @@ export class LoginService {
         },
         error: (error) => {
           if (error) {
-            console.log(error);
             if (error.statusText === 'Unauthorized') {
               this.notificationService.showError('errorHandling.loginError');
             }

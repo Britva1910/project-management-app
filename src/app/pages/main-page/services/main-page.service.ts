@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { OneBoard } from 'src/app/shared/models/interfaces/interfaces-board';
 import { BoardsDataService } from 'src/app/shared/services/boards-data-service/boards-data.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { AddTaskEvent } from './../../../shared/models/interfaces/interfaces-board';
 import { Store } from '@ngrx/store';
 import { setCurrentBoard } from './../../../shared/store/app.action';
@@ -71,8 +70,8 @@ export class MainPageService {
           },
         });
       },
-      error: (error: HttpErrorResponse) =>
-        console.log(`Error - ${error.error.message}`),
+      error: () =>
+        this.notificationService.showError('errorHandling.something'),
     });
   }
 
@@ -92,8 +91,8 @@ export class MainPageService {
           },
         });
       },
-      error: (error: HttpErrorResponse) =>
-        console.log(`Error - ${error.error.message}`),
+      error: () =>
+        this.notificationService.showError('errorHandling.something'),
     });
   }
 
