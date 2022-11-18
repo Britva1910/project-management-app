@@ -9,6 +9,7 @@ export const union = {
   darkBgColor: '#00093c',
   lightColor: '#fff',
   darkColor: '#000',
+  yellow: 'rgb(247, 248, 170)',
   darkSv: '../../../../assets/img/githubSv3.png',
   darkIv: '../../../../assets/img/githubIv3.png',
   darkUl: '../../../../assets/img/githubUl3.png',

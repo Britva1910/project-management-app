@@ -31,27 +31,32 @@
     transform: translate(-50%, -50%);
     z-index: 6;
   }
+
   .container__tasks {
     max-height: 300px;
     overflow: hidden;
     overflow-y: auto
   }
+
   .title {
     margin: 0;
     font-size: 14px;
     color: $description-color;
   }
+
   .title-item {
     font-size: 18px;
     color: $red-color;
     font-weight: 700;
   }
+
   .title-nameUser {
     font-size: 16px;
     color: $dark-font-color;
     font-weight: 700;
   }
 }
+
 .btn {
   width: 70px;
   height: 30px;
@@ -71,23 +76,26 @@
     border: 1px solid $dark-font-color;
   }
 }
+
 .table {
-	width: 100%;
-	margin-bottom: 20px;
-	border: 15px solid $light-fon-color;
-	border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+  border: 15px solid $light-fon-color;
+  border-collapse: collapse;
   color: $dark-font-color;
   text-align: left;
 }
+
 .table__head {
-	font-weight: bold;
-	padding: 5px;
-	background: $dark-fon-color;
+  font-weight: bold;
+  padding: 5px;
+  background: $dark-fon-color;
   color: $light-fon-color;
-	border-bottom: 5px solid  $light-fon-color;
+  border-bottom: 5px solid $light-fon-color;
 }
+
 .table__body {
-	padding: 5px;
-	border: none;
-	border-bottom: 5px solid  $light-fon-color;
+  padding: 5px;
+  border: none;
+  border-bottom: 5px solid $light-fon-color;
 }

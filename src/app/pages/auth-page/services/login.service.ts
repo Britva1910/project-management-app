@@ -71,8 +71,7 @@ export class LoginService {
   }
 
   logOut() {
-    this.localStorageService.remoteFromLocalStorage('token');
-    this.localStorageService.remoteFromLocalStorage('userId');
+    this.localStorageService.clearLocalStorage();
     this.router.navigate(['/welcome']);
   }
 
