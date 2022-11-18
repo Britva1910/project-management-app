@@ -23,38 +23,22 @@
           </mat-expansion-panel-header>
           <mat-form-field appearance="fill">
             <mat-label>{{ t("editProfile.enterName") }}</mat-label>
-            <input
-              matInput
-              type="text"
-              formControlName="name"
-              name="userName"
-            />
-            <button
-              *ngIf="name.value"
-              matSuffix
-              mat-icon-button
-              aria-label="Clear"
-              (click)="name.setValue('')"
-            >
+            <input matInput type="text" formControlName="name" name="userName" />
+            <button *ngIf="name?.value" matSuffix mat-icon-button aria-label="Clear" (click)="name?.setValue('')">
               <mat-icon>close</mat-icon>
             </button>
-            <mat-error *ngIf="name.invalid">
-              <span *ngIf="name.errors?.['required']">{{
+            <mat-error *ngIf="name?.invalid">
+              <span *ngIf="name?.errors?.['required']">{{
                 t("forms.errors.enterName")
-              }}</span>
-              <div *ngIf="name.errors?.['minlength']">
+                }}</span>
+              <div *ngIf="name?.errors?.['minlength']">
                 {{ t("forms.errors.lengthName") }}
               </div>
             </mat-error>
           </mat-form-field>
 
           <mat-action-row>
-            <button
-              mat-raised-button
-              class="btn"
-              [disabled]="!name.valid"
-              (click)="changeUserName()"
-            >
+            <button mat-raised-button class="btn" [disabled]="!name?.valid" (click)="changeUserName()">
               {{ t("forms.btnSubmit") }}
             </button>
           </mat-action-row>
@@ -67,38 +51,22 @@
           </mat-expansion-panel-header>
           <mat-form-field appearance="fill">
             <mat-label>{{ t("editProfile.enterLogin") }}</mat-label>
-            <input
-              matInput
-              type="text"
-              formControlName="login"
-              name="userLogin"
-            />
-            <button
-              *ngIf="login.value"
-              matSuffix
-              mat-icon-button
-              aria-label="Clear"
-              (click)="login.setValue('')"
-            >
+            <input matInput type="text" formControlName="login" name="userLogin" />
+            <button *ngIf="login?.value" matSuffix mat-icon-button aria-label="Clear" (click)="login?.setValue('')">
               <mat-icon>close</mat-icon>
             </button>
-            <mat-error *ngIf="login.invalid">
-              <span *ngIf="login.errors?.['required']">{{
+            <mat-error *ngIf="login?.invalid">
+              <span *ngIf="login?.errors?.['required']">{{
                 t("forms.errors.enterLogin")
-              }}</span>
-              <div *ngIf="login.errors?.['minlength']">
+                }}</span>
+              <div *ngIf="login?.errors?.['minlength']">
                 {{ t("forms.errors.lengthLogin") }}
               </div>
             </mat-error>
           </mat-form-field>
 
           <mat-action-row>
-            <button
-              mat-raised-button
-              class="btn"
-              [disabled]="!login.valid"
-              (click)="changeUserLogin()"
-            >
+            <button mat-raised-button class="btn" [disabled]="!login?.valid" (click)="changeUserLogin()">
               {{ t("forms.btnSubmit") }}
             </button>
           </mat-action-row>
@@ -107,27 +75,22 @@
           <mat-expansion-panel-header>
             <mat-panel-title>{{
               t("editProfile.changePassword")
-            }}</mat-panel-title>
+              }}</mat-panel-title>
           </mat-expansion-panel-header>
           <mat-form-field appearance="fill">
             <mat-label>{{ t("editProfile.enterPassword") }}</mat-label>
             <input matInput formControlName="password" />
           </mat-form-field>
-          <mat-error *ngIf="password.invalid">
-            <span *ngIf="password.errors?.['required']">{{
+          <mat-error *ngIf="password?.invalid">
+            <span *ngIf="password?.errors?.['required']">{{
               t("forms.errors.enterPass")
-            }}</span>
-            <div *ngIf="password.errors?.['minlength']">
+              }}</span>
+            <div *ngIf="password?.errors?.['minlength']">
               {{ t("forms.errors.lengthPass") }}
             </div>
           </mat-error>
           <mat-action-row>
-            <button
-              mat-raised-button
-              class="btn"
-              [disabled]="!password.valid"
-              (click)="changeUserPassword()"
-            >
+            <button mat-raised-button class="btn" [disabled]="!password?.valid" (click)="changeUserPassword()">
               {{ t("forms.btnSubmit") }}
             </button>
           </mat-action-row>
