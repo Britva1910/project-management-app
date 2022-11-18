@@ -41,3 +41,11 @@
     }
   }
 }
+
+@media screen and (max-width: $mq-mobile) {
+  .search {
+    &__wrapper {
+      width: 200px;
+    }
+  }
+}
