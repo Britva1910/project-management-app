@@ -21,17 +21,21 @@
       }
     }
   }
+
   .footer__githubs-img {
     width: 50%;
   }
+
   .footer__rs-img {
     justify-content: flex-end;
     max-width: 70px;
-    }
-    .rs {
-      width: 90%;
-    }
+  }
+
+  .rs {
+    width: 90%;
+  }
 }
+
 @media screen and (max-width: $mq-laptop) {
   .footer__wrapper {
     padding: 7px 50px;

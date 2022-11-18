@@ -3,6 +3,8 @@
 
 .header {
   width: 100%;
+  position: relative;
+  z-index: 15;
   transition: 0.7s;
 
   &__wrapper {
@@ -112,6 +114,7 @@
   .header__wrapper {
     padding: 10px 20px;
   }
+
   .mat-raised-button,
   .header__en,
   .header__ru,
