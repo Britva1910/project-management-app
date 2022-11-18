@@ -15,7 +15,6 @@ import {
 } from './../../../shared/models/interfaces/interfaces-board';
 import { TasksDataService } from 'src/app/shared/services/tasks-data-service/tasks-data.service';
 import { invokeBoardAPI } from './../store/board.actions';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ColumnDataService } from './../../../shared/services/colums-data-service/column-data.service';
 import { UserBoardService } from './user-board.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -161,8 +160,8 @@ export class EditTaskService {
         next: () => {
           this.store.dispatch(invokeBoardAPI());
         },
-        error: (error: HttpErrorResponse) =>
-          console.log(`Error - ${error.error.message}`),
+        error: () =>
+          this.notificationService.showError('errorHandling.something'),
       });
     this.closeEditModal$();
   }
@@ -199,8 +198,8 @@ export class EditTaskService {
         next: () => {
           this.store.dispatch(invokeBoardAPI());
         },
-        error: (error: HttpErrorResponse) =>
-          console.log(`Error - ${error.error.message}`),
+        error: () =>
+          this.notificationService.showError('errorHandling.something'),
       });
   }
 
@@ -212,8 +211,8 @@ export class EditTaskService {
         next: () => {
           this.store.dispatch(invokeBoardAPI());
         },
-        error: (error: HttpErrorResponse) =>
-          console.log(`Error - ${error.error.message}`),
+        error: () =>
+          this.notificationService.showError('errorHandling.something'),
       });
   }
 
