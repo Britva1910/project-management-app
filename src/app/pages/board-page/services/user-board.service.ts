@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 import { User } from './../../../shared/models/interfaces/interfaces-board';
 import { UserDataService } from './../../../shared/services/user-data-service/user-data.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { saturation } from './../../../shared/constant/color';
 import { colorGrey } from 'src/app/shared/constant/color';
 import { invokeBoardAPI } from './../store/board.actions';
 import { Store } from '@ngrx/store';
+import { NotificationService } from '../../../shared/services/notification-service/notification.service';
 
 @Injectable()
 export class UserBoardService {
-  constructor(private userDataService: UserDataService, private store: Store) {}
+  constructor(
+    private userDataService: UserDataService,
+    private store: Store,
+    private notificationService: NotificationService
+  ) {}
 
   public allUsers: Array<User> = [];
 
@@ -36,8 +40,8 @@ export class UserBoardService {
         }
         this.store.dispatch(invokeBoardAPI());
       },
-      error: (error: HttpErrorResponse) =>
-        console.log(`Error - ${error.error.message}`),
+      error: () =>
+        this.notificationService.showError('errorHandling.something'),
     });
   }
 
