@@ -50,7 +50,8 @@
       "sure": "Are you sure?"
     },
     "message-delete": "You can remove only your own tasks",
-    "message-column-title": "Name must be more than 2 characters"
+    "message-column-title": "Name must be more than 2 characters",
+    "message-column-descript": "Must be more than 2 characters"
   },
   "forms": {
     "errors": {
