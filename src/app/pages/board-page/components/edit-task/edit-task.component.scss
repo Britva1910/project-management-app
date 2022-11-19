@@ -20,7 +20,8 @@
   }
 
   .container-edit-task {
-    width: 300px;
+    max-width: 320px;
+    min-width: 290px;
     position: absolute;
     left: 50%;
     top: 50%;

@@ -24,6 +24,7 @@
     <button class="btn"
       mat-raised-button
       color="primary"
+      disabled="{{!form.valid}}"
       (click)="form.valid && submit(form.value)"> {{t('forms.btnSubmit')}}
     </button>
   </mat-dialog-actions>
