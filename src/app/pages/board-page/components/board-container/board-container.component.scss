@@ -1,6 +1,7 @@
 @import "utils-color";
 @import "mixins";
 @import "bootstrap";
+@import "breakpoint";
 
 .example-container {
   display: inline-block;
@@ -9,9 +10,11 @@
   margin: 0 25px 25px 0;
   vertical-align: top;
 }
+
 .icon-delete:hover {
   box-shadow: $shadow-title-column;
 }
+
 .column__title-container {
   width: 100%;
   display: flex;
@@ -153,13 +156,15 @@
 .close-edit {
   background-color: $btn-delete-color;
   color: $light-fon-color;
+
   &:hover {
     background-color: $btn-add-hover-color;
   }
 }
 
 .save-edit {
-  background-color:  #a7d8f5;
+  background-color: #a7d8f5;
+
   &:hover {
     background-color: $btn-add-hover-color;
   }
@@ -181,6 +186,91 @@
   color: $btn-delete-color;
   background-color: transparent;
 }
+
 .title {
   text-align: center;
+}
+
+@media screen and (max-width: $mq-tablet) {
+  .container-column {
+    width: 100%;
+  }
+}
+
+@media screen and (max-height: 1400px) {
+  .container-column {
+    max-height: 78vh;
+  }
+}
+
+@media screen and (max-height: 1300px) {
+  .container-column {
+    max-height: 75vh;
+  }
+}
+
+@media screen and (max-height: 1200px) {
+  .container-column {
+    max-height: 72vh;
+  }
+}
+
+@media screen and (max-height: 1100px) {
+  .container-column {
+    max-height: 69vh;
+  }
+}
+
+@media screen and (max-height: 1000px) {
+  .container-column {
+    max-height: 67vh;
+  }
+}
+
+@media screen and (max-height: 900px) {
+  .container-column {
+    max-height: 65vh;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .container-column {
+    max-height: 62vh;
+  }
+}
+
+@media screen and (max-height: 750px) {
+  .container-column {
+    max-height: 58vh;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  .container-column {
+    max-height: 56vh;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .container-column {
+    max-height: 54vh;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .container-column {
+    max-height: 52vh;
+  }
+}
+
+@media screen and (max-height: 550px) {
+  .container-column {
+    max-height: 47vh;
+  }
+}
+
+@media screen and (max-height: 480px) {
+  .container-column {
+    max-height: 42vh;
+  }
 }

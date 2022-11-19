@@ -24,7 +24,7 @@
   },
   "404-message": "Sorry, smth went wrong((",
   "welcome": {
-    "btn": "Create new project",
+    "btn": "Create project",
     "subtitle-1": "Advantages",
     "subtitle-2": "Development Team",
     "advantages": {
@@ -102,5 +102,14 @@
       "board": "Create new board"
     }
   },
-  "spinner": "Loading"
+  "spinner": "Loading",
+  "errorHandling": {
+    "loginError": "User was not found. Please, check login and password",
+    "loginConflict": "User with this name already exists",
+    "bug": "Whoops! Seems is bug...",
+    "something": "Whoops! Something went wrong...",
+    "undocumented": "There is an error in the data somewhere. Please, try again",
+    "noBoard": "Board was not founded!",
+    "emptyColumnTittle": "Column title should not be empty"
+  }
 }

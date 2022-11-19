@@ -1,19 +1,21 @@
 @import "mixins";
 @import "utils-color";
+@import "breakpoint";
 
 .section-wrapper {
   width: 100%;
-  height: 530px;
-  padding: 40px;
+  padding: 80px 70px;
 }
 
 .main-section {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .two-columns {
-  width: 80%;
+  width: 100%;
   padding-top: 20px;
   display: flex;
   justify-content: space-around;
@@ -21,32 +23,47 @@
 }
 
 .three-columns {
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  gap: 15px;
   align-items: center;
 }
 
 .page-title-container {
+  max-width: 40%;
   height: 200px;
   display: flex;
   flex-direction: column;
   align-content: space-around;
   justify-content: space-around;
 }
-.main-title {
+
+.page-img-container {
+  max-width: 45%;
+}
+
+
+.main-title,
+.main-title-mobile {
   @include title-page;
-  font-size: 85px;
+  font-size: calc(4vw + 4vh);
   color: $light-blue-fon-color;
+}
+
+.main-title-mobile {
+  display: none;
 }
 
 .subtitle {
   @include title-page;
-  font-size: 40px;
+  font-size: calc(2vw + 2vh);
   color: $light-blue-fon-color;
 }
 
 .main-img {
   max-height: 420px;
+  max-width: 100%;
 }
 
 .dark-bg {
@@ -61,15 +78,99 @@
 
 .block-title {
   @include title-page;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
   font-size: 40px;
   text-align: center;
 }
 
+.main-btn {
+  font-weight: 700;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $yellow;
+  }
+}
+
 .block-title-light {
   @include title-page;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
   font-size: 40px;
   text-align: center;
   color: $light-fon-color;
+}
+
+@media screen and (max-width: $mq-laptop) {
+  .section-wrapper {
+    padding: 70px 50px;
+  }
+}
+
+
+@media screen and (max-width: 950px) {
+  .team {
+    flex-wrap: wrap;
+  }
+}
+
+
+
+@media screen and (max-width: $mq-tablet) {
+  .section-wrapper {
+    padding: 50px 20px;
+  }
+
+  .three-columns {
+    flex-wrap: wrap;
+  }
+
+  .page-img-container {
+    max-width: 40%;
+  }
+
+  .main-title {
+    font-size: calc(4vw + 4vh);
+  }
+
+}
+
+
+@media screen and (max-width: $mq-small) {
+  .main-section {
+    padding-top: 100px;
+  }
+
+  .block-title,
+  .block-title-light {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .main-title {
+    display: none;
+  }
+
+  .main-title-mobile {
+    display: flex;
+  }
+
+  .page-title-container {
+    align-items: center;
+    max-height: 120px;
+  }
+
+  .main-btn {
+    font-size: calc(1vw + 1vh);
+    ;
+  }
+
+  .page-img-container {
+    max-width: 45%;
+  }
+
+  .main-title-mobile {
+    font-size: calc(5vw + 5vh);
+    letter-spacing: .1em;
+    margin-bottom: 30px;
+  }
 }

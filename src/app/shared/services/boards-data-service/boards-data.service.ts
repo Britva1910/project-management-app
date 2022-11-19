@@ -43,9 +43,4 @@ export class BoardsDataService {
     const url = `${UrlsEnum.boards}/${id}`;
     return this.RequestClientBuilder.put<OneBoard>(url, data);
   }
-  // TEMPLATE Function for get Blob file
-  //public douwn(idTask: string, fileName: string): Observable<any> {
-  //  const url = `${UrlsEnum.boards}/file/${idTask}/${fileName}`;
-  //  return this.RequestClientBuilder.get<any>(url);
-  //}
 }

@@ -3,6 +3,7 @@ import { BoardsDataService } from 'src/app/shared/services/boards-data-service/b
 import { MainPageService } from '../../services/main-page.service';
 import { OneBoard } from 'src/app/shared/models/interfaces/interfaces-board';
 import { Subscription } from 'rxjs';
+import { NotificationService } from '../../../../shared/services/notification-service/notification.service';
 
 @Component({
   selector: 'app-edit-modal',
@@ -20,7 +21,8 @@ export class EditModalComponent implements OnInit, OnDestroy {
 
   constructor(
     private boardsDataService: BoardsDataService,
-    private mainPageService: MainPageService
+    private mainPageService: MainPageService,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit() {
@@ -48,6 +50,13 @@ export class EditModalComponent implements OnInit, OnDestroy {
           this.boardsDataService.getAllBoards().subscribe({
             next: (data: OneBoard[]) => {
               this.mainPageService.setAllBoards$(data);
+            },
+            error: (error) => {
+              if (error.statusCode === 404) {
+                this.notificationService.showError('errorHandling.noBoard');
+              } else {
+                this.notificationService.showError('errorHandling.something');
+              }
             },
           });
         }

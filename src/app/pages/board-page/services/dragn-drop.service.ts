@@ -12,10 +12,10 @@ import {
 } from './../../../shared/models/interfaces/interfaces-board';
 import { Store } from '@ngrx/store';
 import { invokeBoardAPI } from './../store/board.actions';
-import { HttpErrorResponse } from '@angular/common/http';
 import { LocalStorageService } from './../../../shared/services/local-storage-service/local-storage.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { NotificationService } from '../../../shared/services/notification-service/notification.service';
 @Injectable()
 export class DragnDropService {
   constructor(
@@ -24,7 +24,8 @@ export class DragnDropService {
     private columnDataService: ColumnDataService,
     private editTaskService: EditTaskService,
     private localStorageService: LocalStorageService,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
+    private notificationService: NotificationService
   ) {}
 
   private isDisabledDrop$ = new BehaviorSubject<boolean>(false);
@@ -53,8 +54,8 @@ export class DragnDropService {
         next: () => {
           this.store.dispatch(invokeBoardAPI());
         },
-        error: (error: HttpErrorResponse) =>
-          console.log(`Error - ${error.error.message}`),
+        error: () =>
+          this.notificationService.showError('errorHandling.something'),
       });
   }
 
@@ -80,8 +81,8 @@ export class DragnDropService {
         next: () => {
           this.store.dispatch(invokeBoardAPI());
         },
-        error: (error: HttpErrorResponse) =>
-          console.log(`Error - ${error.error.message}`),
+        error: () =>
+          this.notificationService.showError('errorHandling.something'),
       });
   }
 
@@ -127,16 +128,18 @@ export class DragnDropService {
                     next: () => {
                       this.store.dispatch(invokeBoardAPI());
                     },
-                    error: (error: HttpErrorResponse) =>
-                      console.log(`Error - ${error.error.message}`),
+                    error: () =>
+                      this.notificationService.showError(
+                        'errorHandling.something'
+                      ),
                   });
               },
-              error: (error: HttpErrorResponse) =>
-                console.log(`Error - ${error.error.message}`),
+              error: () =>
+                this.notificationService.showError('errorHandling.something'),
             });
         },
-        error: (error: HttpErrorResponse) =>
-          console.log(`Error - ${error.error.message}`),
+        error: () =>
+          this.notificationService.showError('errorHandling.something'),
       });
   }
 }

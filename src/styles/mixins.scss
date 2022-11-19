@@ -17,6 +17,7 @@
   }
   color: $dark-font-color;
   margin: 0;
+  padding: 0;
 }
 
 
@@ -36,4 +37,16 @@
     weight: normal;
   }
   color: $description-color;
+}
+
+@mixin title-page-tablet {
+  font: {
+    family: 'Volkhov';
+    size: 18px;
+    weight: bold;
+    line-height: 20px;
+  }
+  color: $dark-font-color;
+  margin: 0;
+  padding: 0;
 }

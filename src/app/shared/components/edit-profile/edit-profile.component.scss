@@ -2,17 +2,19 @@
 @import "mixins";
 
 .wrapper {
-  height: calc(100vh - 113px);
+  min-height: calc(100vh - 108px);
   display: flex;
   justify-content: center;
   align-items: flex-start;
   background-image: url("/assets/img/light-fon.jpg");
   background-size: contain;
+  padding-bottom: 20px;
 }
 
 .modal-container {
   margin-top: 5%;
-  width: 40%;
+  min-width: 280px;
+  max-width: 500px;
   background-color: $light-blue-fon-color;
   border: 2px solid $btn-add-hover-color;
   border-radius: 6px;
@@ -35,6 +37,9 @@
 .user-login,
 .user-name {
   color: $dark-fon-color;
+  margin: 5px 0;
+  font-size: 14px;
+
   span {
     color: $dark-blue-font-color;
   }
@@ -48,4 +53,12 @@
 
 .text-warning {
   color: $text-warning;
+}
+
+.personal-information img {
+  width: 50px;
+}
+
+.mat-action-row {
+  padding: 5px 8px 10px 7px;
 }
