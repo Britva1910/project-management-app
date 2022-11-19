@@ -16,7 +16,7 @@ export class MainPageService {
 
   public searchWord = new BehaviorSubject<string>('');
 
-  public sortOrder = new BehaviorSubject<string>('default');
+  public sortOrder = new BehaviorSubject<string>('by default');
 
   public editModalStatus = new BehaviorSubject<boolean>(false);
 

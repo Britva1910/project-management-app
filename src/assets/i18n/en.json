@@ -69,7 +69,8 @@
     "btnClose": "Close",
     "btnSubmit": "Submit",
     "addTask": "Edit task",
-    "save": "Save"
+    "save": "Save",
+    "edit": "Edit board"
   },
   "tasksUserInfo": {
     "nameProject": "Project",
@@ -97,7 +98,7 @@
       "search": "search"
     },
     "sort-bar": {
-      "sort": "Sort by"
+      "sort": "Sort"
     },
     "board-list": {
       "board": "Create new board"

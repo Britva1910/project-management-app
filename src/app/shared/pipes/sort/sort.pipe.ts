@@ -9,7 +9,7 @@ export class SortPipe implements PipeTransform {
     if (boards) {
       let multiplier = 1;
 
-      if (sortOrder === 'Z-A') {
+      if (sortOrder === 'by Z-A' || sortOrder === 'от Я-А') {
         multiplier = -1;
       }
 
