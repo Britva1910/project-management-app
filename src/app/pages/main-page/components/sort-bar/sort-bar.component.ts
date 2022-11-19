@@ -22,9 +22,9 @@ export class SortBarComponent implements OnInit, OnDestroy {
     this.subscription.push(
       translocoService.langChanges$.subscribe((lang) => {
         if (lang === 'en') {
-          this.sortOrder = 'default';
+          this.sortOrder = 'by default';
         } else {
-          this.sortOrder = 'умолчанию';
+          this.sortOrder = 'по умолчанию';
         }
       })
     );
@@ -40,25 +40,28 @@ export class SortBarComponent implements OnInit, OnDestroy {
 
   public sort() {
     this.translocoService.langChanges$.subscribe((lang) => {
-      if (this.sortOrder === 'default' || this.sortOrder === 'умолчанию') {
+      if (
+        this.sortOrder === 'by default' ||
+        this.sortOrder === 'по умолчанию'
+      ) {
         if (lang === 'en') {
-          this.mainPageService.sortOrder.next('A-Z');
+          this.mainPageService.sortOrder.next('by A-Z');
         } else {
-          this.mainPageService.sortOrder.next('А-Я');
+          this.mainPageService.sortOrder.next('от А-Я');
         }
         this.rotateIcon = false;
-      } else if (this.sortOrder === 'A-Z' || this.sortOrder === 'А-Я') {
+      } else if (this.sortOrder === 'by A-Z' || this.sortOrder === 'от А-Я') {
         if (lang === 'en') {
-          this.mainPageService.sortOrder.next('Z-A');
+          this.mainPageService.sortOrder.next('by Z-A');
         } else {
-          this.mainPageService.sortOrder.next('Я-А');
+          this.mainPageService.sortOrder.next('от Я-А');
         }
         this.rotateIcon = true;
-      } else if (this.sortOrder === 'Z-A' || this.sortOrder === 'Я-А') {
+      } else if (this.sortOrder === 'by Z-A' || this.sortOrder === 'от Я-А') {
         if (lang === 'en') {
-          this.mainPageService.sortOrder.next('A-Z');
+          this.mainPageService.sortOrder.next('by A-Z');
         } else {
-          this.mainPageService.sortOrder.next('А-Я');
+          this.mainPageService.sortOrder.next('от А-Я');
         }
         this.rotateIcon = false;
       }
