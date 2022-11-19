@@ -16,6 +16,20 @@ export const setUserData = createAction(
   }>()
 );
 
+export const setToken = createAction(
+  '[AUTH] set token',
+  props<{
+    token: string;
+  }>()
+);
+
+export const setIsLogin = createAction(
+  '[AUTH] set is login user',
+  props<{
+    isLogin: boolean;
+  }>()
+);
+
 export const setCurrentBoard = createAction(
   '[BOARD] set current board',
   props<{ id: string }>()

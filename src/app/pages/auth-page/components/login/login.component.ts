@@ -35,7 +35,6 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    console.log('onSubmit');
     const userData = {
       login: this.form.value.login?.trim(),
       password: this.form.value.password,

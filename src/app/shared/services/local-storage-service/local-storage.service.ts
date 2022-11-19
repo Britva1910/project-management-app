@@ -8,16 +8,17 @@ export class LocalStorageService {
   constructor(private cryptoService: CryptoService) {}
 
   public saveInLocalStorage(key: string, value: string) {
-    const cryptoData = this.cryptoService.getCryptoString(value);
-    localStorage.setItem(key, cryptoData);
+    //const cryptoData = this.cryptoService.getCryptoString(value);
+    localStorage.setItem(key, value);
   }
 
   public getFromLocalStorage(key: string) {
     const data = localStorage.getItem(key);
-    if (data) {
+    return data;
+    /*if (data) {
       return this.cryptoService.getDecryptedString(data);
     }
-    return new Error(`Key - ${key} - is not founded`);
+    return new Error(`Key - ${key} - is not founded`);*/
   }
 
   public remoteFromLocalStorage(key: string) {

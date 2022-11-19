@@ -5,7 +5,7 @@ export interface AppState {
   userId: string;
   userName: string;
   userLogin: string;
-  isLogin: boolean;
+  isLogin: boolean | null;
   currentBoardId: string;
 }
 
@@ -16,6 +16,6 @@ export const initialState: Readonly<AppState> = {
   userId: '',
   userName: '',
   userLogin: '',
-  isLogin: false,
+  isLogin: null,
   currentBoardId: '',
 };

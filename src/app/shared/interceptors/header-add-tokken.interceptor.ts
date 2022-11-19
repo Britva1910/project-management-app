@@ -12,21 +12,16 @@ import { LocalStorageService } from './../services/local-storage-service/local-s
 export class HeaderAddTokkenInterceptor implements HttpInterceptor {
   constructor(private localStorageService: LocalStorageService) {}
 
-  tokken: string | null = this.localStorageService
-    .getFromLocalStorage('token')
-    .toString();
-
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    if (this.tokken) {
+    const tokken: string | null =
+      this.localStorageService.getFromLocalStorage('token');
+    if (tokken) {
       return next.handle(
         request.clone({
-          headers: request.headers.set(
-            'Authorization',
-            `Bearer ${this.tokken}`
-          ),
+          headers: request.headers.set('Authorization', `Bearer ${tokken}`),
         })
       );
     } else {
