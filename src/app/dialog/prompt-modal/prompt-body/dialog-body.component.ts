@@ -24,12 +24,26 @@ export class DialogBodyComponent implements OnInit {
   ngOnInit(): void {
     if (!this.isOneFieldForm) {
       this.form = this.fb.group({
-        title: ['', [Validators.required, Validators.minLength(3)]],
+        title: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(20),
+          ],
+        ],
         description: ['', [Validators.required, Validators.minLength(3)]],
       });
     } else {
       this.form = this.fb.group({
-        title: ['', [Validators.required, Validators.minLength(3)]],
+        title: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(20),
+          ],
+        ],
       });
     }
   }

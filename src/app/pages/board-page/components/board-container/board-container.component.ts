@@ -114,7 +114,7 @@ export class BoardContainerComponent implements OnInit, OnDestroy {
 
   public updateTitleColumn(idColumn: string, index: number) {
     const item = this.titleColumn.trim();
-    if (item.length <= 2) {
+    if (item.length <= 2 || item.length > 20) {
       return;
     } else {
       this.showTitleColumn(index);
