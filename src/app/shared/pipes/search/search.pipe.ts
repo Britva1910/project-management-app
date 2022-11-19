@@ -11,7 +11,10 @@ export class SearchPipe implements PipeTransform {
         return boards;
       } else {
         return boards.filter((board) => {
-          return board.title.toLowerCase().includes(searchText.toLowerCase());
+          return (
+            board.title.toLowerCase().includes(searchText.toLowerCase()) ||
+            board.description.toLowerCase().includes(searchText.toLowerCase())
+          );
         });
       }
     }
