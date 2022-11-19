@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BoardsDataService } from 'src/app/shared/services/boards-data-service/boards-data.service';
 import { MainPageService } from '../../services/main-page.service';
 import { OneBoard } from 'src/app/shared/models/interfaces/interfaces-board';
+import { Subscription } from 'rxjs';
 import { NotificationService } from '../../../../shared/services/notification-service/notification.service';
 
 @Component({
@@ -9,7 +10,9 @@ import { NotificationService } from '../../../../shared/services/notification-se
   templateUrl: './edit-modal.component.html',
   styleUrls: ['./edit-modal.component.scss'],
 })
-export class EditModalComponent implements OnInit {
+export class EditModalComponent implements OnInit, OnDestroy {
+  private subscription: Subscription[] = [];
+
   public title: string;
 
   public description: string;
@@ -23,13 +26,17 @@ export class EditModalComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.mainPageService.boardId.subscribe((data) => (this.id = data));
+    this.subscription.push(
+      this.mainPageService.boardId.subscribe((data) => (this.id = data))
+    );
 
-    this.mainPageService.getAllBoards$().subscribe((data) => {
-      const form = data.filter((item) => this.id === item.id);
-      this.title = form[0].title;
-      this.description = form[0].description;
-    });
+    this.subscription.push(
+      this.mainPageService.getAllBoards$().subscribe((data) => {
+        const form = data.filter((item) => this.id === item.id);
+        this.title = form[0].title;
+        this.description = form[0].description;
+      })
+    );
   }
 
   public edit() {
@@ -59,5 +66,9 @@ export class EditModalComponent implements OnInit {
 
   public cancel() {
     this.mainPageService.editModalStatus.next(false);
+  }
+
+  ngOnDestroy() {
+    this.subscription.forEach((subs) => subs.unsubscribe());
   }
 }

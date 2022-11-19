@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
+import { Subscription } from 'rxjs';
 import { MainPageService } from '../../services/main-page.service';
 
 @Component({
@@ -8,6 +9,8 @@ import { MainPageService } from '../../services/main-page.service';
   styleUrls: ['./sort-bar.component.scss'],
 })
 export class SortBarComponent implements OnInit, OnDestroy {
+  private subscription: Subscription[] = [];
+
   public sortOrder: string;
 
   public rotateIcon: boolean;
@@ -16,40 +19,49 @@ export class SortBarComponent implements OnInit, OnDestroy {
     private mainPageService: MainPageService,
     private translocoService: TranslocoService
   ) {
-    translocoService.langChanges$.subscribe((lang) => {
-      if (lang === 'en') {
-        this.sortOrder = 'default';
-      } else {
-        this.sortOrder = 'умолчанию';
-      }
-    });
+    this.subscription.push(
+      translocoService.langChanges$.subscribe((lang) => {
+        if (lang === 'en') {
+          this.sortOrder = 'by default';
+        } else {
+          this.sortOrder = 'по умолчанию';
+        }
+      })
+    );
   }
 
   ngOnInit() {
-    this.mainPageService.sortOrder.subscribe((data) => (this.sortOrder = data));
+    this.subscription.push(
+      this.mainPageService.sortOrder.subscribe(
+        (data) => (this.sortOrder = data)
+      )
+    );
   }
 
   public sort() {
     this.translocoService.langChanges$.subscribe((lang) => {
-      if (this.sortOrder === 'default' || this.sortOrder === 'умолчанию') {
+      if (
+        this.sortOrder === 'by default' ||
+        this.sortOrder === 'по умолчанию'
+      ) {
         if (lang === 'en') {
-          this.mainPageService.sortOrder.next('A-Z');
+          this.mainPageService.sortOrder.next('by A-Z');
         } else {
-          this.mainPageService.sortOrder.next('А-Я');
+          this.mainPageService.sortOrder.next('от А-Я');
         }
         this.rotateIcon = false;
-      } else if (this.sortOrder === 'A-Z' || this.sortOrder === 'А-Я') {
+      } else if (this.sortOrder === 'by A-Z' || this.sortOrder === 'от А-Я') {
         if (lang === 'en') {
-          this.mainPageService.sortOrder.next('Z-A');
+          this.mainPageService.sortOrder.next('by Z-A');
         } else {
-          this.mainPageService.sortOrder.next('Я-А');
+          this.mainPageService.sortOrder.next('от Я-А');
         }
         this.rotateIcon = true;
-      } else if (this.sortOrder === 'Z-A' || this.sortOrder === 'Я-А') {
+      } else if (this.sortOrder === 'by Z-A' || this.sortOrder === 'от Я-А') {
         if (lang === 'en') {
-          this.mainPageService.sortOrder.next('A-Z');
+          this.mainPageService.sortOrder.next('by A-Z');
         } else {
-          this.mainPageService.sortOrder.next('А-Я');
+          this.mainPageService.sortOrder.next('от А-Я');
         }
         this.rotateIcon = false;
       }
@@ -57,6 +69,6 @@ export class SortBarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.mainPageService.sortOrder.unsubscribe();
+    this.subscription.forEach((subs) => subs.unsubscribe());
   }
 }

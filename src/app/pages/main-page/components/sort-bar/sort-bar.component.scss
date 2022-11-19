@@ -1,6 +1,6 @@
 @import 'utils-color';
+@import 'breakpoint';
 .sort {
-  width: 260px;
 
   &__wrapper {
     display: flex;
@@ -32,5 +32,21 @@
 
   &__icon {
     transform: rotate3d(1, 0, 0, 180deg);
+  }
+}
+
+@media screen and (max-width: $mq-small) {
+  .sort {
+    &__wrapper {
+      justify-content: center;
+    }
+
+    &__item {
+      width: 130px;
+    }
+
+    &__title {
+      font-size: 12px;
+    }
   }
 }
