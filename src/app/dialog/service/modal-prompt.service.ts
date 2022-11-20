@@ -25,9 +25,11 @@ export class ModalService {
 
   public openEditModal$() {
     this.isShowModal$.next(true);
+    document.body.style.overflowY = 'hidden';
   }
 
   public closeEditModal$() {
     this.isShowModal$.next(false);
+    document.body.style.overflowY = 'auto';
   }
 }

@@ -1,10 +1,11 @@
 <section class="section-wrapper main-section dark-bg" *transloco="let t">
+  <app-message-user [title]="message"></app-message-user>
   <h2 class="main-title-mobile">KANBAN</h2>
   <div class="two-columns">
     <div class="page-title-container">
       <h2 class="main-title">KANBAN</h2>
       <p class="subtitle">organizer</p>
-      <button class="main-btn" mat-raised-button>{{t('welcome.btn')}}</button>
+      <button class="main-btn" mat-raised-button (click)="showMessage()">{{t('welcome.btn')}}</button>
     </div>
     <div  class="page-img-container">
       <img class="main-img" src="./assets/img/img-welcome-page.png" alt="img"/>

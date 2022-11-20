@@ -23,7 +23,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogModule } from './dialog/dialog.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +38,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
     StoreModule.forRoot({ appState: appReducer }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({

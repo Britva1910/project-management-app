@@ -19,6 +19,7 @@ import { MatTableModule } from '@angular/material/table';
 import { ClickStopPropagationDirective } from './../shared/directives/stop-propagation';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTabsModule } from '@angular/material/tabs';
 const MaterialModules = [
   MatDialogModule,
   MatButtonModule,
@@ -31,8 +32,8 @@ const MaterialModules = [
   MatTableModule,
   MatMenuModule,
   MatTooltipModule,
+  MatTabsModule,
 ];
-
 @NgModule({
   declarations: [
     AppConfirmComponent,

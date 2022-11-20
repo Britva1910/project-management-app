@@ -16,7 +16,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { UserBoardService } from './services/user-board.service';
 import { ItemBoardComponent } from './components/item-board/item-board.component';
-
 import { EditTaskComponent } from './components/edit-task/edit-task.component';
 import { EditTaskService } from './services/edit-task.service';
 import { DragnDropService } from './services/dragn-drop.service';
@@ -25,7 +24,6 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { ColorPanelComponent } from './components/color-panel/color-panel.component';
 import { TasksUserComponent } from './components/tasks-user/tasks-user.component';
 import { DialogModule } from './../../dialog/dialog.module';
-import { NgxSpinnerModule } from 'ngx-spinner';
 import { NotFoundPagesComponent } from './../../shared/components/not-found-pages/not-found-pages.component';
 const routes: Routes = [
   { path: ':id', component: BoardPageComponent },
@@ -43,7 +41,6 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
     RouterModule.forChild(routes),
     StoreModule.forFeature('myboard', boardReducer),
     EffectsModule.forFeature([BoardEffect]),
