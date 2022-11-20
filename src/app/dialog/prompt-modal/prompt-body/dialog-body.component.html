@@ -5,6 +5,7 @@
       <mat-form-field appearance="standard">
         <mat-label>{{t('forms.title')}}</mat-label>
         <input matInput [placeholder]="t('forms.title-plh')" formControlName="title" />
+        <mat-error *ngIf="form.value.title">{{t('board.message-column-title')}}</mat-error>
       </mat-form-field>
 
       <mat-form-field *ngIf="!isOneFieldForm" appearance="standard">
@@ -14,6 +15,7 @@
           [placeholder]="t('forms.description')"
           formControlName="description"
         ></textarea>
+        <mat-error *ngIf="form.value.description">{{t('board.message-column-descript')}}</mat-error>
       </mat-form-field>
     </form>
   </mat-dialog-content>
@@ -22,9 +24,8 @@
     <button class="btn"
       mat-raised-button
       color="primary"
-      (click)="form.valid && submit(form.value)"
-    >
-      {{t('forms.btnSubmit')}}
+      disabled="{{!form.valid}}"
+      (click)="form.valid && submit(form.value)"> {{t('forms.btnSubmit')}}
     </button>
   </mat-dialog-actions>
 </div>

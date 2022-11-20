@@ -4,16 +4,18 @@
     <h2 class="form-title">{{t('forms.addTask')}}</h2>
     <mat-form-field appearance="standard">
       <mat-label>{{t('forms.title')}}</mat-label>
-      <input matInput [(ngModel)]="taskForm.title" required />
+      <input matInput [(ngModel)]="taskForm.title" required minlength="3" maxlength="25"/>
+      <mat-error *ngIf="taskForm.title.length < 3 || taskForm.title.length > 20">{{t('board.message-column-title')}}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="standard">
       <mat-label>{{t('forms.description')}}</mat-label>
-      <textarea class="area" [(ngModel)]="taskForm.description" matInput required></textarea>
+      <textarea class="area" [(ngModel)]="taskForm.description" matInput required minlength="3" ></textarea>
+      <mat-error *ngIf="taskForm.description.length < 3">{{t('board.message-column-descript')}}</mat-error>
     </mat-form-field>
     <div>
       <button type="button" mat-raised-button class="btn-close btn" (click)="close()">{{t('board.btn.cancel')}}</button>
       <button type="button" mat-raised-button class="btn" color="primary"
-        (click)="updateTask()">{{t('forms.save')}}</button>
+        (click)="updateTask()" disabled="{{taskForm.description.length < 3 || taskForm.title.length < 3 || taskForm.title.length > 20}}">{{t('forms.save')}}</button>
     </div>
   </div>
 </div>

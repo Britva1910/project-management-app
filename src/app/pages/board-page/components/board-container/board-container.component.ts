@@ -113,13 +113,18 @@ export class BoardContainerComponent implements OnInit, OnDestroy {
   }
 
   public updateTitleColumn(idColumn: string, index: number) {
-    this.showTitleColumn(index);
-    const orderColumn = this.editTaskService.checkColumn.order;
-    const bodyRequest: UpdateColumnBody = {
-      title: this.titleColumn,
-      order: orderColumn,
-    };
-    this.editTaskService.updateTitleColumn(idColumn, bodyRequest);
+    const item = this.titleColumn.trim();
+    if (item.length <= 2 || item.length > 20) {
+      return;
+    } else {
+      this.showTitleColumn(index);
+      const orderColumn = this.editTaskService.checkColumn.order;
+      const bodyRequest: UpdateColumnBody = {
+        title: this.titleColumn,
+        order: orderColumn,
+      };
+      this.editTaskService.updateTitleColumn(idColumn, bodyRequest);
+    }
   }
 
   public drop(event: CdkDragDrop<Tasks[]>, idColumn: string) {

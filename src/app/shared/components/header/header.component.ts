@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { TranslocoService } from '@ngneat/transloco';
 import { union } from '../../constant/union';
 import { LoginService } from '../../../pages/auth-page/services/login.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-header',
@@ -29,7 +30,8 @@ export class HeaderComponent {
     private router: Router,
     private location: Location,
     private translate: TranslocoService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private spinnerService: NgxSpinnerService
   ) {
     router.events.subscribe(() => {
       if (location.path() != '') {
@@ -63,5 +65,9 @@ export class HeaderComponent {
 
   public logOut() {
     this.loginService.logOut();
+  }
+
+  public showSpinner() {
+    this.spinnerService.show();
   }
 }

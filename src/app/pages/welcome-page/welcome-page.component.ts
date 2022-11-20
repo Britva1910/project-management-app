@@ -7,6 +7,8 @@ import {
 import { teamData } from '../../shared/constant/team-data';
 import { WelcomeDataService } from './services/welcome-data.service';
 import { Subscription } from 'rxjs';
+import { ModalService } from './../../dialog/service/modal-prompt.service';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-welcome-page',
@@ -14,27 +16,49 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./welcome-page.component.scss'],
 })
 export class WelcomePageComponent implements OnInit, OnDestroy {
-  private sub: Subscription;
-
-  private subTeam: Subscription;
+  private sub: Subscription[] = [];
 
   public advantagesData: AdvantagesData[];
 
   public teemData: TeamData[];
 
-  constructor(private welcomeData: WelcomeDataService) {}
+  public message: string = '';
+
+  constructor(
+    private welcomeData: WelcomeDataService,
+    private modalService: ModalService,
+    private translocoService: TranslocoService
+  ) {
+    this.sub.push(
+      translocoService.langChanges$.subscribe((lang) => {
+        if (lang === 'en') {
+          this.message = 'Please login and you can create your project';
+        } else {
+          this.message =
+            'Пожалуйста, зарегистируйтесь и Вы сожете создать новый проект';
+        }
+      })
+    );
+  }
 
   ngOnInit() {
-    this.sub = this.welcomeData
-      .setAdvantagesData()
-      .subscribe((data) => (this.advantagesData = data));
-    this.subTeam = this.welcomeData
-      .setTeamData(teamData)
-      .subscribe((data) => (this.teemData = data));
+    this.sub.push(
+      this.welcomeData
+        .setAdvantagesData()
+        .subscribe((data) => (this.advantagesData = data))
+    );
+    this.sub.push(
+      this.welcomeData
+        .setTeamData(teamData)
+        .subscribe((data) => (this.teemData = data))
+    );
+  }
+
+  public showMessage() {
+    this.modalService.openEditModal$();
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
-    this.subTeam.unsubscribe();
+    this.sub.forEach((s) => s.unsubscribe());
   }
 }

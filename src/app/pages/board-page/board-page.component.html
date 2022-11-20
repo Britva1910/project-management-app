@@ -1,7 +1,4 @@
 <section class="wrapper__board-page">
-  <ngx-spinner *transloco="let t" class="spinner" size="medium" type="ball-scale-multiple">
-    <p>{{t('spinner')}}...</p>
-  </ngx-spinner>
   <div class="board-page__container-title">
     <h2 class="board-page__title">{{title$ | async}}</h2>
     <p class="title-today">{{today | date }}</p>
