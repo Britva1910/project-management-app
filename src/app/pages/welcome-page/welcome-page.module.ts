@@ -6,6 +6,7 @@ import { AdvantageCardComponent } from './components/advantage-card/advantage-ca
 import { MatButtonModule } from '@angular/material/button';
 import { TeammateComponent } from './components/teammate-card/teammate.component';
 import { TranslocoModule } from '@ngneat/transloco';
+import { DialogModule } from './../../dialog/dialog.module';
 
 const routes: Routes = [{ path: '', component: WelcomePageComponent }];
 
@@ -20,6 +21,7 @@ const routes: Routes = [{ path: '', component: WelcomePageComponent }];
     RouterModule.forChild(routes),
     MatButtonModule,
     TranslocoModule,
+    DialogModule,
   ],
 })
 export class WelcomePageModule {}

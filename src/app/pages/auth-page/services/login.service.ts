@@ -7,7 +7,6 @@ import { AuthDataService } from '../../../shared/services/auth-data-service/auth
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../../shared/services/notification-service/notification.service';
-
 @Injectable({
   providedIn: 'root',
 })

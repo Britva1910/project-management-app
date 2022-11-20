@@ -32,7 +32,7 @@
 
 .page-title-container {
   max-width: 40%;
-  height: 200px;
+  min-height: 230px;
   display: flex;
   flex-direction: column;
   align-content: space-around;
@@ -46,10 +46,14 @@
 
 .main-title,
 .main-title-mobile {
-  @include title-page;
+  font-family: 'Volkhov';
+  font-weight: bold;
   font-size: calc(4vw + 4vh);
   color: $light-blue-fon-color;
+  margin: 0;
 }
+
+
 
 .main-title-mobile {
   display: none;
@@ -131,9 +135,10 @@
   .main-title {
     font-size: calc(4vw + 4vh);
   }
-
+  .page-title-container {
+    min-height: 200px;
+  }
 }
-
 
 @media screen and (max-width: $mq-small) {
   .main-section {
@@ -143,7 +148,7 @@
   .block-title,
   .block-title-light {
     font-size: 30px;
-    line-height: 40px;
+    line-height: 35px;
   }
 
   .main-title {
@@ -151,12 +156,15 @@
   }
 
   .main-title-mobile {
-    display: flex;
+    display: inline-block;
+    font-size: calc(5vw + 5vh);
+    letter-spacing: .1em;
+    margin-bottom: 20px;
   }
-
   .page-title-container {
     align-items: center;
-    max-height: 120px;
+    min-height: 100px;
+    justify-content: space-between;
   }
 
   .main-btn {
@@ -168,9 +176,4 @@
     max-width: 45%;
   }
 
-  .main-title-mobile {
-    font-size: calc(5vw + 5vh);
-    letter-spacing: .1em;
-    margin-bottom: 30px;
-  }
 }

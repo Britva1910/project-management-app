@@ -43,6 +43,7 @@ export class MainPageService {
     this.boardsDataService.getAllBoards().subscribe({
       next: (data: OneBoard[]) => {
         this.allBoards$.next(data);
+        this.spinnerService.hide();
       },
       error: (error) => {
         if (error.statusCode === 404) {
