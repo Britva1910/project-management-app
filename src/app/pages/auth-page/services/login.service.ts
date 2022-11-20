@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { UserDataService } from '../../../shared/services/user-data-service/user-data.service';
 import { LocalStorageService } from '../../../shared/services/local-storage-service/local-storage.service';
 import { LoginData, Token } from '../../../shared/models/auth-models';
-import { setToken, setUserData } from '../../../shared/store/app.action';
+import {
+  setIsLogin,
+  setToken,
+  setUserData,
+} from '../../../shared/store/app.action';
 import { AuthDataService } from '../../../shared/services/auth-data-service/auth-data.service';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
@@ -52,7 +56,7 @@ export class LoginService {
             userName: '',
           })
         );
-        // this.store.dispatch(setIsLogin({ isLogin: true }));
+        this.changeIsLoginStatus();
         if (this.localStorageService.getFromLocalStorage('token')) {
           this.router.navigate(['/main']);
         }
@@ -63,6 +67,10 @@ export class LoginService {
         }
       },
     });
+  }
+
+  changeIsLoginStatus() {
+    this.store.dispatch(setIsLogin({ isLogin: true }));
   }
 
   singUp(userData: LoginData) {
