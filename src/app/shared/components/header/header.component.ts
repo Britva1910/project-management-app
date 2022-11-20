@@ -68,6 +68,7 @@ export class HeaderComponent {
   }
 
   public showSpinner() {
+    if (this.currentRoute === union.main) return;
     this.spinnerService.show();
   }
 }

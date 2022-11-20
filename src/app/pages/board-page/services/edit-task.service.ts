@@ -55,6 +55,8 @@ export class EditTaskService {
 
   private isOpenTasksOneUser$ = new BehaviorSubject<boolean>(false);
 
+  private isShowEditTaskModal$ = new BehaviorSubject<boolean>(false);
+
   public allColumn$ = new Subject<Column[]>();
 
   public arrColumns: Column[] = [];
@@ -86,7 +88,7 @@ export class EditTaskService {
     this.allColumn$.subscribe((arrCol) => {
       this.arrColumns = [...arrCol];
       this.createMapUser();
-      this.spinnerService.hide();
+      setTimeout(() => this.spinnerService.hide(), 1300);
     });
   }
 
@@ -109,8 +111,6 @@ export class EditTaskService {
     }
     return idColumn;
   }
-
-  private isShowEditTaskModal$ = new BehaviorSubject<boolean>(false);
 
   public showEditModal$(): Observable<boolean> {
     return this.isShowEditTaskModal$.asObservable();
