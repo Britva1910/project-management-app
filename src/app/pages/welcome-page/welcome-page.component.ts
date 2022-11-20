@@ -32,10 +32,10 @@ export class WelcomePageComponent implements OnInit, OnDestroy {
     this.sub.push(
       translocoService.langChanges$.subscribe((lang) => {
         if (lang === 'en') {
-          this.message = 'Only registered users can create a project';
+          this.message = 'Please login and you can create your project';
         } else {
           this.message =
-            'Создать проект могут только зарегистрированные пользователи';
+            'Пожалуйста, зарегистируйтесь и Вы сожете создать новый проект';
         }
       })
     );
