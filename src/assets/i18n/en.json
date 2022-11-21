@@ -36,9 +36,9 @@
       "person-1": "Sviatlana Matskevich",
       "person-2": "Ivan Lashuk",
       "person-3": "Ulugbek Dushanov",
-      "description-1": "description",
-      "description-2": "description",
-      "description-3": "description"
+      "description-1": "Board page and logic development, additional functionality implementation, code-review",
+      "description-2": "Teamwork organization, welcome page, auth page and logic development, localization, backend error handling implementation, code-review",
+      "description-3": "The main page for showing boards, header, and footer development, code-review"
     }
   },
   "board": {

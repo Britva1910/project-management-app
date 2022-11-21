@@ -1,16 +1,16 @@
 export const teamData = [
   {
-    avatarURL: '/assets/img/1832105.png',
+    avatarURL: '/assets/img/SM-avatar.png',
     name: '',
     description: '',
   },
   {
-    avatarURL: '/assets/img/1832105.png',
+    avatarURL: '/assets/img/IL-avatar.png',
     name: '',
     description: '',
   },
   {
-    avatarURL: '/assets/img/1832105.png',
+    avatarURL: '/assets/img/UD-avatar.jpg',
     name: '',
     description: '',
   },

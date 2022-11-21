@@ -4,7 +4,7 @@
 
 .wrapper {
   max-width: 300px;
-  min-height: 350px;
+  min-height: 390px;
   padding: 10px 20px;
   display: flex;
   flex-direction: column;
@@ -24,8 +24,9 @@
   }
 
   img {
-    width: 120px;
-    height: auto;
+    width: 130px;
+    height: 130px;
+    border-radius: 100%;
   }
 }
 
