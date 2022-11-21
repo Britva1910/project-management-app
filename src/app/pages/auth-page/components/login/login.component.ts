@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthDataService } from '../../../../shared/services/auth-data-service/auth-data.service';
 import { LoginService } from '../../services/login.service';
-import { LocalStorageService } from '../../../../shared/services/local-storage-service/local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -22,8 +21,7 @@ export class LoginComponent {
 
   constructor(
     private authDataService: AuthDataService,
-    private loginService: LoginService,
-    private localStorageService: LocalStorageService
+    private loginService: LoginService
   ) {}
 
   get login() {
@@ -35,7 +33,6 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    console.log('onSubmit');
     const userData = {
       login: this.form.value.login?.trim(),
       password: this.form.value.password,

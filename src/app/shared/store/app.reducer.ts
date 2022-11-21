@@ -1,5 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
-import { setAPIStatus, setUserData, setCurrentBoard } from './app.action';
+import {
+  setAPIStatus,
+  setUserData,
+  setCurrentBoard,
+  setIsLogin,
+  setToken,
+} from './app.action';
 import { AppState } from './state';
 import { initialState } from './state';
 
@@ -18,6 +24,18 @@ export const appReducer = createReducer(
       userId: action.userId,
       userName: action.userName,
       userLogin: action.userLogin,
+    };
+  }),
+  on(setIsLogin, (state, action): AppState => {
+    return {
+      ...state,
+      isLogin: action.isLogin,
+    };
+  }),
+  on(setToken, (state, action): AppState => {
+    return {
+      ...state,
+      token: action.token,
     };
   }),
   on(setCurrentBoard, (state, action): AppState => {
