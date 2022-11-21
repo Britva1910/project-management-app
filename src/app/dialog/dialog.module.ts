@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -20,7 +21,11 @@ import { ClickStopPropagationDirective } from './../shared/directives/stop-propa
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 const MaterialModules = [
+  MatToolbarModule,
+  MatExpansionModule,
   MatDialogModule,
   MatButtonModule,
   MatFormFieldModule,

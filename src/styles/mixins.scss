@@ -3,7 +3,7 @@
 @mixin not-found-text {
   font: {
     family: 'Volkhov';
-    size: 25px;
+    size: calc(2vw + 2vh);
     weight: bold;
   }
  color: $grey-color;
