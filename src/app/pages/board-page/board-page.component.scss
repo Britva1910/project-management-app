@@ -7,7 +7,7 @@
   width: 100%;
   min-height: calc(100vh - 112px);
   padding: 10px 70px;
-  font-family: "Poppins";
+  font-family: "Roboto", sans-serif;
   color: $light-font-color;
   background-image: url("../../../assets/img/light-fon.jpg");
   background-repeat: no-repeat;
@@ -116,7 +116,7 @@
   }
 
   .board-page__description {
-    margin-bottom: 2px;
+    margin-bottom: 5px;
     font-size: 16px;
   }
 
@@ -131,6 +131,9 @@
     right: 0;
     transform: rotate(0deg);
     font-size: 10px;
+  }
+  .board-page__line {
+    width: 100%;
   }
 
   .container-label-addBtn {
