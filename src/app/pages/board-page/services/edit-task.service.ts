@@ -88,7 +88,7 @@ export class EditTaskService {
     this.allColumn$.subscribe((arrCol) => {
       this.arrColumns = [...arrCol];
       this.createMapUser();
-      this.spinnerService.hide();
+      setTimeout(() => this.spinnerService.hide(), 500);
     });
   }
 
