@@ -17,20 +17,18 @@ export class BoardEffect {
     private localStorageService: LocalStorageService
   ) {}
 
-  //private idBoard = '4d5b3c0e-38ad-4ecb-9740-900f181f895e'; //берём в общем store?
-
   //private idBoardStor: string = this.storDataService.getIdCurrentBoard(); //это с общего стора
   //private id = '' + this.router.snapshot.paramMap.get('id');
   //boardId = this.editTaskService.getValCheckIdBoard$();
-  private idBoard =
-    this.localStorageService.getFromLocalStorage('currentBoard');
 
   loadBoard$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(invokeBoardAPI),
       switchMap(() =>
         this.boardData
-          .getBoardById('' + this.idBoard)
+          .getBoardById(
+            '' + this.localStorageService.getFromLocalStorage('currentBoard')
+          )
           .pipe(map((data) => boardFetchAPISuccess({ boardResponse: data })))
       )
     );

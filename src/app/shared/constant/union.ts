@@ -1,5 +1,6 @@
 export const union = {
   welcome: '/welcome',
+  main: '/main',
   auth: '/auth',
   login: '/auth/login',
   signup: '/auth/signup',

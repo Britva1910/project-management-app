@@ -98,8 +98,8 @@ export class MainPageService {
   }
 
   public saveIdCurrentBoard(id: string) {
-    this.store.dispatch(setCurrentBoard({ id }));
     this.localStorageService.saveInLocalStorage('currentBoard', id);
+    this.store.dispatch(setCurrentBoard({ id }));
     this.router.navigate(['board', id]);
     this.spinnerService.show();
   }

@@ -54,16 +54,6 @@ export class UserBoardService {
     }
     return '#' + randomChannel() + randomChannel() + randomChannel();
   }
-  //  бОЛЕЕ ЯРКИЕ ЦВЕТА:
-  //  return (
-  //    'rgb(' +
-  //    Math.round(Math.random() * 255) +
-  //    ',' +
-  //    Math.round(Math.random() * 255) +
-  //    ',' +
-  //    Math.round(Math.random() * 255) +
-  //    ')'
-  //  );
 
   public stopScroll() {
     document.body.style.overflowY = 'hidden';

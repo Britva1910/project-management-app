@@ -55,6 +55,8 @@ export class EditTaskService {
 
   private isOpenTasksOneUser$ = new BehaviorSubject<boolean>(false);
 
+  private isShowEditTaskModal$ = new BehaviorSubject<boolean>(false);
+
   public allColumn$ = new Subject<Column[]>();
 
   public arrColumns: Column[] = [];
@@ -109,8 +111,6 @@ export class EditTaskService {
     }
     return idColumn;
   }
-
-  private isShowEditTaskModal$ = new BehaviorSubject<boolean>(false);
 
   public showEditModal$(): Observable<boolean> {
     return this.isShowEditTaskModal$.asObservable();
@@ -188,7 +188,7 @@ export class EditTaskService {
   public addNewTask(userTaskData: AddTaskEvent, idColumn: string) {
     this.getBoardId();
     const userId: string = this.localStorageService
-      .getFromLocalStorage('userId')
+      .getFromLocalStorage('userId')!
       .toString();
     userTaskData.value.userId = userId;
     const bodyRequest: CreateTaskBody = userTaskData.value;
