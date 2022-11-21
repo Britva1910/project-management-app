@@ -1,0 +1,118 @@
+{
+  "auth": {
+    "login-label": "Login",
+    "singUp-label": "Sing Up",
+    "login": {
+      "login-plh": "Please enter a login",
+      "password-plh": "Please enter a password",
+      "btn": "Login"
+    },
+    "singUp": {
+      "name-plh": "Please enter your name",
+      "login-plh": "Please enter a login",
+      "password-plh": "Please enter a password",
+      "btn": "Sing up"
+    }
+  },
+  "header": {
+    "boardsBtn": "All boards",
+    "profileBtn": "Edit profile",
+    "singUpBtn": "Sign Up",
+    "logInBtn": "Log In",
+    "logInOut": "Log Out",
+    "menu": "Menu"
+  },
+  "404-message": "Sorry, smth went wrong((",
+  "welcome": {
+    "btn": "Create project",
+    "subtitle-1": "Advantages",
+    "subtitle-2": "Development Team",
+    "advantages": {
+      "text-1": "The Kanban board is the best way to know the current status of a project because it's visual",
+      "text-2": "It's very easy to understand. Drag and drop tasks between columns easily.",
+      "text-3": "You can add, rename and remove columns at any time to adapt the board to your project."
+    },
+    "team": {
+      "person-1": "Sviatlana Matskevich",
+      "person-2": "Ivan Lashuk",
+      "person-3": "Ulugbek Dushanov",
+      "description-1": "Board page and logic development, additional functionality implementation, code-review",
+      "description-2": "Teamwork organization, welcome page, auth page and logic development, localization, backend error handling implementation, code-review",
+      "description-3": "The main page for showing boards, header, and footer development, code-review"
+    }
+  },
+  "board": {
+    "btn": {
+      "addTask": "Add task +",
+      "addColumn": "More Column +",
+      "cancel": "Cancel",
+      "ok": "Ok",
+      "sure": "Are you sure?"
+    },
+    "message-delete": "You can remove only your own tasks",
+    "message-column-title": "Name must be from 3 to 20 characters",
+    "message-column-descript": "Must be more than 2 characters"
+  },
+  "forms": {
+    "errors": {
+      "enterPass": "Enter a password",
+      "lengthPass": "Your password isn't strong enough at least 8 characters",
+      "lengthLogin": "Login should be at least 3 characters",
+      "lengthName": "Name should be at least 3 characters",
+      "enterName": "Enter a name",
+      "enterLogin": "Enter a login"
+    },
+    "enterData": "Enter data",
+    "title": "Title",
+    "title-plh": "Enter title",
+    "description": "Description",
+    "btnClose": "Close",
+    "btnSubmit": "Submit",
+    "addTask": "Edit task",
+    "save": "Save",
+    "edit": "Edit board"
+  },
+  "tasksUserInfo": {
+    "nameProject": "Project",
+    "developer": "Developer",
+    "task": "Task",
+    "status": "Status"
+  },
+  "editProfile": {
+    "titleName": "Your current name:",
+    "titleLogin": "Your current login:",
+    "changeName": "Change user name",
+    "enterName": "Enter new name",
+    "changeLogin": "Change user login",
+    "enterLogin": "Enter new login",
+    "changePassword": "Change user password",
+    "enterPassword": "Enter new password",
+    "deleteUser": "Delete user profile",
+    "attention": "Here you can delete your profile",
+    "deleteBtn": "Delete"
+  },
+  "main": {
+    "title": "All projects",
+    "subtitle": "My boards",
+    "search-bar": {
+      "search": "search"
+    },
+    "sort-bar": {
+      "sort": "Sort"
+    },
+    "board-list": {
+      "board": "Create new board"
+    }
+  },
+  "spinner": "Loading",
+  "errorHandling": {
+    "loginError": "User was not found. Please, check login and password",
+    "loginConflict": "User with this name already exists",
+    "bug": "Whoops! Seems is bug...",
+    "something": "Whoops! Something went wrong...",
+    "undocumented": "There is an error in the data somewhere. Please, try again",
+    "noBoard": "Board was not founded!",
+    "emptyColumnTittle": "Column title should not be empty"
+  }
+}
+
