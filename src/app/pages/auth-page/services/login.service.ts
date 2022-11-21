@@ -70,6 +70,7 @@ export class LoginService {
             userName: '',
           })
         );
+        this.setUserData(userId);
         this.changeIsLoginStatus();
         if (this.localStorageService.getFromLocalStorage('token')) {
           this.router.navigate(['/main']);
