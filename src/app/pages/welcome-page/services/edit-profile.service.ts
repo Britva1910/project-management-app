@@ -21,13 +21,13 @@ export class EditProfileService {
     private localStorage: LocalStorageService,
     private loginService: LoginService,
     private notificationService: NotificationService
-  ) {
-    this.currentUserId = this.localStorage
-      .getFromLocalStorage('userId')
-      .toString();
-  }
+  ) {}
 
   getCurrentUserData(): Observable<CurrentUserData> {
+    const userId = this.localStorage.getFromLocalStorage('userId');
+    if (typeof userId === 'string') {
+      this.currentUserId = userId;
+    }
     return this.store.select(selectUserData);
   }
 

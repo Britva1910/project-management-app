@@ -6,6 +6,7 @@ import {
   setIsLogin,
   setToken,
   setUserData,
+  setUserInfo,
 } from '../../../shared/store/app.action';
 import { AuthDataService } from '../../../shared/services/auth-data-service/auth-data.service';
 import { Store } from '@ngrx/store';
@@ -36,10 +37,23 @@ export class LoginService {
         catchError(async (err) => console.log(err)),
         map((value) => {
           this.store.dispatch(setToken({ token: token }));
+          this.changeIsLoginStatus();
+          this.setUserData(userId);
           return value ? true : false;
         })
       );
     }
+  }
+
+  setUserData(userId: string) {
+    this.userDataService.getUserById(userId).subscribe((userData) => {
+      this.store.dispatch(
+        setUserInfo({
+          userLogin: userData.login,
+          userName: userData.name,
+        })
+      );
+    });
   }
 
   logIn(userData: LoginData) {

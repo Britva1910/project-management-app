@@ -36,9 +36,13 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.sub = this.editProfile.getCurrentUserData().subscribe((data) => {
       this.currentUserData.name = data.userName;
       this.currentUserData.login = data.userLogin;
-      this.currentUserData.password = this.localStorage
-        .getFromLocalStorage('password')
-        .toString();
+
+      const userPassword = this.localStorage.getFromLocalStorage('password');
+
+      if (userPassword === 'string') {
+        this.currentUserData.password = userPassword;
+      }
+
       this.name?.setValue(data.userName);
       this.login?.setValue(data.userLogin);
     });

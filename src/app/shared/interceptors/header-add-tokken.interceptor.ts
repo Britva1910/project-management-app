@@ -16,9 +16,8 @@ export class HeaderAddTokkenInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    const tokken: string | null =
-      this.localStorageService.getFromLocalStorage('token');
-    if (tokken) {
+    const tokken = this.localStorageService.getFromLocalStorage('token');
+    if (typeof tokken === 'string') {
       return next.handle(
         request.clone({
           headers: request.headers.set('Authorization', `Bearer ${tokken}`),

@@ -21,6 +21,7 @@ export class AuthGuard implements CanActivate {
       // @ts-ignore
       value.subscribe((data) => {
         if (data === null || false) {
+          console.log('start guard and checkUserStatus()');
           this.loginService.checkUserStatus().subscribe((isLogin) => {
             if (isLogin) {
               return of(true);
