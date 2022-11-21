@@ -2,11 +2,17 @@ import { Injectable } from '@angular/core';
 import { UserDataService } from '../../../shared/services/user-data-service/user-data.service';
 import { LocalStorageService } from '../../../shared/services/local-storage-service/local-storage.service';
 import { LoginData, Token } from '../../../shared/models/auth-models';
-import { setUserData } from '../../../shared/store/app.action';
+import {
+  setIsLogin,
+  setToken,
+  setUserData,
+} from '../../../shared/store/app.action';
 import { AuthDataService } from '../../../shared/services/auth-data-service/auth-data.service';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../../shared/services/notification-service/notification.service';
+import { catchError, map, Observable, of } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -20,35 +26,20 @@ export class LoginService {
     private notificationService: NotificationService
   ) {}
 
-  isLogin(): Promise<boolean> {
+  checkUserStatus(): Observable<boolean> {
     const token = this.getTokenFromLocalStorage();
     if (!token) {
-      return new Promise((resolve) => resolve(false));
+      return of(false);
+    } else {
+      const userId = this.getUserIdFromToken(token);
+      return this.userDataService.getUserById(userId).pipe(
+        catchError(async (err) => console.log(err)),
+        map((value) => {
+          this.store.dispatch(setToken({ token: token }));
+          return value ? true : false;
+        })
+      );
     }
-    const userId = this.getUserIdFromToken(token);
-    const response = this.userDataService.getUserById(userId);
-    return new Promise((resolve) => {
-      response.subscribe({
-        next: (userData) => {
-          this.store.dispatch(
-            setUserData({
-              token: token,
-              userId: userId,
-              userLogin: userData.login,
-              userName: userData.name,
-            })
-          );
-          resolve(true);
-        },
-        error: (error) => {
-          if (error) {
-            if (error.statusText === 'Unauthorized') {
-              this.notificationService.showError('errorHandling.loginError');
-            }
-          }
-        },
-      });
-    });
   }
 
   logIn(userData: LoginData) {
@@ -65,7 +56,10 @@ export class LoginService {
             userName: '',
           })
         );
-        this.router.navigate(['/main']);
+        this.changeIsLoginStatus();
+        if (this.localStorageService.getFromLocalStorage('token')) {
+          this.router.navigate(['/main']);
+        }
       },
       error: (error) => {
         if (error.statusText === 'Forbidden') {
@@ -73,6 +67,10 @@ export class LoginService {
         }
       },
     });
+  }
+
+  changeIsLoginStatus() {
+    this.store.dispatch(setIsLogin({ isLogin: true }));
   }
 
   singUp(userData: LoginData) {

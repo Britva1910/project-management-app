@@ -14,7 +14,6 @@ export class UrlInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    //this is temporary fix for translation library
     if (
       request.url.slice(-7) === 'en.json' ||
       request.url.slice(-7) === 'ru.json'
