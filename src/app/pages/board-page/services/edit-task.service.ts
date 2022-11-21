@@ -88,7 +88,7 @@ export class EditTaskService {
     this.allColumn$.subscribe((arrCol) => {
       this.arrColumns = [...arrCol];
       this.createMapUser();
-      setTimeout(() => this.spinnerService.hide(), 1300);
+      this.spinnerService.hide();
     });
   }
 
@@ -188,7 +188,7 @@ export class EditTaskService {
   public addNewTask(userTaskData: AddTaskEvent, idColumn: string) {
     this.getBoardId();
     const userId: string = this.localStorageService
-      .getFromLocalStorage('userId')
+      .getFromLocalStorage('userId')!
       .toString();
     userTaskData.value.userId = userId;
     const bodyRequest: CreateTaskBody = userTaskData.value;
