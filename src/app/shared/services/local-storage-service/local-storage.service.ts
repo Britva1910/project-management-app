@@ -14,11 +14,10 @@ export class LocalStorageService {
 
   public getFromLocalStorage(key: string) {
     const data = localStorage.getItem(key);
-    return data;
-    /*if (data) {
-      return this.cryptoService.getDecryptedString(data);
+    if (data) {
+      return data;
     }
-    return new Error(`Key - ${key} - is not founded`);*/
+    return new Error(`Key - ${key} - is not founded`);
   }
 
   public remoteFromLocalStorage(key: string) {

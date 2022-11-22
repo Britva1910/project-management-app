@@ -35,7 +35,7 @@ export class WelcomePageComponent implements OnInit, OnDestroy {
           this.message = 'Please login and you can create your project';
         } else {
           this.message =
-            'Пожалуйста, зарегистируйтесь и Вы сожете создать новый проект';
+            'Пожалуйста, зарегистируйтесь и Вы сможете создать новый проект';
         }
       })
     );

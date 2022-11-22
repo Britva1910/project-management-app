@@ -16,6 +16,14 @@ export const setUserData = createAction(
   }>()
 );
 
+export const setUserInfo = createAction(
+  '[AUTH] set user name and login',
+  props<{
+    userName: string;
+    userLogin: string;
+  }>()
+);
+
 export const setToken = createAction(
   '[AUTH] set token',
   props<{

@@ -13,7 +13,7 @@ import { NotificationService } from '../../../shared/services/notification-servi
   providedIn: 'root',
 })
 export class EditProfileService {
-  currentUserId: string;
+  public currentUserId: string;
 
   constructor(
     private store: Store,
@@ -21,21 +21,21 @@ export class EditProfileService {
     private localStorage: LocalStorageService,
     private loginService: LoginService,
     private notificationService: NotificationService
-  ) {
-    this.currentUserId = this.localStorage
-      .getFromLocalStorage('userId')
-      .toString();
-  }
+  ) {}
 
-  getCurrentUserData(): Observable<CurrentUserData> {
+  public getCurrentUserData(): Observable<CurrentUserData> {
+    const userId = this.localStorage.getFromLocalStorage('userId');
+    if (typeof userId === 'string') {
+      this.currentUserId = userId;
+    }
     return this.store.select(selectUserData);
   }
 
-  changeUserData(newUserData: UpdateUserRequestBody) {
+  public changeUserData(newUserData: UpdateUserRequestBody) {
     return this.userDataService.updateUser(this.currentUserId, newUserData);
   }
 
-  deleteUser() {
+  public deleteUser() {
     this.userDataService.deleteUser(this.currentUserId).subscribe({
       next: () => this.loginService.logOut(),
       error: () =>
