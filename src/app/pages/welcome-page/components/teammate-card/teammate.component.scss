@@ -11,12 +11,13 @@
   align-items: center;
   justify-content: center;
   border-radius: 15px;
+  border: 5px dashed transparent;
   background-color: $light-font-color;
-  cursor: pointer;
+  background-image: url("./../../../../../assets/img/light-fon.jpg");
   transition: all ease .5s;
-
+  cursor: pointer;
   &:hover {
-    background-color: $yellow;
+    border: 5px dashed rgb(82, 79, 252);
   }
 
   &:hover .name__title {
@@ -32,6 +33,7 @@
 
 .name__title {
   @include title-page;
+  font-size: 20px;
   margin: 20px auto;
   text-align: center;
   transition: all ease .5s;
@@ -39,9 +41,10 @@
 
 .name__text {
   font: {
-    family: 'Volkhov';
-    size: 20px;
+    family: "Roboto", sans-serif;
+    font-size: 18px;
     weight: normal;
+    line-height: 24px;
   }
 
   color: $description-color;
@@ -51,19 +54,23 @@
 
 
 @media screen and (max-width: $mq-laptop) {
-
-  .name__text,
   .name__title {
     font-size: 18px;
-    line-height: 20px;
+  }
+  .name__text {
+    font-size: 16x;
+
   }
 }
 
 @media screen and (max-width: $mq-small) {
 
-  .name__text,
-  .name__title {
-    font-size: 16px;
-    line-height: 18px;
+   .name__title {
+    font-size: 17px;
+    line-height: 22px;
+  }
+  .name__text {
+    font-size: 15px;
   }
 }
+

@@ -2,8 +2,8 @@
 
 @mixin not-found-text {
   font: {
-    family: 'Volkhov';
-    size: 25px;
+    family: "Roboto", sans-serif;
+    size: calc(2vw + 2vh);
     weight: bold;
   }
  color: $grey-color;
@@ -11,7 +11,7 @@
 
 @mixin title-page {
   font: {
-    family: 'Volkhov';
+    family: "Roboto", sans-serif;
     size: 22px;
     weight: bold;
   }
@@ -23,7 +23,7 @@
 
 @mixin title-column {
   font: {
-    family: 'Volkhov';
+    family: "Roboto", sans-serif;
     size: 16px;
     weight: bold;
   }
@@ -32,7 +32,7 @@
 
 @mixin description-task {
   font: {
-    family: 'Volkhov';
+    family: "Roboto", sans-serif;
     size: 12px;
     weight: normal;
   }
@@ -41,7 +41,7 @@
 
 @mixin title-page-tablet {
   font: {
-    family: 'Volkhov';
+    family: "Roboto", sans-serif;
     size: 18px;
     weight: bold;
     line-height: 20px;
