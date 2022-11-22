@@ -28,9 +28,9 @@
     "subtitle-1": "Advantages",
     "subtitle-2": "Development Team",
     "advantages": {
-      "text-1": "The Kanban board is the best way to know the current status of a project because it's visual",
-      "text-2": "It's very easy to understand. Drag and drop tasks between columns easily.",
-      "text-3": "You can add, rename and remove columns at any time to adapt the board to your project."
+      "text-1": "The Kanban board is the best tool, very easy and pleasant to use, supports 2 languages",
+      "text-2": "This is variety of color palette for displaying tasks, viewing the tasks of each project participant is available",
+      "text-3": "You can freely move not only columns, but tasks, choosing the optimal position for them."
     },
     "team": {
       "person-1": "Sviatlana Matskevich",

@@ -10,7 +10,12 @@
   margin: 0 25px 25px 0;
   vertical-align: top;
 }
-
+.example-handle {
+  cursor: pointer;
+}
+.example-handle:hover {
+  box-shadow: $shadow-title-column;
+}
 .icon-delete:hover {
   box-shadow: $shadow-title-column;
 }
