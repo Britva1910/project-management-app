@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
     return this.store.select(selectIsLogin).pipe((value) => {
       // @ts-ignore
       value.subscribe((data) => {
-        if (data === null || false) {
+        if (!data) {
           this.loginService.checkUserStatus().subscribe((isLogin) => {
             if (isLogin) {
               return of(true);

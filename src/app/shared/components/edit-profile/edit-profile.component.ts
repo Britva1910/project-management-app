@@ -3,6 +3,7 @@ import { EditProfileService } from '../../../pages/welcome-page/services/edit-pr
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LocalStorageService } from '../../services/local-storage-service/local-storage.service';
+import { NotificationService } from '../../services/notification-service/notification.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -29,16 +30,21 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
   constructor(
     private editProfile: EditProfileService,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private notification: NotificationService
   ) {}
 
   ngOnInit() {
     this.sub = this.editProfile.getCurrentUserData().subscribe((data) => {
       this.currentUserData.name = data.userName;
       this.currentUserData.login = data.userLogin;
-      this.currentUserData.password = this.localStorage
-        .getFromLocalStorage('password')
-        .toString();
+
+      const userPassword = this.localStorage.getFromLocalStorage('password');
+
+      if (typeof userPassword === 'string') {
+        this.currentUserData.password = userPassword;
+      }
+
       this.name?.setValue(data.userName);
       this.login?.setValue(data.userLogin);
     });
@@ -61,9 +67,10 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
     newUserData.name = this.form.value.name;
 
-    this.editProfile
-      .changeUserData(newUserData)
-      .subscribe((response) => (this.currentUserData.name = response.name));
+    this.editProfile.changeUserData(newUserData).subscribe((response) => {
+      this.currentUserData.name = response.name;
+      this.notification.showSuccess('Successes! Name was changed');
+    });
   }
 
   changeUserLogin() {
@@ -71,9 +78,10 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
     newUserData.login = this.form.value.login;
 
-    this.editProfile
-      .changeUserData(newUserData)
-      .subscribe((response) => (this.currentUserData.login = response.login));
+    this.editProfile.changeUserData(newUserData).subscribe((response) => {
+      this.currentUserData.login = response.login;
+      this.notification.showSuccess('Successes! Login was changed');
+    });
   }
 
   changeUserPassword() {
@@ -81,7 +89,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
     newUserData.password = this.form.value.password;
 
-    this.editProfile.changeUserData(newUserData).subscribe();
+    this.editProfile.changeUserData(newUserData).subscribe(() => {
+      this.notification.showSuccess('Successes! Password was changed');
+    });
   }
 
   deleteUser(event: any) {

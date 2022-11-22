@@ -23,7 +23,7 @@ export class NotificationService implements OnDestroy {
   ) {}
 
   showSuccess(message: string): void {
-    this.snackBar.open(message);
+    this.snackBar.open(message, 'Ok');
   }
 
   showError(key: string): void {
