@@ -14,7 +14,6 @@ import { ItemBoardComponent } from './components/item-board/item-board.component
 import { EditTaskComponent } from './components/edit-task/edit-task.component';
 import { EditTaskService } from './services/edit-task.service';
 import { DragnDropService } from './services/dragn-drop.service';
-import { DragHandleColumnComponent } from './components/drag-handle-column/drag-handle-column.component';
 import { TranslocoModule } from '@ngneat/transloco';
 import { ColorPanelComponent } from './components/color-panel/color-panel.component';
 import { TasksUserComponent } from './components/tasks-user/tasks-user.component';
@@ -30,7 +29,6 @@ const routes: Routes = [
     BoardContainerComponent,
     ItemBoardComponent,
     EditTaskComponent,
-    DragHandleColumnComponent,
     ColorPanelComponent,
     TasksUserComponent,
   ],
