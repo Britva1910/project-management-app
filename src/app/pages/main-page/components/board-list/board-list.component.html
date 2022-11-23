@@ -4,7 +4,7 @@
       <app-dialog (emitText)="addNewBoard($event)" appStopPropagation (click)="setTwoFieldForm()">
       <div class="list__outer first" >
         <h2 class="list__subtitle">{{ t('main.board-list.board') }}</h2>
-        <img src="../../../../../assets/img/pensil.png" alt="create" class="list__img">
+        <img src="./assets/img/pensil.png" alt="create" class="list__img">
       </div>
       </app-dialog>
     </li>
@@ -23,7 +23,7 @@
             </app-app-confirm>
           </div>
         </div>
-         <img class="list__members" src="../../../../../assets/img/members.png" alt="icon">
+         <img class="list__members" src="./assets/img/members.png" alt="icon">
         <p class="list__description">{{ board.description }}</p>
       </div>
     </li>
