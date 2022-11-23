@@ -37,10 +37,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    if (firstScriptTag.parentNode) {
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    }
+    document.body.appendChild(tag);
     this.getScreenWidth.next(window.innerWidth);
     this.sub.push(
       this.getScreenWidth.subscribe((value: number) => {
