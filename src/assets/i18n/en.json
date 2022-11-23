@@ -27,6 +27,7 @@
     "btn": "Create project",
     "subtitle-1": "Advantages",
     "subtitle-2": "Development Team",
+    "subtitle-3": "Kanban APP - demonstration",
     "advantages": {
       "text-1": "The Kanban board is the best tool, very easy and pleasant to use, supports 2 languages",
       "text-2": "This is variety of color palette for displaying tasks, viewing the tasks of each project participant is available",
@@ -36,7 +37,7 @@
       "person-1": "Sviatlana Matskevich",
       "person-2": "Ivan Lashuk",
       "person-3": "Ulugbek Dushanov",
-      "description-1": "Board page and logic development, additional functionality implementation, application design, code-review",
+      "description-1": "Board page and logic development, additional functionality implementation, application design, video demonstration, code-review",
       "description-2": "Teamwork organization, welcome page, auth page and logic development, localization, backend error handling implementation, code-review",
       "description-3": "The main page for showing boards, header, and footer development, code-review"
     }

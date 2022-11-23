@@ -8,3 +8,7 @@ export interface TeamData {
   name: string;
   description: string;
 }
+export interface Video {
+  title: string;
+  link: string;
+}
