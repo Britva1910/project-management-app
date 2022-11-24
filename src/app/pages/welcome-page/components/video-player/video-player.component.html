@@ -1,1 +1,5 @@
-<youtube-player [videoId]="videoId" [height]="heightVideo" [width]="widthVideo" ></youtube-player>
+<iframe *ngIf="lang === 'en'" title="ytplayer" id="ytplayer" type="text/html" [width]="widthVideo" [height]="heightVideo" src="http://www.youtube.com/embed/cYsgQGJJqQE"
+  frameborder="0"></iframe>>
+
+  <iframe *ngIf="lang === 'ru'" title="ytplayer" id="ytplayer" type="text/html" [width]="widthVideo" [height]="heightVideo" src="http://www.youtube.com/embed/SsQsED74q6U"
+  frameborder="0"></iframe>>
