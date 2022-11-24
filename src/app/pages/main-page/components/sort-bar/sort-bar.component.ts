@@ -22,9 +22,9 @@ export class SortBarComponent implements OnInit, OnDestroy {
     this.subscription.push(
       translocoService.langChanges$.subscribe((lang) => {
         if (lang === 'en') {
-          this.sortOrder = 'by default';
+          this.sortOrder = 'by A-Z';
         } else {
-          this.sortOrder = 'по умолчанию';
+          this.sortOrder = 'от А-Я';
         }
       })
     );
@@ -40,17 +40,7 @@ export class SortBarComponent implements OnInit, OnDestroy {
 
   public sort() {
     this.translocoService.langChanges$.subscribe((lang) => {
-      if (
-        this.sortOrder === 'by default' ||
-        this.sortOrder === 'по умолчанию'
-      ) {
-        if (lang === 'en') {
-          this.mainPageService.sortOrder.next('by A-Z');
-        } else {
-          this.mainPageService.sortOrder.next('от А-Я');
-        }
-        this.rotateIcon = false;
-      } else if (this.sortOrder === 'by A-Z' || this.sortOrder === 'от А-Я') {
+      if (this.sortOrder === 'by A-Z' || this.sortOrder === 'от А-Я') {
         if (lang === 'en') {
           this.mainPageService.sortOrder.next('by Z-A');
         } else {
