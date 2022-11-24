@@ -17,4 +17,6 @@ export enum ScreenEnum {
 export enum LangVideoEnum {
   ru = 'SsQsED74q6U',
   en = 'cYsgQGJJqQE',
+  srcEn = 'http://www.youtube.com/embed/cYsgQGJJqQE&origin=http://localhost:4200',
+  srcRu = 'http://www.youtube.com/embed/SsQsED74q6U&origin=http://localhost:4200',
 }

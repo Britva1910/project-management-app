@@ -1,10 +1,7 @@
 import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { TranslocoService } from '@ngneat/transloco';
-import {
-  LangVideoEnum,
-  ScreenEnum,
-} from 'src/app/shared/models/enums/screen-enum';
+import { ScreenEnum } from 'src/app/shared/models/enums/screen-enum';
 
 @Component({
   selector: 'app-video-player',
@@ -14,9 +11,9 @@ import {
 export class VideoPlayerComponent implements OnInit, OnDestroy {
   private sub: Subscription[] = [];
 
-  public videoId: string = LangVideoEnum.en;
-
   public widthVideo = ScreenEnum.small;
+
+  public lang = true;
 
   public heightVideo = this.widthVideo / ScreenEnum.coefficient;
 
@@ -26,18 +23,15 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     this.sub.push(
       translocoService.langChanges$.subscribe((lang) => {
         if (lang === 'en') {
-          this.videoId = LangVideoEnum.en;
+          this.lang = true;
         } else {
-          this.videoId = LangVideoEnum.ru;
+          this.lang = false;
         }
       })
     );
   }
 
   ngOnInit() {
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    document.body.appendChild(tag);
     this.getScreenWidth.next(window.innerWidth);
     this.sub.push(
       this.getScreenWidth.subscribe((value: number) => {
