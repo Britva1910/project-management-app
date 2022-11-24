@@ -146,3 +146,18 @@
   }
 
 }
+
+@media screen and (max-width: $mq-small) {
+.board-page__container-title {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.board-page__title {
+  margin-bottom: 15px;
+}
+.board-page__description {
+  text-align: center;
+}
+}
