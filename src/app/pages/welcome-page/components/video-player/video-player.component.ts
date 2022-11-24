@@ -13,7 +13,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 
   public widthVideo = ScreenEnum.small;
 
-  public lang = true;
+  public lang = 'en';
 
   public heightVideo = this.widthVideo / ScreenEnum.coefficient;
 
@@ -23,9 +23,9 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     this.sub.push(
       translocoService.langChanges$.subscribe((lang) => {
         if (lang === 'en') {
-          this.lang = true;
+          this.lang = 'en';
         } else {
-          this.lang = false;
+          this.lang = 'ru';
         }
       })
     );
