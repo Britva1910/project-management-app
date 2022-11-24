@@ -77,7 +77,7 @@ export class LoginService {
         }
       },
       error: (error) => {
-        if (error.statusText === 'Forbidden') {
+        if (error.error.statusCode === 403) {
           this.notificationService.showError('errorHandling.loginError');
         }
       },
