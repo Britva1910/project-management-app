@@ -13,8 +13,3 @@ export enum ScreenEnum {
   mobile = 300,
   min = 290,
 }
-
-export enum LangVideoEnum {
-  ru = 'SsQsED74q6U',
-  en = 'cYsgQGJJqQE',
-}
