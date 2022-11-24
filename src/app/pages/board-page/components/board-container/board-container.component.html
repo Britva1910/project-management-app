@@ -9,8 +9,8 @@
       </div>
       <div class="edit-container" *transloco="let t">
         <button class="button-edit-input close-edit" (click)="showTitleColumn(i)">X</button>
-        <button class="button-edit-input save-edit" (click)="updateTitleColumn(column.id, i)">V</button>
-        <input class="title-input" [(ngModel)]="titleColumn" matTooltip="{{t('board.message-column-title')}}">
+        <button class="button-edit-input save-edit" matTooltip="{{t('board.message-column-title')}}" [matTooltipDisabled]="titleColumn.length > 2 && titleColumn.length <= 20" (click)="updateTitleColumn(column.id, i)">V</button>
+        <input class="title-input" [(ngModel)]="titleColumn" matTooltip="{{t('board.message-column-title')}}" maxlength="20" minlength="3">
       </div>
       <app-app-confirm [data]="data" (emitConfirm)="deleteColumn($event, column.id)">
         <button mat-icon-button class="icon-delete" type="button">

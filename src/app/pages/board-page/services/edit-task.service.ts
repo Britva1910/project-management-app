@@ -243,6 +243,7 @@ export class EditTaskService {
   }
 
   public updateTitleColumn(idColumn: string, bodyRequest: UpdateColumnBody) {
+    this.spinnerService.show();
     this.columnDataService
       .updateColumn(this.getValCheckIdBoard$(), idColumn, bodyRequest)
       .subscribe({
