@@ -28,9 +28,9 @@
     "subtitle-1": "Advantages",
     "subtitle-2": "Development Team",
     "advantages": {
-      "text-1": "The Kanban board is the best tool, very easy and pleasant to use, supports 2 languages",
-      "text-2": "This is variety of color palette for displaying tasks, viewing the tasks of each project participant is available",
-      "text-3": "You can freely move not only columns, but tasks, choosing the optimal position for them."
+      "text-1": "Kanban board is pleasant to use: tasks' color can be customized according to every user preferences",
+      "text-2": "Kanban board is convenient to use: two languages are supported",
+      "text-3": "Kanban board is easy to use: columns and tasks are movable and can be dragged to the best suitable place"
     },
     "team": {
       "person-1": "Sviatlana Matskevich",
