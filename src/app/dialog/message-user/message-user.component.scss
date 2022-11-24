@@ -7,7 +7,7 @@
   left: 0;
   top: 0;
   background-color: $grey-color;
-  opacity: 0.3;
+  opacity: 0.5;
   z-index: 2;
 }
 
@@ -20,27 +20,47 @@
   padding: 40px 50px;
   border-radius: 7px;
   text-align: center;
-  color: $light-font-color;
-  background-image: url('../../../assets/img/dark-fon.jpg');
   background-position: center center;
   background-size: 100%;
   transform: translate(-50%, -50%);
   box-shadow: $shadow-modal;
   z-index: 3;
-
+   .modal-title {
+    font-weight: 500;
+   }
   .btn-close {
     width: 90px;
     height: 30px;
     border: none;
     border-radius: 15px;
     font-weight: 700;
-    background: $light-font-color;
-    color: $dark-fon-color;
     cursor: pointer;
-
-    &:hover {
-      background: $light-blue-fon-color;
-    }
   }
+}
 
+.modal-confirm-dark {
+  background-image: url('../../../assets/img/dark-fon.jpg');
+  color: $light-font-color;
+}
+
+.modal-confirm-light {
+  background-image: url('../../../assets/img/light-fon.jpg');
+  color: $dark-fon-color;
+}
+
+.btn-light {
+  background: $light-font-color;
+  color: $dark-fon-color;
+  &:hover {
+    background: $light-blue-fon-color;
+  }
+}
+
+.btn-dark {
+  background: $dark-fon-color;
+  color: $light-font-color;
+  &:hover {
+    background: $btn-add-hover-color;
+    color: $dark-fon-color;
+  }
 }
