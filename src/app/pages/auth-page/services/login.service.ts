@@ -59,6 +59,12 @@ export class LoginService {
   }
 
   logIn(userData: LoginData) {
+    if (userData.password) {
+      this.localStorageService.saveInLocalStorage(
+        'password',
+        userData.password
+      );
+    }
     this.authDataService.logIn(userData).subscribe({
       next: (data: Token) => {
         const userId = this.getUserIdFromToken(data.token);

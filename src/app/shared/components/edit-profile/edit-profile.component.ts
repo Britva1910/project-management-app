@@ -31,7 +31,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   constructor(
     private editProfile: EditProfileService,
     private localStorage: LocalStorageService,
-    private notification: NotificationService
+    private notification: NotificationService,
+    private localStorageService: LocalStorageService
   ) {}
 
   ngOnInit() {
@@ -98,6 +99,12 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   changeUserPassword() {
     const newUserData = Object.assign(this.currentUserData);
     newUserData.password = this.form.value.password;
+    if (newUserData.password) {
+      this.localStorageService.saveInLocalStorage(
+        'password',
+        newUserData.password
+      );
+    }
 
     this.editProfile.changeUserData(newUserData).subscribe({
       next: () => {
