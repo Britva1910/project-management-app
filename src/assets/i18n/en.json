@@ -20,7 +20,8 @@
     "singUpBtn": "Sign Up",
     "logInBtn": "Log In",
     "logInOut": "Log Out",
-    "menu": "Menu"
+    "menu": "Menu",
+    "searchBtn": "Global Search"
   },
   "404-message": "Sorry, smth went wrong :(",
   "welcome": {
@@ -37,10 +38,18 @@
       "person-1": "Sviatlana Matskevich",
       "person-2": "Ivan Lashuk",
       "person-3": "Ulugbek Dushanov",
-      "description-1": "Board page and logic development, additional functionality implementation, application design, video demonstration, code-review",
+      "description-1": "Board page, global-search pages and logic development, additional functionality implementation, application design, video demonstration, code-review",
       "description-2": "Teamwork organization, welcome page, auth page and logic development, localization, backend error handling implementation, code-review",
       "description-3": "The main page for showing boards, header, and footer development, code-review"
     }
+  },
+  "search": {
+    "title": "Enter data to search",
+    "project": "Project",
+    "task": "Task",
+    "description": "Description",
+    "user": "User",
+    "result": "Searching results"
   },
   "board": {
     "btn": {

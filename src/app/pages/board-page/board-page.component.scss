@@ -5,7 +5,7 @@
 
 .wrapper__board-page {
   width: 100%;
-  min-height: calc(100vh - 112px);
+  min-height: calc(100vh - 117px);
   padding: 10px 70px;
   font-family: "Roboto", sans-serif;
   color: $light-font-color;
@@ -19,6 +19,8 @@
 .board-page__container-title {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 7px;
 }
 
 .board-page__container {

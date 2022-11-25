@@ -2,12 +2,14 @@
   <div class="header__wrapper">
     <a href="#"> <img [src]="logoSource" class="header__logo" alt="logo"></a>
     <a class="header__nav-txt" *ngIf="headerNavigation" routerLink="/main" (click)="showSpinner()">{{t('header.boardsBtn')}}</a>
+    <a class="header__nav-txt" *ngIf="headerNavigation" routerLink="/search" (click)="getBoards()"><img src="./assets/icons/icon-global-search.png" class="header__search" alt="icon search"></a>
     <a class="header__nav-txt" *ngIf="headerNavigation" routerLink="/edit-profile">{{t('header.profileBtn')}}</a>
     <div class="header__nav-small" *ngIf="headerNavigation">
       <button class="header__nav-menu" mat-button [matMenuTriggerFor]="menu">{{t('header.menu')}}</button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="#">{{t('header.boardsBtn')}}</button>
+        <button mat-menu-item routerLink="#" (click)="showSpinner()">{{t('header.boardsBtn')}}</button>
         <button mat-menu-item routerLink="/edit-profile">{{t('header.profileBtn')}}</button>
+        <button mat-menu-item routerLink="/search" (click)="getBoards()">{{t('header.searchBtn')}}</button>
       </mat-menu>
     </div>
     <div class="header__language">

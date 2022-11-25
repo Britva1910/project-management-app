@@ -5,6 +5,7 @@ import { TranslocoService } from '@ngneat/transloco';
 import { union } from '../../constant/union';
 import { LoginService } from '../../../pages/auth-page/services/login.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SearchService } from './../../../pages/global-search-pages/services/search.service';
 
 @Component({
   selector: 'app-header',
@@ -31,7 +32,8 @@ export class HeaderComponent {
     private location: Location,
     private translate: TranslocoService,
     private loginService: LoginService,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
+    private searchService: SearchService
   ) {
     router.events.subscribe(() => {
       if (location.path() != '') {
@@ -69,6 +71,10 @@ export class HeaderComponent {
 
   public showSpinner() {
     if (this.currentRoute === union.main) return;
+    this.spinnerService.show();
+  }
+
+  public getBoards() {
     this.spinnerService.show();
   }
 }
