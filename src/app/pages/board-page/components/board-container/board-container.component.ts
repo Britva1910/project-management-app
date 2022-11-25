@@ -21,6 +21,7 @@ import { DragnDropService } from './../../services/dragn-drop.service';
 import { LocalStorageService } from './../../../../shared/services/local-storage-service/local-storage.service';
 import { TranslocoService } from '@ngneat/transloco';
 import { Subscription } from 'rxjs';
+import { FilterService } from './../../services/filter.service';
 
 @Component({
   selector: 'app-board-container',
@@ -37,7 +38,8 @@ export class BoardContainerComponent implements OnInit, OnDestroy {
     private dragnDropService: DragnDropService,
     public userBoardService: UserBoardService,
     private localStorageService: LocalStorageService,
-    private translocoService: TranslocoService
+    private translocoService: TranslocoService,
+    public filterService: FilterService
   ) {
     this.subscription = translocoService.langChanges$.subscribe((lang) => {
       if (lang === 'en') {

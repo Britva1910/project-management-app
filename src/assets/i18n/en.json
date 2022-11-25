@@ -52,7 +52,8 @@
     },
     "message-delete": "You can remove only your own tasks",
     "message-column-title": "Name must be from 3 to 20 characters",
-    "message-column-descript": "Must be more than 2 characters"
+    "message-column-descript": "Must be more than 2 characters",
+    "search-bar": "search task"
   },
   "forms": {
     "errors": {

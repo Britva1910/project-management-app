@@ -52,7 +52,8 @@
     },
     "message-delete": "Вы можете удалять только свои задачи",
     "message-column-title": "Название должно быть от 3 до 20 символов",
-    "message-column-descript": "Должно быть более 2 символов"
+    "message-column-descript": "Должно быть более 2 символов",
+    "search-bar": "поиск задачи"
   },
   "forms": {
     "errors": {

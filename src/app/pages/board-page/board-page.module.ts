@@ -19,6 +19,9 @@ import { ColorPanelComponent } from './components/color-panel/color-panel.compon
 import { TasksUserComponent } from './components/tasks-user/tasks-user.component';
 import { DialogModule } from './../../dialog/dialog.module';
 import { NotFoundPagesComponent } from './../../shared/components/not-found-pages/not-found-pages.component';
+import { SearchComponent } from './components/search/search.component';
+import { FilterService } from './services/filter.service';
+import { FilterPipe } from './pipes/filter.pipe';
 const routes: Routes = [
   { path: ':id', component: BoardPageComponent },
   { path: '', component: NotFoundPagesComponent },
@@ -31,6 +34,8 @@ const routes: Routes = [
     EditTaskComponent,
     ColorPanelComponent,
     TasksUserComponent,
+    SearchComponent,
+    FilterPipe,
   ],
   imports: [
     CommonModule,
@@ -42,7 +47,12 @@ const routes: Routes = [
     TranslocoModule,
     DialogModule,
   ],
-  providers: [UserBoardService, EditTaskService, DragnDropService],
+  providers: [
+    UserBoardService,
+    EditTaskService,
+    DragnDropService,
+    FilterService,
+  ],
   exports: [EditTaskComponent],
 })
 export class BoardPageModule {}

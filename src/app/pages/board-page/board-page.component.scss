@@ -12,6 +12,8 @@
   background-image: url("./../../../assets/img/light-fon.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  overflow: hidden;
+  word-break: break-all;
 }
 
 .board-page__container-title {
@@ -29,7 +31,7 @@
 }
 
 .board-page__description {
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   font-size: 18px;
   color: $description-color;
 }
@@ -116,7 +118,7 @@
   }
 
   .board-page__description {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-size: 16px;
   }
 
@@ -145,4 +147,19 @@
     width: 100%;
   }
 
+}
+
+@media screen and (max-width: $mq-small) {
+.board-page__container-title {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.board-page__title {
+  margin-bottom: 15px;
+}
+.board-page__description {
+  text-align: center;
+}
 }
