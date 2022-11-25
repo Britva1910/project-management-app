@@ -34,6 +34,7 @@ export class SearchResultComponent implements OnInit {
   }
 
   public saveIdCurrentBoard(id: string) {
+    this.searchService.setValueInputFilter('');
     this.localStorageService.saveInLocalStorage('currentBoard', id);
     this.store.dispatch(setCurrentBoard({ id }));
     this.router.navigate(['board', id]);

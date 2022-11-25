@@ -74,7 +74,7 @@ export class SearchService {
     this.userDataService.getAllUsers().subscribe({
       next: (users) => {
         for (let user of users) {
-          this.map_users.set(user.id, user.login);
+          this.map_users.set(user.id, user.name);
         }
       },
       error: () =>

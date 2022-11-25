@@ -17,6 +17,8 @@
   border-collapse: collapse;
   color: $dark-font-color;
   text-align: left;
+  overflow: auto;
+  max-height: 50vh;
 }
 
 .table__head {

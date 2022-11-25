@@ -12,6 +12,5 @@ export class GlobalSearchComponent implements OnInit {
   ngOnInit(): void {
     this.searchService.getAllUsers();
     this.searchService.getAllBoard();
-    console.log('85');
   }
 }

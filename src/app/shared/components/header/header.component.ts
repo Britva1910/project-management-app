@@ -76,5 +76,6 @@ export class HeaderComponent {
 
   public getBoards() {
     this.spinnerService.show();
+    this.searchService.setValueInputFilter('');
   }
 }
