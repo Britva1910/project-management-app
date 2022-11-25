@@ -34,7 +34,9 @@ export class LoginService {
     } else {
       const userId = this.getUserIdFromToken(token);
       return this.userDataService.getUserById(userId).pipe(
-        catchError(async (err) => console.log(err)),
+        catchError(async () =>
+          this.notificationService.showError('errorHandling.something')
+        ),
         map((value) => {
           this.store.dispatch(setToken({ token: token }));
           this.changeIsLoginStatus();
