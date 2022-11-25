@@ -34,7 +34,9 @@ export class LoginService {
     } else {
       const userId = this.getUserIdFromToken(token);
       return this.userDataService.getUserById(userId).pipe(
-        catchError(async (err) => console.log(err)),
+        catchError(async () =>
+          this.notificationService.showError('errorHandling.something')
+        ),
         map((value) => {
           this.store.dispatch(setToken({ token: token }));
           this.changeIsLoginStatus();
@@ -57,6 +59,12 @@ export class LoginService {
   }
 
   logIn(userData: LoginData) {
+    if (userData.password) {
+      this.localStorageService.saveInLocalStorage(
+        'password',
+        userData.password
+      );
+    }
     this.authDataService.logIn(userData).subscribe({
       next: (data: Token) => {
         const userId = this.getUserIdFromToken(data.token);
