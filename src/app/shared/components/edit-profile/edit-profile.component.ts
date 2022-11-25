@@ -31,14 +31,14 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   constructor(
     private editProfile: EditProfileService,
     private localStorage: LocalStorageService,
-    private notification: NotificationService
+    private notification: NotificationService,
+    private localStorageService: LocalStorageService
   ) {}
 
   ngOnInit() {
     this.sub = this.editProfile.getCurrentUserData().subscribe((data) => {
       this.currentUserData.name = data.userName;
       this.currentUserData.login = data.userLogin;
-
       const userPassword = this.localStorage.getFromLocalStorage('password');
 
       if (typeof userPassword === 'string') {
@@ -64,33 +64,55 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
   changeUserName() {
     const newUserData = Object.assign(this.currentUserData);
-
     newUserData.name = this.form.value.name;
 
-    this.editProfile.changeUserData(newUserData).subscribe((response) => {
-      this.currentUserData.name = response.name;
-      this.notification.showSuccess('Successes! Name was changed');
+    this.editProfile.changeUserData(newUserData).subscribe({
+      next: (response) => {
+        this.currentUserData.name = response.name;
+        this.notification.showSuccess('successes-name');
+      },
+      error: () => {
+        this.notification.showError('errorHandling.something');
+      },
     });
   }
 
   changeUserLogin() {
-    const newUserData = Object.assign(this.currentUserData);
-
+    const newUserData = JSON.parse(JSON.stringify(this.currentUserData));
     newUserData.login = this.form.value.login;
 
-    this.editProfile.changeUserData(newUserData).subscribe((response) => {
-      this.currentUserData.login = response.login;
-      this.notification.showSuccess('Successes! Login was changed');
+    this.editProfile.changeUserData(newUserData).subscribe({
+      error: (error) => {
+        if (error.error.statusCode === 500) {
+          this.notification.showError('errorHandling.loginConflict');
+        } else {
+          this.notification.showError('errorHandling.something');
+        }
+      },
+      next: (response) => {
+        this.currentUserData.login = response.login;
+        this.notification.showSuccess('successes-login');
+      },
     });
   }
 
   changeUserPassword() {
     const newUserData = Object.assign(this.currentUserData);
-
     newUserData.password = this.form.value.password;
+    if (newUserData.password) {
+      this.localStorageService.saveInLocalStorage(
+        'password',
+        newUserData.password
+      );
+    }
 
-    this.editProfile.changeUserData(newUserData).subscribe(() => {
-      this.notification.showSuccess('Successes! Password was changed');
+    this.editProfile.changeUserData(newUserData).subscribe({
+      next: () => {
+        this.notification.showSuccess('Successes! Password was changed');
+      },
+      error: () => {
+        this.notification.showError('errorHandling.something');
+      },
     });
   }
 

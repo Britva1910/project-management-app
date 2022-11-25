@@ -22,8 +22,12 @@ export class NotificationService implements OnDestroy {
     private translocoService: TranslocoService
   ) {}
 
-  showSuccess(message: string): void {
-    this.snackBar.open(message, 'Ok');
+  showSuccess(key: string): void {
+    this.sub = this.translocoService
+      .selectTranslate(key)
+      .subscribe((message) => {
+        this.snackBar.open(message, 'Ok');
+      });
   }
 
   showError(key: string): void {
