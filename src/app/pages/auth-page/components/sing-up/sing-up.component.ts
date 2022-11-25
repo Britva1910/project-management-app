@@ -13,11 +13,20 @@ export class SingUpComponent {
   hide = true;
 
   form = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    login: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(25),
+    ]),
+    login: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(25),
+    ]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
+      Validators.maxLength(25),
     ]),
   });
 

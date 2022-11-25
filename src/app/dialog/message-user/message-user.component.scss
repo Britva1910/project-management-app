@@ -17,11 +17,12 @@
   top: 50%;
   width: 310px;
   min-height: 200px;
-  padding: 40px 50px;
+  padding: 40px 40px;
   border-radius: 7px;
   text-align: center;
   background-position: center center;
   background-size: 100%;
+  word-break: normal;
   transform: translate(-50%, -50%);
   box-shadow: $shadow-modal;
   z-index: 3;
