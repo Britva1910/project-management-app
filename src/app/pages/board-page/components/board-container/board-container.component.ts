@@ -52,8 +52,6 @@ export class BoardContainerComponent implements OnInit, OnDestroy {
 
   public data = 'Delete column?';
 
-  public searchText: string = this.filterService.getValueInputFilter();
-
   public columns$ = this.editTaskService.getAllColumn$();
 
   public isShow$ = this.editTaskService.showEditModal$();
