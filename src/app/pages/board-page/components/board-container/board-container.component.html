@@ -1,8 +1,7 @@
 <div cdkDropListGroup  *ngIf="(columns$ | async) as columns">
   <app-message-user *transloco="let t" [title]="t('board.message-delete')"></app-message-user>
   <div cdkDropListGroup [cdkDropListDisabled] = " isDisabledDrop$ | async" cdkDropList [cdkDropListData]="columns" cdkDropListOrientation="horizontal"  (cdkDropListDropped)="ondrop($event)" class="container-column">
-  <div class="column" cdkDrag  *ngFor="let column of columns | filter: filterService.getValueInputFilter(); let i = index">
-
+  <div class="column" cdkDrag  *ngFor="let column of columns | filter: searchText; let i = index">
     <div class="column__title-container">
       <div class="title-column" (click)="hideTitleColumn(i, column.id)">
         <h3 class="title">{{column.title}}</h3>
