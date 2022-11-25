@@ -12,10 +12,15 @@ export class LoginComponent {
   hide = true;
 
   form = new FormGroup({
-    login: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    login: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(25),
+    ]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
+      Validators.maxLength(25),
     ]),
   });
 
