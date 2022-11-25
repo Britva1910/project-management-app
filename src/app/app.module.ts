@@ -24,6 +24,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogModule } from './dialog/dialog.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { HttpErrorInterceptor } from './shared/interceptors/http-error.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +66,11 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: UrlInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
       multi: true,
     },
   ],
