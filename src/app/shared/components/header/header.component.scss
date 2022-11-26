@@ -25,10 +25,13 @@
       font-size: 14px;
       color: $light-font-color;
       cursor: pointer;
-      
+
       &:hover {
         opacity: .7;
       }
+  }
+  &__search {
+    width: 25px;
   }
 
   &__language button {

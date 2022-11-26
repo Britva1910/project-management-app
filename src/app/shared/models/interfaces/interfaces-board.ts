@@ -148,3 +148,10 @@ export type UsersTasks = Array<{ column: string; task: string }>;
 export interface NgxSpinnerConfig {
   type?: string;
 }
+export interface BoardAndAllTasks {
+  idBoard: string;
+  boardTitle: string;
+  taskTitle: string;
+  taskDescription: string;
+  userLogin: string;
+}

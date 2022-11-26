@@ -1,0 +1,51 @@
+@import "utils-color";
+@import "breakpoint";
+
+.wrapper {
+  width: 100%;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 500;
+  color: $dark-font-color;
+  text-align: center;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 20px;
+  border: 7px solid $light-fon-color;
+  border-collapse: collapse;
+  color: $dark-font-color;
+  text-align: left;
+  overflow: auto;
+  max-height: 50vh;
+}
+
+.table__head {
+  font-weight: 500;
+  padding: 5px;
+  background: $dark-fon-color;
+  color: $light-fon-color;
+  border-bottom: 5px solid $light-fon-color;
+}
+
+.table__body {
+  padding: 5px;
+  border: none;
+  border-bottom: 5px solid $light-fon-color;
+  cursor: pointer;
+}
+
+@media screen and (max-width: $mq-tablet) {
+  .table {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: $mq-small) {
+  .table {
+    font-size: 11px;
+  }
+}
