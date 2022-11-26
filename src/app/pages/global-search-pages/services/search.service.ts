@@ -14,6 +14,8 @@ import { UserDataService } from './../../../shared/services/user-data-service/us
 export class SearchService {
   private valueInputFilter$ = new BehaviorSubject<string>('');
 
+  private isResultSearch$ = new BehaviorSubject<boolean>(false);
+
   private arrFullBoards = new BehaviorSubject<BoardResponse[]>([]);
 
   private map_boards = new Map();
@@ -28,6 +30,14 @@ export class SearchService {
     private spinnerService: NgxSpinnerService,
     private userDataService: UserDataService
   ) {}
+
+  public setIsResultSearch$(value: boolean) {
+    this.isResultSearch$.next(value);
+  }
+
+  public getIsResultSearch$(): Observable<boolean> {
+    return this.isResultSearch$.asObservable();
+  }
 
   public getValueInputFilter(): Observable<string> {
     return this.valueInputFilter$.asObservable();

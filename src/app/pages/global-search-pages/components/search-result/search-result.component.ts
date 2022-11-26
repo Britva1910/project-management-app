@@ -14,9 +14,11 @@ import { setCurrentBoard } from 'src/app/shared/store/app.action';
   styleUrls: ['./search-result.component.scss'],
 })
 export class SearchResultComponent implements OnInit, OnDestroy {
-  public searchText: string;
+  public searchText: string = '';
 
-  private sub: Subscription;
+  public isResultSearch$: boolean = true;
+
+  private sub: Subscription[] = [];
 
   public boardAndAllTasks: Observable<BoardAndAllTasks[]> =
     this.searchService.getNewArrAllBoards$();
@@ -30,9 +32,16 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.sub = this.searchService
-      .getValueInputFilter()
-      .subscribe((value) => (this.searchText = value));
+    this.sub.push(
+      this.searchService
+        .getValueInputFilter()
+        .subscribe((value) => (this.searchText = value))
+    );
+    this.sub.push(
+      this.searchService
+        .getIsResultSearch$()
+        .subscribe((value) => (this.isResultSearch$ = value))
+    );
   }
 
   public saveIdCurrentBoard(id: string) {
@@ -44,6 +53,6 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.sub.forEach((subscription) => subscription.unsubscribe());
   }
 }
