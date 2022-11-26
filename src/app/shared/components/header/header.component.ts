@@ -80,6 +80,7 @@ export class HeaderComponent {
   }
 
   public getBoards() {
+    if (this.location.path() === union.search) return;
     this.spinnerService.show();
     this.searchService.setValueInputFilter('');
   }

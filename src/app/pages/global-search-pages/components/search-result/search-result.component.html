@@ -20,6 +20,11 @@
             </tr>
             </tbody>
           </table>
+
+        </div>
+        <div class="container__not-result" *ngIf="!isResultSearch$">
+          <img class="not-result__img" src="./assets/img/nothing-found.png" alt="icon">
+          <h4 class="not-result__title">{{t('search.result-none')}}</h4>
         </div>
       </div>
     </div>
