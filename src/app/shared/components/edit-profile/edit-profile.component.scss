@@ -1,8 +1,9 @@
 @import "utils-color";
 @import "mixins";
+@import "breakpoint";
 
 .wrapper {
-  min-height: calc(100vh - 108px);
+  min-height: calc(100vh - 111px);
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -61,4 +62,22 @@
 
 .mat-action-row {
   padding: 5px 8px 10px 7px;
+}
+
+@media screen and (max-width: $mq-laptop) {
+  .wrapper {
+    min-height: calc(100vh - 119px);
+  }
+}
+
+@media screen and (max-width: $mq-tablet) {
+  .wrapper {
+    min-height: calc(100vh - 113px);
+  }
+}
+
+@media screen and (max-width: $mq-small) {
+  .wrapper {
+    min-height: calc(100vh - 108px);
+  }
 }

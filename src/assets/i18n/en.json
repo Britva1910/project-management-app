@@ -119,6 +119,7 @@
   },
   "spinner": "Loading",
   "errorHandling": {
+    "token": "The token has expired, please login again",
     "loginError": "User was not found. Please, check login and password",
     "loginConflict": "User with this login already exists",
     "bug": "Whoops! Seems is bug...",

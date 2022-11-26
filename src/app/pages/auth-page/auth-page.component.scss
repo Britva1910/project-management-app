@@ -1,7 +1,9 @@
-@import 'utils-color';
+@import "utils-color";
+@import "breakpoint";
+
 .wrapper {
-  width: 100vw;
-  min-height: calc(100vh - 122px);
+  width: 100%;
+  min-height: calc(100vh - 120px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,3 +16,14 @@
   border-radius: 10px;
 }
 
+@media screen and (max-width: $mq-tablet) {
+  .wrapper {
+    min-height: calc(100vh - 109px);
+  }
+}
+
+@media screen and (max-width: $mq-small) {
+  .wrapper {
+    min-height: calc(100vh - 99px);
+  }
+}

@@ -4,7 +4,7 @@
 
 .wrapper__search-page {
   width: 100%;
-  min-height: calc(100vh - 112px);
+  min-height: calc(100vh - 111px);
   padding: 10px 70px;
   font-family: "Roboto", sans-serif;
   color: $light-font-color;
@@ -42,12 +42,14 @@
 @media screen and (max-width: $mq-laptop) {
   .wrapper__search-page {
     padding: 10px 50px;
+    min-height: calc(100vh - 119px);
   }
 }
 
 @media screen and (max-width: $mq-tablet) {
   .wrapper__search-page {
     padding: 10px 20px;
+    min-height: calc(100vh - 113px);
   }
 
   .search-page__container-title {
@@ -59,5 +61,12 @@
   .search-page__title {
     margin-bottom: 0;
     font-size: 12px;
+  }
+}
+
+@media screen and (max-width: $mq-small) {
+  .wrapper__search-page {
+    padding: 10px 50px;
+    min-height: calc(100vh - 108px);
   }
 }
