@@ -14,11 +14,7 @@ import { UserDataService } from './../../../shared/services/user-data-service/us
 export class SearchService {
   private valueInputFilter$ = new BehaviorSubject<string>('');
 
-  private allBoards: OneBoard[] = [];
-
   private arrFullBoards = new BehaviorSubject<BoardResponse[]>([]);
-
-  private allBoardsId: string[] = [];
 
   private map_boards = new Map();
 
@@ -42,22 +38,29 @@ export class SearchService {
   }
 
   private getAllFullBoards(boards: OneBoard[]) {
-    this.allBoardsId = boards.map((board) => board.id);
     this.createMapBoards(boards);
     const arrRequest = boards.map((board) =>
       this.boardsDataService.getBoardById(board.id)
     );
-    forkJoin(arrRequest).subscribe((results) => {
-      this.arrFullBoards.next(results);
-      this.spinnerService.hide();
-      this.setMapBoards(results);
+    forkJoin(arrRequest).subscribe({
+      next: (results) => {
+        this.arrFullBoards.next(results);
+        this.spinnerService.hide();
+        this.setMapBoards(results);
+      },
+      error: (error) => {
+        if (error.statusCode === 404) {
+          this.notificationService.showError('errorHandling.noBoard');
+        } else {
+          this.notificationService.showError('errorHandling.something');
+        }
+      },
     });
   }
 
   public getAllBoard() {
     this.boardsDataService.getAllBoards().subscribe({
       next: (boards: OneBoard[]) => {
-        this.allBoards = [...boards];
         this.getAllFullBoards(boards);
       },
       error: (error) => {

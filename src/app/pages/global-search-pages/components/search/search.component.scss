@@ -1,5 +1,6 @@
 @import 'utils-color';
 @import 'breakpoint';
+
 .search {
   &__wrapper {
     position: relative;
@@ -30,15 +31,13 @@
   }
 }
 
-
-
-
 @media screen and (max-width: $mq-small) {
 
   .search {
     &__wrapper {
       width: 250px;
     }
+
     &__input {
       font-size: 12px;
     }

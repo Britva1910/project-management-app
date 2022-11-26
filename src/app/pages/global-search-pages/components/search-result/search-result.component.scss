@@ -1,5 +1,6 @@
 @import "utils-color";
 @import "breakpoint";
+
 .wrapper {
   width: 100%;
 }
@@ -10,6 +11,7 @@
   color: $dark-font-color;
   text-align: center;
 }
+
 .table {
   width: 100%;
   margin-bottom: 20px;
@@ -38,12 +40,12 @@
 
 @media screen and (max-width: $mq-tablet) {
   .table {
-   font-size: 12px;
+    font-size: 12px;
   }
 }
 
 @media screen and (max-width: $mq-small) {
   .table {
     font-size: 11px;
-   }
+  }
 }

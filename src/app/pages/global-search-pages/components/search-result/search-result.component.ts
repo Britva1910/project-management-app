@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BoardAndAllTasks } from 'src/app/shared/models/interfaces/interfaces-board';
 import { SearchService } from './../../services/search.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { LocalStorageService } from './../../../../shared/services/local-storage-service/local-storage.service';
 import { Router } from '@angular/router';
@@ -13,8 +13,10 @@ import { setCurrentBoard } from 'src/app/shared/store/app.action';
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.scss'],
 })
-export class SearchResultComponent implements OnInit {
+export class SearchResultComponent implements OnInit, OnDestroy {
   public searchText: string;
+
+  private sub: Subscription;
 
   public boardAndAllTasks: Observable<BoardAndAllTasks[]> =
     this.searchService.getNewArrAllBoards$();
@@ -28,7 +30,7 @@ export class SearchResultComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.searchService
+    this.sub = this.searchService
       .getValueInputFilter()
       .subscribe((value) => (this.searchText = value));
   }
@@ -39,5 +41,9 @@ export class SearchResultComponent implements OnInit {
     this.store.dispatch(setCurrentBoard({ id }));
     this.router.navigate(['board', id]);
     this.spinnerService.show();
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }
