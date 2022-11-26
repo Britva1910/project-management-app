@@ -5,7 +5,7 @@
 
 .wrapper__board-page {
   width: 100%;
-  height: calc(100vh - 115px);
+  min-height: calc(100vh - 114px);
   padding: 10px 70px;
   font-family: "Roboto", sans-serif;
   color: $light-font-color;
@@ -135,11 +135,6 @@
 
   .board-page__title {
     @include title-page-tablet;
-  }
-
-  .title-today {
-    margin-top: 3px;
-    font-size: 14px;
   }
 
   .board-page__description {

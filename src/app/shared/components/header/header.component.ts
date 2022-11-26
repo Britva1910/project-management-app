@@ -6,6 +6,9 @@ import { union } from '../../constant/union';
 import { LoginService } from '../../../pages/auth-page/services/login.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SearchService } from './../../../pages/global-search-pages/services/search.service';
+import { AddTaskEvent } from './../../models/interfaces/interfaces-board';
+import { MainPageService } from './../../../pages/main-page/services/main-page.service';
+import { ModalService } from './../../../dialog/service/modal-prompt.service';
 
 @Component({
   selector: 'app-header',
@@ -33,7 +36,9 @@ export class HeaderComponent {
     private translate: TranslocoService,
     private loginService: LoginService,
     private spinnerService: NgxSpinnerService,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private modalService: ModalService,
+    private mainPageService: MainPageService
   ) {
     router.events.subscribe(() => {
       if (location.path() != '') {
@@ -77,5 +82,15 @@ export class HeaderComponent {
   public getBoards() {
     this.spinnerService.show();
     this.searchService.setValueInputFilter('');
+  }
+
+  public addNewBoard(userTaskData: AddTaskEvent) {
+    if (userTaskData) {
+      this.mainPageService.createBoard(userTaskData);
+    }
+  }
+
+  public setTwoFieldForm() {
+    this.modalService.setTwoFiledForm();
   }
 }
