@@ -9,6 +9,7 @@ import { WelcomeDataService } from './services/welcome-data.service';
 import { Subscription } from 'rxjs';
 import { ModalService } from './../../dialog/service/modal-prompt.service';
 import { TranslocoService } from '@ngneat/transloco';
+import { Video } from './../../shared/models/interfaces/welcome-page';
 
 @Component({
   selector: 'app-welcome-page',

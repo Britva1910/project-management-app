@@ -1,13 +1,16 @@
 <header class="header" [ngStyle]="{'background-color': bgColor}" *transloco="let t" id="header">
   <div class="header__wrapper">
     <a href="#"> <img [src]="logoSource" class="header__logo" alt="logo"></a>
-    <a class="header__nav-txt" *ngIf="headerNavigation" routerLink="/main" (click)="showSpinner()">{{t('header.boardsBtn')}}</a>
+    <app-dialog (emitText)="addNewBoard($event)" appStopPropagation (click)="setTwoFieldForm()"><a class="header__nav-txt" *ngIf="headerNavigation" routerLink="/main" (click)="showSpinner()">{{t('header.boardsBtn')}}</a>
+    </app-dialog>
+    <a class="header__nav-txt" *ngIf="headerNavigation" routerLink="/search" (click)="getBoards()"><img src="./assets/icons/icon-global-search.png" class="header__search" alt="icon search"></a>
     <a class="header__nav-txt" *ngIf="headerNavigation" routerLink="/edit-profile">{{t('header.profileBtn')}}</a>
     <div class="header__nav-small" *ngIf="headerNavigation">
       <button class="header__nav-menu" mat-button [matMenuTriggerFor]="menu">{{t('header.menu')}}</button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="#">{{t('header.boardsBtn')}}</button>
+        <app-dialog (emitText)="addNewBoard($event)" appStopPropagation (click)="setTwoFieldForm()"><button mat-menu-item routerLink="/main" (click)="showSpinner()">{{t('header.boardsBtn')}}</button> </app-dialog>
         <button mat-menu-item routerLink="/edit-profile">{{t('header.profileBtn')}}</button>
+        <button mat-menu-item routerLink="/search" (click)="getBoards()">{{t('header.searchBtn')}}</button>
       </mat-menu>
     </div>
     <div class="header__language">
@@ -27,7 +30,7 @@
       </div>
       <div class="header__button" *ngIf="!headerButtons">
         <button class="header__button-logo" mat-raised-button (click)="logOut()">
-          <img class="header__button-icon" src="../../../../assets/icons/login-man.svg" alt="login-man">
+          <img class="header__button-icon" src="./assets/icons/login-man.svg" alt="login-man">
           {{t('header.logInOut')}}
         </button>
       </div>

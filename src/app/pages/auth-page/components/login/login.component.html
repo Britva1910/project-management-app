@@ -9,12 +9,12 @@
       type="text"
       [placeholder]="t('auth.login.login-plh')"
       formControlName="login"
+      maxlength="25"
+      minlength="3"
     />
-    <mat-error *ngIf="login.invalid">
-      <span *ngIf="login.errors?.['required']">{{t('auth.login.login-plh')}}</span>
-      <div *ngIf="login.errors?.['minlength']">
-      {{t('forms.errors.lengthLogin')}}
-      </div>
+    <mat-error *ngIf="login?.invalid">
+      <span *ngIf="login?.errors?.['required']">{{t('auth.login.login-plh')}}</span>
+      <span *ngIf="login?.errors?.['minlength']">{{t('forms.errors.lengthLogin')}}</span>
     </mat-error>
   </mat-form-field>
   <mat-form-field appearance="standard" class="field">
@@ -24,12 +24,12 @@
       [type]="hide ? 'password' : 'text'"
       type="password"
       formControlName="password"
+      maxlength="25"
+      minlength="8"
     />
-    <mat-error *ngIf="password.invalid">
-      <span *ngIf="password.errors?.['required']">{{t('auth.login.password-plh')}}</span>
-      <div *ngIf="password.errors?.['minlength']">
-        {{t('forms.errors.lengthPass')}}
-      </div>
+    <mat-error *ngIf="password?.invalid">
+      <span *ngIf="password?.errors?.['required']">{{t('auth.login.password-plh')}}</span>
+      <span *ngIf="password?.errors?.['minlength']"> {{t('forms.errors.lengthPass')}} </span>
     </mat-error>
     <button
       type="button"

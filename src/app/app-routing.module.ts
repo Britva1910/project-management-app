@@ -41,6 +41,15 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'search',
+    loadChildren: () =>
+      import('./pages/global-search-pages/global-search.module').then(
+        (m) => m.GlobalSearchModule
+      ),
+    canActivate: [AuthGuard],
+  },
+
   { path: '**', component: NotFoundPagesComponent },
 ];
 

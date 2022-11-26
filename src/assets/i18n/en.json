@@ -15,18 +15,20 @@
     }
   },
   "header": {
-    "boardsBtn": "All boards",
+    "boardsBtn": "Create board",
     "profileBtn": "Edit profile",
     "singUpBtn": "Sign Up",
     "logInBtn": "Log In",
     "logInOut": "Log Out",
-    "menu": "Menu"
+    "menu": "Menu",
+    "searchBtn": "Global Search"
   },
   "404-message": "Sorry, smth went wrong :(",
   "welcome": {
     "btn": "Create project",
     "subtitle-1": "Advantages",
     "subtitle-2": "Development Team",
+    "subtitle-3": "Kanban APP - demonstration",
     "advantages": {
       "text-1": "Kanban board is pleasant to use: tasks' color can be customized according to every user preferences",
       "text-2": "Kanban board is convenient to use: two languages are supported",
@@ -36,10 +38,19 @@
       "person-1": "Sviatlana Matskevich",
       "person-2": "Ivan Lashuk",
       "person-3": "Ulugbek Dushanov",
-      "description-1": "Board page and logic development, additional functionality implementation, application design, code-review",
+      "description-1": "Board page, global-search pages and logic development, additional functionality implementation, application design, video demonstration, code-review",
       "description-2": "Teamwork organization, welcome page, auth page and logic development, localization, backend error handling implementation, code-review",
       "description-3": "The main page for showing boards, header, and footer development, code-review"
     }
+  },
+  "search": {
+    "title": "Enter data to search",
+    "project": "Project",
+    "task": "Task",
+    "description": "Description",
+    "user": "User",
+    "result": "Searching results",
+    "search-bar": "search task, user"
   },
   "board": {
     "btn": {
@@ -51,7 +62,8 @@
     },
     "message-delete": "You can remove only your own tasks",
     "message-column-title": "Name must be from 3 to 20 characters",
-    "message-column-descript": "Must be more than 2 characters"
+    "message-column-descript": "Must be from 3 to 50 characters",
+    "search-bar": "search task"
   },
   "forms": {
     "errors": {
@@ -95,7 +107,7 @@
     "title": "All projects",
     "subtitle": "My boards",
     "search-bar": {
-      "search": "search"
+      "search": "search board"
     },
     "sort-bar": {
       "sort": "Sort"

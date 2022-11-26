@@ -5,7 +5,7 @@
   padding-top: 20px;
   background-image: url("../../../assets/img/light-fon.jpg");
   background-size: cover;
-  min-height: calc(100vh - 112px);
+  min-height: calc(100vh - 114px);
 
   &__wrapper {
     width: 100%;
@@ -31,7 +31,7 @@
   }
 
   &__inner {
-    margin: 30px auto;
+    margin: 20px auto;
     display: flex;
     justify-content: space-between;
     width: 96%;

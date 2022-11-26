@@ -1,7 +1,8 @@
 <section class="wrapper__board-page">
+  <button class="btn__back" type="button" routerLink="/main" (click)="isEnter()"><img class="btn__back-img" src="./assets/icons/back-Button.png" alt="icon"></button>
   <div class="board-page__container-title">
     <h2 class="board-page__title">{{title$ | async}}</h2>
-    <p class="title-today">{{today | date }}</p>
+    <app-search></app-search>
   </div>
   <h3 class="board-page__description">{{description$ | async}}</h3>
   <div class="container-label-addBtn">

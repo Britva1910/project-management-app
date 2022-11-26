@@ -6,6 +6,8 @@ import { AdvantageCardComponent } from './components/advantage-card/advantage-ca
 import { TeammateComponent } from './components/teammate-card/teammate.component';
 import { TranslocoModule } from '@ngneat/transloco';
 import { DialogModule } from './../../dialog/dialog.module';
+import { VideoPlayerComponent } from './components/video-player/video-player.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 const routes: Routes = [{ path: '', component: WelcomePageComponent }];
 
@@ -14,12 +16,14 @@ const routes: Routes = [{ path: '', component: WelcomePageComponent }];
     WelcomePageComponent,
     AdvantageCardComponent,
     TeammateComponent,
+    VideoPlayerComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     TranslocoModule,
     DialogModule,
+    YouTubePlayerModule,
   ],
 })
 export class WelcomePageModule {}
