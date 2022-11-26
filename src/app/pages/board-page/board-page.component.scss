@@ -5,7 +5,7 @@
 
 .wrapper__board-page {
   width: 100%;
-  min-height: calc(100vh - 114px);
+  min-height: calc(100vh - 111px);
   padding: 10px 70px;
   font-family: "Roboto", sans-serif;
   color: $light-font-color;
@@ -22,11 +22,11 @@
   top: 80px;
   left: 30px;
   border: none;
-  transition: all ease .7s;
+  transition: all ease 0.7s;
   cursor: pointer;
 
   &:hover {
-    opacity: .7;
+    opacity: 0.7;
   }
 }
 
@@ -109,7 +109,7 @@
     font-weight: 700;
     color: $dark-font-color;
     cursor: pointer;
-    transition: all ease .3s;
+    transition: all ease 0.3s;
 
     &:hover {
       box-shadow: $shadow-title-column;
@@ -120,6 +120,7 @@
 @media screen and (max-width: $mq-laptop) {
   .wrapper__board-page {
     padding: 10px 50px;
+    min-height: calc(100vh - 119px);
   }
 }
 
@@ -131,6 +132,7 @@
 
   .wrapper__board-page {
     padding: 10px 20px;
+    min-height: calc(100vh - 113px);
   }
 
   .board-page__title {
@@ -167,10 +169,13 @@
   .board-page__container {
     width: 100%;
   }
-
 }
 
 @media screen and (max-width: $mq-small) {
+  .wrapper__board-page {
+    min-height: calc(100vh - 108px);
+  }
+
   .board-page__container-title {
     flex-direction: column;
     justify-content: center;
