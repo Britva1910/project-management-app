@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NotificationService } from '../../../shared/services/notification-service/notification.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class MainPageService {
   private allBoards$ = new BehaviorSubject<OneBoard[]>([]);
 

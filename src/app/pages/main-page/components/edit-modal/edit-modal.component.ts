@@ -40,6 +40,7 @@ export class EditModalComponent implements OnInit, OnDestroy {
   }
 
   public edit() {
+    document.body.style.overflowY = 'auto';
     this.boardsDataService
       .updateBoard(this.id, {
         title: this.title,
@@ -65,6 +66,7 @@ export class EditModalComponent implements OnInit, OnDestroy {
   }
 
   public cancel() {
+    document.body.style.overflowY = 'auto';
     this.mainPageService.editModalStatus.next(false);
   }
 

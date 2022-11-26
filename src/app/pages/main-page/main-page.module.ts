@@ -9,7 +9,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { SearchPipe } from 'src/app/shared/pipes/search/search.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SortPipe } from 'src/app/shared/pipes/sort/sort.pipe';
-import { MainPageService } from './services/main-page.service';
 import { DialogModule } from './../../dialog/dialog.module';
 import { EditModalComponent } from './components/edit-modal/edit-modal.component';
 import { TranslocoModule } from '@ngneat/transloco';
@@ -33,6 +32,5 @@ const routes: Routes = [{ path: '', component: MainPageComponent }];
     DialogModule,
     TranslocoModule,
   ],
-  providers: [MainPageService],
 })
 export class MainPageModule {}

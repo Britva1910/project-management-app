@@ -41,20 +41,21 @@
     resize: vertical;
   }
 }
-  .btn {
-    width: 100px;
-    height: 40px;
-    margin: 14px;
-    transition: all ease-in 0.3s;
-    cursor: pointer;
 
-    &:hover {
-      box-shadow: $shadow-title-column;
-    }
+.btn {
+  width: 100px;
+  height: 40px;
+  margin: 14px;
+  transition: all ease-in 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: $shadow-title-column;
   }
+}
 
-
-
-
-
-
+.error {
+  color: #f44336;
+  font-size: 10px;
+  margin: 0;
+}

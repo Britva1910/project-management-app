@@ -15,7 +15,7 @@
     }
   },
   "header": {
-    "boardsBtn": "All boards",
+    "boardsBtn": "Create board",
     "profileBtn": "Edit profile",
     "singUpBtn": "Sign Up",
     "logInBtn": "Log In",
@@ -62,7 +62,7 @@
     },
     "message-delete": "You can remove only your own tasks",
     "message-column-title": "Name must be from 3 to 20 characters",
-    "message-column-descript": "Must be more than 2 characters",
+    "message-column-descript": "Must be from 3 to 50 characters",
     "search-bar": "search task"
   },
   "forms": {

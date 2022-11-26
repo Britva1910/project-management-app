@@ -32,7 +32,14 @@ export class DialogBodyComponent implements OnInit {
             Validators.maxLength(20),
           ],
         ],
-        description: ['', [Validators.required, Validators.minLength(3)]],
+        description: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(50),
+          ],
+        ],
       });
     } else {
       this.form = this.fb.group({

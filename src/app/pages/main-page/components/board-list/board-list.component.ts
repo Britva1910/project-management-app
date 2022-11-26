@@ -79,6 +79,7 @@ export class BoardListComponent implements OnInit, OnDestroy {
   }
 
   public openEditModal(id: string) {
+    document.body.style.overflowY = 'hidden';
     this.mainPageService.editModalStatus.next(true);
     this.mainPageService.boardId.next(id);
   }
